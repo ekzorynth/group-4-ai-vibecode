@@ -1,0 +1,136 @@
+{
+  "charter": "C7",
+  "baseURL": "http://127.0.0.1:4347",
+  "startedUTC": "2026-11-06T11:44:50.176Z",
+  "endedUTC": "2026-11-06T11:44:55.207Z",
+  "constraints": [
+    "Run after C1–C6 completion",
+    "Own isolated C7 world only",
+    "No runtime source or BUGS.md reads"
+  ],
+  "cases": [
+    {
+      "id": "C7-01",
+      "title": "Session ใช้ได้ก่อนครบ 24 ชั่วโมง แต่ตรงขอบต้องหมดอายุ",
+      "trace": "FR01 FR17 BR20",
+      "status": "passed",
+      "startedUTC": "2026-11-06T11:44:50.192Z",
+      "endedUTC": "2026-11-06T11:44:50.515Z",
+      "observed": {
+        "before24h": 200,
+        "at24h": 401
+      }
+    },
+    {
+      "id": "C7-02",
+      "title": "ล็อกหลังผิดครั้งที่ 5 และปลดตรง 15 นาที ไม่ก่อนขอบ",
+      "trace": "FR17 BR20",
+      "status": "passed",
+      "startedUTC": "2026-11-06T11:44:50.515Z",
+      "endedUTC": "2026-11-06T11:44:51.004Z",
+      "observed": {
+        "wrongAttempts": [
+          401,
+          401,
+          401,
+          401,
+          429
+        ],
+        "before15min": 429,
+        "at15min": 200
+      }
+    },
+    {
+      "id": "C7-03",
+      "title": "Hold ยังอยู่ก่อน 600 วินาที และหมดอายุตรง 600 วินาที",
+      "trace": "FR10 BR09",
+      "status": "passed",
+      "startedUTC": "2026-11-06T11:44:51.004Z",
+      "endedUTC": "2026-11-06T11:44:51.331Z",
+      "observed": {
+        "before600s": "held",
+        "at600s": "expired",
+        "latePay": 409,
+        "seat": "available"
+      }
+    },
+    {
+      "id": "C7-04",
+      "title": "คิวและ grant ไม่คงสิทธิ์หลังครบ 900 วินาที",
+      "trace": "FR04 FR05 FR06 BR06 BR07",
+      "status": "passed",
+      "startedUTC": "2026-11-06T11:44:51.331Z",
+      "endedUTC": "2026-11-06T11:44:51.648Z",
+      "observed": {
+        "before900s": {
+          "queue": "active",
+          "map": 200
+        },
+        "at900s": {
+          "queue": "expired",
+          "map": 403
+        }
+      }
+    },
+    {
+      "id": "C7-05",
+      "title": "Member ปิด General เปิดตรง 15:00 และ hold เดิมถูกตัดตามรอบ",
+      "trace": "FR02 FR03 FR08 FR10 BR03 BR08 BR09",
+      "status": "passed",
+      "startedUTC": "2026-11-06T11:44:51.648Z",
+      "endedUTC": "2026-11-06T11:44:53.635Z",
+      "observed": {
+        "memberAt15": "closed",
+        "generalAt15": "available",
+        "holdExpiryClamped": true,
+        "threeGeneralSeats": 201,
+        "evidence": "general-at-1500.png"
+      }
+    },
+    {
+      "id": "C7-06",
+      "title": "เปิดห้องรอก่อนขาย 15 นาที แต่ไม่เรียก active ก่อนเวลาเริ่ม",
+      "trace": "FR04 BR04 BR06",
+      "status": "passed",
+      "startedUTC": "2026-11-06T11:44:53.635Z",
+      "endedUTC": "2026-11-06T11:44:53.948Z",
+      "observed": {
+        "beforePrequeue": 409,
+        "atPrequeue": "waiting",
+        "beforeSale": "waiting",
+        "atSale": "active",
+        "fixedNumber": true
+      }
+    },
+    {
+      "id": "C7-07",
+      "title": "ขอคืนเงินได้ตรงก่อนงาน 72 ชั่วโมง แต่หลังขอบ 1ms ไม่ได้",
+      "trace": "FR17",
+      "status": "passed",
+      "startedUTC": "2026-11-06T11:44:53.948Z",
+      "endedUTC": "2026-11-06T11:44:54.302Z",
+      "observed": {
+        "at72h": 201,
+        "after72hBy1ms": 409
+      }
+    },
+    {
+      "id": "C7-08",
+      "title": "Grace จ่ายก่อน expiry และผลก่อน 120s สำเร็จ แต่ตรงขอบไม่ผ่าน",
+      "trace": "FR12 BR16",
+      "status": "passed",
+      "startedUTC": "2026-11-06T11:44:54.302Z",
+      "endedUTC": "2026-11-06T11:44:54.932Z",
+      "observed": [
+        {
+          "arrival": "2026-11-06T03:11:59.999Z",
+          "status": "succeeded"
+        },
+        {
+          "arrival": "2026-11-06T03:12:00Z",
+          "status": "auto_refunded"
+        }
+      ]
+    }
+  ]
+}

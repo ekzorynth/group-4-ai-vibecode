@@ -1,0 +1,16 @@
+{
+  "checkedUTC": "2026-11-06T13:50:43.330Z",
+  "normal": "89/89",
+  "bugDetected": "3/3",
+  "newFailedCases": 11,
+  "frozenCurrentAndEqual": true,
+  "detailedCards": 89,
+  "traceRequirements": 45,
+  "reviewFindingsResolved": 12,
+  "reportLinks": "all local targets exist",
+  "gifs": 56,
+  "diagrams": 6,
+  "uiMobile": true,
+  "chartersStopped": true,
+  "github": "not pushed as requested"
+}

@@ -1,0 +1,95 @@
+{
+  "charter": "C1",
+  "baseURL": "http://127.0.0.1:4341",
+  "startedUTC": "2026-11-06T11:42:53.607Z",
+  "endedUTC": "2026-11-06T11:42:56.141Z",
+  "constraints": [
+    "No runtime source read",
+    "No BUGS.md read",
+    "Dedicated server only",
+    "No clock/reset mutations"
+  ],
+  "observations": [
+    {
+      "id": "C1-01",
+      "rule": "FR03 / BR05",
+      "expected": "[D] ต้องเข้าสู่ระบบก่อนเข้าคิว",
+      "actual": "[O] Anonymous POST queue -> 401 AUTH_REQUIRED",
+      "evidence": "responses.json",
+      "status": "passed",
+      "observedAt": "2026-11-06T11:42:53.631Z"
+    },
+    {
+      "id": "C1-02",
+      "rule": "FR02",
+      "expected": "[D] รอบและสถานะแสดงตามบัญชี Member/General",
+      "actual": "[O] ทั้ง 12 งานแยกรอบตามบัญชี; NEON ของ fan เปิดขาย ของ general ยังไม่เปิด",
+      "evidence": "responses.json",
+      "status": "passed",
+      "observedAt": "2026-11-06T11:42:53.743Z"
+    },
+    {
+      "id": "C1-03",
+      "rule": "FR03 / BR05",
+      "expected": "[D] General เข้ารอบ Member ไม่ได้ ทั้งที่ API",
+      "actual": "[O] POST queue round member -> 403 และข้อความตรงตามข้อกำหนด",
+      "evidence": "responses.json",
+      "status": "passed",
+      "observedAt": "2026-11-06T11:42:53.744Z"
+    },
+    {
+      "id": "C1-04",
+      "rule": "FR06 / BR07",
+      "expected": "[D] สมาชิกหมดอายุใช้สิทธิ์รอบสมาชิกไม่ได้",
+      "actual": "[O] expired fixture เข้ารอบ Member -> 403",
+      "evidence": "responses.json",
+      "status": "passed",
+      "observedAt": "2026-11-06T11:42:53.781Z"
+    },
+    {
+      "id": "C1-05",
+      "rule": "FR05 / FR06 / BR07",
+      "expected": "[D] เลขผิด/เลขบัญชีอื่นต้องไม่เปิดผัง",
+      "actual": "[O] WRONG และ ENCORE-0002 -> 400; GET seats ยังคง 403",
+      "evidence": "responses.json",
+      "status": "passed",
+      "observedAt": "2026-11-06T11:42:53.785Z"
+    },
+    {
+      "id": "C1-06",
+      "rule": "FR05 / FR06 / BR07",
+      "expected": "[D] หมายเลขถูกต้องเปิดผังได้เฉพาะบัญชีที่ยืนยัน",
+      "actual": "[O] fan GET seats 200; fan2 ที่ยังไม่ยืนยัน GET seats 403",
+      "evidence": "responses.json",
+      "status": "passed",
+      "observedAt": "2026-11-06T11:42:53.788Z"
+    },
+    {
+      "id": "C1-07",
+      "rule": "FR05 / NFR01",
+      "expected": "[D] ยืนยันเลขถูกต้องแล้วเข้าผังทันที ไม่มีปุ่มยืนยันซ้ำ",
+      "actual": "[O] เห็น C01 หลังส่งเลข; ไม่เหลือ member-form และ enter-map",
+      "evidence": "membership-invalid.png; membership-immediate-map.png",
+      "status": "passed",
+      "observedAt": "2026-11-06T11:42:55.933Z"
+    },
+    {
+      "id": "C1-08",
+      "rule": "FR13 / FR14 / FR15 / NFR02",
+      "expected": "[D] บัตร/อีเมล/แจ้งเตือนแยกเจ้าของและเปิดรหัสของผู้อื่นไม่ได้",
+      "actual": "[O] หลัง fan ซื้อ 1 ใบ general ยังมีรายการ 0; อ่าน ticket QR/mail ของ fan -> 404",
+      "evidence": "responses.json",
+      "status": "passed",
+      "observedAt": "2026-11-06T11:42:55.944Z"
+    },
+    {
+      "id": "C1-09",
+      "rule": "BR20 / FR17",
+      "expected": "[D] ผิดครั้งที่ 5 พักการเข้าสู่ระบบ แม้เปลี่ยนเป็นรหัสถูกทันที",
+      "actual": "[O] 4 ครั้งแรก 401; ครั้งที่ 5 และรหัสถูกถัดมา 429",
+      "evidence": "responses.json",
+      "status": "passed",
+      "observedAt": "2026-11-06T11:42:56.122Z"
+    }
+  ]
+}

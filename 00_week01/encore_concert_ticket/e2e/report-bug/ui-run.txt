@@ -1,0 +1,316 @@
+
+Running 28 tests using 3 workers
+
+  ✘   2 e2e/lab.spec.js:12:1 › V3-L03 gate second scan is rejection not success message containing used words (6.3s)
+  ✘   1 e2e/lab.spec.js:9:1 › V3-L02 Member third seat is rejected while first two stay selected (6.3s)
+  ✘   3 e2e/lab.spec.js:6:1 › V3-L01 two VIP coupon cap has server checkout total 5964 after hold (6.4s)
+  ✓   5 e2e/ui.spec.js:15:1 › V3-U02 General signs up, denied Member, joins General at15 with no membership input (1.4s)
+  ✓   4 e2e/ui.spec.js:11:1 › V3-U01 Member invalid/valid number, two named tickets, payment retry and email E-Ticket (3.1s)
+  ✓   7 e2e/ui.spec.js:21:1 › V3-U04 Member queue has stable number, ahead, ETA and auto-enters verification (3.2s)
+  ✓   9 e2e/ui.spec.js:25:1 › V3-U06 named ticket partial refund and organizer audit (1.6s)
+  ✓   8 e2e/ui.spec.js:24:1 › V3-U05 pending and contact snapshots recover after reload (3.1s)
+  ✘   6 e2e/ui.spec.js:18:1 › V3-U03 mobile Member cap2 contact validation copy and QR demo (6.3s)
+  ✓  11 e2e/ui.spec.js:27:1 › V3-U08 pagination all-event search and General new-event booking (2.5s)
+  ✓  12 e2e/ui.spec.js:28:1 › V3-U09 keyboard selection and close during reserve release late hold (1.5s)
+  ✓  14 e2e/ui.spec.js:30:84 › V3-U11 payment qr completes sandbox email (1.9s)
+  ✓  13 e2e/ui.spec.js:29:1 › V3-U10 automatic Member cutoff blocks pay, General opens at15 (3.1s)
+  ✘  10 e2e/ui.spec.js:26:1 › V3-U07 gate scans ticket QR payload once and shows holder name (6.3s)
+  ✓  15 e2e/ui.spec.js:30:84 › V3-U12 payment seven_eleven completes sandbox email (1.9s)
+  ✓  16 e2e/ui.spec.js:30:84 › V3-U13 payment credit_card completes sandbox email (1.9s)
+  ✓  18 e2e/ui.spec.js:32:1 › V3-U15 demo accounts separate Member and General sale views in calm theme (1.5s)
+  ✓  19 e2e/ui.spec.js:35:1 › V3-U16 invalid login recovers and switching account isolates tickets mail and notifications (1.9s)
+  ✓  17 e2e/ui.spec.js:30:84 › V3-U14 payment alipay completes sandbox email (1.9s)
+  ✓  20 e2e/ui.spec.js:39:1 › V3-U17 search filters empty state and pagination boundaries remain consistent (1.2s)
+  ✓  22 e2e/ui.spec.js:47:1 › V3-U19 membership request in flight disables repeat submission and close never reopens map (1.2s)
+  ✓  21 e2e/ui.spec.js:43:1 › V3-U18 invalid coupon keeps selected seat then closing confirmed hold releases it (1.8s)
+  ✓  24 e2e/ui.spec.js:55:1 › V3-U21 organizer rejects refund and buyer regains ticket QR with readable status (1.7s)
+  ✓  25 e2e/ui.spec.js:59:1 › V3-U22 mobile organizer blocks reopens seat and pauses sale within own scope (1.6s)
+  ✓  23 e2e/ui.spec.js:51:1 › V3-U20 contact edits survive reload and back to seat selection releases prior hold (3.1s)
+  ✓  28 e2e/ui.spec.js:71:1 › V3-U25 catalog network failure gives recovery instruction and reload restores events (893ms)
+  ✓  27 e2e/ui.spec.js:67:1 › V3-U24 General buyer completes purchase without membership and receives named ticket email (1.9s)
+  ✓  26 e2e/ui.spec.js:63:1 › V3-U23 holder markup stays literal on tickets and email without executing script (2.2s)
+
+
+  1) e2e/lab.spec.js:6:1 › V3-L01 two VIP coupon cap has server checkout total 5964 after hold ─────
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoHaveText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator:  locator('#checkout-form').getByTestId('total')
+    Expected: [32m"฿5,[7m96[27m4"[39m
+    Received: [31m"฿5,[7m82[27m4"[39m
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toHaveText" with timeout 5000ms[22m
+    [2m  - waiting for locator('#checkout-form').getByTestId('total')[22m
+    [2m    9 × locator resolved to <span data-testid="total">฿5,824</span>[22m
+    [2m      - unexpected value "฿5,824"[22m
+
+
+       5 | async function map(page){await page.goto('/');await page.locator('#auth-open').click();await page.locator('[data-demo="fan"]').click();await expect(page.locator('#auth')).not.toBeVisible();await page.getByTestId('event-neon').locator('[data-sale-round="member"]').click();await page.locator('#member-number').fill('ENCORE-0001');await page.locator('#member-form button').click();await expect(page.locator('[data-seat="A01"]')).toBeVisible();}
+       6 | test('V3-L01 two VIP coupon cap has server checkout total 5964 after hold',async({page})=>{
+    >  7 |  await map(page);await page.locator('[data-seat="A01"]').click();await page.locator('[data-seat="A02"]').click();await page.locator('#coupon').fill('STAGE10');await expect(page.getByTestId('total')).toHaveText('฿5,964');await page.locator('#reserve').click();await expect(page.locator('#checkout-form')).toBeVisible();await expect(page.locator('#checkout-form').getByTestId('total')).toHaveText('฿5,964');
+         |                                                                                                                                                                                                                                                                                                                                                                                                 ^
+       8 | });
+       9 | test('V3-L02 Member third seat is rejected while first two stay selected',async({page})=>{
+      10 |  await map(page);await page.locator('[data-seat="C01"]').click();await page.locator('[data-seat="C02"]').click();await expect(page.locator('.seat.selected')).toHaveCount(2);await page.locator('[data-seat="C03"]').click();await expect(page.locator('.seat.selected')).toHaveCount(2);await expect(page.locator('#toast')).toContainText('สูงสุด 2');
+        at /Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/lab.spec.js:7:385
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    e2e/report-bug/artifacts/lab-V3-L01-two-VIP-coupon--3c732-ckout-total-5964-after-hold/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: final-screen (image/png) ────────────────────────────────────────────────────────
+    e2e/report-bug/artifacts/lab-V3-L01-two-VIP-coupon--3c732-ckout-total-5964-after-hold/attachments/final-screen-43eda8efde8c0a163d0d140b4f15153ea35239af.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    e2e/report-bug/artifacts/lab-V3-L01-two-VIP-coupon--3c732-ckout-total-5964-after-hold/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: e2e/report-bug/artifacts/lab-V3-L01-two-VIP-coupon--3c732-ckout-total-5964-after-hold/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    e2e/report-bug/artifacts/lab-V3-L01-two-VIP-coupon--3c732-ckout-total-5964-after-hold/trace.zip
+    Usage:
+
+        npx playwright show-trace e2e/report-bug/artifacts/lab-V3-L01-two-VIP-coupon--3c732-ckout-total-5964-after-hold/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) e2e/lab.spec.js:9:1 › V3-L02 Member third seat is rejected while first two stay selected ──────
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoHaveCount[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator:  locator('.seat.selected')
+    Expected: [32m2[39m
+    Received: [31m3[39m
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toHaveCount" with timeout 5000ms[22m
+    [2m  - waiting for locator('.seat.selected')[22m
+    [2m    9 × locator resolved to 3 elements[22m
+    [2m      - unexpected value "3"[22m
+
+
+       8 | });
+       9 | test('V3-L02 Member third seat is rejected while first two stay selected',async({page})=>{
+    > 10 |  await map(page);await page.locator('[data-seat="C01"]').click();await page.locator('[data-seat="C02"]').click();await expect(page.locator('.seat.selected')).toHaveCount(2);await page.locator('[data-seat="C03"]').click();await expect(page.locator('.seat.selected')).toHaveCount(2);await expect(page.locator('#toast')).toContainText('สูงสุด 2');
+         |                                                                                                                                                                                                                                                                           ^
+      11 | });
+      12 | test('V3-L03 gate second scan is rejection not success message containing used words',async({page,request})=>{
+      13 |  await request.post('/api/login',{data:{username:'fan',password:'FanDemo!26'}});await request.post('/api/queue',{data:{event:'neon'}});await request.post('/api/membership/verify',{data:{event:'neon',number:'ENCORE-0001'}});const h=await(await request.post('/api/holds',{data:{event:'neon',seats:['C01']}})).json();const p={name:'Gate Holder',email:'gate@example.test',phone:'0812345678'};expect((await request.post('/api/checkout',{data:{hold:h.hold.id,buyer:p,holders:[{seat:'C01',...p}]}})).ok()).toBe(true);expect((await(await request.post('/api/pay',{data:{hold:h.hold.id,result:'approved',method:'qr'}})).json()).status).toBe('succeeded');const o=(await(await request.get('/api/orders')).json()).orders[0];await request.post('/api/test/clock',{headers,data:{now:'2026-12-12T09:00:00Z'}});
+        at /Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/lab.spec.js:10:267
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    e2e/report-bug/artifacts/lab-V3-L02-Member-third-se-ef215-ile-first-two-stay-selected/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: final-screen (image/png) ────────────────────────────────────────────────────────
+    e2e/report-bug/artifacts/lab-V3-L02-Member-third-se-ef215-ile-first-two-stay-selected/attachments/final-screen-cfec95f01526116fa7f3f8d24ac2d00710d3a339.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    e2e/report-bug/artifacts/lab-V3-L02-Member-third-se-ef215-ile-first-two-stay-selected/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: e2e/report-bug/artifacts/lab-V3-L02-Member-third-se-ef215-ile-first-two-stay-selected/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    e2e/report-bug/artifacts/lab-V3-L02-Member-third-se-ef215-ile-first-two-stay-selected/trace.zip
+    Usage:
+
+        npx playwright show-trace e2e/report-bug/artifacts/lab-V3-L02-Member-third-se-ef215-ile-first-two-stay-selected/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) e2e/lab.spec.js:12:1 › V3-L03 gate second scan is rejection not success message containing used words 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoHaveText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator:  locator('#scan-result')
+    Expected: [32m"บัตรนี้ใช้เข้างานแล้ว"[39m
+    Received: [31m"[7mยืนยันเข้างานแล้ว · ที่นั่ง C01 · Gate Holder · [27mบัตรนี้ใช้เข้างานแล้ว"[39m
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toHaveText" with timeout 5000ms[22m
+    [2m  - waiting for locator('#scan-result')[22m
+    [2m    9 × locator resolved to <p role="status" id="scan-result">ยืนยันเข้างานแล้ว · ที่นั่ง C01 · Gate Holder · บ…</p>[22m
+    [2m      - unexpected value "ยืนยันเข้างานแล้ว · ที่นั่ง C01 · Gate Holder · บัตรนี้ใช้เข้างานแล้ว"[22m
+
+
+      12 | test('V3-L03 gate second scan is rejection not success message containing used words',async({page,request})=>{
+      13 |  await request.post('/api/login',{data:{username:'fan',password:'FanDemo!26'}});await request.post('/api/queue',{data:{event:'neon'}});await request.post('/api/membership/verify',{data:{event:'neon',number:'ENCORE-0001'}});const h=await(await request.post('/api/holds',{data:{event:'neon',seats:['C01']}})).json();const p={name:'Gate Holder',email:'gate@example.test',phone:'0812345678'};expect((await request.post('/api/checkout',{data:{hold:h.hold.id,buyer:p,holders:[{seat:'C01',...p}]}})).ok()).toBe(true);expect((await(await request.post('/api/pay',{data:{hold:h.hold.id,result:'approved',method:'qr'}})).json()).status).toBe('succeeded');const o=(await(await request.get('/api/orders')).json()).orders[0];await request.post('/api/test/clock',{headers,data:{now:'2026-12-12T09:00:00Z'}});
+    > 14 |  await page.goto('/');await page.locator('#auth-open').click();await page.locator('.demo-more summary').click();await page.locator('[data-demo="gate"]').click();await expect(page.locator('#auth')).not.toBeVisible();await page.locator('#scanner-open').click();await page.locator('#ticket-code').fill(o.tickets[0].code);await page.locator('#scan-form button').click();await expect(page.locator('#scan-result')).toContainText('ยืนยันเข้างานแล้ว');await page.locator('#scan-form button').click();await expect(page.locator('#scan-result')).toHaveText('บัตรนี้ใช้เข้างานแล้ว');
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ^
+      15 | });
+      16 |
+        at /Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/lab.spec.js:14:536
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    e2e/report-bug/artifacts/lab-V3-L03-gate-second-sca-8ddf0-ssage-containing-used-words/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: final-screen (image/png) ────────────────────────────────────────────────────────
+    e2e/report-bug/artifacts/lab-V3-L03-gate-second-sca-8ddf0-ssage-containing-used-words/attachments/final-screen-2892879f66bb00e9a0a1e1865ecbd67c59297037.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    e2e/report-bug/artifacts/lab-V3-L03-gate-second-sca-8ddf0-ssage-containing-used-words/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: e2e/report-bug/artifacts/lab-V3-L03-gate-second-sca-8ddf0-ssage-containing-used-words/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    e2e/report-bug/artifacts/lab-V3-L03-gate-second-sca-8ddf0-ssage-containing-used-words/trace.zip
+    Usage:
+
+        npx playwright show-trace e2e/report-bug/artifacts/lab-V3-L03-gate-second-sca-8ddf0-ssage-containing-used-words/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) e2e/ui.spec.js:18:1 › V3-U03 mobile Member cap2 contact validation copy and QR demo ───────────
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoHaveCount[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator:  locator('.seat.selected')
+    Expected: [32m2[39m
+    Received: [31m3[39m
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toHaveCount" with timeout 5000ms[22m
+    [2m  - waiting for locator('.seat.selected')[22m
+    [2m    9 × locator resolved to 3 elements[22m
+    [2m      - unexpected value "3"[22m
+
+
+      17 | });
+      18 | test('V3-U03 mobile Member cap2 contact validation copy and QR demo',async({page})=>{
+    > 19 | await page.setViewportSize({width:375,height:812});await page.goto('/');await signIn(page);await memberMap(page,['A01','A02']);await page.locator('[data-seat="A05"]').click();await expect(page.locator('.seat.selected')).toHaveCount(2);await expect(page.locator('#toast')).toContainText('สูงสุด 2');await reserve(page);await page.locator('#buyer-name').fill('Single');await page.locator('#buyer-phone').fill('0812345678');await page.locator('#buyer-email').fill('buyer@example.test');await page.getByRole('button',{name:'ใช้ข้อมูลผู้ซื้อสำหรับบัตรทุกใบ'}).click();await page.getByRole('button',{name:'ตรวจสอบข้อมูลและยอดชำระ'}).click();await expect(page.locator('#checkout-error')).toContainText('ชื่อและนามสกุล');await page.locator('#buyer-name').fill('Mobile Buyer');await page.getByRole('button',{name:'ใช้ข้อมูลผู้ซื้อสำหรับบัตรทุกใบ'}).click();await page.screenshot({path:(process.env.BUG_MODE==='1'?'e2e/report-bug/':'')+'exploration/v3-contact-mobile.png'});expect(await page.locator('#booking').evaluate(e=>e.scrollWidth<=e.clientWidth)).toBe(true);await page.getByRole('button',{name:'ตรวจสอบข้อมูลและยอดชำระ'}).click();await startPayment(page);await expect(page.locator('.payment-qr')).toBeVisible();expect(await page.locator('#booking').evaluate(e=>e.scrollWidth<=e.clientWidth)).toBe(true);await page.screenshot({path:(process.env.BUG_MODE==='1'?'e2e/report-bug/':'')+'exploration/v3-qr-mobile.png'});
+         |                                                                                                                                                                                                                             ^
+      20 | });
+      21 | test('V3-U04 Member queue has stable number, ahead, ETA and auto-enters verification',async({page,playwright,baseURL})=>{
+      22 | const cs=[];try{for(const u of ['fan','fan2']){const c=await playwright.request.newContext({baseURL});cs.push(c);await c.post('/api/login',{data:{username:u,password:passwords[u]}});await c.post('/api/queue',{data:{event:'neon'}});}await page.goto('/');await signIn(page,'fan3');await page.getByTestId('event-neon').locator('[data-sale-round="member"]').click();await expect(page.locator('.queue-number')).toContainText('Q');await expect(page.locator('.queue-panel')).toContainText('2 คน');await expect(page.locator('.queue-panel')).toContainText('2 นาที');const number=await page.locator('.queue-number').innerText();await page.getByRole('button',{name:'อัปเดตคิว'}).click();await expect(page.locator('.queue-number')).toHaveText(number);await page.screenshot({path:(process.env.BUG_MODE==='1'?'e2e/report-bug/':'')+'exploration/v3-queue.png'});await cs[0].post('/api/queue',{data:{event:'neon',action:'leave'}});await expect(page.locator('#member-number')).toBeVisible({timeout:10000});await expect(page.locator('[data-seat]')).toHaveCount(0);}finally{for(const c of cs)await c.dispose();}
+        at /Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/ui.spec.js:19:221
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    e2e/report-bug/artifacts/ui-V3-U03-mobile-Member-ca-dec7c-validation-copy-and-QR-demo/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: final-screen (image/png) ────────────────────────────────────────────────────────
+    e2e/report-bug/artifacts/ui-V3-U03-mobile-Member-ca-dec7c-validation-copy-and-QR-demo/attachments/final-screen-b58908d5f89b452cb14642e0a1f9cf6f86085f9b.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    e2e/report-bug/artifacts/ui-V3-U03-mobile-Member-ca-dec7c-validation-copy-and-QR-demo/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: e2e/report-bug/artifacts/ui-V3-U03-mobile-Member-ca-dec7c-validation-copy-and-QR-demo/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    e2e/report-bug/artifacts/ui-V3-U03-mobile-Member-ca-dec7c-validation-copy-and-QR-demo/trace.zip
+    Usage:
+
+        npx playwright show-trace e2e/report-bug/artifacts/ui-V3-U03-mobile-Member-ca-dec7c-validation-copy-and-QR-demo/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) e2e/ui.spec.js:26:1 › V3-U07 gate scans ticket QR payload once and shows holder name ──────────
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoHaveText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator:  locator('#scan-result')
+    Expected: [32m"บัตรนี้ใช้เข้างานแล้ว"[39m
+    Received: [31m"[7mยืนยันเข้างานแล้ว · ที่นั่ง C01 · API Holder · [27mบัตรนี้ใช้เข้างานแล้ว"[39m
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toHaveText" with timeout 5000ms[22m
+    [2m  - waiting for locator('#scan-result')[22m
+    [2m    9 × locator resolved to <p role="status" id="scan-result">ยืนยันเข้างานแล้ว · ที่นั่ง C01 · API Holder · บั…</p>[22m
+    [2m      - unexpected value "ยืนยันเข้างานแล้ว · ที่นั่ง C01 · API Holder · บัตรนี้ใช้เข้างานแล้ว"[22m
+
+
+      24 | test('V3-U05 pending and contact snapshots recover after reload',async({page})=>{await page.goto('/');await signIn(page);await memberMap(page);await reserve(page);await contacts(page);await startPayment(page,'alipay');await page.reload();await page.getByRole('button',{name:'จองต่อ / ชำระเงิน'}).click();await expect(page.locator('.holder-summary')).toContainText('ผู้ถือ 1');await expect(page.locator('.pending-box')).toContainText('Alipay');await approve(page);await page.getByRole('button',{name:'ดูบัตรของฉัน'}).click();await expect(page.getByTestId('ticket-C01')).toContainText('ผู้ถือ 1');});
+      25 | test('V3-U06 named ticket partial refund and organizer audit',async({page,request})=>{await apiPurchase(request);await page.goto('/');await signIn(page);await page.getByRole('button',{name:'บัตรของฉัน'}).click();await page.getByTestId('ticket-C01').getByRole('button',{name:'ขอคืน ฿1,800'}).click();await page.getByTestId('ticket-C01').getByRole('button',{name:/ยืนยันคืน/}).click();await expect(page.getByTestId('ticket-C01')).toContainText('รอคืนเงิน');await expect(page.locator('.ticket-qr')).toHaveCount(0);await page.getByRole('button',{name:'ปิดบัตรของฉัน'}).click();await page.getByRole('button',{name:'ออกจากระบบ'}).click();await signIn(page,'encore');await page.getByRole('button',{name:'จัดการงาน',exact:true}).click();await page.getByRole('button',{name:'อนุมัติคืนเงิน',exact:true}).click();await expect(page.getByTestId('admin-net')).toHaveText('฿32');await expect(page.locator('#admin-content')).toContainText('อนุมัติคืนเงิน');});
+    > 26 | test('V3-U07 gate scans ticket QR payload once and shows holder name',async({page,request})=>{const o=await apiPurchase(request);await request.post('/api/test/clock',{headers,data:{now:'2026-12-12T09:00:00Z'}});await page.goto('/');await signIn(page,'gate');await page.getByRole('button',{name:'ตรวจบัตร',exact:true}).click();await page.getByLabel('รหัสบัตรทดลอง').fill(o.tickets[0].code);await page.getByRole('button',{name:'ยืนยันเข้างาน'}).click();await expect(page.locator('#scan-result')).toContainText('API Holder');await page.getByRole('button',{name:'ยืนยันเข้างาน'}).click();await expect(page.locator('#scan-result')).toHaveText('บัตรนี้ใช้เข้างานแล้ว');});
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ^
+      27 | test('V3-U08 pagination all-event search and General new-event booking',async({page})=>{await page.goto('/');await expect(page.locator('.event-card')).toHaveCount(6);await expect(page.locator('#event-range')).toHaveText('แสดง 1–6 จาก 12 งาน');await page.getByRole('button',{name:'หน้าถัดไป',exact:true}).click();await expect(page.getByTestId('event-citypop')).toBeVisible();await expect(page.locator('#event-range')).toHaveText('แสดง 7–12 จาก 12 งาน');await page.getByRole('searchbox').fill('NORTHLIGHT');await expect(page.getByTestId('event-aurora')).toBeVisible();await expect(page.locator('#event-range')).toHaveText('แสดง 1–1 จาก 1 งาน');await signIn(page,'general');await page.getByTestId('event-aurora').locator('[data-sale-round="general"]').click();await expect(page.locator('[data-seat="C01"]')).toBeVisible();await expect(page.locator('#member-number')).toHaveCount(0);});
+      28 | test('V3-U09 keyboard selection and close during reserve release late hold',async({page,request})=>{let unlock,ready;const gate=new Promise(r=>unlock=r),received=new Promise(r=>ready=r);await page.route('**/api/holds',async route=>{const response=await route.fetch();ready();await gate;await route.fulfill({response});});await page.goto('/');await signIn(page);await memberMap(page,[]);await page.locator('[data-seat="C01"]').focus();await page.keyboard.press('Space');await expect(page.locator('[data-seat="C01"]')).toHaveAttribute('aria-pressed','true');await page.getByRole('button',{name:'ยืนยันที่นั่ง'}).click();await received;await page.keyboard.press('Escape');await expect(page.locator('#booking')).not.toBeVisible();unlock();await expect.poll(async()=>{await request.post('/api/login',{data:{username:'fan',password:'FanDemo!26'}});const d=await(await request.get('/api/active-hold')).json();return d.hold;}).toBeNull();});
+      29 | test('V3-U10 automatic Member cutoff blocks pay, General opens at15',async({page,request})=>{await request.post('/api/test/clock',{headers,data:{now:'2026-11-06T07:59:00Z'}});await page.goto('/');await signIn(page);await memberMap(page);await reserve(page);await contacts(page);await request.post('/api/test/clock',{headers,data:{now:'2026-11-06T08:00:00Z'}});await page.locator('#pay').click();await expect(page.locator('#booking-error')).toContainText('หมดเวลาจอง');await expect(page.locator('#pay')).toBeDisabled();await page.reload();await expect(page.getByTestId('event-neon').locator('[data-sale-round="member"]')).toBeDisabled();await expect(page.getByTestId('event-neon').locator('[data-sale-round="general"]')).toHaveCount(0);await page.getByRole('button',{name:'ออกจากระบบ'}).click();await signIn(page,'general');await expect(page.getByTestId('event-neon').locator('[data-sale-round="general"]')).toBeEnabled();});
+        at /Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/ui.spec.js:26:628
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    e2e/report-bug/artifacts/ui-V3-U07-gate-scans-ticke-7684c--once-and-shows-holder-name/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: final-screen (image/png) ────────────────────────────────────────────────────────
+    e2e/report-bug/artifacts/ui-V3-U07-gate-scans-ticke-7684c--once-and-shows-holder-name/attachments/final-screen-7fbc427a3603fc3ccb794af0ee639b3121130350.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    e2e/report-bug/artifacts/ui-V3-U07-gate-scans-ticke-7684c--once-and-shows-holder-name/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: e2e/report-bug/artifacts/ui-V3-U07-gate-scans-ticke-7684c--once-and-shows-holder-name/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    e2e/report-bug/artifacts/ui-V3-U07-gate-scans-ticke-7684c--once-and-shows-holder-name/trace.zip
+    Usage:
+
+        npx playwright show-trace e2e/report-bug/artifacts/ui-V3-U07-gate-scans-ticke-7684c--once-and-shows-holder-name/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5 failed
+    e2e/lab.spec.js:6:1 › V3-L01 two VIP coupon cap has server checkout total 5964 after hold ──────
+    e2e/lab.spec.js:9:1 › V3-L02 Member third seat is rejected while first two stay selected ───────
+    e2e/lab.spec.js:12:1 › V3-L03 gate second scan is rejection not success message containing used words 
+    e2e/ui.spec.js:18:1 › V3-U03 mobile Member cap2 contact validation copy and QR demo ────────────
+    e2e/ui.spec.js:26:1 › V3-U07 gate scans ticket QR payload once and shows holder name ───────────
+  23 passed (30.4s)
+(node:4955) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:4957) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:4958) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:4956) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:4957) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:4957) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:4958) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:4958) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:4956) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:4956) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:5074) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:5075) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:5078) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:5074) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:5074) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:5075) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:5075) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:5078) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:5078) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:5216) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:5216) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:5216) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:5297) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:5297) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:5297) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)

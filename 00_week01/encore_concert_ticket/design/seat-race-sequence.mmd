@@ -1,0 +1,16 @@
+sequenceDiagram
+ participant A as ผู้ซื้อ A
+ participant B as ผู้ซื้อ B
+ participant API as API
+ participant DB as SQLite WAL
+ A->>API: จอง C01
+ B->>API: จอง C01 พร้อมกัน
+ API->>DB: BEGIN IMMEDIATE สำหรับ A
+ API->>DB: C01 ว่าง → สร้าง hold A
+ API->>DB: COMMIT
+ API-->>A: 201 hold สำเร็จ
+ API->>DB: BEGIN IMMEDIATE สำหรับ B
+ API->>DB: C01 ถูกถือโดย A
+ API->>DB: ROLLBACK
+ API-->>B: 409 เลือกที่นั่งใหม่
+ Note over A,B: ไม่เกิดสอง hold ที่ใช้งานได้บนที่นั่งเดียวกัน

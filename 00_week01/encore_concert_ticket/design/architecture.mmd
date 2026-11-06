@@ -1,0 +1,16 @@
+flowchart LR
+ Buyer[ผู้ซื้อ Member / General] --> Browser[Browser HTML CSS JS]
+ Organizer[ผู้จัดงาน] --> Browser
+ Gate[เจ้าหน้าที่ตรวจบัตร] --> Browser
+ Browser -->|HTTP same-origin / session cookie| API[Node HTTP API]
+ API --> Auth[Authentication and role guards]
+ API --> Sales[Schedule membership grant contacts]
+ API --> Domain[Queue hold price payment refund scan]
+ API --> Delivery[Ticket QR and MIME email sandbox]
+ Auth --> DB[(SQLite WAL)]
+ Sales --> DB
+ Domain -->|BEGIN IMMEDIATE transaction| DB
+ Delivery --> DB
+ DB --> Volume[Docker named volume]
+ Test[Test-only clock reset simulator] -.->|TEST_MODE and token| API
+ Provider[External payment / SMTP] -.not connected.-> API

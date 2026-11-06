@@ -1,0 +1,22 @@
+{
+  "agent": "/root/explore_c2",
+  "planReadAt": "2026-11-06T11:43:00.686Z",
+  "plan": "CHARTERS.md",
+  "recon": "exploration/lab8/recon.json",
+  "reconEnded": "2026-11-06T11:22:22.386Z",
+  "changesToReplayScripts": "Only evidence/output paths replaced; test inputs and expected values unchanged",
+  "controls": [
+    {
+      "at": "2026-11-06T11:43:01.082Z",
+      "baseURL": "http://127.0.0.1:4342",
+      "action": "preflight reset",
+      "status": 200
+    },
+    {
+      "at": "2026-11-06T11:43:08.461Z",
+      "baseURL": "http://127.0.0.1:4345",
+      "action": "preflight reset",
+      "status": 200
+    }
+  ]
+}

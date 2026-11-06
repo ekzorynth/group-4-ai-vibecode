@@ -1,0 +1,11 @@
+{
+  "mode": "normal",
+  "started": "2026-11-06T13:26:32.734Z",
+  "ended": "2026-11-06T13:27:18.877Z",
+  "apiExit": 0,
+  "uiExit": 0,
+  "workers": 3,
+  "isolatedDatabases": true,
+  "bugMode": 0,
+  "node": "v26.0.0"
+}

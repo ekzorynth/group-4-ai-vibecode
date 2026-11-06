@@ -1,0 +1,181 @@
+{
+  "charter": "C4",
+  "baseURL": "http://127.0.0.1:4344",
+  "startedUTC": "2026-11-06T11:42:56.934Z",
+  "endedUTC": "2026-11-06T11:43:02.760Z",
+  "constraints": [
+    "No runtime source or BUGS.md read",
+    "Own C4 server only",
+    "Reset and clock only on 4344"
+  ],
+  "cases": [
+    {
+      "id": "C4-01",
+      "title": "ช่องทาง qr รอผลก่อนออกบัตรและส่งซ้ำไม่ออกซ้ำ",
+      "trace": "FR11 FR12 FR13 FR14 FR15 BR13 BR14 BR15 BR18",
+      "status": "passed",
+      "startedUTC": "2026-11-06T11:42:56.950Z",
+      "endedUTC": "2026-11-06T11:42:57.285Z",
+      "observed": {
+        "method": "qr",
+        "amount": 1832,
+        "expiryMatchesHold": true,
+        "orders": 1,
+        "tickets": 1,
+        "emails": 1,
+        "pendingCreatedNoTicketOrEmail": true
+      }
+    },
+    {
+      "id": "C4-02",
+      "title": "ช่องทาง seven_eleven รอผลก่อนออกบัตรและส่งซ้ำไม่ออกซ้ำ",
+      "trace": "FR11 FR12 FR13 FR14 FR15 BR13 BR14 BR15 BR18",
+      "status": "passed",
+      "startedUTC": "2026-11-06T11:42:57.285Z",
+      "endedUTC": "2026-11-06T11:42:57.608Z",
+      "observed": {
+        "method": "seven_eleven",
+        "amount": 1832,
+        "expiryMatchesHold": true,
+        "orders": 1,
+        "tickets": 1,
+        "emails": 1,
+        "pendingCreatedNoTicketOrEmail": true
+      }
+    },
+    {
+      "id": "C4-03",
+      "title": "ช่องทาง credit_card รอผลก่อนออกบัตรและส่งซ้ำไม่ออกซ้ำ",
+      "trace": "FR11 FR12 FR13 FR14 FR15 BR13 BR14 BR15 BR18",
+      "status": "passed",
+      "startedUTC": "2026-11-06T11:42:57.608Z",
+      "endedUTC": "2026-11-06T11:42:57.935Z",
+      "observed": {
+        "method": "credit_card",
+        "amount": 1832,
+        "expiryMatchesHold": true,
+        "orders": 1,
+        "tickets": 1,
+        "emails": 1,
+        "pendingCreatedNoTicketOrEmail": true
+      }
+    },
+    {
+      "id": "C4-04",
+      "title": "ช่องทาง alipay รอผลก่อนออกบัตรและส่งซ้ำไม่ออกซ้ำ",
+      "trace": "FR11 FR12 FR13 FR14 FR15 BR13 BR14 BR15 BR18",
+      "status": "passed",
+      "startedUTC": "2026-11-06T11:42:57.935Z",
+      "endedUTC": "2026-11-06T11:42:58.256Z",
+      "observed": {
+        "method": "alipay",
+        "amount": 1832,
+        "expiryMatchesHold": true,
+        "orders": 1,
+        "tickets": 1,
+        "emails": 1,
+        "pendingCreatedNoTicketOrEmail": true
+      }
+    },
+    {
+      "id": "C4-05",
+      "title": "ชำระไม่ผ่านเป็นผลสิ้นสุดของ attempt เดิมและลองใหม่ด้วยรหัสใหม่",
+      "trace": "FR12 FR15 BR15",
+      "status": "passed",
+      "startedUTC": "2026-11-06T11:42:58.256Z",
+      "endedUTC": "2026-11-06T11:42:58.579Z",
+      "observed": {
+        "oldAttemptCannotBecomeSuccess": true,
+        "retryHasNewPaymentId": true,
+        "retryOrders": 1
+      }
+    },
+    {
+      "id": "C4-06",
+      "title": "รอผลชำระแล้วเปลี่ยนที่นั่ง ปล่อยที่ หรือแก้ข้อมูลไม่ได้",
+      "trace": "FR10 FR12 BR09 BR13 BR19",
+      "status": "passed",
+      "startedUTC": "2026-11-06T11:42:58.579Z",
+      "endedUTC": "2026-11-06T11:42:58.900Z",
+      "observed": {
+        "invalidMethod": 400,
+        "tamperedTotalIgnored": true,
+        "release": 409,
+        "reselect": 409,
+        "editContacts": 409
+      }
+    },
+    {
+      "id": "C4-07",
+      "title": "จ่ายตรงขอบหมดเวลาถูกคืนเงิน ไม่มีบัตรหรืออีเมล",
+      "trace": "FR12 FR15 BR16",
+      "status": "passed",
+      "startedUTC": "2026-11-06T11:42:58.900Z",
+      "endedUTC": "2026-11-06T11:42:59.219Z",
+      "observed": {
+        "paidAtEqualsExpiry": "auto_refunded",
+        "refund": 1832,
+        "orders": 0,
+        "emails": 0
+      }
+    },
+    {
+      "id": "C4-08",
+      "title": "ชำระทันเวลา ผลมาถึงก่อนขอบช่วงเผื่อยังสำเร็จ",
+      "trace": "FR12 BR16",
+      "status": "passed",
+      "startedUTC": "2026-11-06T11:42:59.219Z",
+      "endedUTC": "2026-11-06T11:42:59.540Z",
+      "observed": {
+        "paidAt": "expiry-1ms",
+        "arrivedAt": "expiry+120s-1ms",
+        "status": "succeeded"
+      }
+    },
+    {
+      "id": "C4-09",
+      "title": "ผลชำระถึงตรงสิ้นสุดช่วงเผื่อไม่ออกบัตร",
+      "trace": "FR12 FR15 BR16",
+      "status": "passed",
+      "startedUTC": "2026-11-06T11:42:59.540Z",
+      "endedUTC": "2026-11-06T11:42:59.860Z",
+      "observed": {
+        "arrivedAt": "expiry+120s",
+        "status": "auto_refunded",
+        "orders": 0,
+        "emails": 0
+      }
+    },
+    {
+      "id": "C4-10",
+      "title": "เจ้าของเท่านั้นอ่าน QR/อีเมลได้และ PNG QR ถอดรหัสตรงบัตร",
+      "trace": "FR13 FR14 FR15 BR17 BR18 NFR02 NFR04",
+      "status": "passed",
+      "startedUTC": "2026-11-06T11:42:59.860Z",
+      "endedUTC": "2026-11-06T11:43:00.254Z",
+      "observed": {
+        "qrDecoder": "jsQR",
+        "decodedCodeMatchesTicket": true,
+        "qrHasNoEmail": true,
+        "emailRecipient": "c4-buyer@example.test",
+        "emlPngAttachment": true,
+        "otherOwnerReads": 404
+      }
+    },
+    {
+      "id": "C4-11",
+      "title": "ซื้อผ่านหน้าจอจนรับบัตรและอีเมลทดลอง",
+      "trace": "FR09 FR11 FR12 FR13 FR14 NFR01 NFR07",
+      "status": "passed",
+      "startedUTC": "2026-11-06T11:43:00.254Z",
+      "endedUTC": "2026-11-06T11:43:02.737Z",
+      "observed": {
+        "screenshots": 7,
+        "fullUIFlow": true,
+        "ticketHolder": "C4 Holder",
+        "localMailbox": true
+      },
+      "evidence": "frame-00.png ถึง frame-06.png"
+    }
+  ]
+}

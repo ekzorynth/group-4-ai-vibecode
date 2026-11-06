@@ -1,0 +1,33 @@
+{
+  "agent": "explore_c3",
+  "charters": [
+    "C3",
+    "C6"
+  ],
+  "formalCharterReadUTC": "2026-11-06T11:43:01.653Z",
+  "reconEndedUTC": "2026-11-06T11:22:22.386Z",
+  "scripts": {
+    "c3": {
+      "sourceSHA256": "0b3ba7ab86834de2666656fcf8c8a7c46b339dda4a08e2a95143819eb8d1e326",
+      "replaySHA256": "6dcf11b1ea8a1fc337540b4db38d7ac29477484f20cf49a1d57968bb5577ed98",
+      "onlyOutputPathChanged": true
+    },
+    "c6": {
+      "sourceSHA256": "d6ff53c908dd98e2089545d38cbf01bf411fcd7b02a1a73c7b2d0bfa907f67ea",
+      "replaySHA256": "30d8ceab0135c979951c7355f95e215644c6af10bc6af8cf6b17a67ce8d2442d",
+      "onlyOutputPathChanged": true
+    }
+  },
+  "started": "2026-11-06T11:43:01.654Z",
+  "ended": "2026-11-06T11:43:06.624Z",
+  "outcomes": [
+    {
+      "name": "c3",
+      "code": 0
+    },
+    {
+      "name": "c6",
+      "code": 0
+    }
+  ]
+}

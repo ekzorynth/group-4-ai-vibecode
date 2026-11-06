@@ -1,0 +1,382 @@
+{
+  "version": 3,
+  "runAt": "2026-11-06T13:27:44.212Z",
+  "results": [
+    {
+      "id": "V3-A01",
+      "name": "username registration, case duplicates, validation and role injection",
+      "trace": "FR01 BR01",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A02",
+      "name": "username and legacy email login, cookie rotation and logout",
+      "trace": "FR01 NFR02",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A03",
+      "name": "session 24h and five-login lockout exact boundaries",
+      "trace": "FR17 BR20",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A04",
+      "name": "catalog twelve maps and explicit Member/General schedules",
+      "trace": "FR02 FR07 BR02 BR03",
+      "status": "failed",
+      "message": "Expected values to be strictly equal:\n\n3 !== 2\n"
+    },
+    {
+      "id": "V3-A05",
+      "name": "anonymous cannot queue or read Member map",
+      "trace": "FR03 FR05 BR05",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A06",
+      "name": "General rejected by Member queue/map/hold with exact Thai message",
+      "trace": "FR03 FR06 BR05",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A07",
+      "name": "expired membership exactly at valid_until denied",
+      "trace": "FR06 BR07",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A08",
+      "name": "before queue: Member map and forged hold both blocked",
+      "trace": "FR05 BR07",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A09",
+      "name": "correct membership unlocks map, wrong and other owner number do not",
+      "trace": "FR05 FR06 BR07",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A10",
+      "name": "grant scoped to account and simultaneous Member events, expiry revokes access",
+      "trace": "FR05 FR06 BR07",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A11",
+      "name": "prequeue fifteen minutes, fixed number, no admission before sale",
+      "trace": "FR04 BR04 BR06",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A12",
+      "name": "FIFO two slots shows ahead and ETA; leaves promote in order",
+      "trace": "FR04 BR06",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A13",
+      "name": "Member closes and General opens exactly 15:00 without admin toggle",
+      "trace": "FR02 FR03 BR03 BR20",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A14",
+      "name": "Member two seats per user cumulative, multidevice cannot bypass",
+      "trace": "FR08 BR08",
+      "status": "failed",
+      "message": "Expected values to be strictly equal:\n\n201 !== 409\n"
+    },
+    {
+      "id": "V3-A15",
+      "name": "Member 0/3 duplicates sold invalid and all-or-nothing",
+      "trace": "FR07 FR08 BR08",
+      "status": "failed",
+      "message": "Expected values to be strictly equal:\n\n201 !== 400\n"
+    },
+    {
+      "id": "V3-A16",
+      "name": "race same seat only one hold, same ID across events isolated",
+      "trace": "FR07 NFR03",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A17",
+      "name": "canonical price, allocation, coupon cap and tampered total",
+      "trace": "FR10 BR12",
+      "status": "failed",
+      "message": "Expected values to be strictly equal:\n\n5824 !== 5964\n"
+    },
+    {
+      "id": "V3-A18",
+      "name": "hold exact600s, reload recovery and closing releases",
+      "trace": "FR10 FR17 BR09",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A19",
+      "name": "checkout mandatory and data ownership enforced",
+      "trace": "FR09 BR11",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A20",
+      "name": "validate buyer and each holder name email phone and exact seat count",
+      "trace": "FR09 BR10 BR11",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A21",
+      "name": "checkout freezes after pending; contact snapshot retained cross-device",
+      "trace": "FR10 FR15 BR19",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A22",
+      "name": "payment channel qr pending instructions then named ticket and email",
+      "trace": "FR11 FR12 FR13 FR14 BR13 BR14 BR18",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A23",
+      "name": "payment channel seven_eleven pending instructions then named ticket and email",
+      "trace": "FR11 FR12 FR13 FR14 BR13 BR14 BR18",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A24",
+      "name": "payment channel credit_card pending instructions then named ticket and email",
+      "trace": "FR11 FR12 FR13 FR14 BR13 BR14 BR18",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A25",
+      "name": "payment channel alipay pending instructions then named ticket and email",
+      "trace": "FR11 FR12 FR13 FR14 BR13 BR14 BR18",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A26",
+      "name": "invalid method and client amount rejected/ignored respectively",
+      "trace": "FR11 BR13",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A27",
+      "name": "declined retry new attempt; duplicate success creates one order/mail",
+      "trace": "FR12 FR15 BR15",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A28",
+      "name": "pending cannot release/reselect; timely callback in grace succeeds",
+      "trace": "FR12 BR09 BR16",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A29",
+      "name": "late paidAt at expiry refunds with no email/ticket",
+      "trace": "FR12 BR16",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A30",
+      "name": "grace exact end releases seat; callback cannot steal resale",
+      "trace": "FR12 BR16",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A31",
+      "name": "wrong amount/future callback does not finalize",
+      "trace": "FR12 BR13 BR16",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A32",
+      "name": "actual ticket QR independently decodes to opaque code without PII",
+      "trace": "FR13 BR17 NFR04",
+      "status": "passed",
+      "evidence": {
+        "decoder": "jsQR",
+        "decodedLength": 64
+      }
+    },
+    {
+      "id": "V3-A33",
+      "name": "QR/payment/mail owner isolation and eml embedded QR attachment",
+      "trace": "FR13 FR14 FR15 BR17 BR18 NFR02",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A34",
+      "name": "two holders distinct names and buyer email receives both tickets",
+      "trace": "FR09 FR13 FR14 BR11 BR18",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A35",
+      "name": "partial refund restores seat and Member quota only after approval",
+      "trace": "FR17 BR08",
+      "status": "failed",
+      "message": "Expected values to be strictly equal:\n\n201 !== 409\n"
+    },
+    {
+      "id": "V3-A36",
+      "name": "scanner uses QR code once, returns holder name; fresh-code wrong role denied",
+      "trace": "FR16 BR17",
+      "status": "failed",
+      "message": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n    200,\n+   200\n-   409\n  ]\n"
+    },
+    {
+      "id": "V3-A37",
+      "name": "refund pending blocks scanning, refund cutoff exact boundary",
+      "trace": "FR17",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A38",
+      "name": "organizer scope, pause/block and automatic round cannot be bypassed",
+      "trace": "FR17 BR20",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A39",
+      "name": "cancel full refund idempotent, no extra tickets or mail",
+      "trace": "FR17",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A40",
+      "name": "Origin, body, malformed IDs and test tools protected",
+      "trace": "FR18 NFR02 NFR07",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A41",
+      "name": "additive migration and restart preserve legacy order, then V3 order/email",
+      "trace": "FR17 FR18 NFR05",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A42",
+      "name": "real V2 schema upgraded additively without losing legacy tickets",
+      "trace": "FR17 FR18 NFR05",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A43",
+      "name": "Member quota two counts toward General total four across sale rounds",
+      "trace": "FR08 BR08",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A44",
+      "name": "account catalog scopes round schedules, status and availability by audience",
+      "trace": "FR02 FR03 BR03 BR05",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A45",
+      "name": "anonymous and nonbuyer role matrix blocks private data and privileged actions",
+      "trace": "FR01 FR15 FR16 FR17 NFR02",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A46",
+      "name": "failed reselection rolls back; replacement and repeated release free only owned seats",
+      "trace": "FR07 FR10 FR17 BR09 NFR03",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A47",
+      "name": "General four-seat limit and cross-event pending hold cannot be bypassed",
+      "trace": "FR08 FR10 FR12 BR08 BR09",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A48",
+      "name": "refund reject restores ticket and retry reuses request without duplicate money",
+      "trace": "FR17 BR08 NFR03",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A49",
+      "name": "cancel upgrades pending refund to full amount and permanently closes sale",
+      "trace": "FR12 FR17 BR20",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A50",
+      "name": "cancel pending payment releases seat; later approval auto-refunds exactly once",
+      "trace": "FR12 FR15 FR17 BR16 NFR03",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A51",
+      "name": "gate millisecond boundaries: before open denied, open accepted, close denied",
+      "trace": "FR16 BR17 BR20",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A52",
+      "name": "organizer block/unblock and invalid combined update rolls back sale state",
+      "trace": "FR07 FR17 BR20 NFR03",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A53",
+      "name": "malformed JSON content types routes and methods return controlled errors",
+      "trace": "FR18 NFR02",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A54",
+      "name": "contacts exact lengths and phone/email boundaries validate without changing saved data",
+      "trace": "FR09 FR10 BR10 BR11 BR19",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A55",
+      "name": "hostile holder markup is escaped in mail and per-account notifications stay private",
+      "trace": "FR09 FR13 FR14 FR15 NFR02",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A56",
+      "name": "General prequeue and end boundaries enforce waiting then close and release",
+      "trace": "FR02 FR03 FR04 BR03 BR04 BR09",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A57",
+      "name": "paused cancelled sold-out upcoming events block already-admitted buyer without side effects",
+      "trace": "FR02 FR04 FR07 FR17 BR04",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A58",
+      "name": "refund and payment resolution cannot be executed by another buyer or organizer",
+      "trace": "FR12 FR15 FR17 BR17 NFR02",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A59",
+      "name": "queue leave promotes waiting buyer before rejoin and expiry frees slot in FIFO order",
+      "trace": "FR04 FR05 BR06 BR07",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A60",
+      "name": "registration field boundaries normalize identity and reject duplicate email",
+      "trace": "FR01 BR01 NFR02",
+      "status": "passed"
+    },
+    {
+      "id": "V3-A61",
+      "name": "refunded and cancelled tickets never pass gate even with a valid QR code",
+      "trace": "FR16 FR17 BR17 BR20",
+      "status": "passed"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "checkedUTC": "2026-11-06T13:28:26.281Z",
+  "mode": 1,
+  "purpose": "post-disclosure counterfactual oracle analysis, not extra acceptance cases and not changes to frozen tests",
+  "rows": [
+    {
+      "seed": "M1",
+      "observed": "฿5,824",
+      "D": "฿5,964",
+      "A": null,
+      "AReason": "SPECอ้างcanonicalสูตรเดิมและอ้างTEST-DATA แต่ไม่มีตัวเลขสูตรพอคำนวณ5964จากAล้วน",
+      "O": "฿5,824",
+      "DDetects": true,
+      "ADetects": "insufficient-oracle",
+      "OCopyDetects": false
+    },
+    {
+      "seed": "M2",
+      "observed": 3,
+      "D": 2,
+      "A": 2,
+      "AReason": "SPECอ้างquota2/4ชัด",
+      "O": 3,
+      "DDetects": true,
+      "ADetects": true,
+      "OCopyDetects": false
+    },
+    {
+      "seed": "M3",
+      "observed": 200,
+      "D": 409,
+      "A": 409,
+      "AReason": "SPECอ้างตรวจครั้งเดียว แปลงเป็นcontrolledrejectionตามA-testcontract",
+      "O": 200,
+      "DDetects": true,
+      "ADetects": true,
+      "OCopyDetects": false
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "started": "2026-11-06T11:10:50.256Z",
+  "servers": {
+    "recon": {
+      "baseURL": "http://127.0.0.1:4340",
+      "token": "encore-lab8",
+      "pid": 84852,
+      "db": "isolated in-memory",
+      "bugMode": 0
+    },
+    "C1": {
+      "baseURL": "http://127.0.0.1:4341",
+      "token": "encore-lab8",
+      "pid": 84853,
+      "db": "isolated in-memory",
+      "bugMode": 0
+    },
+    "C2": {
+      "baseURL": "http://127.0.0.1:4342",
+      "token": "encore-lab8",
+      "pid": 84854,
+      "db": "isolated in-memory",
+      "bugMode": 0
+    },
+    "C3": {
+      "baseURL": "http://127.0.0.1:4343",
+      "token": "encore-lab8",
+      "pid": 84855,
+      "db": "isolated in-memory",
+      "bugMode": 0
+    },
+    "C4": {
+      "baseURL": "http://127.0.0.1:4344",
+      "token": "encore-lab8",
+      "pid": 84856,
+      "db": "isolated in-memory",
+      "bugMode": 0
+    },
+    "C5": {
+      "baseURL": "http://127.0.0.1:4345",
+      "token": "encore-lab8",
+      "pid": 84857,
+      "db": "isolated in-memory",
+      "bugMode": 0
+    },
+    "C6": {
+      "baseURL": "http://127.0.0.1:4346",
+      "token": "encore-lab8",
+      "pid": 84858,
+      "db": "isolated in-memory",
+      "bugMode": 0
+    },
+    "C7": {
+      "baseURL": "http://127.0.0.1:4347",
+      "token": "encore-lab8",
+      "pid": 84859,
+      "db": "isolated in-memory",
+      "bugMode": 0
+    }
+  },
+  "rules": [
+    "Each charter owns its own server, accounts and clock.",
+    "No calls to user runtime 4310.",
+    "C7 runs after C1–C6; reset/clock changes logged per charter."
+  ]
+}

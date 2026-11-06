@@ -1,0 +1,1557 @@
+{
+  "generated": "2026-11-06T13:28:22.996Z",
+  "seeds": [
+    {
+      "id": "M1",
+      "rule": "BR12",
+      "title": "เพดานส่วนลด",
+      "detectors": [
+        "V3-A17",
+        "V3-L01"
+      ],
+      "detected": true
+    },
+    {
+      "id": "M2",
+      "rule": "BR08",
+      "title": "โควตารอบสมาชิก",
+      "detectors": [
+        "V3-A14",
+        "V3-A15",
+        "V3-U03",
+        "V3-L02"
+      ],
+      "observedAdditionalDetectors": [
+        "V3-A04",
+        "V3-A35"
+      ],
+      "detected": true
+    },
+    {
+      "id": "M3",
+      "rule": "FR16/BR17",
+      "title": "สถานะหลังตรวจบัตร",
+      "detectors": [
+        "V3-A36",
+        "V3-U07",
+        "V3-L03"
+      ],
+      "detected": true
+    }
+  ],
+  "cases": [
+    {
+      "id": "V3-A01",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: รูปแบบการจัดการทดสอบและ guard ที่ประกาศชัด; R: ไม่ใช้ external reference เป็น oracle แทน D",
+      "error": ""
+    },
+    {
+      "id": "V3-A02",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: รูปแบบการจัดการทดสอบและ guard ที่ประกาศชัด; R: ไม่ใช้ external reference เป็น oracle แทน D",
+      "error": ""
+    },
+    {
+      "id": "V3-A03",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: รูปแบบการจัดการทดสอบและ guard ที่ประกาศชัด; R: ไม่ใช้ external reference เป็น oracle แทน D",
+      "error": ""
+    },
+    {
+      "id": "V3-A04",
+      "normal": "passed",
+      "bug": "failed",
+      "classification": "website-defect-controlled-seed",
+      "seeds": [
+        "M2"
+      ],
+      "expectedSource": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: รูปแบบการจัดการทดสอบและ guard ที่ประกาศชัด; R: ไม่ใช้ external reference เป็น oracle แทน D",
+      "error": "Expected values to be strictly equal:\n\n3 !== 2\n"
+    },
+    {
+      "id": "V3-A05",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: รูปแบบการจัดการทดสอบและ guard ที่ประกาศชัด; R: ไม่ใช้ external reference เป็น oracle แทน D",
+      "error": ""
+    },
+    {
+      "id": "V3-A06",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: รูปแบบการจัดการทดสอบและ guard ที่ประกาศชัด; R: ไม่ใช้ external reference เป็น oracle แทน D",
+      "error": ""
+    },
+    {
+      "id": "V3-A07",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: รูปแบบการจัดการทดสอบและ guard ที่ประกาศชัด; R: ไม่ใช้ external reference เป็น oracle แทน D",
+      "error": ""
+    },
+    {
+      "id": "V3-A08",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: รูปแบบการจัดการทดสอบและ guard ที่ประกาศชัด; R: ไม่ใช้ external reference เป็น oracle แทน D",
+      "error": ""
+    },
+    {
+      "id": "V3-A09",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: รูปแบบการจัดการทดสอบและ guard ที่ประกาศชัด; R: ไม่ใช้ external reference เป็น oracle แทน D",
+      "error": ""
+    },
+    {
+      "id": "V3-A10",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: รูปแบบการจัดการทดสอบและ guard ที่ประกาศชัด; R: ไม่ใช้ external reference เป็น oracle แทน D",
+      "error": ""
+    },
+    {
+      "id": "V3-A11",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: รูปแบบการจัดการทดสอบและ guard ที่ประกาศชัด; R: ไม่ใช้ external reference เป็น oracle แทน D",
+      "error": ""
+    },
+    {
+      "id": "V3-A12",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: รูปแบบการจัดการทดสอบและ guard ที่ประกาศชัด; R: ไม่ใช้ external reference เป็น oracle แทน D",
+      "error": ""
+    },
+    {
+      "id": "V3-A13",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: guard/การออกแบบทดสอบที่ประกาศชัด; R: external references ไม่ใช้แทน D",
+      "error": ""
+    },
+    {
+      "id": "V3-A14",
+      "normal": "passed",
+      "bug": "failed",
+      "classification": "website-defect-controlled-seed",
+      "seeds": [
+        "M2"
+      ],
+      "expectedSource": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "error": "Expected values to be strictly equal:\n\n201 !== 409\n"
+    },
+    {
+      "id": "V3-A15",
+      "normal": "passed",
+      "bug": "failed",
+      "classification": "website-defect-controlled-seed",
+      "seeds": [
+        "M2"
+      ],
+      "expectedSource": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "error": "Expected values to be strictly equal:\n\n201 !== 400\n"
+    },
+    {
+      "id": "V3-A16",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A17",
+      "normal": "passed",
+      "bug": "failed",
+      "classification": "website-defect-controlled-seed",
+      "seeds": [
+        "M1"
+      ],
+      "expectedSource": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "error": "Expected values to be strictly equal:\n\n5824 !== 5964\n"
+    },
+    {
+      "id": "V3-A18",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A19",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A20",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A21",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A22",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A23",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A24",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A25",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A26",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A27",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A28",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A29",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A30",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": "D: BR16/TEST-DATA; A-test: componentfixtureจำลองretainedholdเพื่อไม่ให้HTTPsweepบังguard ไม่อ้างว่าเป็นblack-boxbrowserทั้งหมด",
+      "error": ""
+    },
+    {
+      "id": "V3-A31",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": "D: REQUIREMENTSinput/financialguards; A-test: AT01–03กำหนดfuturetimestamp/16384bytes/HTTP400415413/unknown404ไว้อย่างชัด ไม่อ้างเป็นนโยบายผู้จัดจริง",
+      "error": ""
+    },
+    {
+      "id": "V3-A32",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A33",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A34",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A35",
+      "normal": "passed",
+      "bug": "failed",
+      "classification": "website-defect-controlled-seed",
+      "seeds": [
+        "M2"
+      ],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "[A-policy AP01] นโยบายโจทย์ที่กำหนดก่อนทดสอบ ไม่ใช่คำตอบจากเจ้าของงานจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": "Expected values to be strictly equal:\n\n201 !== 409\n"
+    },
+    {
+      "id": "V3-A36",
+      "normal": "passed",
+      "bug": "failed",
+      "classification": "website-defect-controlled-seed",
+      "seeds": [
+        "M3"
+      ],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "[A-policy AP05] หน้าต่างNEONตามโจทย์ ไม่ใช่คำตอบเจ้าของงานจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n    200,\n+   200\n-   409\n  ]\n"
+    },
+    {
+      "id": "V3-A37",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "[A-policy AP01] นโยบายโจทย์ที่กำหนดก่อนทดสอบ ไม่ใช่คำตอบจากเจ้าของงานจริง; [A-policy AP05] เวลาประตูโจทย์",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A38",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "[A-policy AP04] พักขายยังชำระholdเดิมได้ ไม่ใช่คำตอบเจ้าของงานจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A39",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "[A-policy AP03] ยกเลิกคืนเต็มตามโจทย์ ไม่ใช่คำตอบเจ้าของงานจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A40",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": "D: REQUIREMENTSinput/financialguards; A-test: AT01–03กำหนดfuturetimestamp/16384bytes/HTTP400415413/unknown404ไว้อย่างชัด ไม่อ้างเป็นนโยบายผู้จัดจริง",
+      "error": ""
+    },
+    {
+      "id": "V3-A41",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A42",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A43",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A44",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: guard/การออกแบบทดสอบที่ประกาศชัด; R: external references ไม่ใช้แทน D",
+      "error": ""
+    },
+    {
+      "id": "V3-A45",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: guard/การออกแบบทดสอบที่ประกาศชัด; R: external references ไม่ใช้แทน D",
+      "error": ""
+    },
+    {
+      "id": "V3-A46",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A47",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A48",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "[A-policy AP01 AP02] นโยบายโจทย์ ไม่ใช่คำตอบจากเจ้าของงานจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A49",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "[A-policy AP03] นโยบายยกเลิกโจทย์ ไม่ใช่คำตอบเจ้าของงานจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A50",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "[A-policy AP03] รับเงินของholdยกเลิกต้องคืนทดลอง ไม่ใช่คำตอบเจ้าของงานจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A51",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "[A-policy AP05] 16:00<=now<22:00 NEON เป็นนโยบายโจทย์ ไม่ใช่คำตอบเจ้าของงานจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A52",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A53",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": "D: REQUIREMENTSinput/financialguards; A-test: AT01–03กำหนดfuturetimestamp/16384bytes/HTTP400415413/unknown404ไว้อย่างชัด ไม่อ้างเป็นนโยบายผู้จัดจริง",
+      "error": ""
+    },
+    {
+      "id": "V3-A54",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A55",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A56",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: guard/การออกแบบทดสอบที่ประกาศชัด; R: external references ไม่ใช้แทน D",
+      "error": ""
+    },
+    {
+      "id": "V3-A57",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [
+          "AP03",
+          "AP04"
+        ],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A58",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-A59",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: guard/การออกแบบทดสอบที่ประกาศชัด; R: external references ไม่ใช้แทน D",
+      "error": ""
+    },
+    {
+      "id": "V3-A60",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: guard/การออกแบบทดสอบที่ประกาศชัด; R: external references ไม่ใช้แทน D",
+      "error": ""
+    },
+    {
+      "id": "V3-A61",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "[A-policy AP01 AP03 AP05] นโยบายโจทย์ ไม่ใช่คำตอบเจ้าของงานจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-L01",
+      "normal": "passed",
+      "bug": "failed",
+      "classification": "website-defect-controlled-seed",
+      "seeds": [
+        "M1"
+      ],
+      "expectedSource": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "error": "Error: expect(locator).toHaveText(expected) failed\n\nLocator:  locator('#checkout-form').getByTestId('total')\nExpected: \"฿5,964\"\nReceived: \"฿5,824\"\nTimeout:  5000ms\n\nCall log:\n  - Expect \"toHaveText\" with timeout 5000ms\n  - waiting for locator('#checkout-form').getByTestId('total')\n    9 × locator resolved to <span data-testid=\"total\">฿5,824</span>\n      - unexpected value \"฿5,824\"\n"
+    },
+    {
+      "id": "V3-L02",
+      "normal": "passed",
+      "bug": "failed",
+      "classification": "website-defect-controlled-seed",
+      "seeds": [
+        "M2"
+      ],
+      "expectedSource": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "error": "Error: expect(locator).toHaveCount(expected) failed\n\nLocator:  locator('.seat.selected')\nExpected: 2\nReceived: 3\nTimeout:  5000ms\n\nCall log:\n  - Expect \"toHaveCount\" with timeout 5000ms\n  - waiting for locator('.seat.selected')\n    9 × locator resolved to 3 elements\n      - unexpected value \"3\"\n"
+    },
+    {
+      "id": "V3-L03",
+      "normal": "passed",
+      "bug": "failed",
+      "classification": "website-defect-controlled-seed",
+      "seeds": [
+        "M3"
+      ],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "[A-policy AP05] ประตูตามเวลาโจทย์ ไม่ใช่คำตอบเจ้าของงานจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": "Error: expect(locator).toHaveText(expected) failed\n\nLocator:  locator('#scan-result')\nExpected: \"บัตรนี้ใช้เข้างานแล้ว\"\nReceived: \"ยืนยันเข้างานแล้ว · ที่นั่ง C01 · Gate Holder · บัตรนี้ใช้เข้างานแล้ว\"\nTimeout:  5000ms\n\nCall log:\n  - Expect \"toHaveText\" with timeout 5000ms\n  - waiting for locator('#scan-result')\n    9 × locator resolved to <p role=\"status\" id=\"scan-result\">ยืนยันเข้างานแล้ว · ที่นั่ง C01 · Gate Holder · บ…</p>\n      - unexpected value \"ยืนยันเข้างานแล้ว · ที่นั่ง C01 · Gate Holder · บัตรนี้ใช้เข้างานแล้ว\"\n"
+    },
+    {
+      "id": "V3-U01",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-U02",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: guard/การออกแบบทดสอบที่ประกาศชัด; R: external references ไม่ใช้แทน D",
+      "error": ""
+    },
+    {
+      "id": "V3-U03",
+      "normal": "passed",
+      "bug": "failed",
+      "classification": "website-defect-controlled-seed",
+      "seeds": [
+        "M2"
+      ],
+      "expectedSource": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "error": "Error: expect(locator).toHaveCount(expected) failed\n\nLocator:  locator('.seat.selected')\nExpected: 2\nReceived: 3\nTimeout:  5000ms\n\nCall log:\n  - Expect \"toHaveCount\" with timeout 5000ms\n  - waiting for locator('.seat.selected')\n    9 × locator resolved to 3 elements\n      - unexpected value \"3\"\n"
+    },
+    {
+      "id": "V3-U04",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: guard/การออกแบบทดสอบที่ประกาศชัด; R: external references ไม่ใช้แทน D",
+      "error": ""
+    },
+    {
+      "id": "V3-U05",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-U06",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "[A-policy AP01] นโยบายโจทย์ที่กำหนดก่อนทดสอบ ไม่ใช่คำตอบจากเจ้าของงานจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-U07",
+      "normal": "passed",
+      "bug": "failed",
+      "classification": "website-defect-controlled-seed",
+      "seeds": [
+        "M3"
+      ],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "[A-policy AP05] เวลาประตูโจทย์ ไม่ใช่คำตอบเจ้าของงานจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": "Error: expect(locator).toHaveText(expected) failed\n\nLocator:  locator('#scan-result')\nExpected: \"บัตรนี้ใช้เข้างานแล้ว\"\nReceived: \"ยืนยันเข้างานแล้ว · ที่นั่ง C01 · API Holder · บัตรนี้ใช้เข้างานแล้ว\"\nTimeout:  5000ms\n\nCall log:\n  - Expect \"toHaveText\" with timeout 5000ms\n  - waiting for locator('#scan-result')\n    9 × locator resolved to <p role=\"status\" id=\"scan-result\">ยืนยันเข้างานแล้ว · ที่นั่ง C01 · API Holder · บั…</p>\n      - unexpected value \"ยืนยันเข้างานแล้ว · ที่นั่ง C01 · API Holder · บัตรนี้ใช้เข้างานแล้ว\"\n"
+    },
+    {
+      "id": "V3-U08",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-U09",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-U10",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: guard/การออกแบบทดสอบที่ประกาศชัด; R: external references ไม่ใช้แทน D",
+      "error": ""
+    },
+    {
+      "id": "V3-U11",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-U12",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-U13",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-U14",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-U15",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: guard/การออกแบบทดสอบที่ประกาศชัด; R: external references ไม่ใช้แทน D",
+      "error": ""
+    },
+    {
+      "id": "V3-U16",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: guard/การออกแบบทดสอบที่ประกาศชัด; R: external references ไม่ใช้แทน D",
+      "error": ""
+    },
+    {
+      "id": "V3-U17",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-U18",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-U19",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: guard/การออกแบบทดสอบที่ประกาศชัด; R: external references ไม่ใช้แทน D",
+      "error": ""
+    },
+    {
+      "id": "V3-U20",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-U21",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "[A-policy AP02] rejectคืนvalidตามโจทย์ ไม่ใช่คำตอบเจ้าของงานจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-U22",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [
+          "AP03",
+          "AP04"
+        ],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-U23",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-U24",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "error": ""
+    },
+    {
+      "id": "V3-U25",
+      "normal": "passed",
+      "bug": "passed",
+      "classification": "no-new-failure",
+      "seeds": [],
+      "expectedSource": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "error": ""
+    }
+  ]
+}

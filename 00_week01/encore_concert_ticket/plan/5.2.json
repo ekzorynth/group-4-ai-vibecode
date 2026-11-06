@@ -1,0 +1,1434 @@
+{
+  "metadata": {
+    "authorTask": "/root/writer_52",
+    "group": "5.2",
+    "utcStart": "2026-11-06T11:21:41Z",
+    "utcEnd": "2026-11-06T11:34:57.149405Z",
+    "status": "plan-only; not executed",
+    "blindness": "ไม่อ่าน runtime web source หรือ web/BUGS.md; ไม่เรียกเว็บไซต์/เซิร์ฟเวอร์ใด; ไม่ทราบ bug seeds",
+    "oracleRule": "D=ข้อกำหนดโจทย์รวมสมมติฐานเดิมที่ระบุไว้ ไม่ใช่คำตอบผู้จัดจริงทั้งหมด; A-policy=AP01–05ที่ตกลงเพิ่ม; R=บริบทเว็บอ้างอิงเท่านั้น; exploration=Oไม่ใช่oracle",
+    "isolation": "ทุกกรณีวางแผนฐานเฉพาะ ID เริ่มใหม่; clock/resetอนุญาตเฉพาะinstanceที่ผู้ประสานงานจัดให้ ห้าม4310; ค่าขอบวัดclockserverไม่ใช่เวลาเครื่อง",
+    "moneyOracle": "Regular1800 VIP3200; discount=min(floor(subtotal*0.10),500) เมื่อSTAGE10; fee30/ใบ VATround(fee*.07); 2VIP5964; 1Regularcode1652; 2Regularcode3304; mixed4564",
+    "utcStartNote": "เวลาUTCที่อ่านได้ครั้งแรกขณะเริ่มจัดทำแผน; การอ่านเอกสารเริ่มก่อนtimestampนี้เล็กน้อย",
+    "reviewAppliedBy": "/root",
+    "reviewAppliedUTC": "2026-11-06T11:49:56.463Z"
+  },
+  "sectionChecklist": [
+    {
+      "section": "ความครบถ้วน",
+      "checks": [
+        "24IDsตรงassignments5.2ไม่ซ้ำ",
+        "ทุกcard12หัวข้อและwrongAlternativeในJSON",
+        "ระบุfeature/trace/priority/techniques/source/preconditions/data/steps/expected/timing/cleanup"
+      ]
+    },
+    {
+      "section": "oracleก่อนทดสอบ",
+      "checks": [
+        "เงิน1832/1652/3304/5964/4564จากTEST-DATA",
+        "AP03/AP04ติดA-policyไม่อ้างนโยบายเว็บจริง",
+        "C1–C7/EXPLORATIONเป็นเบาะแสOไม่คัดผ่าน86ข้อเป็นผลรัน"
+      ]
+    },
+    {
+      "section": "การตรวจที่มีอำนาจแยกผิด",
+      "checks": [
+        "negativeมีvalidcontrolและตรวจsideeffects",
+        "5964ตรวจหลังhold/checkoutไม่ใช่previewอย่างเดียว",
+        "ใบที่3ตรวจselectedเดิม2และserverhold",
+        "ตรวจreload,expiry600s,concurrencyสองcontext,ownershipและrollback"
+      ]
+    },
+    {
+      "section": "การดำเนินการภายหลัง",
+      "checks": [
+        "แผนนี้ยังไม่รันไม่มีผลpass/failจริง",
+        "รันบนฐานเฉพาะID/clockเฉพาะinstanceผู้ประสานงาน",
+        "เก็บภาพ/HTTP/UTCและcleanupทุกกรณี",
+        "ไม่อ่านruntimeหรือเฉลยบั๊ก ไม่reset4310"
+      ]
+    }
+  ],
+  "faultDetectorPredictions": [
+    {
+      "fault": "คิดส่วนลดสองVIPเกินเพดาน500 โดยลด640",
+      "detectors": [
+        "V3-L01",
+        "V3-A17"
+      ],
+      "signal": "หลังholdและcheckoutได้5824แทน5964 แม้previewอาจถูก",
+      "basis": "BR12/TEST-DATA คำนวณอิสระ ไม่อ่านbugseeds"
+    },
+    {
+      "fault": "UIแสดงtoastจำกัด2แต่เพิ่มselectedใบที่3",
+      "detectors": [
+        "V3-L02",
+        "V3-U03"
+      ],
+      "signal": "หลังคลิกที่3 selected3 หรือC01/C02ถูกแทน; ต้องตรวจก่อนhold",
+      "basis": "FR08 BR08"
+    },
+    {
+      "fault": "ไม่rollbackเมื่อเปลี่ยนseat/couponไม่ผ่าน",
+      "detectors": [
+        "V3-A46",
+        "V3-U18"
+      ],
+      "signal": "holdIDเดิมหาย/C01ถูกปล่อยหรือC02ค้างheldหลังrejection",
+      "basis": "FR07 FR10 NFR03"
+    },
+    {
+      "fault": "late responseหลังปิดdialogสร้างholdค้าง",
+      "detectors": [
+        "V3-U09",
+        "V3-A18"
+      ],
+      "signal": "activeholdไม่null/C01heldหรือdialogเปิดกลับหลังresponseครบ",
+      "basis": "BR09 NFR01 FR17"
+    },
+    {
+      "fault": "แก้contactหลังpendingหรือreloadเอาชื่อเก่ามา",
+      "detectors": [
+        "V3-A21",
+        "V3-U20"
+      ],
+      "signal": "snapshotต่างจากsavedหลังreloadหรือmailไม่ใช้ข้อมูลที่freeze",
+      "basis": "FR10 FR15 BR19"
+    }
+  ],
+  "cards": [
+    {
+      "id": "V3-A14",
+      "title": "โควตา Member สะสมและข้ามอุปกรณ์",
+      "feature": "โควตาที่นั่ง",
+      "trace": "FR08 BR08 NFR03",
+      "priority": "P1",
+      "techniques": [
+        "state transition",
+        "boundary value",
+        "cross-session"
+      ],
+      "source": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "requirements": [
+        "FR08",
+        "BR08",
+        "NFR03"
+      ],
+      "preconditions": "ฐานทดสอบแยกเริ่มใหม่ เวลา 2026-11-06T03:00:00Z; fan/FanDemo!26 อยู่คิว active NEON Member และตรวจ ENCORE-0001 ผ่าน; ไม่มี hold/order เดิม; ไม่ใช้พอร์ตผู้ใช้ 4310",
+      "data": {
+        "ซื้อแรก": [
+          "C01"
+        ],
+        "ลองเกิน": [
+          "C02",
+          "C03"
+        ],
+        "ซื้อที่สอง": [
+          "C02"
+        ],
+        "ลองใบสาม": [
+          "C03"
+        ]
+      },
+      "steps": [
+        "ซื้อ C01 พร้อม contact ถูกต้องและอนุมัติชำระจำลอง เก็บ order/ticket",
+        "ส่ง hold C02,C03 จากบัญชีเดิม; อ่าน active-hold และ seat map",
+        "valid control: hold C02 เพียงใบเดียว แล้ว checkout/pay สำเร็จ",
+        "login fan ใน context ใหม่และแท็บเดิม ลอง hold C03 ทั้งคู่"
+      ],
+      "expected": "ครั้งเกินหลังซื้อหนึ่งใบถูกปฏิเสธ (409) ไม่มี hold บางส่วน; C02 ใบเดียวสำเร็จ; หลังซื้อรวมสองใบทั้งสอง session ขอ C03 ไม่ได้ ยอด valid ticket Member เท่ากับ 2 ไม่ใช่ต่อแท็บ",
+      "checkTiming": "ตรวจหลังแต่ละ hold response และ GET map/active-hold; ตรวจโควตาอีกครั้งหลัง success และ login ใหม่",
+      "cleanup": "เก็บ request/response และภาพตาม ID โดยปิดบัง session; release hold ที่ยัง held ด้วยเจ้าของ; ถ้า paid/pending หรือเปลี่ยนเวลา/state ให้ทิ้งฐานเฉพาะกรณีแล้วสร้าง fixture ใหม่ ห้าม reset พอร์ตผู้อื่น",
+      "wrongAlternative": "ยอมให้ซื้อรวมสามใบ หรือทดสอบเพียง request เดียวได้ 2 ใบโดยไม่ซื้อสะสม"
+    },
+    {
+      "id": "V3-A15",
+      "title": "ตะกร้าว่าง ซ้ำ เกิน ขายแล้ว และ atomic reject",
+      "feature": "ตรวจรายการที่นั่ง",
+      "trace": "FR07 FR08 BR08 NFR03",
+      "priority": "P1",
+      "techniques": [
+        "equivalence partition",
+        "boundary value",
+        "transaction"
+      ],
+      "source": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "requirements": [
+        "FR07",
+        "FR08",
+        "BR08",
+        "NFR03"
+      ],
+      "preconditions": "ฐานทดสอบแยกเริ่มใหม่ เวลา 2026-11-06T03:00:00Z; fan/FanDemo!26 อยู่คิว active NEON Member และตรวจ ENCORE-0001 ผ่าน; ไม่มี hold/order เดิม; ไม่ใช้พอร์ตผู้ใช้ 4310",
+      "data": {
+        "invalid": [
+          [],
+          [
+            "C01",
+            "C01"
+          ],
+          [
+            "C01",
+            "C02",
+            "C03"
+          ],
+          [
+            "X99"
+          ],
+          [
+            "C01",
+            "A03"
+          ]
+        ],
+        "control": [
+          "C01",
+          "C02"
+        ],
+        "sold": [
+          "A03",
+          "A04",
+          "B09",
+          "C06",
+          "D10"
+        ]
+      },
+      "steps": [
+        "จากไม่มี hold ส่ง invalid แต่ละชุดแยกครั้ง",
+        "หลังทุกครั้งอ่าน active-hold และ map C01/C02",
+        "valid control: ขอ C01,C02 สองที่ว่างครั้งเดียว"
+      ],
+      "expected": "ว่าง/ซ้ำ/3ใบปฏิเสธ 400; X99/ปน A03 ขายแล้วปฏิเสธ 409; ไม่ถือเฉพาะ C01 ทิ้งไว้ ไม่มี active-hold; control สองใบสร้าง hold เดียวสำเร็จ 201",
+      "checkTiming": "ตรวจทันทีหลังแต่ละ rejection ก่อนส่งกรณีถัดไป และหลัง control",
+      "cleanup": "เก็บ request/response และภาพตาม ID โดยปิดบัง session; release hold ที่ยัง held ด้วยเจ้าของ; ถ้า paid/pending หรือเปลี่ยนเวลา/state ให้ทิ้งฐานเฉพาะกรณีแล้วสร้าง fixture ใหม่ ห้าม reset พอร์ตผู้อื่น",
+      "wrongAlternative": "reject ปนขายแล้วแต่เก็บ C01 ไว้ หรือ deduplicate แทนปฏิเสธ"
+    },
+    {
+      "id": "V3-A16",
+      "title": "แย่งที่เดียวและ ID ที่นั่งข้ามงาน",
+      "feature": "atomic seat allocation",
+      "trace": "FR07 NFR03",
+      "priority": "P1",
+      "techniques": [
+        "concurrency",
+        "isolation",
+        "positive control"
+      ],
+      "source": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "requirements": [
+        "FR07",
+        "NFR03"
+      ],
+      "preconditions": "ฐานทดสอบแยกเริ่มใหม่ เวลา 2026-11-06T03:00:00Z; fan/FanDemo!26 อยู่คิว active NEON Member และตรวจ ENCORE-0001 ผ่าน; ไม่มี hold/order เดิม; ไม่ใช้พอร์ตผู้ใช้ 4310",
+      "data": {
+        "buyers": [
+          "fan",
+          "fan2"
+        ],
+        "neonSeat": "C01",
+        "otherEvent": "aurora",
+        "otherSeat": "C01"
+      },
+      "steps": [
+        "เตรียม fan/fan2 active และ grant ของตน ENCORE-0001/0002",
+        "ใช้ barrier ส่ง hold NEON C01 พร้อมกันสอง context และรอทั้งคู่",
+        "อ่าน map และ hold ทั้งสอง owner",
+        "valid control: general/GeneralDemo!26 เข้า Aurora General active แล้ว hold Aurora C01"
+      ],
+      "expected": "NEON มีผู้สำเร็จ 201 เพียงหนึ่งราย ผู้แพ้ 409; C01 ผูก hold ของผู้ชนะเท่านั้น; Aurora C01 สร้าง hold 201 ได้โดยไม่แก้ NEON ไม่ใช้ seat ID เป็น global key",
+      "checkTiming": "หลัง Promise ทั้งสองเสร็จ ตรวจ invariant ทั้งคู่ จากนั้นหลัง hold Aurora ตรวจสองผัง",
+      "cleanup": "เก็บ request/response และภาพตาม ID โดยปิดบัง session; release hold ที่ยัง held ด้วยเจ้าของ; ถ้า paid/pending หรือเปลี่ยนเวลา/state ให้ทิ้งฐานเฉพาะกรณีแล้วสร้าง fixture ใหม่ ห้าม reset พอร์ตผู้อื่น",
+      "wrongAlternative": "รวมผลเพียง status รวมโดยไม่ตรวจ owner หรือปฏิเสธ C01 ทุกงาน"
+    },
+    {
+      "id": "V3-A17",
+      "title": "ราคา server ส่วนลด cap และยอดปลอม",
+      "feature": "canonical money",
+      "trace": "FR10 BR12 BR13",
+      "priority": "P1",
+      "techniques": [
+        "decision table",
+        "boundary value",
+        "tampering"
+      ],
+      "source": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "requirements": [
+        "FR10",
+        "BR12",
+        "BR13"
+      ],
+      "preconditions": "ฐานทดสอบแยกเริ่มใหม่ เวลา 2026-11-06T03:00:00Z; fan/FanDemo!26 อยู่คิว active NEON Member และตรวจ ENCORE-0001 ผ่าน; ไม่มี hold/order เดิม; ไม่ใช้พอร์ตผู้ใช้ 4310",
+      "data": {
+        "cases": [
+          {
+            "seats": [
+              "C01"
+            ],
+            "coupon": "",
+            "amounts": [
+              1800,
+              0,
+              30,
+              2,
+              1832
+            ]
+          },
+          {
+            "seats": [
+              "C01"
+            ],
+            "coupon": "STAGE10",
+            "amounts": [
+              1800,
+              180,
+              30,
+              2,
+              1652
+            ]
+          },
+          {
+            "seats": [
+              "C01",
+              "C02"
+            ],
+            "coupon": "STAGE10",
+            "amounts": [
+              3600,
+              360,
+              60,
+              4,
+              3304
+            ]
+          },
+          {
+            "seats": [
+              "A01",
+              "A02"
+            ],
+            "coupon": "STAGE10",
+            "amounts": [
+              6400,
+              500,
+              60,
+              4,
+              5964
+            ]
+          },
+          {
+            "seats": [
+              "A01",
+              "C01"
+            ],
+            "coupon": "STAGE10",
+            "amounts": [
+              5000,
+              500,
+              60,
+              4,
+              4564
+            ]
+          }
+        ],
+        "tamperedTotal": 1,
+        "invalidCoupon": "FAKE"
+      },
+      "steps": [
+        "แต่ละชุดใช้ hold ใหม่หรือ release ชุดก่อน ส่ง total=1 ควบคู่ seats/coupon",
+        "หลัง hold อ่าน server hold.price และตรวจยอดรายบรรทัด net+fee+vat รวม",
+        "กรอก contact ถูกต้องไป summary และอ่านยอดอีกครั้ง",
+        "ส่ง coupon FAKE แล้วอ่านว่ารายการที่ถูกต้องก่อนหน้ายังอยู่"
+      ],
+      "expected": "แต่ละ amounts เรียง subtotal/discount/fee/VAT/total ตรง TEST-DATA; VAT round(7% fee); 2VIP discount=min(640,500)=500 total5964; รายใบรวมตรงยอด; total=1 ไม่มีผล; FAKE ปฏิเสธโดยไม่ทำลาย hold เดิม",
+      "checkTiming": "ตรวจหลัง hold และหลัง checkout server/summary ทุกชุด โดยเฉพาะ 5964 หลังยืนยันที่นั่ง ไม่ใช้ preview อย่างเดียว",
+      "cleanup": "เก็บ request/response และภาพตาม ID โดยปิดบัง session; release hold ที่ยัง held ด้วยเจ้าของ; ถ้า paid/pending หรือเปลี่ยนเวลา/state ให้ทิ้งฐานเฉพาะกรณีแล้วสร้าง fixture ใหม่ ห้าม reset พอร์ตผู้อื่น",
+      "wrongAlternative": "5824 จากลด640 หรือยอมให้ client total=1; คัด observed total เป็น expected"
+    },
+    {
+      "id": "V3-A18",
+      "title": "อายุ hold 600 วินาที กู้คืนและปล่อยเมื่อปิด",
+      "feature": "hold lifecycle",
+      "trace": "FR10 FR17 BR09",
+      "priority": "P1",
+      "techniques": [
+        "boundary value",
+        "state transition",
+        "recovery"
+      ],
+      "source": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "requirements": [
+        "FR10",
+        "FR17",
+        "BR09"
+      ],
+      "preconditions": "ฐานทดสอบแยกเริ่มใหม่ เวลา 2026-11-06T03:00:00Z; fan/FanDemo!26 อยู่คิว active NEON Member และตรวจ ENCORE-0001 ผ่าน; ไม่มี hold/order เดิม; ไม่ใช้พอร์ตผู้ใช้ 4310",
+      "data": {
+        "holdAt": "2026-11-06T03:00:00Z",
+        "before": "2026-11-06T03:09:59.999Z",
+        "expiry": "2026-11-06T03:10:00Z",
+        "seat": "C01"
+      },
+      "steps": [
+        "hold C01 ไม่เริ่ม payment; เก็บ ID/expires",
+        "login fan อีก context และ reload/resume ตรวจ ID เดิม",
+        "clock เฉพาะฐานนี้ไป 599.999s แล้วอ่าน active-hold; ไป600sอ่านซ้ำและลอง pay",
+        "ฐานใหม่: hold C01 แล้วปิด booking dialog รอ release สำเร็จ"
+      ],
+      "expected": "expires=03:10Z; reload/context ใหม่คืน ID/seat เดิม; ก่อนขอบยัง held; ตรง600s hold=null pay409 และ C01 available; ปิด dialog ของ hold ที่ไม่ pending ต้องปล่อยก่อนหมด600s",
+      "checkTiming": "ตรวจหลัง reload/resume, ที่599.999s, ที่600s หลัง sweep/read และหลัง close/release response",
+      "cleanup": "เก็บ request/response และภาพตาม ID โดยปิดบัง session; release hold ที่ยัง held ด้วยเจ้าของ; ถ้า paid/pending หรือเปลี่ยนเวลา/state ให้ทิ้งฐานเฉพาะกรณีแล้วสร้าง fixture ใหม่ ห้าม reset พอร์ตผู้อื่น",
+      "wrongAlternative": "ใช้รอโดยประมาณ10นาที หรือปิดหน้าต่างแล้วเช็คเฉพาะ UI โดยไม่ดู active-hold/map"
+    },
+    {
+      "id": "V3-A19",
+      "title": "บังคับ checkout และป้องกันแก้ hold คนอื่น",
+      "feature": "checkout ownership",
+      "trace": "FR09 BR11 NFR02",
+      "priority": "P1",
+      "techniques": [
+        "authorization matrix",
+        "negative testing",
+        "positive control"
+      ],
+      "source": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "requirements": [
+        "FR09",
+        "BR11",
+        "NFR02"
+      ],
+      "preconditions": "ฐานทดสอบแยกเริ่มใหม่ เวลา 2026-11-06T03:00:00Z; fan/FanDemo!26 อยู่คิว active NEON Member และตรวจ ENCORE-0001 ผ่าน; ไม่มี hold/order เดิม; ไม่ใช้พอร์ตผู้ใช้ 4310",
+      "data": {
+        "owner": "fan",
+        "other": "fan2",
+        "seat": "C01",
+        "buyer": {
+          "name": "Buyer Test",
+          "email": "buyer@example.test",
+          "phone": "0812345678"
+        }
+      },
+      "steps": [
+        "fan hold C01 แล้ว pay โดยยังไม่บันทึก contact",
+        "fan2 ส่ง checkout พร้อม hold ID ของ fan และข้อมูลครบ",
+        "ตรวจ hold ของ fan ว่าไม่มี checkout เปลี่ยน",
+        "valid control: fan บันทึก buyer และ Holder 1/C01 ครบ แล้วเริ่ม payment pending"
+      ],
+      "expected": "pay แรกไม่ผ่าน CHECKOUT_REQUIRED ไม่มี payment/ticket/email; fan2 ได้404ไม่เปิดเผยข้อมูลและไม่แก้ owner hold; owner checkout ถูกต้องและเริ่ม pending ได้",
+      "checkTiming": "หลัง pay ก่อน contact, หลัง foreign checkout และหลัง owner control ก่อน resolve payment",
+      "cleanup": "เก็บ request/response และภาพตาม ID โดยปิดบัง session; release hold ที่ยัง held ด้วยเจ้าของ; ถ้า paid/pending หรือเปลี่ยนเวลา/state ให้ทิ้งฐานเฉพาะกรณีแล้วสร้าง fixture ใหม่ ห้าม reset พอร์ตผู้อื่น",
+      "wrongAlternative": "สรุปว่า checkout validation ผ่านทั้งที่ไม่เคยทำ control จึงอาจ fail เพราะไม่มีสิทธิ์ทั้งหมด"
+    },
+    {
+      "id": "V3-A20",
+      "title": "ตรวจ contact ทุกคนและ seat mapping",
+      "feature": "contact validation",
+      "trace": "FR09 BR10 BR11",
+      "priority": "P1",
+      "techniques": [
+        "equivalence partition",
+        "decision table",
+        "positive control"
+      ],
+      "source": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "requirements": [
+        "FR09",
+        "BR10",
+        "BR11"
+      ],
+      "preconditions": "ฐานทดสอบแยกเริ่มใหม่ เวลา 2026-11-06T03:00:00Z; fan/FanDemo!26 อยู่คิว active NEON Member และตรวจ ENCORE-0001 ผ่าน; ไม่มี hold/order เดิม; ไม่ใช้พอร์ตผู้ใช้ 4310",
+      "data": {
+        "seats": [
+          "C01",
+          "C02"
+        ],
+        "validBuyer": {
+          "name": "Buyer Test",
+          "email": " BUYER@EXAMPLE.TEST ",
+          "phone": "+66 81-234-5678"
+        },
+        "holders": [
+          "C01:Holder 1 / holder1@example.test / 0898765432",
+          "C02:Holder 2 / holder2@example.test / 0898765432"
+        ],
+        "invalid": [
+          "Single",
+          "bademail",
+          "123",
+          "holders=[]",
+          "ขาดC02",
+          "C01ซ้ำ",
+          "A01นอกbasket"
+        ]
+      },
+      "steps": [
+        "hold C01,C02; เตรียม valid payload ต้นแบบ",
+        "เปลี่ยน buyer field ทีละช่องเป็น Single/bademail/123 ส่ง server checkout",
+        "จาก valid buyer เปลี่ยน holder คนที่สองเป็นชื่อ/อีเมล/โทรผิดทีละช่อง และลอง mapping ขาด/ซ้ำ/นอก basket",
+        "valid control: ส่งครบสองผู้ถือ seat ไม่ซ้ำ แล้วอ่าน saved checkout"
+      ],
+      "expected": "ทุก payload ผิดได้400 ไม่มี checkout บางส่วน; valid200 มีสองผู้ถือจับคู่ C01/C02 ครบ; buyer email normalize buyer@example.test และ phone +66812345678; UI แสดง error ระบุแก้ไขได้",
+      "checkTiming": "ตรวจ response และ active-hold.checkout หลังแต่ละ invalid; ตรวจ normalized snapshot หลัง valid save",
+      "cleanup": "เก็บ request/response และภาพตาม ID โดยปิดบัง session; release hold ที่ยัง held ด้วยเจ้าของ; ถ้า paid/pending หรือเปลี่ยนเวลา/state ให้ทิ้งฐานเฉพาะกรณีแล้วสร้าง fixture ใหม่ ห้าม reset พอร์ตผู้อื่น",
+      "wrongAlternative": "ตรวจเฉพาะ buyer จน holder ผิดหลุด หรือจำนวนสองคนถูกแต่ผูก C01 ซ้ำ"
+    },
+    {
+      "id": "V3-A21",
+      "title": "snapshot ข้ามอุปกรณ์และห้ามแก้หลัง pending",
+      "feature": "contact snapshot",
+      "trace": "FR10 FR15 BR19",
+      "priority": "P1",
+      "techniques": [
+        "state transition",
+        "cross-session",
+        "immutability"
+      ],
+      "source": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "requirements": [
+        "FR10",
+        "FR15",
+        "BR19"
+      ],
+      "preconditions": "ฐานทดสอบแยกเริ่มใหม่ เวลา 2026-11-06T03:00:00Z; fan/FanDemo!26 อยู่คิว active NEON Member และตรวจ ENCORE-0001 ผ่าน; ไม่มี hold/order เดิม; ไม่ใช้พอร์ตผู้ใช้ 4310",
+      "data": {
+        "seat": "C01",
+        "before": "Buyer Test / Holder 1",
+        "attempted": "Changed Buyer / Changed Holder",
+        "method": "alipay"
+      },
+      "steps": [
+        "hold/save contact ถูกต้อง แล้ว login fan อีก context อ่าน active-hold",
+        "เริ่ม payment pending และเก็บ paymentID/checkout เดิม",
+        "ส่งแก้ contact ที่ถูก syntax แต่ชื่อใหม่ และอีกครั้ง holders=[]; reload/resume ทั้งสอง context",
+        "อนุมัติจำลองแล้วอ่าน order และ email sandbox"
+      ],
+      "expected": "ก่อน pending สอง context เห็น snapshot เดิม; pending แก้ด้วย valid หรือ invalid payload ถูกปฏิเสธ409 UI edit disabled; reload ยังคงชื่อเดิม/payment เดิม; หลัง success order/mail ใช้ชื่อเดิมและ buyer.email เดิม",
+      "checkTiming": "ตรวจก่อน pending, หลังแต่ละ edit response, หลัง reload/resume และหลัง success ก่อนอ่าน mail",
+      "cleanup": "เก็บ request/response และภาพตาม ID โดยปิดบัง session; release hold ที่ยัง held ด้วยเจ้าของ; ถ้า paid/pending หรือเปลี่ยนเวลา/state ให้ทิ้งฐานเฉพาะกรณีแล้วสร้าง fixture ใหม่ ห้าม reset พอร์ตผู้อื่น",
+      "wrongAlternative": "payloadผิดถูกปฏิเสธเพราะรูปแบบจึงไม่พิสูจน์ freeze; ต้องใช้ payloadแก้ที่ถูกด้วย"
+    },
+    {
+      "id": "V3-A43",
+      "title": "Member สองใบนับรวมเพดานสี่เมื่อเปิด General",
+      "feature": "quota across rounds",
+      "trace": "FR08 BR08 BR03",
+      "priority": "P1",
+      "techniques": [
+        "state transition",
+        "boundary value",
+        "decision table"
+      ],
+      "source": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "requirements": [
+        "FR08",
+        "BR08",
+        "BR03"
+      ],
+      "preconditions": "fanบัญชีเดิมจ่ายMember2ใบก่อน15:00;รักษาuser/orderเดิม; AT06อนุญาตAPIGeneralหลัง15 แม้catalogยังแสดงรอบMember",
+      "data": {
+        "member": [
+          "C01",
+          "C02"
+        ],
+        "generalTooMany": [
+          "C03",
+          "C04",
+          "C05"
+        ],
+        "generalValid": [
+          "C03",
+          "C04"
+        ],
+        "clock": "2026-11-06T08:00:00Z"
+      },
+      "steps": [
+        "จ่ายC01/C02ในMemberด้วยfan",
+        "ตั้งเวลา08:00Zแล้วใช้fanเดิม POSTqueue roundgeneral ให้active",
+        "ขอเพิ่ม3ใบต้องdeny(รวม5);เพิ่ม2ใบต้องจ่ายสำเร็จ(รวม4);ใบถัดไปต้องdeny",
+        "ไม่เปลี่ยนบัญชี/role ไม่สร้างเส้นทางUI และไม่skipเพราะMembercatalogซ่อนGeneral"
+      ],
+      "expected": "quotaสะสมรวมข้ามroundในบัญชีเดิมไม่เกิน4; APIregressionนี้มีauthorizedadmissionตามAT06 ไม่ใช้visibilityเป็นข้อห้ามeligibility",
+      "checkTiming": "หลังเปลี่ยนรอบ/queue active, หลัง rejection, หลัง success สองใบและลองใบที่5",
+      "cleanup": "เก็บ request/response และภาพตาม ID โดยปิดบัง session; release hold ที่ยัง held ด้วยเจ้าของ; ถ้า paid/pending หรือเปลี่ยนเวลา/state ให้ทิ้งฐานเฉพาะกรณีแล้วสร้าง fixture ใหม่ ห้าม reset พอร์ตผู้อื่น",
+      "wrongAlternative": "ถ้านับเฉพาะroundจะรับใบรวม5ได้;ถ้าลืมนับMemberเดิมอาจซื้อGeneralอีก4ได้",
+      "reviewFixes": [
+        "R52-02"
+      ]
+    },
+    {
+      "id": "V3-A46",
+      "title": "เปลี่ยนที่ล้มเหลว rollback และ release เฉพาะเจ้าของ",
+      "feature": "hold replacement/release",
+      "trace": "FR07 FR10 FR17 BR09 NFR03",
+      "priority": "P1",
+      "techniques": [
+        "transaction rollback",
+        "authorization",
+        "idempotency"
+      ],
+      "source": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "requirements": [
+        "FR07",
+        "FR10",
+        "FR17",
+        "BR09",
+        "NFR03"
+      ],
+      "preconditions": "ฐานทดสอบแยกเริ่มใหม่ เวลา 2026-11-06T03:00:00Z; fan/FanDemo!26 อยู่คิว active NEON Member และตรวจ ENCORE-0001 ผ่าน; ไม่มี hold/order เดิม; ไม่ใช้พอร์ตผู้ใช้ 4310",
+      "data": {
+        "original": "C01",
+        "replacement": "C02",
+        "bad": [
+          "BAD coupon",
+          "C02+A03 sold"
+        ],
+        "foreign": "fan2"
+      },
+      "steps": [
+        "fan hold C01 เก็บID",
+        "ขอเปลี่ยนเป็นC02ด้วยBAD และC02+A03 อ่าน hold/map หลังแต่ละครั้ง",
+        "fan2 release ID ของfan",
+        "valid control: fanเปลี่ยนเป็นC02ถูกต้อง แล้ว release holdใหม่สองครั้ง"
+      ],
+      "expected": "invalid400/409 คงhold ID/C01เดิม ไม่สร้าง C02; foreign404ไม่ปล่อยของfan; valid replacement ได้IDใหม่ C01available/C02held; releaseซ้ำ200ได้โดยไม่มีผลเกินครั้งแรก สุดท้ายholdnull/C02available",
+      "checkTiming": "ตรวจหลังทุก rejected mutation; หลัง replacement ก่อน release; หลัง release แต่ละครั้ง",
+      "cleanup": "เก็บ request/response และภาพตาม ID โดยปิดบัง session; release hold ที่ยัง held ด้วยเจ้าของ; ถ้า paid/pending หรือเปลี่ยนเวลา/state ให้ทิ้งฐานเฉพาะกรณีแล้วสร้าง fixture ใหม่ ห้าม reset พอร์ตผู้อื่น",
+      "wrongAlternative": "ปล่อย C01 ก่อนตรวจรายการใหม่แล้วคืนไม่สำเร็จ หรือ foreign release คืนทุกseat"
+    },
+    {
+      "id": "V3-A47",
+      "title": "General เพดานสี่และ pending ไม่ย้ายงานหรือ method",
+      "feature": "General quota/pending isolation",
+      "trace": "FR08 FR10 FR12 BR08 BR09 BR13",
+      "priority": "P1",
+      "techniques": [
+        "boundary value",
+        "state transition",
+        "cross-event"
+      ],
+      "source": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "requirements": [
+        "FR08",
+        "FR10",
+        "FR12",
+        "BR08",
+        "BR09",
+        "BR13"
+      ],
+      "preconditions": "ฐานใหม่เวลาเริ่ม; general/GeneralDemo!26 ไม่มีmembership เข้า Aurora General active; Jazz เปิด General ด้วย; ไม่มี hold/order เดิม",
+      "data": {
+        "account": "general",
+        "event": "aurora",
+        "tooMany": [
+          "C01",
+          "C02",
+          "C03",
+          "C04",
+          "C05"
+        ],
+        "four": [
+          "C01",
+          "C02",
+          "C03",
+          "C04"
+        ],
+        "otherEvent": "jazz",
+        "pendingMethod": "qr",
+        "repeatMethod": "alipay"
+      },
+      "steps": [
+        "General เข้า Aurora; ส่ง5ใบแล้วส่ง4ใบเป็นvalid control",
+        "save contactsครบ4เริ่มqr pending; เก็บpaymentID/method",
+        "เข้าJazzแล้วขอholdC01; เรียกpayเดิมอีกด้วยalipay",
+        "resolveเดิมapproved; ลองAurora C05และJazz C01อีกครั้ง"
+      ],
+      "expected": "5ใบ400; 4ใบ201 subtotal7200 fee120 VAT8 total7328; pendingข้ามงานถูกPAYMENT_PENDING; payซ้ำคืนpaymentIDเดิมและmethodqr; successแล้วAuroraใบ5ถูกQUOTA_EXCEEDEDแต่JazzC01สำเร็จ โควตาต่อevent",
+      "checkTiming": "หลังแต่ละhold, ระหว่างpendingก่อนresolve และหลังsuccessก่อน/หลังข้ามงาน",
+      "cleanup": "เก็บ request/response และภาพตาม ID โดยปิดบัง session; release hold ที่ยัง held ด้วยเจ้าของ; ถ้า paid/pending หรือเปลี่ยนเวลา/state ให้ทิ้งฐานเฉพาะกรณีแล้วสร้าง fixture ใหม่ ห้าม reset พอร์ตผู้อื่น",
+      "wrongAlternative": "เริ่มสองpendingข้ามevent หรือเปลี่ยนmethodโดยเปลี่ยนpaymentเดิม"
+    },
+    {
+      "id": "V3-A52",
+      "title": "ผู้จัด block/unblock และ combined update ต้อง atomic",
+      "feature": "organizer seat/state",
+      "trace": "FR07 FR17 BR20 NFR03",
+      "priority": "P1",
+      "techniques": [
+        "transaction rollback",
+        "type partition",
+        "positive control"
+      ],
+      "source": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "requirements": [
+        "FR07",
+        "FR17",
+        "BR20",
+        "NFR03"
+      ],
+      "preconditions": "ฐานทดสอบแยกเริ่มใหม่ เวลา 2026-11-06T03:00:00Z; fan/FanDemo!26 อยู่คิว active NEON Member และตรวจ ENCORE-0001 ผ่าน; ไม่มี hold/order เดิม; ไม่ใช้พอร์ตผู้ใช้ 4310",
+      "data": {
+        "owner": "encore",
+        "invalidUpdate": {
+          "state": "paused",
+          "round": "general"
+        },
+        "invalidSeat": "X99",
+        "wrongType": "blocked=\"true\"",
+        "seat": "C01"
+      },
+      "steps": [
+        "encoreอ่านNEON stateก่อนแก้; ส่งcombined paused+forcedgeneral",
+        "อ่านdashboardและfan queue/mapยืนยัน stateไม่เปลี่ยน",
+        "ลองX99และblockedเป็นstring",
+        "validcontrol block C01แล้วfanhold; unblockเป็นbooleanfalseแล้วfanholdC01",
+        "หลังcontrolholdสำเร็จ ลองblockC01ขณะheld ตรวจปฏิเสธและholdเดิมคงอยู่"
+      ],
+      "expected": "combined400 ไม่พักขายบางส่วน stateยังon_saleและroundตามclock; X99ได้404/stringได้400 ไม่เปลี่ยนseat; blockbooleantrueสำเร็จและhold409; unblockแล้วhold201; sold/heldห้ามเปลี่ยนเป็นว่างโดยblockทับ",
+      "checkTiming": "หลังcombined rejectionอ่านstateก่อนคำสั่งถัดไป; หลังinvalidseatแต่ละครั้ง; หลังblockและunblockตรวจmap/hold",
+      "cleanup": "เก็บ request/response และภาพตาม ID โดยปิดบัง session; release hold ที่ยัง held ด้วยเจ้าของ; ถ้า paid/pending หรือเปลี่ยนเวลา/state ให้ทิ้งฐานเฉพาะกรณีแล้วสร้าง fixture ใหม่ ห้าม reset พอร์ตผู้อื่น",
+      "wrongAlternative": "เห็น400แล้วถือว่าผ่านโดยไม่ตรวจpausedค้าง หรือใช้stringtrueแทนboolean"
+    },
+    {
+      "id": "V3-A54",
+      "title": "ความยาว contact ที่ขอบและรักษาข้อมูลเมื่อบันทึกผิด",
+      "feature": "contact boundaries",
+      "trace": "FR09 FR10 BR10 BR11 BR19",
+      "priority": "P1",
+      "techniques": [
+        "boundary value",
+        "equivalence partition",
+        "rollback"
+      ],
+      "source": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "requirements": [
+        "FR09",
+        "FR10",
+        "BR10",
+        "BR11",
+        "BR19"
+      ],
+      "preconditions": "ฐานทดสอบแยกเริ่มใหม่ เวลา 2026-11-06T03:00:00Z; fan/FanDemo!26 อยู่คิว active NEON Member และตรวจ ENCORE-0001 ผ่าน; ไม่มี hold/order เดิม; ไม่ใช้พอร์ตผู้ใช้ 4310",
+      "data": {
+        "validName100": "A xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "validEmail254": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx@aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "validPhone15": "+111111111111111",
+        "validPhone8": "12345678",
+        "invalid": [
+          "name length101",
+          "email length255",
+          "phone7",
+          "phone16",
+          "12a45678",
+          "buyer=null",
+          "Single"
+        ],
+        "invalidEmail255": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx@aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "emailDerivation": "64+1+63+1+63+1+61=254;local64/domainlabels<=63"
+      },
+      "steps": [
+        "holdC01 เตรียมHolder1ข้อมูลถูกต้อง",
+        "ลองbuyernull/name101/email255/phone7,16,มีตัวอักษรทีละอย่าง",
+        "validcontrolชื่อ100/email254/phone15บันทึกและเก็บsnapshot; อีกcaseตรวจphone8ยอมรับ",
+        "ส่งSingleและholderผิดทีละช่องแล้วอ่านactivehold เปรียบเทียบsnapshotที่บันทึกล่าสุด"
+      ],
+      "expected": "invalid400; name100 email254 phone8และ15digitsมี+นำหน้ายอมรับ200; nameต้องมีชื่อ/นามสกุล ดังนั้นความยาวผ่านอย่างเดียวไม่พอ; saveผิดไม่ลบ/แก้ snapshotเดิม; ไม่ตัดข้อมูลเกินขอบให้ผ่านเงียบๆ",
+      "checkTiming": "หลังแต่ละresponse ตรวจsnapshotทันที; หลังvalidcontrolและหลังinvalidที่ตามมา",
+      "cleanup": "เก็บ request/response และภาพตาม ID โดยปิดบัง session; release hold ที่ยัง held ด้วยเจ้าของ; ถ้า paid/pending หรือเปลี่ยนเวลา/state ให้ทิ้งฐานเฉพาะกรณีแล้วสร้าง fixture ใหม่ ห้าม reset พอร์ตผู้อื่น",
+      "wrongAlternative": "ถ้าขีดจำกัดtotalemailผิดจะรับ255หรือปฏิเสธ254 ทั้งสองinputยังแยกformatจากlengthได้ ช่องอื่นเหมือนเดิม",
+      "reviewFixes": [
+        "R52-01"
+      ]
+    },
+    {
+      "id": "V3-A57",
+      "title": "ไม่รับผู้ซื้อใหม่เมื่อ upcoming soldout paused cancelled",
+      "feature": "sale eligibility states",
+      "trace": "FR02 FR04 FR07 FR17 BR04 BR20",
+      "priority": "P1",
+      "techniques": [
+        "decision table",
+        "state transition",
+        "positive control"
+      ],
+      "source": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [
+          "AP03",
+          "AP04"
+        ],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "requirements": [
+        "FR02",
+        "FR04",
+        "FR07",
+        "FR17",
+        "BR04",
+        "BR20"
+      ],
+      "preconditions": "GeneralactiveAURORA;สำเร็จholdC01แล้วreleaseเป็นpositivecontrol ก่อนเปลี่ยนstate คิวเดิมยังactive",
+      "data": {
+        "soldout": [
+          "orbit",
+          "midnight"
+        ],
+        "upcoming": "sunset",
+        "mutable": "aurora",
+        "account": "general"
+      },
+      "steps": [
+        "ตรวจsoldout/upcomingjoinไม่ผ่าน",
+        "pauseAURORAแล้วbuyeractiveเดิมholdC01ต้องSALE_UNAVAILABLEและactiveholdnull;joinใหม่ก็ปฏิเสธ",
+        "เปิดon_sale buyerเดิมholdC01ได้แล้วrelease",
+        "cancelแล้วbuyeractiveเดิมholdC01ต้องSALE_UNAVAILABLE/ไม่มีhold/seatยังavailable"
+      ],
+      "expected": "ปฏิเสธเพราะsale stateจริง ไม่ใช้คิว/grantขาดมาช่วย;on_salepositivecontrolผ่าน",
+      "checkTiming": "หลังแต่ละstatus mutationและคำขอjoin/hold; หลังunpauseก่อนcancel; ตรวจnoholdหลังreject",
+      "cleanup": "เก็บ request/response และภาพตาม ID โดยปิดบัง session; release hold ที่ยัง held ด้วยเจ้าของ; ถ้า paid/pending หรือเปลี่ยนเวลา/state ให้ทิ้งฐานเฉพาะกรณีแล้วสร้าง fixture ใหม่ ห้าม reset พอร์ตผู้อื่น",
+      "wrongAlternative": "ทดสอบเฉพาะปุ่มdisabledแต่directAPIยังซื้อได้ หรือคิดว่าpaused=canceled",
+      "reviewFixes": [
+        "R52-03"
+      ]
+    },
+    {
+      "id": "V3-L01",
+      "title": "สอง VIP ต้องได้ 5964 หลัง hold จริง",
+      "feature": "money regression detector",
+      "trace": "FR10 BR12 NFR03",
+      "priority": "P1",
+      "techniques": [
+        "boundary value",
+        "independent oracle",
+        "UI/API cross-check"
+      ],
+      "source": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "requirements": [
+        "FR10",
+        "BR12",
+        "NFR03"
+      ],
+      "preconditions": "ฐานทดสอบแยกเริ่มใหม่ เวลา 2026-11-06T03:00:00Z; fan/FanDemo!26 อยู่คิว active NEON Member และตรวจ ENCORE-0001 ผ่าน; ไม่มี hold/order เดิม; ไม่ใช้พอร์ตผู้ใช้ 4310",
+      "data": {
+        "seats": [
+          "A01",
+          "A02"
+        ],
+        "coupon": "STAGE10",
+        "expected": {
+          "subtotal": 6400,
+          "discount": 500,
+          "fee": 60,
+          "vat": 4,
+          "total": 5964
+        },
+        "wrongTotal": 5824
+      },
+      "steps": [
+        "fanเข้าMember map เลือกA01,A02 ใส่STAGE10",
+        "ตรวจpreviewเป็น5964แล้วกดยืนยันที่นั่ง/รอcheckoutform",
+        "อ่านsummaryในcheckoutและserveractivehold.price เก็บหลักฐานคู่",
+        "controlเปรียบเทียบC01+STAGE10ในฐานใหม่ได้1652เพื่อพิสูจน์couponใช้งาน"
+      ],
+      "expected": "หลังhold serverและcheckoutต้อง5964=6400−min(640,500)+60+4; discount500 ไม่ใช่640; previewถูกอย่างเดียวไม่ผ่าน; control1652 ยืนยันส่วนลด10%ทำงานเมื่อไม่ถึงcap",
+      "checkTiming": "assertสำคัญหลังPOSTholdsสำเร็จและcheckoutformปรากฏ อ่านserverpriceซ้ำ ไม่จบที่previewก่อนยืนยัน",
+      "cleanup": "เก็บ request/response และภาพตาม ID โดยปิดบัง session; release hold ที่ยัง held ด้วยเจ้าของ; ถ้า paid/pending หรือเปลี่ยนเวลา/state ให้ทิ้งฐานเฉพาะกรณีแล้วสร้าง fixture ใหม่ ห้าม reset พอร์ตผู้อื่น",
+      "wrongAlternative": "5824 หรือpreview5964แต่checkout5824; แก้expectedให้ตรงระบบ"
+    },
+    {
+      "id": "V3-L02",
+      "title": "คลิกที่สามต้องเหลือสองที่เดิม",
+      "feature": "Member selection cap",
+      "trace": "FR07 FR08 BR08 NFR01",
+      "priority": "P1",
+      "techniques": [
+        "boundary value",
+        "state transition",
+        "negative control"
+      ],
+      "source": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "requirements": [
+        "FR07",
+        "FR08",
+        "BR08",
+        "NFR01"
+      ],
+      "preconditions": "ฐานทดสอบแยกเริ่มใหม่ เวลา 2026-11-06T03:00:00Z; fan/FanDemo!26 อยู่คิว active NEON Member และตรวจ ENCORE-0001 ผ่าน; ไม่มี hold/order เดิม; ไม่ใช้พอร์ตผู้ใช้ 4310",
+      "data": {
+        "first": [
+          "C01",
+          "C02"
+        ],
+        "third": "C03"
+      },
+      "steps": [
+        "เลือกC01แล้วC02 ตรวจจำนวนselected/aria-pressedแต่ละที่",
+        "คลิกC03เป็นใบที่สาม อ่านselectedและข้อความแจ้ง",
+        "ยืนยันที่นั่งอ่านserverhold.seats",
+        "controlในฐานใหม่เลือกC01เพียงใบเดียวแล้วยืนยัน"
+      ],
+      "expected": "คลิกที่สามไม่เพิ่มและไม่แทนที่สองที่เดิม; C01/C02true C03false จำนวน2 ข้อความสูงสุด2; serverholdมีC01/C02เท่านั้น; control1ใบสำเร็จ",
+      "checkTiming": "ตรวจทันทีหลังคลิกที่สามก่อนกดยืนยัน และหลังholdสำเร็จอีกครั้ง",
+      "cleanup": "เก็บ request/response และภาพตาม ID โดยปิดบัง session; release hold ที่ยัง held ด้วยเจ้าของ; ถ้า paid/pending หรือเปลี่ยนเวลา/state ให้ทิ้งฐานเฉพาะกรณีแล้วสร้าง fixture ใหม่ ห้าม reset พอร์ตผู้อื่น",
+      "wrongAlternative": "มีtoastสูงสุด2แต่ยังselected3 หรือยกเลิกC01เพื่อใส่C03แทนโดยไม่แจ้ง"
+    },
+    {
+      "id": "V3-U03",
+      "title": "มือถือ Member contact validation/copy และ QR ทดลอง",
+      "feature": "mobile purchase",
+      "trace": "FR07 FR08 FR09 FR10 FR11 BR08 BR10 BR13 NFR01 NFR07",
+      "priority": "P1",
+      "techniques": [
+        "end-to-end",
+        "boundary value",
+        "responsive"
+      ],
+      "source": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "requirements": [
+        "FR07",
+        "FR08",
+        "FR09",
+        "FR10",
+        "FR11",
+        "BR08",
+        "BR10",
+        "BR13",
+        "NFR01",
+        "NFR07"
+      ],
+      "preconditions": "ฐานทดสอบแยกเริ่มใหม่ เวลา 2026-11-06T03:00:00Z; fan/FanDemo!26 อยู่คิว active NEON Member และตรวจ ENCORE-0001 ผ่าน; ไม่มี hold/order เดิม; ไม่ใช้พอร์ตผู้ใช้ 4310",
+      "data": {
+        "viewport": [
+          375,
+          812
+        ],
+        "seats": [
+          "A01",
+          "A02"
+        ],
+        "third": "A05",
+        "invalidName": "Single",
+        "validName": "Mobile Buyer",
+        "buyerEmail": "buyer@example.test",
+        "phone": "0812345678"
+      },
+      "steps": [
+        "ที่375px fanเลือกA01,A02แล้วลองA05 ตรวจคง2",
+        "ยืนยันที่นั่งกรอกSingle/email/phone แล้วใช้ข้อมูลผู้ซื้อสำหรับทุกใบ กดตรวจสรุป",
+        "แก้Mobile Buyer กดcopyทุกใบซ้ำ ตรวจสองholderครบแล้วบันทึก",
+        "เลือกQRเริ่มpending ตรวจภาพ/คำอธิบายทดลองและวัดscrollWidthกับclientWidth"
+      ],
+      "expected": "คงA01/A02และแจ้ง2ใบ; Singleแสดงerrorชื่อและนามสกุลไม่เข้าจ่าย; validcopyมีholderสองใบตรงseat; ไม่มีcouponยอด6464=6400+60+4; QRชำระเป็นENCORE-DEMO-PAYและชัดว่าdemo; ทุกขั้น375pxไม่ล้น label/errorอ่านได้",
+      "checkTiming": "หลังใบที่สาม, หลังinvalidsubmit, หลังcopy/validsave และหลังQRpending ทั้งภาพและค่าความกว้าง",
+      "cleanup": "เก็บ request/response และภาพตาม ID โดยปิดบัง session; release hold ที่ยัง held ด้วยเจ้าของ; ถ้า paid/pending หรือเปลี่ยนเวลา/state ให้ทิ้งฐานเฉพาะกรณีแล้วสร้าง fixture ใหม่ ห้าม reset พอร์ตผู้อื่น",
+      "wrongAlternative": "copyเฉพาะคนแรก หรือQRเงินจริง; ตรวจแค่catalogไม่ตรวจcheckout/payment"
+    },
+    {
+      "id": "V3-U08",
+      "title": "ค้นหาข้ามหน้าและ General เข้า Aurora",
+      "feature": "catalog pagination/search booking",
+      "trace": "FR02 FR07 FR09 NFR01",
+      "priority": "P1",
+      "techniques": [
+        "end-to-end",
+        "pagination",
+        "positive control"
+      ],
+      "source": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "requirements": [
+        "FR02",
+        "FR07",
+        "FR09",
+        "NFR01"
+      ],
+      "preconditions": "ฐานใหม่เวลา03:00Z anonymousดูcatalogได้; general/GeneralDemo!26 ใช้AuroraGeneralซึ่งavailable ไม่มีholdเดิม",
+      "data": {
+        "events": [
+          "neon",
+          "sunset",
+          "orbit",
+          "aurora",
+          "jazz",
+          "rock",
+          "citypop",
+          "acoustic",
+          "kpop",
+          "hiphop",
+          "folk",
+          "midnight"
+        ],
+        "search": "NORTHLIGHT",
+        "buyer": "general",
+        "seat": "C01"
+      },
+      "steps": [
+        "เปิดcatalogตรวจหน้าแรก6จาก12แล้วไปหน้าสอง7–12",
+        "ค้นหาNORTHLIGHTจากหน้าสอง",
+        "loginGeneralเลือกAuroraGeneralแล้วอ่านผัง",
+        "controlเลือกC01และholdหนึ่งใบ"
+      ],
+      "expected": "สองหน้ารวม12งานไม่ซ้ำ; searchทั้งcatalogพบAuroraและrange1–1จาก1แม้เดิมหน้า2; Generalไม่เห็นmembershipform เข้าผังได้ทันทีเมื่อactive; C01controlholdสำเร็จราคา1832",
+      "checkTiming": "หลังโหลดแต่ละหน้า, หลังsearchตอบแล้ว และหลังGeneralqueueactive/hold",
+      "cleanup": "เก็บ request/response และภาพตาม ID โดยปิดบัง session; release hold ที่ยัง held ด้วยเจ้าของ; ถ้า paid/pending หรือเปลี่ยนเวลา/state ให้ทิ้งฐานเฉพาะกรณีแล้วสร้าง fixture ใหม่ ห้าม reset พอร์ตผู้อื่น",
+      "wrongAlternative": "ค้นหาเฉพาะหกงานหน้าปัจจุบัน หรือGeneralต้องใส่Membership"
+    },
+    {
+      "id": "V3-U09",
+      "title": "คีย์บอร์ดและปิดระหว่างคำตอบ hold มาช้า",
+      "feature": "async close/release",
+      "trace": "FR07 FR10 FR17 BR09 NFR01 NFR03",
+      "priority": "P1",
+      "techniques": [
+        "race condition",
+        "keyboard accessibility",
+        "state transition"
+      ],
+      "source": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "requirements": [
+        "FR07",
+        "FR10",
+        "FR17",
+        "BR09",
+        "NFR01",
+        "NFR03"
+      ],
+      "preconditions": "ฐานทดสอบแยกเริ่มใหม่ เวลา 2026-11-06T03:00:00Z; fan/FanDemo!26 อยู่คิว active NEON Member และตรวจ ENCORE-0001 ผ่าน; ไม่มี hold/order เดิม; ไม่ใช้พอร์ตผู้ใช้ 4310",
+      "data": {
+        "seat": "C01",
+        "interception": "เฉพาะcontextทดสอบ หน่วงresponsePOST/api/holdsหลังserverสร้างholdแล้ว"
+      },
+      "steps": [
+        "focusC01กดSpaceเลือกและกดSpaceอีกครั้งยกเลิก เป็นvalidkeyboardcontrol; เลือกใหม่",
+        "กดยืนยันพร้อมหน่วงholdresponse รอserverตอบแล้วแต่ยังไม่ส่งเข้าหน้า",
+        "กดEscapeปิดdialogก่อนปล่อยresponse",
+        "ปล่อยresponse รอrequestsettle ตรวจdialogยังปิด activeholdและmapอีกcontext"
+      ],
+      "expected": "Spaceเปลี่ยนaria-pressedถูกทั้งสองทิศ; lateholdไม่เปิดdialogกลับ; เจ้าของreleaseholdที่เกิดล่าช้าจนactiveholdnull C01availableก่อนexpiry; ไม่สร้างorder/payment",
+      "checkTiming": "ตรวจหลังSpaceแต่ละครั้ง, หลังEscapeก่อนresponse และหลังlate-response/releasecompleteจนsettled",
+      "cleanup": "ยกเลิกroute/interceptionในfinally ปล่อยresponseที่ค้าง; เก็บหลักฐาน; releaseเฉพาะholdตนและทิ้งฐานเฉพาะกรณี",
+      "wrongAlternative": "หน้าต่างปิดแต่C01ยังheld600s หรือresponseเปิดcheckoutกลับมา"
+    },
+    {
+      "id": "V3-U17",
+      "title": "ขอบหน้า ค้นหา ผลว่างและfilterสอดคล้อง",
+      "feature": "catalog search/filter",
+      "trace": "FR02 FR07 NFR01",
+      "priority": "P2",
+      "techniques": [
+        "equivalence partition",
+        "state transition",
+        "boundary value"
+      ],
+      "source": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "requirements": [
+        "FR02",
+        "FR07",
+        "NFR01"
+      ],
+      "preconditions": "ฐานใหม่03:00Z anonymouscatalogตามfixture12งาน6ต่อหน้า; ไม่loginMemberระหว่างกรณีเพื่อไม่เปลี่ยนstatusของAurora",
+      "data": {
+        "noMatch": "ไม่มีคอนเสิร์ตนี้",
+        "match": "แสงเหนือ",
+        "filter": "upcoming",
+        "resetFilter": "all"
+      },
+      "steps": [
+        "หน้าแรกตรวจย้อนกลับdisabled ไปหน้าสองตรวจnextdisabled/current2",
+        "ค้นnoMatchตรวจemptyและpagination",
+        "ค้นแสงเหนือตรวจAurora/current1 แล้วเลือกupcoming",
+        "ล้างคำค้นคงupcoming ตรวจงานทุกใบตรงstatus จากนั้นเลือกall"
+      ],
+      "expected": "หน้าแรก/ท้ายไม่ข้ามขอบ; noMatchแสดงไม่พบไม่มีปุ่มหน้า; matchกลับหน้า1; Auroraไม่เข้าupcomingที่มุมมองanonymousGeneralavailableตามfixtureจึงว่าง; ล้างsearchยังfilterupcomingถูก; allกลับ6จาก12ไม่มีpage indexเก่าค้าง",
+      "checkTiming": "หลังผลแต่ละsearch/filterrenderเสร็จและหลังclear/all อ่านจำนวน range/currentและstatusร่วมกัน",
+      "cleanup": "เก็บ request/response และภาพตาม ID โดยปิดบัง session; release hold ที่ยัง held ด้วยเจ้าของ; ถ้า paid/pending หรือเปลี่ยนเวลา/state ให้ทิ้งฐานเฉพาะกรณีแล้วสร้าง fixture ใหม่ ห้าม reset พอร์ตผู้อื่น",
+      "wrongAlternative": "จำนวน0แต่rangeยัง7–12 หรือclearsearchล้างfilterโดยไม่ตั้งใจ"
+    },
+    {
+      "id": "V3-U18",
+      "title": "couponผิดคงselection แก้ถูกและปิดปล่อย hold",
+      "feature": "coupon recovery/close",
+      "trace": "FR07 FR10 FR17 BR09 BR12 NFR01",
+      "priority": "P1",
+      "techniques": [
+        "error recovery",
+        "state transition",
+        "positive control"
+      ],
+      "source": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "requirements": [
+        "FR07",
+        "FR10",
+        "FR17",
+        "BR09",
+        "BR12",
+        "NFR01"
+      ],
+      "preconditions": "ฐานทดสอบแยกเริ่มใหม่ เวลา 2026-11-06T03:00:00Z; fan/FanDemo!26 อยู่คิว active NEON Member และตรวจ ENCORE-0001 ผ่าน; ไม่มี hold/order เดิม; ไม่ใช้พอร์ตผู้ใช้ 4310",
+      "data": {
+        "seat": "C01",
+        "badCoupon": "INVALID",
+        "validCoupon": "STAGE10"
+      },
+      "steps": [
+        "เลือกC01ใส่INVALIDกดยืนยัน",
+        "ตรวจerrorและC01ยังselected/activeholdไม่มีรายการใหม่",
+        "แก้STAGE10 ตรวจ1652แล้วยืนยันรอcheckout",
+        "ปิดbookingรอreleaseและเปิดNEONใหม่ตรวจC01ว่าง"
+      ],
+      "expected": "invalidแจ้งไม่พบโค้ด ไม่ล้างselectionและไม่สร้างholdผิด; controlvalidยอด1652หลังhold; closeทำactiveholdnullและC01available เปิดใหม่เลือกได้ ไม่ค้างseatจากcouponerror",
+      "checkTiming": "ทันทีหลังinvalidresponse, หลังvalidhold/checkout และหลังclosereleaseก่อนเปิดใหม่",
+      "cleanup": "เก็บ request/response และภาพตาม ID โดยปิดบัง session; release hold ที่ยัง held ด้วยเจ้าของ; ถ้า paid/pending หรือเปลี่ยนเวลา/state ให้ทิ้งฐานเฉพาะกรณีแล้วสร้าง fixture ใหม่ ห้าม reset พอร์ตผู้อื่น",
+      "wrongAlternative": "clearselectionเมื่อcouponผิด หรือpreview1652แต่hold1832"
+    },
+    {
+      "id": "V3-U20",
+      "title": "แก้ชื่อ กู้หลัง reload และกลับผังคืน hold",
+      "feature": "checkout editing/recovery",
+      "trace": "FR09 FR10 FR15 BR19 BR09",
+      "priority": "P1",
+      "techniques": [
+        "state transition",
+        "recovery",
+        "snapshot"
+      ],
+      "source": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "requirements": [
+        "FR09",
+        "FR10",
+        "FR15",
+        "BR19",
+        "BR09"
+      ],
+      "preconditions": "ฐานทดสอบแยกเริ่มใหม่ เวลา 2026-11-06T03:00:00Z; fan/FanDemo!26 อยู่คิว active NEON Member และตรวจ ENCORE-0001 ผ่าน; ไม่มี hold/order เดิม; ไม่ใช้พอร์ตผู้ใช้ 4310",
+      "data": {
+        "seat": "C01",
+        "old": "Holder 1",
+        "new": "แก้ไข ชื่อผู้ถือ"
+      },
+      "steps": [
+        "holdC01บันทึกBuyerTest/Holder1ถูกต้องยังไม่pending",
+        "กดแก้ข้อมูลเปลี่ยนholderเป็นชื่อใหม่แล้วบันทึก",
+        "reloadกดจองต่อ/ชำระเงิน อ่านsummaryและactiveholdcheckout",
+        "กดกลับเลือกที่นั่ง ตรวจselection/map/resumehold"
+      ],
+      "expected": "ชื่อใหม่persistทั้งsummaryและserverก่อน/หลังreload; ยังใช้holdเดิมและexpiryเดิม; กลับผังปล่อยholdเก่า C01enabled selected0 resumeholdหาย activeholdnull; ไม่คืนชื่อเก่าหรือยืดdeadline",
+      "checkTiming": "หลังeditsubmit, หลังreload/resumeและหลังback/releaseresponseครบ",
+      "cleanup": "เก็บ request/response และภาพตาม ID โดยปิดบัง session; release hold ที่ยัง held ด้วยเจ้าของ; ถ้า paid/pending หรือเปลี่ยนเวลา/state ให้ทิ้งฐานเฉพาะกรณีแล้วสร้าง fixture ใหม่ ห้าม reset พอร์ตผู้อื่น",
+      "wrongAlternative": "เห็นชื่อในDOMก่อนreloadอย่างเดียว หรือbackยังreserveC01อยู่"
+    },
+    {
+      "id": "V3-U22",
+      "title": "ผู้จัดมือถือ block/reopen/พักขายเฉพาะงานตน",
+      "feature": "mobile organizer",
+      "trace": "FR07 FR17 BR20 NFR01 NFR02",
+      "priority": "P1",
+      "techniques": [
+        "authorization matrix",
+        "responsive",
+        "state transition"
+      ],
+      "source": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [
+          "AP03",
+          "AP04"
+        ],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "requirements": [
+        "FR07",
+        "FR17",
+        "BR20",
+        "NFR01",
+        "NFR02"
+      ],
+      "preconditions": "ฐานใหม่เวลาเริ่ม encore/EncoreDemo!26 ownerNEON; sky/SkyDemo!26 ไม่ใช่ownerNEON; fanเป็นbuyeractiveได้ ไม่มีholdC01; requestcontextfanactiveและverifyNEONก่อนorganizerpause",
+      "data": {
+        "viewport": [
+          375,
+          812
+        ],
+        "owner": "encore",
+        "foreign": "sky",
+        "event": "neon",
+        "seat": "C01",
+        "notOwnedLabel": "BLUE NOTE NIGHTS"
+      },
+      "steps": [
+        "loginencoreที่375pxเปิดจัดการ ตรวจรายการงานไม่รวมของsky",
+        "กรอกC01block ดูauditและbuyer mapแยกcontext",
+        "กดreopenโดยตรวจช่องยังระบุC01หลังdashboardrefresh ดูauditและmap",
+        "พักขายตรวจstate/ข้อความ/ความกว้าง; loginfanตรวจปุ่มMemberdisabledและdirectjoin/holdใหม่ปฏิเสธ; skyลองแก้NEONเป็นnegativecontrol",
+        "หลังpauseใช้requestcontextfanเดิมส่งholdC01 ต้องSALE_UNAVAILABLE ไม่ใช่QUEUE_REQUIRED; browserfanเห็นปุ่มMemberdisabled"
+      ],
+      "expected": "ผู้จัดเห็น/แก้เฉพาะงานตน; blockทำC01blocked reopenทำavailableพร้อมauditตรงaction; refreshไม่ทำseatfieldหายจนreopenผิดใบ; pausedห้ามรายการใหม่; sky403ไม่มีstateเปลี่ยน; admin375pxไม่ล้น; APIguardตรวจด้วยfanที่active+grantอยู่ก่อนpauseแล้ว",
+      "checkTiming": "หลังblockresponse/refreshและหลังreopen, หลังpauseและหลังเปลี่ยนbuyer/foreigncontext",
+      "cleanup": "เก็บ request/response และภาพตาม ID โดยปิดบัง session; release hold ที่ยัง held ด้วยเจ้าของ; ถ้า paid/pending หรือเปลี่ยนเวลา/state ให้ทิ้งฐานเฉพาะกรณีแล้วสร้าง fixture ใหม่ ห้าม reset พอร์ตผู้อื่น",
+      "wrongAlternative": "auditขึ้นว่าปลดแต่seatยังblocked หรือซ่อนforeignในdropdownแต่APIยังอนุญาต",
+      "reviewFixes": [
+        "R52-03"
+      ]
+    },
+    {
+      "id": "V3-U25",
+      "title": "catalogโหลดพลาดและ reload กลับใช้ได้",
+      "feature": "network failure recovery",
+      "trace": "FR02 NFR01",
+      "priority": "P2",
+      "techniques": [
+        "fault injection",
+        "error recovery",
+        "positive control"
+      ],
+      "source": {
+        "D": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "A-policy": [],
+        "R": "บริบทอ้างอิง REF05 เฉพาะ contact/summary ตาม REQUIREMENTS; ไม่ใช้เว็บอ้างอิงตั้งตัวเลข/สถานะ",
+        "exploration": "EXPLORATION.md และ exploration/lab8/c1.md–c7.md เป็น O/เบาะแส ไม่ใช้แทน oracle",
+        "mapping": "plan/assignments.json; e2e/api.test.mjs, ui.spec.js, lab.spec.js ใช้จับคู่ ID/actions เท่านั้น"
+      },
+      "requirements": [
+        "FR02",
+        "NFR01"
+      ],
+      "preconditions": "ฐานใหม่ browsercontextเฉพาะกรณี anonymous/catalog; ไม่ตัดnetworkทั้งเครื่องหรือเปลี่ยนserver; ไม่มีการสร้างorder",
+      "data": {
+        "route": "GET /api/events",
+        "failure": "abortเฉพาะbrowsercontextนี้",
+        "expectedCount": 6
+      },
+      "steps": [
+        "validcontrolโหลดcatalogปกติตรวจ6จาก12",
+        "abortGET/api/eventsเฉพาะcontextแล้วreload",
+        "ตรวจข้อความerrorมีคำแนะนำรีเฟรชและไม่แสดงstalecardsเป็นข้อมูลใหม่",
+        "ถอดinterceptionreloadอีกครั้งตรวจcatalog6รายการและpagination12"
+      ],
+      "expected": "errorเข้าใจได้และบอกรีเฟรช; ถ้าตามcopyปัจจุบันใช้ โหลดข้อมูลไม่สำเร็จ กรุณารีเฟรชหน้าเว็บ โดยไม่ยกcopyเป็นกฎธุรกิจ; คืนnetworkแล้วreloadกลับ6จาก12 ไม่มีerrorค้าง ไม่ต้องresetDBหรือloginใหม่",
+      "checkTiming": "หลังfailedrequestsettle และหลังถอดroute/reloadสำเร็จ เปรียบเทียบcontrolก่อนล้มเหลว",
+      "cleanup": "unroute /api/events ในfinally; ปิดcontextเฉพาะกรณี เก็บภาพก่อน/ระหว่าง/หลัง recovery; ไม่มีDB mutation",
+      "wrongAlternative": "errorเงียบหรือถอดrouteแล้วหน้ายังค้างว่าง"
+    }
+  ]
+}

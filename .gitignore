@@ -1,41 +1,10 @@
-# Dependencies
+# Local files shared across exercises
+.DS_Store
+Thumbs.db
 node_modules/
-
-# Local configuration and credentials
 .env
 .env.*
 !.env.example
 !.env.*.example
 *.pem
 *.key
-
-# Runtime databases and backups
-/web/data/
-*.sqlite
-*.sqlite-*
-*.db
-*.db-*
-
-# Generated test artifacts (keep test code and Markdown reports)
-/test-results/
-/playwright-report/
-/blob-report/
-/coverage/
-/e2e/*-results*.json
-*.log
-*.tap
-
-# Generated documents, temporary work, and local caches
-/output/
-/tmp/
-.cache/
-__pycache__/
-*.py[cod]
-*.tsbuildinfo
-
-# OS and editor temporary files
-.DS_Store
-Thumbs.db
-*.swp
-*.swo
-*~

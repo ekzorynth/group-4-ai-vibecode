@@ -1,0 +1,26 @@
+{
+  "checkedUTC": "2026-11-06T13:28:27.686Z",
+  "results": [
+    {
+      "testMode": "0",
+      "requestedBugMode": "0",
+      "observedBugMode": 0,
+      "htmlMarker": true,
+      "unauthorizedTestTools": 403
+    },
+    {
+      "testMode": "1",
+      "requestedBugMode": "1",
+      "observedBugMode": 1,
+      "htmlMarker": true,
+      "unauthorizedTestTools": 403
+    },
+    {
+      "testMode": "0",
+      "requestedBugMode": "1",
+      "observedBugMode": 0,
+      "htmlMarker": true,
+      "unauthorizedTestTools": 403
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "at": "2026-11-06T11:44:49.804Z",
+  "url": "http://127.0.0.1:4347/api/test/reset",
+  "status": 200,
+  "response": {
+    "ok": true,
+    "now": 1793934000000
+  },
+  "mainReplayCompletedUTC": "2026-11-06T11:43:13.731Z",
+  "notification": "Parent confirmed all C1–C6 formal replays complete before closing start"
+}

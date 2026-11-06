@@ -1,0 +1,84 @@
+{
+  "reviewer": "/root/review_52",
+  "writer": "/root/writer_52",
+  "started": "2026-11-06T11:38:21Z",
+  "ended": "2026-11-06T11:39:02.230821Z",
+  "issues": [
+    {
+      "id": "R52-01",
+      "severity": "P2",
+      "problem": "V3-A54 labels a 254-character address as valid although its local part contains 247 characters. This combines total-length and email-format validity, so a correct format validator may reject the positive control and appear defective.",
+      "fix": "Use a syntactically valid 254-character address with a local part at most 64 characters and domain labels at most 63 characters. For example construct x*64 + @ + a*63 + . + b*63 + . + c*61 (254 total). Derive the 255-character negative by extending the final label one character; change no other field. Update MD and JSON."
+    },
+    {
+      "id": "R52-02",
+      "severity": "P2",
+      "problem": "V3-A43 JSON adds an admission/oracle-blocked escape absent from Markdown and leaves General admission dependent on an unspecified controlled fixture. The assigned cross-round API regression is authorized; FR02 account visibility alone does not establish an eligibility prohibition. Different runners may skip the decisive same-account quota test or run different scenarios.",
+      "fix": "State explicitly in both files: after 08:00Z use the same authenticated fan account to join the General round through the authorized backend API, wait for active admission, then run the 3/2/1 additional-seat checks. Preserve user identity and paid Member history. Remove the visibility-based blocked escape and identify this as an API regression rather than inventing a Member UI path."
+    },
+    {
+      "id": "R52-03",
+      "severity": "P2",
+      "problem": "V3-A57 pauses/cancels Aurora before establishing an active buyer queue; V3-U22 only says fan can become active and logs fan in after pausing. Their direct hold negative checks can therefore pass because queue/grant admission is missing, even if the server wrongly accepts new holds for an already admitted buyer after pause/cancel.",
+      "fix": "For pause/cancel hold checks, first establish valid active admission (and membership grant for NEON), verify an available seat with no existing hold, then mutate the event state and submit the hold with the same credentials. Assert the sale-state rejection and no seat/hold side effects. Keep separate fresh-user join rejection checks and the on-sale positive control; do not use a missing queue/grant as the negative condition."
+    }
+  ],
+  "checks": {
+    "scope": "Read only plan/5.2.md, plan/5.2.json, REQUIREMENTS.md, TEST-DATA.md, EXPLORATION.md. No runtime, BUGS, e2e code, websites, commits, or future seeds. No plan edits.",
+    "timestampNote": "started is first captured UTC during review; document reading began earlier and exact start was not captured.",
+    "cardsReviewed": [
+      "V3-A14",
+      "V3-A15",
+      "V3-A16",
+      "V3-A17",
+      "V3-A18",
+      "V3-A19",
+      "V3-A20",
+      "V3-A21",
+      "V3-A43",
+      "V3-A46",
+      "V3-A47",
+      "V3-A52",
+      "V3-A54",
+      "V3-A57",
+      "V3-L01",
+      "V3-L02",
+      "V3-U03",
+      "V3-U08",
+      "V3-U09",
+      "V3-U17",
+      "V3-U18",
+      "V3-U20",
+      "V3-U22",
+      "V3-U25"
+    ],
+    "structure": "24 unique IDs; all have actionable data/steps, trace, priority, expected, timing and cleanup. Markdown/JSON core-field comparison found only the A43 differences described in R52-02.",
+    "money": {
+      "1832": "1800+30+round(2.1)",
+      "1652": "1800-180+30+2",
+      "3304": "3600-360+60+4",
+      "5964": "6400-500+60+4",
+      "4564": "5000-500+60+4",
+      "7328": "7200+120+8",
+      "6464": "6400+60+4",
+      "refundNet1620": "1800-180",
+      "organizerNet1684": "3304-1620"
+    },
+    "controls": "Invalid/valid controls and post-mutation side-effect checks reviewed in all 24 cards; identified only the concrete boundary/control readiness issues listed.",
+    "timingReload": "Reviewed 600s exclusive expiry, before/exact readings, cross-context/reload snapshots, late-response completion, and release timing. No additional issue identified.",
+    "duplication": "A17/L01, L02/U03, A18/U09, A21/U20, A52/U22, U08/U17 have intentional API/UI or focused/broad overlap; no redundant duplicate requiring removal.",
+    "tracePriority": "22 P1 and 2 P2 (U17/U25); requirements/policy attribution reviewed. No additional priority issue identified.",
+    "verdict": "Revise the three findings before execution; this is a plan review, not a runtime pass/fail result."
+  },
+  "counts": {
+    "cardsReviewed": 24,
+    "uniqueIds": 24,
+    "P1Cards": 22,
+    "P2Cards": 2,
+    "issues": 3,
+    "issueSeverity": {
+      "P2": 3
+    },
+    "runtimeTestsExecuted": 0
+  }
+}

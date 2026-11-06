@@ -1,0 +1,16 @@
+{"worker":1,"port":4801,"pid":4972,"started":"2026-11-06T13:27:45.712Z","mode":"bug"}
+{"worker":2,"port":4802,"pid":4974,"started":"2026-11-06T13:27:45.716Z","mode":"bug"}
+{"worker":0,"port":4800,"pid":4973,"started":"2026-11-06T13:27:45.715Z","mode":"bug"}
+{"worker":2,"port":4802,"ended":"2026-11-06T13:27:52.932Z"}
+{"worker":1,"port":4801,"ended":"2026-11-06T13:27:52.958Z"}
+{"worker":0,"port":4800,"ended":"2026-11-06T13:27:53.053Z"}
+{"worker":3,"port":4803,"pid":5079,"started":"2026-11-06T13:27:53.622Z","mode":"bug"}
+{"worker":4,"port":4804,"pid":5080,"started":"2026-11-06T13:27:53.648Z","mode":"bug"}
+{"worker":5,"port":4805,"pid":5081,"started":"2026-11-06T13:27:53.737Z","mode":"bug"}
+{"worker":5,"port":4805,"ended":"2026-11-06T13:28:00.888Z"}
+{"worker":6,"port":4806,"pid":5227,"started":"2026-11-06T13:28:01.639Z","mode":"bug"}
+{"worker":4,"port":4804,"ended":"2026-11-06T13:28:06.853Z"}
+{"worker":7,"port":4807,"pid":5308,"started":"2026-11-06T13:28:07.627Z","mode":"bug"}
+{"worker":6,"port":4806,"ended":"2026-11-06T13:28:14.581Z"}
+{"worker":3,"port":4803,"ended":"2026-11-06T13:28:15.379Z"}
+{"worker":7,"port":4807,"ended":"2026-11-06T13:28:15.482Z"}

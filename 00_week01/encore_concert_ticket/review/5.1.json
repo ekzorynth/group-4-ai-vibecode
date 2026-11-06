@@ -1,0 +1,62 @@
+{
+  "reviewer": "/root/review_51",
+  "writer": "/root/writer_51",
+  "started": "2026-11-06 UTC (exact initial review timestamp not captured)",
+  "ended": "2026-11-06T11:40:13.422314Z",
+  "issues": [
+    {
+      "id": "R51-01",
+      "severity": "high",
+      "problem": "V3-A10 cannot establish user/event/round grant binding as written. At T0 SUNSET and NEON General are not open, and fan2 is not explicitly made active before its unverified request. An implementation with an incorrectly global grant can still deny these calls at the sale/queue gate. The caveat about not using status alone does not provide an alternative observable capable of falsifying that fault.",
+      "fix": "For the user branch, make fan and fan2 active in NEON Member, verify only fan, prove fan map succeeds and fan2 map/hold denies, then verify fan2 and prove its same requests succeed. For event scope, supply an authorized fixture with two simultaneously open Member rounds and active queues, verify only the first event, test the second before/after its own verification. For round scope, specify a feasible supported fixture and a positive target-round control; otherwise record that branch as blocked/not-determined rather than claiming the detector covers it. Update the fault prediction accordingly."
+    },
+    {
+      "id": "R51-02",
+      "severity": "medium",
+      "problem": "V3-A03 sends five wrong passwords before its first correct-password probe. It therefore cannot distinguish the specified fifth-failure lock from an incorrect lock after four failures. Another account logging in does not control that exact threshold.",
+      "fix": "Add an independent fresh-account branch: four failures at L, then correct password at L must succeed. In another fresh branch, five failures at L then correct password must fail until L+15min, with L+14:59.999 rejected and L+15:00 accepted. Do not insert the successful four-failure probe into the five-failure sequence because it may reset the counter."
+    },
+    {
+      "id": "R51-03",
+      "severity": "medium",
+      "problem": "V3-A12 makes the ahead=3 case optional (\"ถ้าจะตรวจ\") while its mandatory ahead=2/ETA120 case cannot distinguish ceil(ahead/2) from floor(ahead/2): both yield 120. Its wrongAlternative claiming floor gives ETA0 is incorrect for the supplied ahead=2 data.",
+      "fix": "Make an odd-ahead branch mandatory, e.g. four fresh General accounts joined in order during an open General round: first two active, third ahead2/ETA120, fourth ahead3/ETA240. Freeze server clock. State the distinguishing wrong value explicitly: floor at ahead3 would return120, not240. Include concrete signup credentials or authorized fixtures for the extra accounts."
+    },
+    {
+      "id": "R51-04",
+      "severity": "high",
+      "problem": "V3-A59 resets the fixture for the TTL branch and only creates two active users. It does not recreate a waiting fan3 or issue any verified membership grant before \"อ่านpromotionและลองใช้grantเก่า\". Promotion is then untestable and a denial cannot prove revocation of a previously valid grant.",
+      "fix": "In the independent expiry branch, create fan/fan2 active at the recorded Tactive, verify fan to issue its grant, then join fan3 as waiting and retain q3. At Tactive+899.999s assert fan map success, fan3 still waiting, and two active slots. At +900s assert fan old grant/map/hold denied, fan3 promoted with q3 unchanged and capacity<=2; verify fan3 then show its map succeeds. Keep this fixture distinct from leave/rejoin."
+    },
+    {
+      "id": "R51-05",
+      "severity": "medium",
+      "problem": "V3-A45 claims organizer owner isolation, but its explicit organizer-action negatives are buyer/anonymous/scanner. It never asks the an authenticated organizer who does not own the target event to perform those actions. A role-only organizer gate can pass those negatives and the correct-owner control.",
+      "fix": "Establish which of encore/sky owns a target event from an authorized fixture, then add an explicit non-owner organizer -> that event pause/block/refund negative while its owner -> that event is the valid control. Use separate fixtures or restore state between mutating controls. Record event/seat/refund state before and after each denied action and require no mutation; use a valid refundable request for the refund action so denial is not caused by a missing/invalid request."
+    }
+  ],
+  "checks": {
+    "scope": "Read only plan/5.1.md, plan/5.1.json, REQUIREMENTS.md, TEST-DATA.md, EXPLORATION.md; no runtime, website, network, BUGS, test implementation or training seeds.",
+    "structure": "Both formats contain 24 cards with matching IDs; JSON has all expected card fields and nonempty wrongAlternative; no duplicate IDs.",
+    "trace_and_priority": "All trace IDs inspected exist in the supplied requirements; 24 cards label P1. No unsupported trace ID or priority defect identified from the allowed sources.",
+    "oracle": "EXPLORATION observations were treated as risk context only. Cookie rotation, duplicate-email uniqueness and close-response/duplicate-submit UX behavior are explicitly A-test/unconfirmed, not observed business requirements.",
+    "boundaries": "Explicit -1ms/exact times, literal username/password lengths, sale/session/queue deadlines and General403 message checked. Exact fourth/fifth lock threshold and odd-ahead ETA detector need the fixes listed.",
+    "controls_and_timing": "Reviewed negative controls, server-clock timing, state after denial and isolation. Issues above identify confounded or missing controls; no execution results are claimed.",
+    "remaining_uncertainties": [
+      "Legacy email identifier is absent from allowed fixture data; A02 already calls that branch blocked if unavailable.",
+      "A07 has no active-sale purchase control immediately before the seeded expiry because expiry coincides with NEON opening; its stated limitation must remain visible.",
+      "A04 access to sold-out/closed event seat maps depends on an authorized fixture/read interface not supplied here; do not count unobservable map assertions as passed.",
+      "No literal bounded-poll or asynchronous wait duration is supplied; executor must record a harness bound without presenting it as a product SLA.",
+      "D does not specify signup email uniqueness, cookie-string rotation, or closed-dialog response UX; those branches require policy confirmation to support a business-defect verdict."
+    ]
+  },
+  "counts": {
+    "cards": 24,
+    "unique_ids": 24,
+    "issues": 5,
+    "high": 2,
+    "medium": 3,
+    "low": 0,
+    "executed": 0
+  }
+}

@@ -1,0 +1,1570 @@
+[
+  {
+    "at": "2026-11-06T11:14:44.807Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/events"
+  },
+  {
+    "at": "2026-11-06T11:14:44.807Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/me"
+  },
+  {
+    "at": "2026-11-06T11:14:45.080Z",
+    "via": "browser",
+    "method": "POST",
+    "url": "http://127.0.0.1:4343/api/login",
+    "body": {
+      "username": "fan",
+      "email": "fan",
+      "password": "FanDemo!26",
+      "name": ""
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:45.104Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/me"
+  },
+  {
+    "at": "2026-11-06T11:14:45.106Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/active-hold"
+  },
+  {
+    "at": "2026-11-06T11:14:45.108Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/events"
+  },
+  {
+    "at": "2026-11-06T11:14:45.167Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/me"
+  },
+  {
+    "at": "2026-11-06T11:14:45.175Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/active-hold"
+  },
+  {
+    "at": "2026-11-06T11:14:45.176Z",
+    "via": "browser",
+    "method": "POST",
+    "url": "http://127.0.0.1:4343/api/queue",
+    "body": {
+      "event": "neon",
+      "round": "member"
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:45.204Z",
+    "via": "browser",
+    "method": "POST",
+    "url": "http://127.0.0.1:4343/api/membership/verify",
+    "body": {
+      "event": "neon",
+      "number": "ENCORE-0001"
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:45.215Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/seats?event=neon"
+  },
+  {
+    "at": "2026-11-06T11:14:45.420Z",
+    "via": "probe",
+    "path": "holds",
+    "status": 400,
+    "response": {
+      "error": "SEAT_LIMIT",
+      "message": "เลือกที่นั่งไม่ซ้ำกัน 1–2 ที่นั่ง",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:45.421Z",
+    "via": "probe",
+    "path": "holds",
+    "status": 400,
+    "response": {
+      "error": "SEAT_LIMIT",
+      "message": "เลือกที่นั่งไม่ซ้ำกัน 1–2 ที่นั่ง",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:45.422Z",
+    "via": "probe",
+    "path": "holds",
+    "status": 400,
+    "response": {
+      "error": "SEAT_LIMIT",
+      "message": "เลือกที่นั่งไม่ซ้ำกัน 1–2 ที่นั่ง",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:45.422Z",
+    "via": "probe",
+    "path": "holds",
+    "status": 409,
+    "response": {
+      "error": "SEAT_UNAVAILABLE",
+      "message": "ที่นั่งนี้ถูกจองแล้ว กรุณาเลือกใหม่",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:45.423Z",
+    "via": "probe",
+    "path": "active-hold",
+    "status": 200,
+    "response": {
+      "hold": null,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:45.424Z",
+    "via": "probe",
+    "path": "holds",
+    "status": 201,
+    "response": {
+      "hold": {
+        "id": "a040115c-a9d4-4f0d-8af5-0713f91782e2",
+        "user": "fan",
+        "event": "neon",
+        "seats": [
+          "C01"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 1800,
+          "discount": 0,
+          "fee": 30,
+          "vat": 2,
+          "total": 1832,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "member",
+        "checkout": null,
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:45.425Z",
+    "via": "probe",
+    "path": "holds",
+    "status": 201,
+    "response": {
+      "hold": {
+        "id": "caa059de-c2ec-407c-b9f5-2cc2a96e8c4b",
+        "user": "fan",
+        "event": "neon",
+        "seats": [
+          "C01"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 1800,
+          "discount": 180,
+          "fee": 30,
+          "vat": 2,
+          "total": 1652,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1620,
+              "discount": 180,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "member",
+        "checkout": null,
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:45.426Z",
+    "via": "probe",
+    "path": "holds",
+    "status": 201,
+    "response": {
+      "hold": {
+        "id": "fa7c2404-44d7-4770-b3c8-9c9cbf66c58f",
+        "user": "fan",
+        "event": "neon",
+        "seats": [
+          "A01",
+          "A02"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 6400,
+          "discount": 500,
+          "fee": 60,
+          "vat": 4,
+          "total": 5964,
+          "lines": [
+            {
+              "seat": "A01",
+              "net": 2950,
+              "discount": 250,
+              "fee": 30,
+              "vat": 2
+            },
+            {
+              "seat": "A02",
+              "net": 2950,
+              "discount": 250,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "member",
+        "checkout": null,
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:45.427Z",
+    "via": "probe",
+    "path": "holds",
+    "status": 201,
+    "response": {
+      "hold": {
+        "id": "4fe24bd8-ae37-44ce-874a-f5cf69beaadf",
+        "user": "fan",
+        "event": "neon",
+        "seats": [
+          "A01",
+          "C01"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 5000,
+          "discount": 500,
+          "fee": 60,
+          "vat": 4,
+          "total": 4564,
+          "lines": [
+            {
+              "seat": "A01",
+              "net": 2880,
+              "discount": 320,
+              "fee": 30,
+              "vat": 2
+            },
+            {
+              "seat": "C01",
+              "net": 1620,
+              "discount": 180,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "member",
+        "checkout": null,
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:45.428Z",
+    "via": "probe",
+    "path": "holds",
+    "status": 201,
+    "response": {
+      "hold": {
+        "id": "f6912f69-511d-48ab-b248-7e2d73c2448e",
+        "user": "fan",
+        "event": "neon",
+        "seats": [
+          "C01",
+          "C02"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 3600,
+          "discount": 360,
+          "fee": 60,
+          "vat": 4,
+          "total": 3304,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1620,
+              "discount": 180,
+              "fee": 30,
+              "vat": 2
+            },
+            {
+              "seat": "C02",
+              "net": 1620,
+              "discount": 180,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "member",
+        "checkout": null,
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:45.429Z",
+    "via": "probe",
+    "path": "active-hold",
+    "status": 200,
+    "response": {
+      "hold": {
+        "id": "f6912f69-511d-48ab-b248-7e2d73c2448e",
+        "user": "fan",
+        "event": "neon",
+        "seats": [
+          "C01",
+          "C02"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 3600,
+          "discount": 360,
+          "fee": 60,
+          "vat": 4,
+          "total": 3304,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1620,
+              "discount": 180,
+              "fee": 30,
+              "vat": 2
+            },
+            {
+              "seat": "C02",
+              "net": 1620,
+              "discount": 180,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "member",
+        "checkout": null,
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:45.429Z",
+    "via": "probe",
+    "path": "holds",
+    "status": 400,
+    "response": {
+      "error": "COUPON_INVALID",
+      "message": "ไม่พบโค้ดส่วนลดนี้",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:45.430Z",
+    "via": "probe",
+    "path": "active-hold",
+    "status": 200,
+    "response": {
+      "hold": {
+        "id": "f6912f69-511d-48ab-b248-7e2d73c2448e",
+        "user": "fan",
+        "event": "neon",
+        "seats": [
+          "C01",
+          "C02"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 3600,
+          "discount": 360,
+          "fee": 60,
+          "vat": 4,
+          "total": 3304,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1620,
+              "discount": 180,
+              "fee": 30,
+              "vat": 2
+            },
+            {
+              "seat": "C02",
+              "net": 1620,
+              "discount": 180,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "member",
+        "checkout": null,
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:45.431Z",
+    "via": "probe",
+    "path": "holds",
+    "status": 409,
+    "response": {
+      "error": "SEAT_UNAVAILABLE",
+      "message": "ที่นั่งนี้ถูกจองแล้ว กรุณาเลือกใหม่",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:45.431Z",
+    "via": "probe",
+    "path": "active-hold",
+    "status": 200,
+    "response": {
+      "hold": {
+        "id": "f6912f69-511d-48ab-b248-7e2d73c2448e",
+        "user": "fan",
+        "event": "neon",
+        "seats": [
+          "C01",
+          "C02"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 3600,
+          "discount": 360,
+          "fee": 60,
+          "vat": 4,
+          "total": 3304,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1620,
+              "discount": 180,
+              "fee": 30,
+              "vat": 2
+            },
+            {
+              "seat": "C02",
+              "net": 1620,
+              "discount": 180,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "member",
+        "checkout": null,
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:45.436Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/events"
+  },
+  {
+    "at": "2026-11-06T11:14:45.436Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/me"
+  },
+  {
+    "at": "2026-11-06T11:14:45.449Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/active-hold"
+  },
+  {
+    "at": "2026-11-06T11:14:46.771Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/active-hold"
+  },
+  {
+    "at": "2026-11-06T11:14:46.838Z",
+    "via": "browser",
+    "method": "POST",
+    "url": "http://127.0.0.1:4343/api/checkout",
+    "body": {
+      "hold": "f6912f69-511d-48ab-b248-7e2d73c2448e",
+      "buyer": {
+        "name": "Single",
+        "email": "c3buyer@example.test",
+        "phone": "0812345678"
+      },
+      "holders": [
+        {
+          "seat": "C01",
+          "name": "Single",
+          "email": "c3buyer@example.test",
+          "phone": "0812345678"
+        },
+        {
+          "seat": "C02",
+          "name": "Single",
+          "email": "c3buyer@example.test",
+          "phone": "0812345678"
+        }
+      ]
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:46.900Z",
+    "via": "probe",
+    "path": "active-hold",
+    "status": 200,
+    "response": {
+      "hold": {
+        "id": "f6912f69-511d-48ab-b248-7e2d73c2448e",
+        "user": "fan",
+        "event": "neon",
+        "seats": [
+          "C01",
+          "C02"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 3600,
+          "discount": 360,
+          "fee": 60,
+          "vat": 4,
+          "total": 3304,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1620,
+              "discount": 180,
+              "fee": 30,
+              "vat": 2
+            },
+            {
+              "seat": "C02",
+              "net": 1620,
+              "discount": 180,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "member",
+        "checkout": null,
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:46.901Z",
+    "via": "probe",
+    "path": "checkout",
+    "status": 400,
+    "response": {
+      "error": "HOLDER_EMAIL",
+      "message": "กรุณากรอกอีเมลให้ถูกต้อง",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:46.901Z",
+    "via": "probe",
+    "path": "checkout",
+    "status": 400,
+    "response": {
+      "error": "HOLDER_PHONE",
+      "message": "กรุณากรอกเบอร์โทร 8–15 หลัก",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:46.902Z",
+    "via": "probe",
+    "path": "checkout",
+    "status": 400,
+    "response": {
+      "error": "HOLDER_COUNT",
+      "message": "กรอกผู้ถือบัตรให้ครบตรงกับที่นั่งทุกใบ",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:46.902Z",
+    "via": "probe",
+    "path": "checkout",
+    "status": 400,
+    "response": {
+      "error": "HOLDER_COUNT",
+      "message": "กรอกผู้ถือบัตรให้ครบตรงกับที่นั่งทุกใบ",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:46.903Z",
+    "via": "probe",
+    "path": "checkout",
+    "status": 400,
+    "response": {
+      "error": "HOLDER_COUNT",
+      "message": "กรอกผู้ถือบัตรให้ครบตรงกับที่นั่งทุกใบ",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:46.904Z",
+    "via": "probe",
+    "path": "checkout",
+    "status": 200,
+    "response": {
+      "hold": {
+        "id": "f6912f69-511d-48ab-b248-7e2d73c2448e",
+        "user": "fan",
+        "event": "neon",
+        "seats": [
+          "C01",
+          "C02"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 3600,
+          "discount": 360,
+          "fee": 60,
+          "vat": 4,
+          "total": 3304,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1620,
+              "discount": 180,
+              "fee": 30,
+              "vat": 2
+            },
+            {
+              "seat": "C02",
+              "net": 1620,
+              "discount": 180,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "member",
+        "checkout": {
+          "buyer": {
+            "name": "C3 Buyer",
+            "email": "c3buyer@example.test",
+            "phone": "0812345678"
+          },
+          "holders": [
+            {
+              "seat": "C01",
+              "name": "C3 Buyer",
+              "email": "c3buyer@example.test",
+              "phone": "0812345678"
+            },
+            {
+              "seat": "C02",
+              "name": "C3 Buyer",
+              "email": "c3buyer@example.test",
+              "phone": "0812345678"
+            }
+          ]
+        },
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:46.908Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/events"
+  },
+  {
+    "at": "2026-11-06T11:14:46.908Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/me"
+  },
+  {
+    "at": "2026-11-06T11:14:46.921Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/active-hold"
+  },
+  {
+    "at": "2026-11-06T11:14:46.936Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/active-hold"
+  },
+  {
+    "at": "2026-11-06T11:14:46.970Z",
+    "via": "browser",
+    "method": "POST",
+    "url": "http://127.0.0.1:4343/api/pay",
+    "body": {
+      "hold": "f6912f69-511d-48ab-b248-7e2d73c2448e",
+      "result": "pending",
+      "method": "qr"
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:46.978Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/active-hold"
+  },
+  {
+    "at": "2026-11-06T11:14:46.979Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/payment?id=7c27b524-5796-49c6-bf6d-4d608f57de3c"
+  },
+  {
+    "at": "2026-11-06T11:14:46.981Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/payment-qr?id=7c27b524-5796-49c6-bf6d-4d608f57de3c"
+  },
+  {
+    "at": "2026-11-06T11:14:47.005Z",
+    "via": "probe",
+    "path": "active-hold",
+    "status": 200,
+    "response": {
+      "hold": {
+        "id": "f6912f69-511d-48ab-b248-7e2d73c2448e",
+        "user": "fan",
+        "event": "neon",
+        "seats": [
+          "C01",
+          "C02"
+        ],
+        "expires": 1793934600000,
+        "status": "payment_pending",
+        "price": {
+          "subtotal": 3600,
+          "discount": 360,
+          "fee": 60,
+          "vat": 4,
+          "total": 3304,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1620,
+              "discount": 180,
+              "fee": 30,
+              "vat": 2
+            },
+            {
+              "seat": "C02",
+              "net": 1620,
+              "discount": 180,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "member",
+        "checkout": {
+          "buyer": {
+            "name": "C3 Buyer",
+            "email": "c3buyer@example.test",
+            "phone": "0812345678"
+          },
+          "holders": [
+            {
+              "seat": "C01",
+              "name": "C3 Buyer",
+              "email": "c3buyer@example.test",
+              "phone": "0812345678"
+            },
+            {
+              "seat": "C02",
+              "name": "C3 Buyer",
+              "email": "c3buyer@example.test",
+              "phone": "0812345678"
+            }
+          ]
+        },
+        "payment": {
+          "id": "7c27b524-5796-49c6-bf6d-4d608f57de3c",
+          "status": "pending",
+          "amount": 3304,
+          "refund_amount": 0,
+          "method": "qr"
+        }
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:47.005Z",
+    "via": "probe",
+    "path": "checkout",
+    "status": 409,
+    "response": {
+      "error": "HOLD_EXPIRED",
+      "message": "รายการนี้แก้ข้อมูลไม่ได้หรือหมดเวลาแล้ว",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:47.010Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/events"
+  },
+  {
+    "at": "2026-11-06T11:14:47.010Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/me"
+  },
+  {
+    "at": "2026-11-06T11:14:47.023Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/active-hold"
+  },
+  {
+    "at": "2026-11-06T11:14:47.037Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/active-hold"
+  },
+  {
+    "at": "2026-11-06T11:14:47.047Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/payment?id=7c27b524-5796-49c6-bf6d-4d608f57de3c"
+  },
+  {
+    "at": "2026-11-06T11:14:47.048Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/payment-qr?id=7c27b524-5796-49c6-bf6d-4d608f57de3c"
+  },
+  {
+    "at": "2026-11-06T11:14:47.111Z",
+    "via": "probe",
+    "path": "active-hold",
+    "status": 200,
+    "response": {
+      "hold": {
+        "id": "f6912f69-511d-48ab-b248-7e2d73c2448e",
+        "user": "fan",
+        "event": "neon",
+        "seats": [
+          "C01",
+          "C02"
+        ],
+        "expires": 1793934600000,
+        "status": "payment_pending",
+        "price": {
+          "subtotal": 3600,
+          "discount": 360,
+          "fee": 60,
+          "vat": 4,
+          "total": 3304,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1620,
+              "discount": 180,
+              "fee": 30,
+              "vat": 2
+            },
+            {
+              "seat": "C02",
+              "net": 1620,
+              "discount": 180,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "member",
+        "checkout": {
+          "buyer": {
+            "name": "C3 Buyer",
+            "email": "c3buyer@example.test",
+            "phone": "0812345678"
+          },
+          "holders": [
+            {
+              "seat": "C01",
+              "name": "C3 Buyer",
+              "email": "c3buyer@example.test",
+              "phone": "0812345678"
+            },
+            {
+              "seat": "C02",
+              "name": "C3 Buyer",
+              "email": "c3buyer@example.test",
+              "phone": "0812345678"
+            }
+          ]
+        },
+        "payment": {
+          "id": "7c27b524-5796-49c6-bf6d-4d608f57de3c",
+          "status": "pending",
+          "amount": 3304,
+          "refund_amount": 0,
+          "method": "qr"
+        }
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:47.129Z",
+    "via": "browser",
+    "method": "POST",
+    "url": "http://127.0.0.1:4343/api/payments/resolve",
+    "body": {
+      "payment": "7c27b524-5796-49c6-bf6d-4d608f57de3c",
+      "result": "approved"
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:47.137Z",
+    "via": "browser",
+    "method": "POST",
+    "url": "http://127.0.0.1:4343/api/queue",
+    "body": {
+      "event": "neon",
+      "action": "leave"
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:47.138Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/events"
+  },
+  {
+    "at": "2026-11-06T11:14:47.140Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/me"
+  },
+  {
+    "at": "2026-11-06T11:14:47.141Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/active-hold"
+  },
+  {
+    "at": "2026-11-06T11:14:47.171Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/me"
+  },
+  {
+    "at": "2026-11-06T11:14:47.178Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/active-hold"
+  },
+  {
+    "at": "2026-11-06T11:14:47.189Z",
+    "via": "browser",
+    "method": "POST",
+    "url": "http://127.0.0.1:4343/api/logout",
+    "body": {}
+  },
+  {
+    "at": "2026-11-06T11:14:47.193Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/events"
+  },
+  {
+    "at": "2026-11-06T11:14:47.193Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/me"
+  },
+  {
+    "at": "2026-11-06T11:14:47.247Z",
+    "via": "browser",
+    "method": "POST",
+    "url": "http://127.0.0.1:4343/api/login",
+    "body": {
+      "username": "fan",
+      "email": "fan",
+      "password": "FanDemo!26",
+      "name": ""
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:47.270Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/me"
+  },
+  {
+    "at": "2026-11-06T11:14:47.271Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/active-hold"
+  },
+  {
+    "at": "2026-11-06T11:14:47.272Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/events"
+  },
+  {
+    "at": "2026-11-06T11:14:47.329Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/me"
+  },
+  {
+    "at": "2026-11-06T11:14:47.337Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/active-hold"
+  },
+  {
+    "at": "2026-11-06T11:14:47.338Z",
+    "via": "browser",
+    "method": "POST",
+    "url": "http://127.0.0.1:4343/api/queue",
+    "body": {
+      "event": "neon",
+      "round": "member"
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:47.363Z",
+    "via": "browser",
+    "method": "POST",
+    "url": "http://127.0.0.1:4343/api/membership/verify",
+    "body": {
+      "event": "neon",
+      "number": "ENCORE-0001"
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:47.374Z",
+    "via": "browser",
+    "method": "GET",
+    "url": "http://127.0.0.1:4343/api/seats?event=neon"
+  },
+  {
+    "at": "2026-11-06T11:14:47.388Z",
+    "via": "probe",
+    "path": "holds",
+    "status": 409,
+    "response": {
+      "error": "MEMBER_QUOTA",
+      "message": "รอบสมาชิกซื้อได้สูงสุด 2 ใบต่อบัญชีต่อคอนเสิร์ต",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:47.425Z",
+    "via": "browser",
+    "method": "POST",
+    "url": "http://127.0.0.1:4343/api/holds",
+    "body": {
+      "event": "neon",
+      "seats": [
+        "C03"
+      ],
+      "coupon": ""
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:47.700Z",
+    "via": "probe",
+    "path": "login",
+    "status": 200,
+    "response": {
+      "user": {
+        "id": "fan",
+        "email": "fan@demo.test",
+        "username": "fan",
+        "name": "มายด์ ทดลอง",
+        "role": "buyer",
+        "presale": true
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:47.701Z",
+    "via": "probe",
+    "path": "queue",
+    "status": 200,
+    "response": {
+      "queue": {
+        "status": "active",
+        "number": "Q000008",
+        "position": 0,
+        "ahead": 0,
+        "estimated_wait_seconds": 0,
+        "expires": 1793934900000,
+        "round": "member",
+        "starts": 1793934000000,
+        "limit": 2
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:47.702Z",
+    "via": "probe",
+    "path": "membership/verify",
+    "status": 200,
+    "response": {
+      "verified": true,
+      "round": "member",
+      "expires": 1793934900000,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:47.725Z",
+    "via": "probe",
+    "path": "login",
+    "status": 200,
+    "response": {
+      "user": {
+        "id": "fan2",
+        "email": "fan2@demo.test",
+        "username": "fan2",
+        "name": "ต้น ทดลอง",
+        "role": "buyer",
+        "presale": true
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:47.725Z",
+    "via": "probe",
+    "path": "queue",
+    "status": 200,
+    "response": {
+      "queue": {
+        "status": "active",
+        "number": "Q000009",
+        "position": 0,
+        "ahead": 0,
+        "estimated_wait_seconds": 0,
+        "expires": 1793934900000,
+        "round": "member",
+        "starts": 1793934000000,
+        "limit": 2
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:47.726Z",
+    "via": "probe",
+    "path": "membership/verify",
+    "status": 200,
+    "response": {
+      "verified": true,
+      "round": "member",
+      "expires": 1793934900000,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:47.727Z",
+    "via": "probe",
+    "path": "holds",
+    "status": 201,
+    "response": {
+      "hold": {
+        "id": "21924d8f-e7a5-48fc-87d0-50bfd9dcdf4a",
+        "user": "fan",
+        "event": "neon",
+        "seats": [
+          "C01"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 1800,
+          "discount": 0,
+          "fee": 30,
+          "vat": 2,
+          "total": 1832,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "member",
+        "checkout": null,
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:47.727Z",
+    "via": "probe",
+    "path": "holds",
+    "status": 409,
+    "response": {
+      "error": "SEAT_UNAVAILABLE",
+      "message": "ที่นั่งนี้ถูกจองแล้ว กรุณาเลือกใหม่",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:47.752Z",
+    "via": "probe",
+    "path": "login",
+    "status": 200,
+    "response": {
+      "user": {
+        "id": "general",
+        "email": "general@demo.test",
+        "username": "general",
+        "name": "เจน ทั่วไป",
+        "role": "buyer",
+        "presale": false
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:47.752Z",
+    "via": "probe",
+    "path": "queue",
+    "status": 200,
+    "response": {
+      "queue": {
+        "status": "active",
+        "number": "Q000010",
+        "position": 0,
+        "ahead": 0,
+        "estimated_wait_seconds": 0,
+        "expires": 1793934900000,
+        "round": "general",
+        "starts": 1793520000000,
+        "limit": 4
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:47.753Z",
+    "via": "probe",
+    "path": "holds",
+    "status": 201,
+    "response": {
+      "hold": {
+        "id": "2d4fe010-d8d4-4b7f-b247-4122e46f5fb1",
+        "user": "general",
+        "event": "aurora",
+        "seats": [
+          "C01",
+          "C02",
+          "C03",
+          "C04"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 7200,
+          "discount": 0,
+          "fee": 120,
+          "vat": 8,
+          "total": 7328,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            },
+            {
+              "seat": "C02",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            },
+            {
+              "seat": "C03",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            },
+            {
+              "seat": "C04",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "general",
+        "checkout": null,
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:47.754Z",
+    "via": "probe",
+    "path": "holds",
+    "status": 400,
+    "response": {
+      "error": "SEAT_LIMIT",
+      "message": "เลือกที่นั่งไม่ซ้ำกัน 1–4 ที่นั่ง",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:47.754Z",
+    "via": "probe",
+    "path": "active-hold",
+    "status": 200,
+    "response": {
+      "hold": {
+        "id": "2d4fe010-d8d4-4b7f-b247-4122e46f5fb1",
+        "user": "general",
+        "event": "aurora",
+        "seats": [
+          "C01",
+          "C02",
+          "C03",
+          "C04"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 7200,
+          "discount": 0,
+          "fee": 120,
+          "vat": 8,
+          "total": 7328,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            },
+            {
+              "seat": "C02",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            },
+            {
+              "seat": "C03",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            },
+            {
+              "seat": "C04",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "general",
+        "checkout": null,
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:47.755Z",
+    "via": "probe",
+    "path": "checkout",
+    "status": 200,
+    "response": {
+      "hold": {
+        "id": "2d4fe010-d8d4-4b7f-b247-4122e46f5fb1",
+        "user": "general",
+        "event": "aurora",
+        "seats": [
+          "C01",
+          "C02",
+          "C03",
+          "C04"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 7200,
+          "discount": 0,
+          "fee": 120,
+          "vat": 8,
+          "total": 7328,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            },
+            {
+              "seat": "C02",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            },
+            {
+              "seat": "C03",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            },
+            {
+              "seat": "C04",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "general",
+        "checkout": {
+          "buyer": {
+            "name": "C3 Buyer",
+            "email": "c3buyer@example.test",
+            "phone": "0812345678"
+          },
+          "holders": [
+            {
+              "seat": "C01",
+              "name": "C3 Buyer",
+              "email": "c3buyer@example.test",
+              "phone": "0812345678"
+            },
+            {
+              "seat": "C02",
+              "name": "C3 Buyer",
+              "email": "c3buyer@example.test",
+              "phone": "0812345678"
+            },
+            {
+              "seat": "C03",
+              "name": "C3 Buyer",
+              "email": "c3buyer@example.test",
+              "phone": "0812345678"
+            },
+            {
+              "seat": "C04",
+              "name": "C3 Buyer",
+              "email": "c3buyer@example.test",
+              "phone": "0812345678"
+            }
+          ]
+        },
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:47.756Z",
+    "via": "probe",
+    "path": "pay",
+    "status": 200,
+    "response": {
+      "status": "succeeded",
+      "order": "EN-C6CE55CF-D0C",
+      "replayed": false,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:47.757Z",
+    "via": "probe",
+    "path": "holds",
+    "status": 409,
+    "response": {
+      "error": "QUOTA_EXCEEDED",
+      "message": "ซื้อได้สูงสุด 4 ใบต่อบัญชีต่อคอนเสิร์ต",
+      "now": 1793934000000
+    }
+  }
+]

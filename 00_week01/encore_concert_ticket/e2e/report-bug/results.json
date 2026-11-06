@@ -1,0 +1,1551 @@
+{
+  "config": {
+    "configFile": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/playwright.config.js",
+    "rootDir": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 3
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "ui.spec.js",
+          "lab.spec.js"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "html",
+        {
+          "open": "never",
+          "outputFolder": "e2e/report-bug/playwright"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "e2e/report-bug/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "runAgents": "none",
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.58.2",
+    "workers": 3,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "lab.spec.js",
+      "file": "lab.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "V3-L01 two VIP coupon cap has server checkout total 5964 after hold",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 6442,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#checkout-form').getByTestId('total')\nExpected: \u001b[32m\"฿5,\u001b[7m96\u001b[27m4\"\u001b[39m\nReceived: \u001b[31m\"฿5,\u001b[7m82\u001b[27m4\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#checkout-form').getByTestId('total')\u001b[22m\n\u001b[2m    9 × locator resolved to <span data-testid=\"total\">฿5,824</span>\u001b[22m\n\u001b[2m      - unexpected value \"฿5,824\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#checkout-form').getByTestId('total')\nExpected: \u001b[32m\"฿5,\u001b[7m96\u001b[27m4\"\u001b[39m\nReceived: \u001b[31m\"฿5,\u001b[7m82\u001b[27m4\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#checkout-form').getByTestId('total')\u001b[22m\n\u001b[2m    9 × locator resolved to <span data-testid=\"total\">฿5,824</span>\u001b[22m\n\u001b[2m      - unexpected value \"฿5,824\"\u001b[22m\n\n    at /Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/lab.spec.js:7:385",
+                    "location": {
+                      "file": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/lab.spec.js",
+                      "column": 385,
+                      "line": 7
+                    },
+                    "snippet": "   5 | async function map(page){await page.goto('/');await page.locator('#auth-open').click();await page.locator('[data-demo=\"fan\"]').click();await expect(page.locator('#auth')).not.toBeVisible();await page.getByTestId('event-neon').locator('[data-sale-round=\"member\"]').click();await page.locator('#member-number').fill('ENCORE-0001');await page.locator('#member-form button').click();await expect(page.locator('[data-seat=\"A01\"]')).toBeVisible();}\n   6 | test('V3-L01 two VIP coupon cap has server checkout total 5964 after hold',async({page})=>{\n>  7 |  await map(page);await page.locator('[data-seat=\"A01\"]').click();await page.locator('[data-seat=\"A02\"]').click();await page.locator('#coupon').fill('STAGE10');await expect(page.getByTestId('total')).toHaveText('฿5,964');await page.locator('#reserve').click();await expect(page.locator('#checkout-form')).toBeVisible();await expect(page.locator('#checkout-form').getByTestId('total')).toHaveText('฿5,964');\n     |                                                                                                                                                                                                                                                                                                                                                                                                 ^\n   8 | });\n   9 | test('V3-L02 Member third seat is rejected while first two stay selected',async({page})=>{\n  10 |  await map(page);await page.locator('[data-seat=\"C01\"]').click();await page.locator('[data-seat=\"C02\"]').click();await expect(page.locator('.seat.selected')).toHaveCount(2);await page.locator('[data-seat=\"C03\"]').click();await expect(page.locator('.seat.selected')).toHaveCount(2);await expect(page.locator('#toast')).toContainText('สูงสุด 2');"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/lab.spec.js",
+                        "column": 385,
+                        "line": 7
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#checkout-form').getByTestId('total')\nExpected: \u001b[32m\"฿5,\u001b[7m96\u001b[27m4\"\u001b[39m\nReceived: \u001b[31m\"฿5,\u001b[7m82\u001b[27m4\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#checkout-form').getByTestId('total')\u001b[22m\n\u001b[2m    9 × locator resolved to <span data-testid=\"total\">฿5,824</span>\u001b[22m\n\u001b[2m      - unexpected value \"฿5,824\"\u001b[22m\n\n\n   5 | async function map(page){await page.goto('/');await page.locator('#auth-open').click();await page.locator('[data-demo=\"fan\"]').click();await expect(page.locator('#auth')).not.toBeVisible();await page.getByTestId('event-neon').locator('[data-sale-round=\"member\"]').click();await page.locator('#member-number').fill('ENCORE-0001');await page.locator('#member-form button').click();await expect(page.locator('[data-seat=\"A01\"]')).toBeVisible();}\n   6 | test('V3-L01 two VIP coupon cap has server checkout total 5964 after hold',async({page})=>{\n>  7 |  await map(page);await page.locator('[data-seat=\"A01\"]').click();await page.locator('[data-seat=\"A02\"]').click();await page.locator('#coupon').fill('STAGE10');await expect(page.getByTestId('total')).toHaveText('฿5,964');await page.locator('#reserve').click();await expect(page.locator('#checkout-form')).toBeVisible();await expect(page.locator('#checkout-form').getByTestId('total')).toHaveText('฿5,964');\n     |                                                                                                                                                                                                                                                                                                                                                                                                 ^\n   8 | });\n   9 | test('V3-L02 Member third seat is rejected while first two stay selected',async({page})=>{\n  10 |  await map(page);await page.locator('[data-seat=\"C01\"]').click();await page.locator('[data-seat=\"C02\"]').click();await expect(page.locator('.seat.selected')).toHaveCount(2);await page.locator('[data-seat=\"C03\"]').click();await expect(page.locator('.seat.selected')).toHaveCount(2);await expect(page.locator('#toast')).toContainText('สูงสุด 2');\n    at /Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/lab.spec.js:7:385"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:45.705Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/lab-V3-L01-two-VIP-coupon--3c732-ckout-total-5964-after-hold/test-failed-1.png"
+                    },
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/lab-V3-L01-two-VIP-coupon--3c732-ckout-total-5964-after-hold/attachments/final-screen-43eda8efde8c0a163d0d140b4f15153ea35239af.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/lab-V3-L01-two-VIP-coupon--3c732-ckout-total-5964-after-hold/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/lab-V3-L01-two-VIP-coupon--3c732-ckout-total-5964-after-hold/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/lab-V3-L01-two-VIP-coupon--3c732-ckout-total-5964-after-hold/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/lab.spec.js",
+                    "column": 385,
+                    "line": 7
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a7beecb291e3553ef15a-fdabde20bbd2904db616",
+          "file": "lab.spec.js",
+          "line": 6,
+          "column": 1
+        },
+        {
+          "title": "V3-L02 Member third seat is rejected while first two stay selected",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 6344,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.seat.selected')\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m3\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.seat.selected')\u001b[22m\n\u001b[2m    9 × locator resolved to 3 elements\u001b[22m\n\u001b[2m      - unexpected value \"3\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.seat.selected')\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m3\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.seat.selected')\u001b[22m\n\u001b[2m    9 × locator resolved to 3 elements\u001b[22m\n\u001b[2m      - unexpected value \"3\"\u001b[22m\n\n    at /Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/lab.spec.js:10:267",
+                    "location": {
+                      "file": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/lab.spec.js",
+                      "column": 267,
+                      "line": 10
+                    },
+                    "snippet": "   8 | });\n   9 | test('V3-L02 Member third seat is rejected while first two stay selected',async({page})=>{\n> 10 |  await map(page);await page.locator('[data-seat=\"C01\"]').click();await page.locator('[data-seat=\"C02\"]').click();await expect(page.locator('.seat.selected')).toHaveCount(2);await page.locator('[data-seat=\"C03\"]').click();await expect(page.locator('.seat.selected')).toHaveCount(2);await expect(page.locator('#toast')).toContainText('สูงสุด 2');\n     |                                                                                                                                                                                                                                                                           ^\n  11 | });\n  12 | test('V3-L03 gate second scan is rejection not success message containing used words',async({page,request})=>{\n  13 |  await request.post('/api/login',{data:{username:'fan',password:'FanDemo!26'}});await request.post('/api/queue',{data:{event:'neon'}});await request.post('/api/membership/verify',{data:{event:'neon',number:'ENCORE-0001'}});const h=await(await request.post('/api/holds',{data:{event:'neon',seats:['C01']}})).json();const p={name:'Gate Holder',email:'gate@example.test',phone:'0812345678'};expect((await request.post('/api/checkout',{data:{hold:h.hold.id,buyer:p,holders:[{seat:'C01',...p}]}})).ok()).toBe(true);expect((await(await request.post('/api/pay',{data:{hold:h.hold.id,result:'approved',method:'qr'}})).json()).status).toBe('succeeded');const o=(await(await request.get('/api/orders')).json()).orders[0];await request.post('/api/test/clock',{headers,data:{now:'2026-12-12T09:00:00Z'}});"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/lab.spec.js",
+                        "column": 267,
+                        "line": 10
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.seat.selected')\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m3\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.seat.selected')\u001b[22m\n\u001b[2m    9 × locator resolved to 3 elements\u001b[22m\n\u001b[2m      - unexpected value \"3\"\u001b[22m\n\n\n   8 | });\n   9 | test('V3-L02 Member third seat is rejected while first two stay selected',async({page})=>{\n> 10 |  await map(page);await page.locator('[data-seat=\"C01\"]').click();await page.locator('[data-seat=\"C02\"]').click();await expect(page.locator('.seat.selected')).toHaveCount(2);await page.locator('[data-seat=\"C03\"]').click();await expect(page.locator('.seat.selected')).toHaveCount(2);await expect(page.locator('#toast')).toContainText('สูงสุด 2');\n     |                                                                                                                                                                                                                                                                           ^\n  11 | });\n  12 | test('V3-L03 gate second scan is rejection not success message containing used words',async({page,request})=>{\n  13 |  await request.post('/api/login',{data:{username:'fan',password:'FanDemo!26'}});await request.post('/api/queue',{data:{event:'neon'}});await request.post('/api/membership/verify',{data:{event:'neon',number:'ENCORE-0001'}});const h=await(await request.post('/api/holds',{data:{event:'neon',seats:['C01']}})).json();const p={name:'Gate Holder',email:'gate@example.test',phone:'0812345678'};expect((await request.post('/api/checkout',{data:{hold:h.hold.id,buyer:p,holders:[{seat:'C01',...p}]}})).ok()).toBe(true);expect((await(await request.post('/api/pay',{data:{hold:h.hold.id,result:'approved',method:'qr'}})).json()).status).toBe('succeeded');const o=(await(await request.get('/api/orders')).json()).orders[0];await request.post('/api/test/clock',{headers,data:{now:'2026-12-12T09:00:00Z'}});\n    at /Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/lab.spec.js:10:267"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:45.705Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/lab-V3-L02-Member-third-se-ef215-ile-first-two-stay-selected/test-failed-1.png"
+                    },
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/lab-V3-L02-Member-third-se-ef215-ile-first-two-stay-selected/attachments/final-screen-cfec95f01526116fa7f3f8d24ac2d00710d3a339.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/lab-V3-L02-Member-third-se-ef215-ile-first-two-stay-selected/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/lab-V3-L02-Member-third-se-ef215-ile-first-two-stay-selected/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/lab-V3-L02-Member-third-se-ef215-ile-first-two-stay-selected/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/lab.spec.js",
+                    "column": 267,
+                    "line": 10
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a7beecb291e3553ef15a-6b1249891af57ab04ed6",
+          "file": "lab.spec.js",
+          "line": 9,
+          "column": 1
+        },
+        {
+          "title": "V3-L03 gate second scan is rejection not success message containing used words",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "failed",
+                  "duration": 6318,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#scan-result')\nExpected: \u001b[32m\"บัตรนี้ใช้เข้างานแล้ว\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mยืนยันเข้างานแล้ว · ที่นั่ง C01 · Gate Holder · \u001b[27mบัตรนี้ใช้เข้างานแล้ว\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#scan-result')\u001b[22m\n\u001b[2m    9 × locator resolved to <p role=\"status\" id=\"scan-result\">ยืนยันเข้างานแล้ว · ที่นั่ง C01 · Gate Holder · บ…</p>\u001b[22m\n\u001b[2m      - unexpected value \"ยืนยันเข้างานแล้ว · ที่นั่ง C01 · Gate Holder · บัตรนี้ใช้เข้างานแล้ว\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#scan-result')\nExpected: \u001b[32m\"บัตรนี้ใช้เข้างานแล้ว\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mยืนยันเข้างานแล้ว · ที่นั่ง C01 · Gate Holder · \u001b[27mบัตรนี้ใช้เข้างานแล้ว\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#scan-result')\u001b[22m\n\u001b[2m    9 × locator resolved to <p role=\"status\" id=\"scan-result\">ยืนยันเข้างานแล้ว · ที่นั่ง C01 · Gate Holder · บ…</p>\u001b[22m\n\u001b[2m      - unexpected value \"ยืนยันเข้างานแล้ว · ที่นั่ง C01 · Gate Holder · บัตรนี้ใช้เข้างานแล้ว\"\u001b[22m\n\n    at /Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/lab.spec.js:14:536",
+                    "location": {
+                      "file": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/lab.spec.js",
+                      "column": 536,
+                      "line": 14
+                    },
+                    "snippet": "  12 | test('V3-L03 gate second scan is rejection not success message containing used words',async({page,request})=>{\n  13 |  await request.post('/api/login',{data:{username:'fan',password:'FanDemo!26'}});await request.post('/api/queue',{data:{event:'neon'}});await request.post('/api/membership/verify',{data:{event:'neon',number:'ENCORE-0001'}});const h=await(await request.post('/api/holds',{data:{event:'neon',seats:['C01']}})).json();const p={name:'Gate Holder',email:'gate@example.test',phone:'0812345678'};expect((await request.post('/api/checkout',{data:{hold:h.hold.id,buyer:p,holders:[{seat:'C01',...p}]}})).ok()).toBe(true);expect((await(await request.post('/api/pay',{data:{hold:h.hold.id,result:'approved',method:'qr'}})).json()).status).toBe('succeeded');const o=(await(await request.get('/api/orders')).json()).orders[0];await request.post('/api/test/clock',{headers,data:{now:'2026-12-12T09:00:00Z'}});\n> 14 |  await page.goto('/');await page.locator('#auth-open').click();await page.locator('.demo-more summary').click();await page.locator('[data-demo=\"gate\"]').click();await expect(page.locator('#auth')).not.toBeVisible();await page.locator('#scanner-open').click();await page.locator('#ticket-code').fill(o.tickets[0].code);await page.locator('#scan-form button').click();await expect(page.locator('#scan-result')).toContainText('ยืนยันเข้างานแล้ว');await page.locator('#scan-form button').click();await expect(page.locator('#scan-result')).toHaveText('บัตรนี้ใช้เข้างานแล้ว');\n     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ^\n  15 | });\n  16 |"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/lab.spec.js",
+                        "column": 536,
+                        "line": 14
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#scan-result')\nExpected: \u001b[32m\"บัตรนี้ใช้เข้างานแล้ว\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mยืนยันเข้างานแล้ว · ที่นั่ง C01 · Gate Holder · \u001b[27mบัตรนี้ใช้เข้างานแล้ว\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#scan-result')\u001b[22m\n\u001b[2m    9 × locator resolved to <p role=\"status\" id=\"scan-result\">ยืนยันเข้างานแล้ว · ที่นั่ง C01 · Gate Holder · บ…</p>\u001b[22m\n\u001b[2m      - unexpected value \"ยืนยันเข้างานแล้ว · ที่นั่ง C01 · Gate Holder · บัตรนี้ใช้เข้างานแล้ว\"\u001b[22m\n\n\n  12 | test('V3-L03 gate second scan is rejection not success message containing used words',async({page,request})=>{\n  13 |  await request.post('/api/login',{data:{username:'fan',password:'FanDemo!26'}});await request.post('/api/queue',{data:{event:'neon'}});await request.post('/api/membership/verify',{data:{event:'neon',number:'ENCORE-0001'}});const h=await(await request.post('/api/holds',{data:{event:'neon',seats:['C01']}})).json();const p={name:'Gate Holder',email:'gate@example.test',phone:'0812345678'};expect((await request.post('/api/checkout',{data:{hold:h.hold.id,buyer:p,holders:[{seat:'C01',...p}]}})).ok()).toBe(true);expect((await(await request.post('/api/pay',{data:{hold:h.hold.id,result:'approved',method:'qr'}})).json()).status).toBe('succeeded');const o=(await(await request.get('/api/orders')).json()).orders[0];await request.post('/api/test/clock',{headers,data:{now:'2026-12-12T09:00:00Z'}});\n> 14 |  await page.goto('/');await page.locator('#auth-open').click();await page.locator('.demo-more summary').click();await page.locator('[data-demo=\"gate\"]').click();await expect(page.locator('#auth')).not.toBeVisible();await page.locator('#scanner-open').click();await page.locator('#ticket-code').fill(o.tickets[0].code);await page.locator('#scan-form button').click();await expect(page.locator('#scan-result')).toContainText('ยืนยันเข้างานแล้ว');await page.locator('#scan-form button').click();await expect(page.locator('#scan-result')).toHaveText('บัตรนี้ใช้เข้างานแล้ว');\n     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ^\n  15 | });\n  16 |\n    at /Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/lab.spec.js:14:536"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:45.705Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/lab-V3-L03-gate-second-sca-8ddf0-ssage-containing-used-words/test-failed-1.png"
+                    },
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/lab-V3-L03-gate-second-sca-8ddf0-ssage-containing-used-words/attachments/final-screen-2892879f66bb00e9a0a1e1865ecbd67c59297037.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/lab-V3-L03-gate-second-sca-8ddf0-ssage-containing-used-words/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/lab-V3-L03-gate-second-sca-8ddf0-ssage-containing-used-words/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/lab-V3-L03-gate-second-sca-8ddf0-ssage-containing-used-words/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/lab.spec.js",
+                    "column": 536,
+                    "line": 14
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a7beecb291e3553ef15a-c2bfb1113eaaf49a4964",
+          "file": "lab.spec.js",
+          "line": 12,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "ui.spec.js",
+      "file": "ui.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "V3-U01 Member invalid/valid number, two named tickets, payment retry and email E-Ticket",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 3063,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:53.615Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U01-Member-invalid-v-ef7e5-nt-retry-and-email-E-Ticket/attachments/final-screen-76b384b6a1903b22d5202e528975c5565425bd90.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U01-Member-invalid-v-ef7e5-nt-retry-and-email-E-Ticket/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-bff5caa977ff6a7ff33a",
+          "file": "ui.spec.js",
+          "line": 11,
+          "column": 1
+        },
+        {
+          "title": "V3-U02 General signs up, denied Member, joins General at15 with no membership input",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1378,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:53.641Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U02-General-signs-up-b0d6a-15-with-no-membership-input/attachments/final-screen-28c96fea237044fd42e0132d9132fefde8d47071.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U02-General-signs-up-b0d6a-15-with-no-membership-input/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-b9a56b84d7960f0c50a5",
+          "file": "ui.spec.js",
+          "line": 15,
+          "column": 1
+        },
+        {
+          "title": "V3-U03 mobile Member cap2 contact validation copy and QR demo",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 6311,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.seat.selected')\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m3\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.seat.selected')\u001b[22m\n\u001b[2m    9 × locator resolved to 3 elements\u001b[22m\n\u001b[2m      - unexpected value \"3\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.seat.selected')\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m3\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.seat.selected')\u001b[22m\n\u001b[2m    9 × locator resolved to 3 elements\u001b[22m\n\u001b[2m      - unexpected value \"3\"\u001b[22m\n\n    at /Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/ui.spec.js:19:221",
+                    "location": {
+                      "file": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/ui.spec.js",
+                      "column": 221,
+                      "line": 19
+                    },
+                    "snippet": "  17 | });\n  18 | test('V3-U03 mobile Member cap2 contact validation copy and QR demo',async({page})=>{\n> 19 | await page.setViewportSize({width:375,height:812});await page.goto('/');await signIn(page);await memberMap(page,['A01','A02']);await page.locator('[data-seat=\"A05\"]').click();await expect(page.locator('.seat.selected')).toHaveCount(2);await expect(page.locator('#toast')).toContainText('สูงสุด 2');await reserve(page);await page.locator('#buyer-name').fill('Single');await page.locator('#buyer-phone').fill('0812345678');await page.locator('#buyer-email').fill('buyer@example.test');await page.getByRole('button',{name:'ใช้ข้อมูลผู้ซื้อสำหรับบัตรทุกใบ'}).click();await page.getByRole('button',{name:'ตรวจสอบข้อมูลและยอดชำระ'}).click();await expect(page.locator('#checkout-error')).toContainText('ชื่อและนามสกุล');await page.locator('#buyer-name').fill('Mobile Buyer');await page.getByRole('button',{name:'ใช้ข้อมูลผู้ซื้อสำหรับบัตรทุกใบ'}).click();await page.screenshot({path:(process.env.BUG_MODE==='1'?'e2e/report-bug/':'')+'exploration/v3-contact-mobile.png'});expect(await page.locator('#booking').evaluate(e=>e.scrollWidth<=e.clientWidth)).toBe(true);await page.getByRole('button',{name:'ตรวจสอบข้อมูลและยอดชำระ'}).click();await startPayment(page);await expect(page.locator('.payment-qr')).toBeVisible();expect(await page.locator('#booking').evaluate(e=>e.scrollWidth<=e.clientWidth)).toBe(true);await page.screenshot({path:(process.env.BUG_MODE==='1'?'e2e/report-bug/':'')+'exploration/v3-qr-mobile.png'});\n     |                                                                                                                                                                                                                             ^\n  20 | });\n  21 | test('V3-U04 Member queue has stable number, ahead, ETA and auto-enters verification',async({page,playwright,baseURL})=>{\n  22 | const cs=[];try{for(const u of ['fan','fan2']){const c=await playwright.request.newContext({baseURL});cs.push(c);await c.post('/api/login',{data:{username:u,password:passwords[u]}});await c.post('/api/queue',{data:{event:'neon'}});}await page.goto('/');await signIn(page,'fan3');await page.getByTestId('event-neon').locator('[data-sale-round=\"member\"]').click();await expect(page.locator('.queue-number')).toContainText('Q');await expect(page.locator('.queue-panel')).toContainText('2 คน');await expect(page.locator('.queue-panel')).toContainText('2 นาที');const number=await page.locator('.queue-number').innerText();await page.getByRole('button',{name:'อัปเดตคิว'}).click();await expect(page.locator('.queue-number')).toHaveText(number);await page.screenshot({path:(process.env.BUG_MODE==='1'?'e2e/report-bug/':'')+'exploration/v3-queue.png'});await cs[0].post('/api/queue',{data:{event:'neon',action:'leave'}});await expect(page.locator('#member-number')).toBeVisible({timeout:10000});await expect(page.locator('[data-seat]')).toHaveCount(0);}finally{for(const c of cs)await c.dispose();}"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/ui.spec.js",
+                        "column": 221,
+                        "line": 19
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.seat.selected')\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m3\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.seat.selected')\u001b[22m\n\u001b[2m    9 × locator resolved to 3 elements\u001b[22m\n\u001b[2m      - unexpected value \"3\"\u001b[22m\n\n\n  17 | });\n  18 | test('V3-U03 mobile Member cap2 contact validation copy and QR demo',async({page})=>{\n> 19 | await page.setViewportSize({width:375,height:812});await page.goto('/');await signIn(page);await memberMap(page,['A01','A02']);await page.locator('[data-seat=\"A05\"]').click();await expect(page.locator('.seat.selected')).toHaveCount(2);await expect(page.locator('#toast')).toContainText('สูงสุด 2');await reserve(page);await page.locator('#buyer-name').fill('Single');await page.locator('#buyer-phone').fill('0812345678');await page.locator('#buyer-email').fill('buyer@example.test');await page.getByRole('button',{name:'ใช้ข้อมูลผู้ซื้อสำหรับบัตรทุกใบ'}).click();await page.getByRole('button',{name:'ตรวจสอบข้อมูลและยอดชำระ'}).click();await expect(page.locator('#checkout-error')).toContainText('ชื่อและนามสกุล');await page.locator('#buyer-name').fill('Mobile Buyer');await page.getByRole('button',{name:'ใช้ข้อมูลผู้ซื้อสำหรับบัตรทุกใบ'}).click();await page.screenshot({path:(process.env.BUG_MODE==='1'?'e2e/report-bug/':'')+'exploration/v3-contact-mobile.png'});expect(await page.locator('#booking').evaluate(e=>e.scrollWidth<=e.clientWidth)).toBe(true);await page.getByRole('button',{name:'ตรวจสอบข้อมูลและยอดชำระ'}).click();await startPayment(page);await expect(page.locator('.payment-qr')).toBeVisible();expect(await page.locator('#booking').evaluate(e=>e.scrollWidth<=e.clientWidth)).toBe(true);await page.screenshot({path:(process.env.BUG_MODE==='1'?'e2e/report-bug/':'')+'exploration/v3-qr-mobile.png'});\n     |                                                                                                                                                                                                                             ^\n  20 | });\n  21 | test('V3-U04 Member queue has stable number, ahead, ETA and auto-enters verification',async({page,playwright,baseURL})=>{\n  22 | const cs=[];try{for(const u of ['fan','fan2']){const c=await playwright.request.newContext({baseURL});cs.push(c);await c.post('/api/login',{data:{username:u,password:passwords[u]}});await c.post('/api/queue',{data:{event:'neon'}});}await page.goto('/');await signIn(page,'fan3');await page.getByTestId('event-neon').locator('[data-sale-round=\"member\"]').click();await expect(page.locator('.queue-number')).toContainText('Q');await expect(page.locator('.queue-panel')).toContainText('2 คน');await expect(page.locator('.queue-panel')).toContainText('2 นาที');const number=await page.locator('.queue-number').innerText();await page.getByRole('button',{name:'อัปเดตคิว'}).click();await expect(page.locator('.queue-number')).toHaveText(number);await page.screenshot({path:(process.env.BUG_MODE==='1'?'e2e/report-bug/':'')+'exploration/v3-queue.png'});await cs[0].post('/api/queue',{data:{event:'neon',action:'leave'}});await expect(page.locator('#member-number')).toBeVisible({timeout:10000});await expect(page.locator('[data-seat]')).toHaveCount(0);}finally{for(const c of cs)await c.dispose();}\n    at /Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/ui.spec.js:19:221"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:53.729Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U03-mobile-Member-ca-dec7c-validation-copy-and-QR-demo/test-failed-1.png"
+                    },
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U03-mobile-Member-ca-dec7c-validation-copy-and-QR-demo/attachments/final-screen-b58908d5f89b452cb14642e0a1f9cf6f86085f9b.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U03-mobile-Member-ca-dec7c-validation-copy-and-QR-demo/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U03-mobile-Member-ca-dec7c-validation-copy-and-QR-demo/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U03-mobile-Member-ca-dec7c-validation-copy-and-QR-demo/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/ui.spec.js",
+                    "column": 221,
+                    "line": 19
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-2cd5f9273306006df82e",
+          "file": "ui.spec.js",
+          "line": 18,
+          "column": 1
+        },
+        {
+          "title": "V3-U04 Member queue has stable number, ahead, ETA and auto-enters verification",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3191,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:55.777Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U04-Member-queue-has-3d98d-nd-auto-enters-verification/attachments/final-screen-4ef511134bd11b324fea7465e68ed03aa4e91bf4.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U04-Member-queue-has-3d98d-nd-auto-enters-verification/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-b2d56a7135e70640b46a",
+          "file": "ui.spec.js",
+          "line": 21,
+          "column": 1
+        },
+        {
+          "title": "V3-U05 pending and contact snapshots recover after reload",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 3115,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:57.555Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U05-pending-and-contact-snapshots-recover-after-reload/attachments/final-screen-a1e5632ec0b0519926d8697e4b75b7f46ad7e87f.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U05-pending-and-contact-snapshots-recover-after-reload/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-508cac13e8ac27631add",
+          "file": "ui.spec.js",
+          "line": 24,
+          "column": 1
+        },
+        {
+          "title": "V3-U06 named ticket partial refund and organizer audit",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1588,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:58.975Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U06-named-ticket-partial-refund-and-organizer-audit/attachments/final-screen-2756e78fa2589202d0ad3a32d9430c0d67068761.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U06-named-ticket-partial-refund-and-organizer-audit/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-13322b462cb51a3de023",
+          "file": "ui.spec.js",
+          "line": 25,
+          "column": 1
+        },
+        {
+          "title": "V3-U07 gate scans ticket QR payload once and shows holder name",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 6250,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#scan-result')\nExpected: \u001b[32m\"บัตรนี้ใช้เข้างานแล้ว\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mยืนยันเข้างานแล้ว · ที่นั่ง C01 · API Holder · \u001b[27mบัตรนี้ใช้เข้างานแล้ว\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#scan-result')\u001b[22m\n\u001b[2m    9 × locator resolved to <p role=\"status\" id=\"scan-result\">ยืนยันเข้างานแล้ว · ที่นั่ง C01 · API Holder · บั…</p>\u001b[22m\n\u001b[2m      - unexpected value \"ยืนยันเข้างานแล้ว · ที่นั่ง C01 · API Holder · บัตรนี้ใช้เข้างานแล้ว\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#scan-result')\nExpected: \u001b[32m\"บัตรนี้ใช้เข้างานแล้ว\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mยืนยันเข้างานแล้ว · ที่นั่ง C01 · API Holder · \u001b[27mบัตรนี้ใช้เข้างานแล้ว\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#scan-result')\u001b[22m\n\u001b[2m    9 × locator resolved to <p role=\"status\" id=\"scan-result\">ยืนยันเข้างานแล้ว · ที่นั่ง C01 · API Holder · บั…</p>\u001b[22m\n\u001b[2m      - unexpected value \"ยืนยันเข้างานแล้ว · ที่นั่ง C01 · API Holder · บัตรนี้ใช้เข้างานแล้ว\"\u001b[22m\n\n    at /Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/ui.spec.js:26:628",
+                    "location": {
+                      "file": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/ui.spec.js",
+                      "column": 628,
+                      "line": 26
+                    },
+                    "snippet": "  24 | test('V3-U05 pending and contact snapshots recover after reload',async({page})=>{await page.goto('/');await signIn(page);await memberMap(page);await reserve(page);await contacts(page);await startPayment(page,'alipay');await page.reload();await page.getByRole('button',{name:'จองต่อ / ชำระเงิน'}).click();await expect(page.locator('.holder-summary')).toContainText('ผู้ถือ 1');await expect(page.locator('.pending-box')).toContainText('Alipay');await approve(page);await page.getByRole('button',{name:'ดูบัตรของฉัน'}).click();await expect(page.getByTestId('ticket-C01')).toContainText('ผู้ถือ 1');});\n  25 | test('V3-U06 named ticket partial refund and organizer audit',async({page,request})=>{await apiPurchase(request);await page.goto('/');await signIn(page);await page.getByRole('button',{name:'บัตรของฉัน'}).click();await page.getByTestId('ticket-C01').getByRole('button',{name:'ขอคืน ฿1,800'}).click();await page.getByTestId('ticket-C01').getByRole('button',{name:/ยืนยันคืน/}).click();await expect(page.getByTestId('ticket-C01')).toContainText('รอคืนเงิน');await expect(page.locator('.ticket-qr')).toHaveCount(0);await page.getByRole('button',{name:'ปิดบัตรของฉัน'}).click();await page.getByRole('button',{name:'ออกจากระบบ'}).click();await signIn(page,'encore');await page.getByRole('button',{name:'จัดการงาน',exact:true}).click();await page.getByRole('button',{name:'อนุมัติคืนเงิน',exact:true}).click();await expect(page.getByTestId('admin-net')).toHaveText('฿32');await expect(page.locator('#admin-content')).toContainText('อนุมัติคืนเงิน');});\n> 26 | test('V3-U07 gate scans ticket QR payload once and shows holder name',async({page,request})=>{const o=await apiPurchase(request);await request.post('/api/test/clock',{headers,data:{now:'2026-12-12T09:00:00Z'}});await page.goto('/');await signIn(page,'gate');await page.getByRole('button',{name:'ตรวจบัตร',exact:true}).click();await page.getByLabel('รหัสบัตรทดลอง').fill(o.tickets[0].code);await page.getByRole('button',{name:'ยืนยันเข้างาน'}).click();await expect(page.locator('#scan-result')).toContainText('API Holder');await page.getByRole('button',{name:'ยืนยันเข้างาน'}).click();await expect(page.locator('#scan-result')).toHaveText('บัตรนี้ใช้เข้างานแล้ว');});\n     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ^\n  27 | test('V3-U08 pagination all-event search and General new-event booking',async({page})=>{await page.goto('/');await expect(page.locator('.event-card')).toHaveCount(6);await expect(page.locator('#event-range')).toHaveText('แสดง 1–6 จาก 12 งาน');await page.getByRole('button',{name:'หน้าถัดไป',exact:true}).click();await expect(page.getByTestId('event-citypop')).toBeVisible();await expect(page.locator('#event-range')).toHaveText('แสดง 7–12 จาก 12 งาน');await page.getByRole('searchbox').fill('NORTHLIGHT');await expect(page.getByTestId('event-aurora')).toBeVisible();await expect(page.locator('#event-range')).toHaveText('แสดง 1–1 จาก 1 งาน');await signIn(page,'general');await page.getByTestId('event-aurora').locator('[data-sale-round=\"general\"]').click();await expect(page.locator('[data-seat=\"C01\"]')).toBeVisible();await expect(page.locator('#member-number')).toHaveCount(0);});\n  28 | test('V3-U09 keyboard selection and close during reserve release late hold',async({page,request})=>{let unlock,ready;const gate=new Promise(r=>unlock=r),received=new Promise(r=>ready=r);await page.route('**/api/holds',async route=>{const response=await route.fetch();ready();await gate;await route.fulfill({response});});await page.goto('/');await signIn(page);await memberMap(page,[]);await page.locator('[data-seat=\"C01\"]').focus();await page.keyboard.press('Space');await expect(page.locator('[data-seat=\"C01\"]')).toHaveAttribute('aria-pressed','true');await page.getByRole('button',{name:'ยืนยันที่นั่ง'}).click();await received;await page.keyboard.press('Escape');await expect(page.locator('#booking')).not.toBeVisible();unlock();await expect.poll(async()=>{await request.post('/api/login',{data:{username:'fan',password:'FanDemo!26'}});const d=await(await request.get('/api/active-hold')).json();return d.hold;}).toBeNull();});\n  29 | test('V3-U10 automatic Member cutoff blocks pay, General opens at15',async({page,request})=>{await request.post('/api/test/clock',{headers,data:{now:'2026-11-06T07:59:00Z'}});await page.goto('/');await signIn(page);await memberMap(page);await reserve(page);await contacts(page);await request.post('/api/test/clock',{headers,data:{now:'2026-11-06T08:00:00Z'}});await page.locator('#pay').click();await expect(page.locator('#booking-error')).toContainText('หมดเวลาจอง');await expect(page.locator('#pay')).toBeDisabled();await page.reload();await expect(page.getByTestId('event-neon').locator('[data-sale-round=\"member\"]')).toBeDisabled();await expect(page.getByTestId('event-neon').locator('[data-sale-round=\"general\"]')).toHaveCount(0);await page.getByRole('button',{name:'ออกจากระบบ'}).click();await signIn(page,'general');await expect(page.getByTestId('event-neon').locator('[data-sale-round=\"general\"]')).toBeEnabled();});"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/ui.spec.js",
+                        "column": 628,
+                        "line": 26
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#scan-result')\nExpected: \u001b[32m\"บัตรนี้ใช้เข้างานแล้ว\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mยืนยันเข้างานแล้ว · ที่นั่ง C01 · API Holder · \u001b[27mบัตรนี้ใช้เข้างานแล้ว\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#scan-result')\u001b[22m\n\u001b[2m    9 × locator resolved to <p role=\"status\" id=\"scan-result\">ยืนยันเข้างานแล้ว · ที่นั่ง C01 · API Holder · บั…</p>\u001b[22m\n\u001b[2m      - unexpected value \"ยืนยันเข้างานแล้ว · ที่นั่ง C01 · API Holder · บัตรนี้ใช้เข้างานแล้ว\"\u001b[22m\n\n\n  24 | test('V3-U05 pending and contact snapshots recover after reload',async({page})=>{await page.goto('/');await signIn(page);await memberMap(page);await reserve(page);await contacts(page);await startPayment(page,'alipay');await page.reload();await page.getByRole('button',{name:'จองต่อ / ชำระเงิน'}).click();await expect(page.locator('.holder-summary')).toContainText('ผู้ถือ 1');await expect(page.locator('.pending-box')).toContainText('Alipay');await approve(page);await page.getByRole('button',{name:'ดูบัตรของฉัน'}).click();await expect(page.getByTestId('ticket-C01')).toContainText('ผู้ถือ 1');});\n  25 | test('V3-U06 named ticket partial refund and organizer audit',async({page,request})=>{await apiPurchase(request);await page.goto('/');await signIn(page);await page.getByRole('button',{name:'บัตรของฉัน'}).click();await page.getByTestId('ticket-C01').getByRole('button',{name:'ขอคืน ฿1,800'}).click();await page.getByTestId('ticket-C01').getByRole('button',{name:/ยืนยันคืน/}).click();await expect(page.getByTestId('ticket-C01')).toContainText('รอคืนเงิน');await expect(page.locator('.ticket-qr')).toHaveCount(0);await page.getByRole('button',{name:'ปิดบัตรของฉัน'}).click();await page.getByRole('button',{name:'ออกจากระบบ'}).click();await signIn(page,'encore');await page.getByRole('button',{name:'จัดการงาน',exact:true}).click();await page.getByRole('button',{name:'อนุมัติคืนเงิน',exact:true}).click();await expect(page.getByTestId('admin-net')).toHaveText('฿32');await expect(page.locator('#admin-content')).toContainText('อนุมัติคืนเงิน');});\n> 26 | test('V3-U07 gate scans ticket QR payload once and shows holder name',async({page,request})=>{const o=await apiPurchase(request);await request.post('/api/test/clock',{headers,data:{now:'2026-12-12T09:00:00Z'}});await page.goto('/');await signIn(page,'gate');await page.getByRole('button',{name:'ตรวจบัตร',exact:true}).click();await page.getByLabel('รหัสบัตรทดลอง').fill(o.tickets[0].code);await page.getByRole('button',{name:'ยืนยันเข้างาน'}).click();await expect(page.locator('#scan-result')).toContainText('API Holder');await page.getByRole('button',{name:'ยืนยันเข้างาน'}).click();await expect(page.locator('#scan-result')).toHaveText('บัตรนี้ใช้เข้างานแล้ว');});\n     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ^\n  27 | test('V3-U08 pagination all-event search and General new-event booking',async({page})=>{await page.goto('/');await expect(page.locator('.event-card')).toHaveCount(6);await expect(page.locator('#event-range')).toHaveText('แสดง 1–6 จาก 12 งาน');await page.getByRole('button',{name:'หน้าถัดไป',exact:true}).click();await expect(page.getByTestId('event-citypop')).toBeVisible();await expect(page.locator('#event-range')).toHaveText('แสดง 7–12 จาก 12 งาน');await page.getByRole('searchbox').fill('NORTHLIGHT');await expect(page.getByTestId('event-aurora')).toBeVisible();await expect(page.locator('#event-range')).toHaveText('แสดง 1–1 จาก 1 งาน');await signIn(page,'general');await page.getByTestId('event-aurora').locator('[data-sale-round=\"general\"]').click();await expect(page.locator('[data-seat=\"C01\"]')).toBeVisible();await expect(page.locator('#member-number')).toHaveCount(0);});\n  28 | test('V3-U09 keyboard selection and close during reserve release late hold',async({page,request})=>{let unlock,ready;const gate=new Promise(r=>unlock=r),received=new Promise(r=>ready=r);await page.route('**/api/holds',async route=>{const response=await route.fetch();ready();await gate;await route.fulfill({response});});await page.goto('/');await signIn(page);await memberMap(page,[]);await page.locator('[data-seat=\"C01\"]').focus();await page.keyboard.press('Space');await expect(page.locator('[data-seat=\"C01\"]')).toHaveAttribute('aria-pressed','true');await page.getByRole('button',{name:'ยืนยันที่นั่ง'}).click();await received;await page.keyboard.press('Escape');await expect(page.locator('#booking')).not.toBeVisible();unlock();await expect.poll(async()=>{await request.post('/api/login',{data:{username:'fan',password:'FanDemo!26'}});const d=await(await request.get('/api/active-hold')).json();return d.hold;}).toBeNull();});\n  29 | test('V3-U10 automatic Member cutoff blocks pay, General opens at15',async({page,request})=>{await request.post('/api/test/clock',{headers,data:{now:'2026-11-06T07:59:00Z'}});await page.goto('/');await signIn(page);await memberMap(page);await reserve(page);await contacts(page);await request.post('/api/test/clock',{headers,data:{now:'2026-11-06T08:00:00Z'}});await page.locator('#pay').click();await expect(page.locator('#booking-error')).toContainText('หมดเวลาจอง');await expect(page.locator('#pay')).toBeDisabled();await page.reload();await expect(page.getByTestId('event-neon').locator('[data-sale-round=\"member\"]')).toBeDisabled();await expect(page.getByTestId('event-neon').locator('[data-sale-round=\"general\"]')).toHaveCount(0);await page.getByRole('button',{name:'ออกจากระบบ'}).click();await signIn(page,'general');await expect(page.getByTestId('event-neon').locator('[data-sale-round=\"general\"]')).toBeEnabled();});\n    at /Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/ui.spec.js:26:628"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:28:00.572Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U07-gate-scans-ticke-7684c--once-and-shows-holder-name/test-failed-1.png"
+                    },
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U07-gate-scans-ticke-7684c--once-and-shows-holder-name/attachments/final-screen-7fbc427a3603fc3ccb794af0ee639b3121130350.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U07-gate-scans-ticke-7684c--once-and-shows-holder-name/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U07-gate-scans-ticke-7684c--once-and-shows-holder-name/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U07-gate-scans-ticke-7684c--once-and-shows-holder-name/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/ui.spec.js",
+                    "column": 628,
+                    "line": 26
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-ec45746551ae44c8712d",
+          "file": "ui.spec.js",
+          "line": 26,
+          "column": 1
+        },
+        {
+          "title": "V3-U08 pagination all-event search and General new-event booking",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 2505,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:28:00.678Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U08-pagination-all-e-ecf0f-d-General-new-event-booking/attachments/final-screen-b5b8b7872814279dc33cda7fd33fab0b382622f1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U08-pagination-all-e-ecf0f-d-General-new-event-booking/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-79136e5150bc0a0bca1e",
+          "file": "ui.spec.js",
+          "line": 27,
+          "column": 1
+        },
+        {
+          "title": "V3-U09 keyboard selection and close during reserve release late hold",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1490,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:28:01.632Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U09-keyboard-selecti-6757e-g-reserve-release-late-hold/attachments/final-screen-fe4abc9fc8b2286e7907c7c06a6550318a1d20c5.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U09-keyboard-selecti-6757e-g-reserve-release-late-hold/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-f23608ad9484d86ca71b",
+          "file": "ui.spec.js",
+          "line": 28,
+          "column": 1
+        },
+        {
+          "title": "V3-U10 automatic Member cutoff blocks pay, General opens at15",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 3085,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:28:03.190Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U10-automatic-Member-94a6b-ocks-pay-General-opens-at15/attachments/final-screen-41953d56f3734f5948107bbf8d871261a7fa9f74.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U10-automatic-Member-94a6b-ocks-pay-General-opens-at15/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-a1dd722678bed23eecae",
+          "file": "ui.spec.js",
+          "line": 29,
+          "column": 1
+        },
+        {
+          "title": "V3-U11 payment qr completes sandbox email",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1923,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:28:03.941Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U11-payment-qr-completes-sandbox-email/attachments/final-screen-3a9ce94a9314572988d55f14c572a11d1ebd6d98.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U11-payment-qr-completes-sandbox-email/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-5faaa8893de9ee5c3b8b",
+          "file": "ui.spec.js",
+          "line": 30,
+          "column": 84
+        },
+        {
+          "title": "V3-U12 payment seven_eleven completes sandbox email",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1940,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:28:05.871Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U12-payment-seven-eleven-completes-sandbox-email/attachments/final-screen-c4df3002936a0edc6abf8ff122f44b54e42528e8.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U12-payment-seven-eleven-completes-sandbox-email/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-127971fc5b50111f3dd0",
+          "file": "ui.spec.js",
+          "line": 30,
+          "column": 84
+        },
+        {
+          "title": "V3-U13 payment credit_card completes sandbox email",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 1900,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:28:06.282Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U13-payment-credit-card-completes-sandbox-email/attachments/final-screen-760a6324880f8aee7207ecf099efd4731331245a.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U13-payment-credit-card-completes-sandbox-email/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-6adeca098bb6292b71fe",
+          "file": "ui.spec.js",
+          "line": 30,
+          "column": 84
+        },
+        {
+          "title": "V3-U14 payment alipay completes sandbox email",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1940,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:28:07.617Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U14-payment-alipay-completes-sandbox-email/attachments/final-screen-8173c90ee06921a7a19e89031068becd0a5595b3.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U14-payment-alipay-completes-sandbox-email/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-c9fd3baae9ab13ec4754",
+          "file": "ui.spec.js",
+          "line": 30,
+          "column": 84
+        },
+        {
+          "title": "V3-U15 demo accounts separate Member and General sale views in calm theme",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1480,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:28:07.818Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U15-demo-accounts-se-74400-al-sale-views-in-calm-theme/attachments/final-screen-c3ce80cb9986774d069748d7725f6c5eb9898f4c.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U15-demo-accounts-se-74400-al-sale-views-in-calm-theme/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-217be8be73d519c902a9",
+          "file": "ui.spec.js",
+          "line": 32,
+          "column": 1
+        },
+        {
+          "title": "V3-U16 invalid login recovers and switching account isolates tickets mail and notifications",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 1871,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:28:08.189Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U16-invalid-login-re-e8d9c-kets-mail-and-notifications/attachments/final-screen-2234cd758db015f4c40413a620c8959659b54b1e.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U16-invalid-login-re-e8d9c-kets-mail-and-notifications/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-7e6977116f9c01c42dfa",
+          "file": "ui.spec.js",
+          "line": 35,
+          "column": 1
+        },
+        {
+          "title": "V3-U17 search filters empty state and pagination boundaries remain consistent",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1199,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:28:09.305Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U17-search-filters-e-437e6-oundaries-remain-consistent/attachments/final-screen-3892b8cd3b60181eb24d6db2ffd1d61578a1dc07.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U17-search-filters-e-437e6-oundaries-remain-consistent/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-2a2a53c7da9077462eb9",
+          "file": "ui.spec.js",
+          "line": 39,
+          "column": 1
+        },
+        {
+          "title": "V3-U18 invalid coupon keeps selected seat then closing confirmed hold releases it",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 1777,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:28:10.066Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U18-invalid-coupon-k-7ae78--confirmed-hold-releases-it/attachments/final-screen-40f0bb4853aa46800c461118fc14d30cb980d9dc.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U18-invalid-coupon-k-7ae78--confirmed-hold-releases-it/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-22e4ec1053a951835459",
+          "file": "ui.spec.js",
+          "line": 43,
+          "column": 1
+        },
+        {
+          "title": "V3-U19 membership request in flight disables repeat submission and close never reopens map",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1162,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:28:10.344Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U19-membership-reque-69bb6-and-close-never-reopens-map/attachments/final-screen-760b7f72449102f7a38ed6222370df6ce0893ecf.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U19-membership-reque-69bb6-and-close-never-reopens-map/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-8d29cb99d7287651673e",
+          "file": "ui.spec.js",
+          "line": 47,
+          "column": 1
+        },
+        {
+          "title": "V3-U20 contact edits survive reload and back to seat selection releases prior hold",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3137,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:28:10.511Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U20-contact-edits-su-33c11-lection-releases-prior-hold/attachments/final-screen-e517aed25bdc0bd6042108606a22cd066ec0d69b.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U20-contact-edits-su-33c11-lection-releases-prior-hold/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-52ef58a7e0b0401a6aef",
+          "file": "ui.spec.js",
+          "line": 51,
+          "column": 1
+        },
+        {
+          "title": "V3-U21 organizer rejects refund and buyer regains ticket QR with readable status",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1722,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:28:11.514Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U21-organizer-reject-47ecc-ket-QR-with-readable-status/attachments/final-screen-b6286ae50e6dad7b18e7dd6ac193127b739525aa.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U21-organizer-reject-47ecc-ket-QR-with-readable-status/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-a28fd52bfe669ebc30f4",
+          "file": "ui.spec.js",
+          "line": 55,
+          "column": 1
+        },
+        {
+          "title": "V3-U22 mobile organizer blocks reopens seat and pauses sale within own scope",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 1590,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:28:11.851Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U22-mobile-organizer-11774-auses-sale-within-own-scope/attachments/final-screen-216f902a2d5dd251a38391c6c10c21edd4266765.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U22-mobile-organizer-11774-auses-sale-within-own-scope/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-2f66098b4f33b8304afd",
+          "file": "ui.spec.js",
+          "line": 59,
+          "column": 1
+        },
+        {
+          "title": "V3-U23 holder markup stays literal on tickets and email without executing script",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2211,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:28:13.244Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U23-holder-markup-st-7c763-il-without-executing-script/attachments/final-screen-798a95a47d498b298e1486c95edcb5c005288dd6.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U23-holder-markup-st-7c763-il-without-executing-script/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-291e20d760c13980bad9",
+          "file": "ui.spec.js",
+          "line": 63,
+          "column": 1
+        },
+        {
+          "title": "V3-U24 General buyer completes purchase without membership and receives named ticket email",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 1900,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:28:13.448Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U24-General-buyer-co-8268a-receives-named-ticket-email/attachments/final-screen-863cca58c592fca641f9af1f4afc8597fb320177.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U24-General-buyer-co-8268a-receives-named-ticket-email/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-0550ffd49ec7d7187efb",
+          "file": "ui.spec.js",
+          "line": 67,
+          "column": 1
+        },
+        {
+          "title": "V3-U25 catalog network failure gives recovery instruction and reload restores events",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 893,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:28:13.655Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U25-catalog-network--6a6c7--and-reload-restores-events/attachments/final-screen-a1b22f29ff748ffcb54c4c50b169d52b435e3c0e.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-bug/artifacts/ui-V3-U25-catalog-network--6a6c7--and-reload-restores-events/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-eac4a112deb920f33e83",
+          "file": "ui.spec.js",
+          "line": 71,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-06T13:27:45.061Z",
+    "duration": 30440.009000000002,
+    "expected": 23,
+    "skipped": 0,
+    "unexpected": 5,
+    "flaky": 0
+  }
+}

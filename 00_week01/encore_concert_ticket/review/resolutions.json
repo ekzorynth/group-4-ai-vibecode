@@ -1,0 +1,21 @@
+{
+  "appliedUTC": "2026-11-06T11:55:31.453Z",
+  "before": 89,
+  "after": 89,
+  "reviewerFindings": 12,
+  "unresolvedInScope": 0,
+  "fixes": {
+    "R51-01": "A10เพิ่มtempfixtureMemberเปิดพร้อมสองeventและverifyก่อน/หลังtargetscope;accountpositivecontrols;ไม่อ้างroundชนิดที่schemaไม่มี",
+    "R51-02": "A03แยก4ผิด+รหัสถูกกับ5ผิด/ก่อนปลด1ms/ตรงขอบ15min",
+    "R51-03": "A12บังคับahead3/ETA240;wrongfloor120 แก้ค่าผิดในแผน",
+    "R51-04": "A59แยกTTLfixtureมีgrantจริง+waitingจริงก่อน899.999/900s",
+    "R51-05": "A45ให้foreignorganizerแก้event/seat/refundจริงและอ่านbefore/after;ownerทำได้",
+    "R52-01": "A54ใช้email254ที่local64/labels<=63และnegative255ต่าง1อักษร แก้ทั้งแผนและtest",
+    "R52-02": "A43ระบุsamefan GeneralAPIหลัง15ตามAT06;ลบblockedescape ไม่แต่งUI",
+    "R52-03": "A57/U22active+grantก่อนpause/cancel ตรวจSALE_UNAVAILABLEและsideeffects",
+    "R53-01": "A30เพิ่มcomponentretainedhold/seatที่720sแยกHTTPsweep/resaleguard พร้อมzeroorders",
+    "R53-02": "A36ตรวจrole/eventก่อนใช้บัตรและอ่านticketvalidก่อนscanคู่",
+    "R53-03": "A38แยกblockedC02ก่อนpause/รักษาholdเดิม และnewjoinระหว่างpause",
+    "R53-04": "ประกาศAT01–03สำหรับprotocol/bodybytes;A31ตรวจpending/amount/refund0/hold/noorder/mailหลังreject"
+  }
+}

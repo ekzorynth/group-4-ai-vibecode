@@ -1,0 +1,93 @@
+{
+  "accessed_date": "2026-11-06",
+  "items": [
+    {
+      "id": "REF09",
+      "title": "เลือกโซน ที่นั่ง และกรอกข้อมูลผู้ถือบัตร",
+      "source": "Eventpop · ภาพขั้นตอนซื้อบัตรระบุที่นั่ง",
+      "url": "https://support.eventpop.me/en/how-to-buy-seating-ticket",
+      "image": "images/eventpop-seating-guide.png",
+      "own": "../exploration/v3-member-valid.png",
+      "requirements": "FR07 FR08 FR09 FR10",
+      "tests": "A15 A16 A19 A20 A46 A54 U01 U03 U18 U20",
+      "note": "ภาพขั้นตอนจากคู่มือสาธารณะประกอบด้วยเลือกโซน ที่นั่ง และข้อมูลผู้ถือบัตร ENCORE ใช้สถานะที่นั่งแยกกัน ตรวจข้อมูลรายใบ และปุ่มใช้ข้อมูลผู้ซื้อกับบัตรทุกใบ สี จำนวนที่นั่ง และเวลาจองใช้กฎ ENCORE"
+    },
+    {
+      "id": "REF10",
+      "title": "ภาพหน้ารอคิวก่อนซื้อบัตร",
+      "source": "Eventpop · ภาพขั้นตอนเข้าคิวจากคู่มือ",
+      "url": "https://support.eventpop.me/en/queuing",
+      "image": "images/eventpop-queue-guide.png",
+      "own": "../exploration/v3-queue.png",
+      "requirements": "FR03 FR04 FR05",
+      "tests": "A11 A12 A13 A56 A59 U04 U19",
+      "note": "ใช้เทียบการแสดงหมายเลขคิวและสถานะก่อนเข้าซื้อ ภาพนี้มาจากคู่มือ ไม่ใช่คิวสด ENCORE ไม่ได้ใช้บริการ Queue-it หรืออีเมลแจ้งคิวตามต้นทาง และอายุสิทธิ์/สูตรรอเป็นกฎของ ENCORE"
+    },
+    {
+      "id": "REF07",
+      "title": "ค้นหาและเลือกคอนเสิร์ต",
+      "source": "Eventpop · หน้ารวมงาน",
+      "url": "https://www.eventpop.me/",
+      "image": "images/eventpop-catalog-page.jpg",
+      "own": "../exploration/v3-member-catalog-light.png",
+      "requirements": "FR02 FR07",
+      "tests": "A04 A44 U08 U15 U17",
+      "note": "ใช้แนวทางการ์ดงานที่แสดงโปสเตอร์ วันเวลา และสถานที่ ENCORE เพิ่มการแบ่งหน้า 6 งานและแยกรอบตามบัญชีตามโจทย์ผู้ใช้"
+    },
+    {
+      "id": "REF08",
+      "title": "เข้าสู่ระบบก่อนซื้อบัตร",
+      "source": "Eventpop · หน้าต่างเข้าสู่ระบบ",
+      "url": "https://www.eventpop.me/",
+      "image": "images/eventpop-login-page.jpg",
+      "own": "../exploration/v3-demo-accounts-light.png",
+      "requirements": "FR01 FR03",
+      "tests": "A01 A02 A03 A45 U02 U15 U16",
+      "note": "เทียบการแยกขั้นเข้าสู่ระบบจากการเลือกงาน ENCORE ใช้ชื่อผู้ใช้หรืออีเมลและรหัสผ่าน พร้อมบัญชีทดลองตามโจทย์ ไม่ได้รองรับการเข้าสู่ระบบด้วยผู้ให้บริการภายนอกเหมือนภาพต้นทาง"
+    },
+    {
+      "id": "REF02",
+      "title": "สิทธิ์ซื้อรอบสมาชิก",
+      "source": "Live Nation Tero · คู่มือ Presale",
+      "url": "https://www.livenationtero.co.th/en/livenationteropresale",
+      "image": "images/livenation-presale-guide-page.jpg",
+      "own": "../exploration/v3-member-valid.png",
+      "requirements": "FR02 FR03 FR05 FR06 FR08",
+      "tests": "A06 A07 A09 A10 A13 A14 A43 A44 U01 U10 U19",
+      "note": "ภาพเป็นหน้าคู่มือทางการ ไม่ใช่หน้าซื้อบัตรที่เข้าสู่ระบบแล้ว การกรอกหมายเลขสมาชิกและเพดาน 2 ใบเป็นกฎ ENCORE ที่ผู้ใช้กำหนด ไม่ใช่ข้อสรุปว่านโยบายต้นทางเหมือนกัน"
+    },
+    {
+      "id": "REF01",
+      "title": "รอคิวและเข้าซื้อเมื่อถึงคิว",
+      "source": "Ticketmelon · คู่มือระบบคิว",
+      "url": "https://organizer.ticketmelon.com/help-center/how-does-the-queueing-system-work",
+      "image": "images/ticketmelon-queue-page.jpg",
+      "own": "../exploration/v3-queue.png",
+      "requirements": "FR04 FR05",
+      "tests": "A11 A12 A56 A59 U04 U19",
+      "note": "ภาพแสดงคำอธิบายขั้นตอนจากคู่มือ ไม่ใช่ภาพคิวสด ENCORE ใช้หมายเลขคิว จำนวนคนก่อนหน้า เวลารอโดยประมาณ และพาไปขั้นถัดไปอัตโนมัติ สูตรเวลาและจำนวนผู้ซื้อพร้อมกันเป็นสมมติฐานของระบบทดลอง"
+    },
+    {
+      "id": "REF04",
+      "title": "คำแนะนำชำระเงินและรหัสอ้างอิง",
+      "source": "Ticketmelon · คู่มือ ATM / iBanking / Counter Service",
+      "url": "https://organizer.ticketmelon.com/help-center/how-to-pay-with-atm-ibanking-counter-service",
+      "image": "images/ticketmelon-payment-step-3.png",
+      "own": "../exploration/v3-method-qr.png",
+      "requirements": "FR10 FR11 FR12",
+      "tests": "A22 A23 A24 A25 A26 A28 A29 A30 A47 A50 U11 U12 U13 U14 U24",
+      "note": "ภาพประกอบจากคู่มือแสดงการตรวจยอดและใบอ้างอิง ENCORE ใช้แนวคิดรหัสอ้างอิงและเวลาหมดอายุ แต่ QR เป็นรหัสทดลอง ไม่โอนเงินจริง และไม่ได้เพิ่ม ATM/iBanking เป็นช่องทางใหม่"
+    },
+    {
+      "id": "REF05",
+      "title": "บัตรอิเล็กทรอนิกส์และข้อมูลผู้ถือบัตร",
+      "source": "Eventpop · คู่มือ E-Ticket",
+      "url": "https://support.eventpop.me/en/how-to-download-and-use-e-ticket",
+      "image": "images/eventpop-eticket.png",
+      "own": "../exploration/v3-tickets.png",
+      "requirements": "FR09 FR13 FR14 FR15 FR16",
+      "tests": "A19 A20 A32 A33 A34 A36 A51 A55 A58 U01 U07 U16 U23 U24",
+      "note": "เทียบการแสดงชื่อผู้ถือ ข้อมูลงาน และ QR บนบัตร ENCORE แสดงบัตรในบัญชีและกล่องอีเมลทดลอง ตรวจรหัส QR ด้วยตัวถอดรหัสอิสระ และจำกัดการเข้าถึงตามเจ้าของ"
+    }
+  ]
+}

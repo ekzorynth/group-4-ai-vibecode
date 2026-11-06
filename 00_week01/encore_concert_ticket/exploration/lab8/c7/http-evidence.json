@@ -1,0 +1,3029 @@
+[
+  {
+    "at": "2026-11-06T11:19:41.577Z",
+    "method": "POST",
+    "path": "test/reset",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:41.603Z",
+    "method": "POST",
+    "path": "login",
+    "status": 200,
+    "response": {
+      "user": {
+        "id": "fan",
+        "email": "fan@demo.test",
+        "username": "fan",
+        "name": "มายด์ ทดลอง",
+        "role": "buyer",
+        "presale": true
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:41.604Z",
+    "method": "POST",
+    "path": "test/clock",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1794020399999
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:41.605Z",
+    "method": "GET",
+    "path": "orders",
+    "status": 200,
+    "response": {
+      "orders": [],
+      "now": 1794020399999
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:41.606Z",
+    "method": "POST",
+    "path": "test/clock",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1794020400000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:41.607Z",
+    "method": "GET",
+    "path": "orders",
+    "status": 401,
+    "response": {
+      "error": "AUTH_REQUIRED",
+      "message": "กรุณาเข้าสู่ระบบก่อน",
+      "now": 1794020400000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:41.815Z",
+    "method": "POST",
+    "path": "test/reset",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:41.842Z",
+    "method": "POST",
+    "path": "login",
+    "status": 401,
+    "response": {
+      "error": "LOGIN_INVALID",
+      "message": "ชื่อผู้ใช้ อีเมล หรือรหัสผ่านไม่ถูกต้อง",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:41.869Z",
+    "method": "POST",
+    "path": "login",
+    "status": 401,
+    "response": {
+      "error": "LOGIN_INVALID",
+      "message": "ชื่อผู้ใช้ อีเมล หรือรหัสผ่านไม่ถูกต้อง",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:41.896Z",
+    "method": "POST",
+    "path": "login",
+    "status": 401,
+    "response": {
+      "error": "LOGIN_INVALID",
+      "message": "ชื่อผู้ใช้ อีเมล หรือรหัสผ่านไม่ถูกต้อง",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:41.926Z",
+    "method": "POST",
+    "path": "login",
+    "status": 401,
+    "response": {
+      "error": "LOGIN_INVALID",
+      "message": "ชื่อผู้ใช้ อีเมล หรือรหัสผ่านไม่ถูกต้อง",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:41.954Z",
+    "method": "POST",
+    "path": "login",
+    "status": 429,
+    "response": {
+      "error": "LOGIN_INVALID",
+      "message": "ชื่อผู้ใช้ อีเมล หรือรหัสผ่านไม่ถูกต้อง",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:41.956Z",
+    "method": "POST",
+    "path": "test/clock",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934899999
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:41.956Z",
+    "method": "POST",
+    "path": "login",
+    "status": 429,
+    "response": {
+      "error": "LOGIN_LOCKED",
+      "message": "ลองเข้าสู่ระบบใหม่ใน 15 นาที",
+      "now": 1793934899999
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:41.957Z",
+    "method": "POST",
+    "path": "test/clock",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934900000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:41.984Z",
+    "method": "POST",
+    "path": "login",
+    "status": 200,
+    "response": {
+      "user": {
+        "id": "fan",
+        "email": "fan@demo.test",
+        "username": "fan",
+        "name": "มายด์ ทดลอง",
+        "role": "buyer",
+        "presale": true
+      },
+      "now": 1793934900000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.188Z",
+    "method": "POST",
+    "path": "test/reset",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.215Z",
+    "method": "POST",
+    "path": "login",
+    "status": 200,
+    "response": {
+      "user": {
+        "id": "fan",
+        "email": "fan@demo.test",
+        "username": "fan",
+        "name": "มายด์ ทดลอง",
+        "role": "buyer",
+        "presale": true
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.217Z",
+    "method": "POST",
+    "path": "queue",
+    "status": 200,
+    "response": {
+      "queue": {
+        "status": "active",
+        "number": "Q000001",
+        "position": 0,
+        "ahead": 0,
+        "estimated_wait_seconds": 0,
+        "expires": 1793934900000,
+        "round": "member",
+        "starts": 1793934000000,
+        "limit": 2
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.218Z",
+    "method": "POST",
+    "path": "membership/verify",
+    "status": 200,
+    "response": {
+      "verified": true,
+      "round": "member",
+      "expires": 1793934900000,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.219Z",
+    "method": "POST",
+    "path": "holds",
+    "status": 201,
+    "response": {
+      "hold": {
+        "id": "a34323f9-f70b-4496-b993-46b5020877e3",
+        "user": "fan",
+        "event": "neon",
+        "seats": [
+          "C01"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 1800,
+          "discount": 0,
+          "fee": 30,
+          "vat": 2,
+          "total": 1832,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "member",
+        "checkout": null,
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.220Z",
+    "method": "POST",
+    "path": "test/clock",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934599999
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.222Z",
+    "method": "GET",
+    "path": "active-hold",
+    "status": 200,
+    "response": {
+      "hold": {
+        "id": "a34323f9-f70b-4496-b993-46b5020877e3",
+        "user": "fan",
+        "event": "neon",
+        "seats": [
+          "C01"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 1800,
+          "discount": 0,
+          "fee": 30,
+          "vat": 2,
+          "total": 1832,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "member",
+        "checkout": null,
+        "payment": null
+      },
+      "now": 1793934599999
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.223Z",
+    "method": "POST",
+    "path": "test/clock",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934600000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.224Z",
+    "method": "GET",
+    "path": "active-hold",
+    "status": 200,
+    "response": {
+      "hold": null,
+      "now": 1793934600000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.226Z",
+    "method": "POST",
+    "path": "pay",
+    "status": 409,
+    "response": {
+      "error": "HOLD_EXPIRED",
+      "message": "หมดเวลาจอง กรุณาเลือกที่นั่งใหม่",
+      "now": 1793934600000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.227Z",
+    "method": "GET",
+    "path": "seats?event=neon",
+    "status": 200,
+    "response": {
+      "event": {
+        "id": "neon",
+        "tag": "INDIE / SYNTH POP",
+        "title": "NEON AFTERGLOW",
+        "thai": "ค่ำคืนที่เราเปล่งประกายไปด้วยกัน",
+        "artist": "LUNA / THE MIDNIGHT CLUB / WAVE",
+        "date": "12 ธันวาคม 2569",
+        "time": "18:00",
+        "venue": "Encore Hall · กรุงเทพฯ",
+        "start": "2026-12-12T11:00:00Z",
+        "sale": "2026-11-01T03:00:00Z",
+        "end": "2026-12-12T10:00:00Z",
+        "theme": "neon",
+        "from": 1800,
+        "state": "on_sale",
+        "round": "member",
+        "schedule": [
+          {
+            "kind": "member",
+            "start": 1793934000000,
+            "end": 1793952000000
+          },
+          {
+            "kind": "general",
+            "start": 1793952000000,
+            "end": 1797069600000
+          }
+        ],
+        "saleRound": {
+          "kind": "member",
+          "start": 1793934000000,
+          "end": 1793952000000
+        },
+        "limit": 2,
+        "status": "available"
+      },
+      "seats": [
+        {
+          "id": "A01",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "A02",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "A03",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "sold"
+        },
+        {
+          "id": "A04",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "sold"
+        },
+        {
+          "id": "A05",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "A06",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "A07",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "A08",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "A09",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "A10",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "A11",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "A12",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "B01",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "B02",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "B03",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "B04",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "B05",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "B06",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "B07",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "B08",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "B09",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "sold"
+        },
+        {
+          "id": "B10",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "B11",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "B12",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "C01",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "C02",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "C03",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "C04",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "C05",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "C06",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "sold"
+        },
+        {
+          "id": "C07",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "C08",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "C09",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "C10",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "C11",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "C12",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "D01",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "D02",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "D03",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "D04",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "D05",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "D06",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "D07",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "D08",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "D09",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "D10",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "sold"
+        },
+        {
+          "id": "D11",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "D12",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        }
+      ],
+      "now": 1793934600000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.431Z",
+    "method": "POST",
+    "path": "test/reset",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.457Z",
+    "method": "POST",
+    "path": "login",
+    "status": 200,
+    "response": {
+      "user": {
+        "id": "fan",
+        "email": "fan@demo.test",
+        "username": "fan",
+        "name": "มายด์ ทดลอง",
+        "role": "buyer",
+        "presale": true
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.458Z",
+    "method": "POST",
+    "path": "queue",
+    "status": 200,
+    "response": {
+      "queue": {
+        "status": "active",
+        "number": "Q000002",
+        "position": 0,
+        "ahead": 0,
+        "estimated_wait_seconds": 0,
+        "expires": 1793934900000,
+        "round": "member",
+        "starts": 1793934000000,
+        "limit": 2
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.460Z",
+    "method": "POST",
+    "path": "membership/verify",
+    "status": 200,
+    "response": {
+      "verified": true,
+      "round": "member",
+      "expires": 1793934900000,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.461Z",
+    "method": "POST",
+    "path": "test/clock",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934899999
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.462Z",
+    "method": "GET",
+    "path": "queue?event=neon&round=member",
+    "status": 200,
+    "response": {
+      "queue": {
+        "status": "active",
+        "number": "Q000002",
+        "position": 0,
+        "ahead": 0,
+        "estimated_wait_seconds": 0,
+        "expires": 1793934900000,
+        "round": "member",
+        "starts": 1793934000000,
+        "limit": 2
+      },
+      "now": 1793934899999
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.462Z",
+    "method": "GET",
+    "path": "seats?event=neon",
+    "status": 200,
+    "response": {
+      "event": {
+        "id": "neon",
+        "tag": "INDIE / SYNTH POP",
+        "title": "NEON AFTERGLOW",
+        "thai": "ค่ำคืนที่เราเปล่งประกายไปด้วยกัน",
+        "artist": "LUNA / THE MIDNIGHT CLUB / WAVE",
+        "date": "12 ธันวาคม 2569",
+        "time": "18:00",
+        "venue": "Encore Hall · กรุงเทพฯ",
+        "start": "2026-12-12T11:00:00Z",
+        "sale": "2026-11-01T03:00:00Z",
+        "end": "2026-12-12T10:00:00Z",
+        "theme": "neon",
+        "from": 1800,
+        "state": "on_sale",
+        "round": "member",
+        "schedule": [
+          {
+            "kind": "member",
+            "start": 1793934000000,
+            "end": 1793952000000
+          },
+          {
+            "kind": "general",
+            "start": 1793952000000,
+            "end": 1797069600000
+          }
+        ],
+        "saleRound": {
+          "kind": "member",
+          "start": 1793934000000,
+          "end": 1793952000000
+        },
+        "limit": 2,
+        "status": "available"
+      },
+      "seats": [
+        {
+          "id": "A01",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "A02",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "A03",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "sold"
+        },
+        {
+          "id": "A04",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "sold"
+        },
+        {
+          "id": "A05",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "A06",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "A07",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "A08",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "A09",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "A10",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "A11",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "A12",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "B01",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "B02",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "B03",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "B04",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "B05",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "B06",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "B07",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "B08",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "B09",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "sold"
+        },
+        {
+          "id": "B10",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "B11",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "B12",
+          "zone": "VIP",
+          "price": 3200,
+          "status": "available"
+        },
+        {
+          "id": "C01",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "C02",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "C03",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "C04",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "C05",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "C06",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "sold"
+        },
+        {
+          "id": "C07",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "C08",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "C09",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "C10",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "C11",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "C12",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "D01",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "D02",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "D03",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "D04",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "D05",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "D06",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "D07",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "D08",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "D09",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "D10",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "sold"
+        },
+        {
+          "id": "D11",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        },
+        {
+          "id": "D12",
+          "zone": "REGULAR",
+          "price": 1800,
+          "status": "available"
+        }
+      ],
+      "now": 1793934899999
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.463Z",
+    "method": "POST",
+    "path": "test/clock",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934900000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.463Z",
+    "method": "GET",
+    "path": "queue?event=neon&round=member",
+    "status": 200,
+    "response": {
+      "queue": {
+        "status": "expired",
+        "number": "Q000002",
+        "position": 0,
+        "ahead": 0,
+        "estimated_wait_seconds": 0,
+        "expires": 1793934900000,
+        "round": "member",
+        "starts": 1793934000000,
+        "limit": 2
+      },
+      "now": 1793934900000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.464Z",
+    "method": "GET",
+    "path": "seats?event=neon",
+    "status": 403,
+    "response": {
+      "error": "MEMBERSHIP_VERIFY_REQUIRED",
+      "message": "กรุณาตรวจสอบหมายเลขสมาชิกก่อนเลือกที่นั่ง",
+      "now": 1793934900000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.668Z",
+    "method": "POST",
+    "path": "test/reset",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.669Z",
+    "method": "POST",
+    "path": "test/clock",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793951999999
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.695Z",
+    "method": "POST",
+    "path": "login",
+    "status": 200,
+    "response": {
+      "user": {
+        "id": "fan",
+        "email": "fan@demo.test",
+        "username": "fan",
+        "name": "มายด์ ทดลอง",
+        "role": "buyer",
+        "presale": true
+      },
+      "now": 1793951999999
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.696Z",
+    "method": "POST",
+    "path": "queue",
+    "status": 200,
+    "response": {
+      "queue": {
+        "status": "active",
+        "number": "Q000003",
+        "position": 0,
+        "ahead": 0,
+        "estimated_wait_seconds": 0,
+        "expires": 1793952000000,
+        "round": "member",
+        "starts": 1793934000000,
+        "limit": 2
+      },
+      "now": 1793951999999
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.697Z",
+    "method": "POST",
+    "path": "membership/verify",
+    "status": 200,
+    "response": {
+      "verified": true,
+      "round": "member",
+      "expires": 1793952000000,
+      "now": 1793951999999
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.698Z",
+    "method": "POST",
+    "path": "holds",
+    "status": 201,
+    "response": {
+      "hold": {
+        "id": "c03690d9-a4d6-4a3b-88ee-f710161af742",
+        "user": "fan",
+        "event": "neon",
+        "seats": [
+          "C01"
+        ],
+        "expires": 1793952000000,
+        "status": "held",
+        "price": {
+          "subtotal": 1800,
+          "discount": 0,
+          "fee": 30,
+          "vat": 2,
+          "total": 1832,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "member",
+        "checkout": null,
+        "payment": null
+      },
+      "now": 1793951999999
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.698Z",
+    "method": "POST",
+    "path": "test/clock",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793952000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.699Z",
+    "method": "GET",
+    "path": "active-hold",
+    "status": 200,
+    "response": {
+      "hold": null,
+      "now": 1793952000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.700Z",
+    "method": "POST",
+    "path": "queue",
+    "status": 409,
+    "response": {
+      "error": "SALE_UNAVAILABLE",
+      "message": "ยังเข้าคิวรอบนี้ไม่ได้",
+      "now": 1793952000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.701Z",
+    "method": "POST",
+    "path": "pay",
+    "status": 409,
+    "response": {
+      "error": "HOLD_EXPIRED",
+      "message": "หมดเวลาจอง กรุณาเลือกที่นั่งใหม่",
+      "now": 1793952000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.727Z",
+    "method": "POST",
+    "path": "login",
+    "status": 200,
+    "response": {
+      "user": {
+        "id": "general",
+        "email": "general@demo.test",
+        "username": "general",
+        "name": "เจน ทั่วไป",
+        "role": "buyer",
+        "presale": false
+      },
+      "now": 1793952000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.728Z",
+    "method": "GET",
+    "path": "events",
+    "status": 200,
+    "response": {
+      "events": [
+        {
+          "id": "neon",
+          "tag": "INDIE / SYNTH POP",
+          "title": "NEON AFTERGLOW",
+          "thai": "ค่ำคืนที่เราเปล่งประกายไปด้วยกัน",
+          "artist": "LUNA / THE MIDNIGHT CLUB / WAVE",
+          "date": "12 ธันวาคม 2569",
+          "time": "18:00",
+          "venue": "Encore Hall · กรุงเทพฯ",
+          "start": "2026-12-12T11:00:00Z",
+          "sale": "2026-11-01T03:00:00Z",
+          "end": "2026-12-12T10:00:00Z",
+          "theme": "neon",
+          "from": 1800,
+          "state": "on_sale",
+          "round": "member",
+          "schedule": [
+            {
+              "kind": "member",
+              "start": 1793934000000,
+              "end": 1793952000000
+            }
+          ],
+          "saleRound": {
+            "kind": "member",
+            "start": 1793934000000,
+            "end": 1793952000000
+          },
+          "limit": 2,
+          "status": "closed"
+        },
+        {
+          "id": "sunset",
+          "tag": "FESTIVAL / ALTERNATIVE",
+          "title": "SUNSET FREQUENCY",
+          "thai": "ปล่อยใจไปกับเสียงเพลงยามเย็น",
+          "artist": "SOL / DAYDREAM / GOOD MONDAY",
+          "date": "19 ธันวาคม 2569",
+          "time": "16:00",
+          "venue": "Riverside Park · กรุงเทพฯ",
+          "start": "2026-12-19T09:00:00Z",
+          "sale": "2026-11-10T03:00:00Z",
+          "end": "2026-12-19T08:00:00Z",
+          "theme": "sunset",
+          "from": 1800,
+          "state": "on_sale",
+          "round": "member",
+          "schedule": [
+            {
+              "kind": "member",
+              "start": 1794279600000,
+              "end": 1794297600000
+            }
+          ],
+          "saleRound": {
+            "kind": "member",
+            "start": 1794279600000,
+            "end": 1794297600000
+          },
+          "limit": 2,
+          "status": "upcoming"
+        },
+        {
+          "id": "orbit",
+          "tag": "ELECTRONIC / LIVE",
+          "title": "ORBIT : THE LIVE",
+          "thai": "อีกหนึ่งวงโคจรของคนรักดนตรี",
+          "artist": "ORBIT / COSMIC KIDS",
+          "date": "26 ธันวาคม 2569",
+          "time": "19:00",
+          "venue": "Encore Hall · กรุงเทพฯ",
+          "start": "2026-12-26T12:00:00Z",
+          "sale": "2026-10-01T03:00:00Z",
+          "end": "2026-12-26T11:00:00Z",
+          "theme": "orbit",
+          "from": 1800,
+          "state": "on_sale",
+          "round": "member",
+          "schedule": [
+            {
+              "kind": "member",
+              "start": 1790823600000,
+              "end": 1790841600000
+            }
+          ],
+          "saleRound": {
+            "kind": "member",
+            "start": 1790823600000,
+            "end": 1790841600000
+          },
+          "limit": 2,
+          "status": "closed"
+        },
+        {
+          "id": "aurora",
+          "tag": "DREAM POP / LIVE",
+          "title": "AURORA BLOOM",
+          "thai": "ดอกไม้ แสงเหนือ และเพลงโปรด",
+          "artist": "VELVET SKY / NORTHLIGHT",
+          "date": "5 ธันวาคม 2569",
+          "time": "19:00",
+          "venue": "Bloom Arena · กรุงเทพฯ",
+          "start": "2026-12-05T12:00:00Z",
+          "sale": "2026-11-01T03:00:00Z",
+          "end": "2026-12-05T11:00:00Z",
+          "theme": "aurora",
+          "from": 1800,
+          "state": "on_sale",
+          "round": "member",
+          "schedule": [
+            {
+              "kind": "member",
+              "start": 1793502000000,
+              "end": 1793520000000
+            }
+          ],
+          "saleRound": {
+            "kind": "member",
+            "start": 1793502000000,
+            "end": 1793520000000
+          },
+          "limit": 2,
+          "status": "closed"
+        },
+        {
+          "id": "jazz",
+          "tag": "JAZZ / SOUL",
+          "title": "BLUE NOTE NIGHTS",
+          "thai": "ค่ำคืนแจ๊สที่อยากให้ยาวนาน",
+          "artist": "MELLOW QUARTET / IRIS SOUL",
+          "date": "6 ธันวาคม 2569",
+          "time": "20:00",
+          "venue": "Blue Room · กรุงเทพฯ",
+          "start": "2026-12-06T13:00:00Z",
+          "sale": "2026-11-01T03:00:00Z",
+          "end": "2026-12-06T12:00:00Z",
+          "theme": "jazz",
+          "from": 1800,
+          "state": "on_sale",
+          "round": "member",
+          "schedule": [
+            {
+              "kind": "member",
+              "start": 1793502000000,
+              "end": 1793520000000
+            }
+          ],
+          "saleRound": {
+            "kind": "member",
+            "start": 1793502000000,
+            "end": 1793520000000
+          },
+          "limit": 2,
+          "status": "closed"
+        },
+        {
+          "id": "rock",
+          "tag": "ROCK / ALTERNATIVE",
+          "title": "ELECTRIC REBELLION",
+          "thai": "ปล่อยเสียงให้สุด แล้วหยุดที่หน้าเวที",
+          "artist": "BLACK VOLT / THE REBELS",
+          "date": "13 ธันวาคม 2569",
+          "time": "18:00",
+          "venue": "Thunder Hall · กรุงเทพฯ",
+          "start": "2026-12-13T11:00:00Z",
+          "sale": "2026-11-01T03:00:00Z",
+          "end": "2026-12-13T10:00:00Z",
+          "theme": "rock",
+          "from": 1800,
+          "state": "on_sale",
+          "round": "member",
+          "schedule": [
+            {
+              "kind": "member",
+              "start": 1793502000000,
+              "end": 1793520000000
+            }
+          ],
+          "saleRound": {
+            "kind": "member",
+            "start": 1793502000000,
+            "end": 1793520000000
+          },
+          "limit": 2,
+          "status": "closed"
+        },
+        {
+          "id": "citypop",
+          "tag": "CITY POP / RETRO",
+          "title": "TOKYO AFTER HOURS",
+          "thai": "ขับผ่านแสงนีออนด้วยเพลงซิตี้ป๊อป",
+          "artist": "TOKYO FM / PEACH CASSETTE",
+          "date": "20 ธันวาคม 2569",
+          "time": "19:00",
+          "venue": "Skyline Studio · กรุงเทพฯ",
+          "start": "2026-12-20T12:00:00Z",
+          "sale": "2026-11-02T03:00:00Z",
+          "end": "2026-12-20T11:00:00Z",
+          "theme": "citypop",
+          "from": 1800,
+          "state": "on_sale",
+          "round": "member",
+          "schedule": [
+            {
+              "kind": "member",
+              "start": 1793588400000,
+              "end": 1793606400000
+            }
+          ],
+          "saleRound": {
+            "kind": "member",
+            "start": 1793588400000,
+            "end": 1793606400000
+          },
+          "limit": 2,
+          "status": "closed"
+        },
+        {
+          "id": "acoustic",
+          "tag": "ACOUSTIC / SINGER-SONGWRITER",
+          "title": "UNPLUGGED STORIES",
+          "thai": "เรื่องเล่าใกล้ตัวกับเสียงกีตาร์ที่คุ้นเคย",
+          "artist": "PAPER MOON / HOMEBOUND",
+          "date": "27 ธันวาคม 2569",
+          "time": "17:00",
+          "venue": "Garden Stage · กรุงเทพฯ",
+          "start": "2026-12-27T10:00:00Z",
+          "sale": "2026-11-01T03:00:00Z",
+          "end": "2026-12-27T09:00:00Z",
+          "theme": "acoustic",
+          "from": 1800,
+          "state": "on_sale",
+          "round": "member",
+          "schedule": [
+            {
+              "kind": "member",
+              "start": 1793502000000,
+              "end": 1793520000000
+            }
+          ],
+          "saleRound": {
+            "kind": "member",
+            "start": 1793502000000,
+            "end": 1793520000000
+          },
+          "limit": 2,
+          "status": "closed"
+        },
+        {
+          "id": "kpop",
+          "tag": "K-POP / DANCE",
+          "title": "STARDUST FAN FEST",
+          "thai": "รวมพลคนรักจังหวะและแสงดาว",
+          "artist": "NOVA GIRLS / STAR UNIT",
+          "date": "9 มกราคม 2570",
+          "time": "18:00",
+          "venue": "Galaxy Arena · กรุงเทพฯ",
+          "start": "2027-01-09T11:00:00Z",
+          "sale": "2026-11-15T03:00:00Z",
+          "end": "2027-01-09T10:00:00Z",
+          "theme": "kpop",
+          "from": 1800,
+          "state": "on_sale",
+          "round": "member",
+          "schedule": [
+            {
+              "kind": "member",
+              "start": 1794711600000,
+              "end": 1794729600000
+            }
+          ],
+          "saleRound": {
+            "kind": "member",
+            "start": 1794711600000,
+            "end": 1794729600000
+          },
+          "limit": 2,
+          "status": "upcoming"
+        },
+        {
+          "id": "hiphop",
+          "tag": "HIP HOP / R&B",
+          "title": "RHYTHM DISTRICT",
+          "thai": "จังหวะของเมืองที่ไม่มีวันหลับ",
+          "artist": "EASTSIDE / VIOLET R&B",
+          "date": "16 มกราคม 2570",
+          "time": "19:00",
+          "venue": "District Warehouse · กรุงเทพฯ",
+          "start": "2027-01-16T12:00:00Z",
+          "sale": "2026-11-20T03:00:00Z",
+          "end": "2027-01-16T11:00:00Z",
+          "theme": "hiphop",
+          "from": 1800,
+          "state": "on_sale",
+          "round": "member",
+          "schedule": [
+            {
+              "kind": "member",
+              "start": 1795143600000,
+              "end": 1795161600000
+            }
+          ],
+          "saleRound": {
+            "kind": "member",
+            "start": 1795143600000,
+            "end": 1795161600000
+          },
+          "limit": 2,
+          "status": "upcoming"
+        },
+        {
+          "id": "folk",
+          "tag": "FOLK / INDIE",
+          "title": "FOREST ECHOES",
+          "thai": "พักใจใต้ร่มไม้แล้วฟังเพลงด้วยกัน",
+          "artist": "WOODLAND / LITTLE RIVER",
+          "date": "23 มกราคม 2570",
+          "time": "16:00",
+          "venue": "Greenfield Park · กรุงเทพฯ",
+          "start": "2027-01-23T09:00:00Z",
+          "sale": "2026-12-01T03:00:00Z",
+          "end": "2027-01-23T08:00:00Z",
+          "theme": "folk",
+          "from": 1800,
+          "state": "on_sale",
+          "round": "member",
+          "schedule": [
+            {
+              "kind": "member",
+              "start": 1796094000000,
+              "end": 1796112000000
+            }
+          ],
+          "saleRound": {
+            "kind": "member",
+            "start": 1796094000000,
+            "end": 1796112000000
+          },
+          "limit": 2,
+          "status": "upcoming"
+        },
+        {
+          "id": "midnight",
+          "tag": "ELECTRONIC / TECHNO",
+          "title": "MIDNIGHT SIGNAL",
+          "thai": "คลื่นเสียงสุดท้ายก่อนรุ่งสาง",
+          "artist": "PHASE ZERO / SIGNAL 88",
+          "date": "31 ธันวาคม 2569",
+          "time": "20:00",
+          "venue": "Pulse Hall · กรุงเทพฯ",
+          "start": "2026-12-31T13:00:00Z",
+          "sale": "2026-10-15T03:00:00Z",
+          "end": "2026-12-31T12:00:00Z",
+          "theme": "midnight",
+          "from": 1800,
+          "state": "on_sale",
+          "round": "member",
+          "schedule": [
+            {
+              "kind": "member",
+              "start": 1792033200000,
+              "end": 1792051200000
+            }
+          ],
+          "saleRound": {
+            "kind": "member",
+            "start": 1792033200000,
+            "end": 1792051200000
+          },
+          "limit": 2,
+          "status": "closed"
+        }
+      ],
+      "now": 1793952000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.729Z",
+    "method": "GET",
+    "path": "events",
+    "status": 200,
+    "response": {
+      "events": [
+        {
+          "id": "neon",
+          "tag": "INDIE / SYNTH POP",
+          "title": "NEON AFTERGLOW",
+          "thai": "ค่ำคืนที่เราเปล่งประกายไปด้วยกัน",
+          "artist": "LUNA / THE MIDNIGHT CLUB / WAVE",
+          "date": "12 ธันวาคม 2569",
+          "time": "18:00",
+          "venue": "Encore Hall · กรุงเทพฯ",
+          "start": "2026-12-12T11:00:00Z",
+          "sale": "2026-11-01T03:00:00Z",
+          "end": "2026-12-12T10:00:00Z",
+          "theme": "neon",
+          "from": 1800,
+          "state": "on_sale",
+          "round": "general",
+          "schedule": [
+            {
+              "kind": "general",
+              "start": 1793952000000,
+              "end": 1797069600000
+            }
+          ],
+          "saleRound": {
+            "kind": "general",
+            "start": 1793952000000,
+            "end": 1797069600000
+          },
+          "limit": 4,
+          "status": "available"
+        },
+        {
+          "id": "sunset",
+          "tag": "FESTIVAL / ALTERNATIVE",
+          "title": "SUNSET FREQUENCY",
+          "thai": "ปล่อยใจไปกับเสียงเพลงยามเย็น",
+          "artist": "SOL / DAYDREAM / GOOD MONDAY",
+          "date": "19 ธันวาคม 2569",
+          "time": "16:00",
+          "venue": "Riverside Park · กรุงเทพฯ",
+          "start": "2026-12-19T09:00:00Z",
+          "sale": "2026-11-10T03:00:00Z",
+          "end": "2026-12-19T08:00:00Z",
+          "theme": "sunset",
+          "from": 1800,
+          "state": "on_sale",
+          "round": "general",
+          "schedule": [
+            {
+              "kind": "general",
+              "start": 1794297600000,
+              "end": 1797667200000
+            }
+          ],
+          "saleRound": {
+            "kind": "general",
+            "start": 1794297600000,
+            "end": 1797667200000
+          },
+          "limit": 4,
+          "status": "upcoming"
+        },
+        {
+          "id": "orbit",
+          "tag": "ELECTRONIC / LIVE",
+          "title": "ORBIT : THE LIVE",
+          "thai": "อีกหนึ่งวงโคจรของคนรักดนตรี",
+          "artist": "ORBIT / COSMIC KIDS",
+          "date": "26 ธันวาคม 2569",
+          "time": "19:00",
+          "venue": "Encore Hall · กรุงเทพฯ",
+          "start": "2026-12-26T12:00:00Z",
+          "sale": "2026-10-01T03:00:00Z",
+          "end": "2026-12-26T11:00:00Z",
+          "theme": "orbit",
+          "from": 1800,
+          "state": "on_sale",
+          "round": "general",
+          "schedule": [
+            {
+              "kind": "general",
+              "start": 1790841600000,
+              "end": 1798282800000
+            }
+          ],
+          "saleRound": {
+            "kind": "general",
+            "start": 1790841600000,
+            "end": 1798282800000
+          },
+          "limit": 4,
+          "status": "soldout"
+        },
+        {
+          "id": "aurora",
+          "tag": "DREAM POP / LIVE",
+          "title": "AURORA BLOOM",
+          "thai": "ดอกไม้ แสงเหนือ และเพลงโปรด",
+          "artist": "VELVET SKY / NORTHLIGHT",
+          "date": "5 ธันวาคม 2569",
+          "time": "19:00",
+          "venue": "Bloom Arena · กรุงเทพฯ",
+          "start": "2026-12-05T12:00:00Z",
+          "sale": "2026-11-01T03:00:00Z",
+          "end": "2026-12-05T11:00:00Z",
+          "theme": "aurora",
+          "from": 1800,
+          "state": "on_sale",
+          "round": "general",
+          "schedule": [
+            {
+              "kind": "general",
+              "start": 1793520000000,
+              "end": 1796468400000
+            }
+          ],
+          "saleRound": {
+            "kind": "general",
+            "start": 1793520000000,
+            "end": 1796468400000
+          },
+          "limit": 4,
+          "status": "available"
+        },
+        {
+          "id": "jazz",
+          "tag": "JAZZ / SOUL",
+          "title": "BLUE NOTE NIGHTS",
+          "thai": "ค่ำคืนแจ๊สที่อยากให้ยาวนาน",
+          "artist": "MELLOW QUARTET / IRIS SOUL",
+          "date": "6 ธันวาคม 2569",
+          "time": "20:00",
+          "venue": "Blue Room · กรุงเทพฯ",
+          "start": "2026-12-06T13:00:00Z",
+          "sale": "2026-11-01T03:00:00Z",
+          "end": "2026-12-06T12:00:00Z",
+          "theme": "jazz",
+          "from": 1800,
+          "state": "on_sale",
+          "round": "general",
+          "schedule": [
+            {
+              "kind": "general",
+              "start": 1793520000000,
+              "end": 1796558400000
+            }
+          ],
+          "saleRound": {
+            "kind": "general",
+            "start": 1793520000000,
+            "end": 1796558400000
+          },
+          "limit": 4,
+          "status": "available"
+        },
+        {
+          "id": "rock",
+          "tag": "ROCK / ALTERNATIVE",
+          "title": "ELECTRIC REBELLION",
+          "thai": "ปล่อยเสียงให้สุด แล้วหยุดที่หน้าเวที",
+          "artist": "BLACK VOLT / THE REBELS",
+          "date": "13 ธันวาคม 2569",
+          "time": "18:00",
+          "venue": "Thunder Hall · กรุงเทพฯ",
+          "start": "2026-12-13T11:00:00Z",
+          "sale": "2026-11-01T03:00:00Z",
+          "end": "2026-12-13T10:00:00Z",
+          "theme": "rock",
+          "from": 1800,
+          "state": "on_sale",
+          "round": "general",
+          "schedule": [
+            {
+              "kind": "general",
+              "start": 1793520000000,
+              "end": 1797156000000
+            }
+          ],
+          "saleRound": {
+            "kind": "general",
+            "start": 1793520000000,
+            "end": 1797156000000
+          },
+          "limit": 4,
+          "status": "available"
+        },
+        {
+          "id": "citypop",
+          "tag": "CITY POP / RETRO",
+          "title": "TOKYO AFTER HOURS",
+          "thai": "ขับผ่านแสงนีออนด้วยเพลงซิตี้ป๊อป",
+          "artist": "TOKYO FM / PEACH CASSETTE",
+          "date": "20 ธันวาคม 2569",
+          "time": "19:00",
+          "venue": "Skyline Studio · กรุงเทพฯ",
+          "start": "2026-12-20T12:00:00Z",
+          "sale": "2026-11-02T03:00:00Z",
+          "end": "2026-12-20T11:00:00Z",
+          "theme": "citypop",
+          "from": 1800,
+          "state": "on_sale",
+          "round": "general",
+          "schedule": [
+            {
+              "kind": "general",
+              "start": 1793606400000,
+              "end": 1797764400000
+            }
+          ],
+          "saleRound": {
+            "kind": "general",
+            "start": 1793606400000,
+            "end": 1797764400000
+          },
+          "limit": 4,
+          "status": "available"
+        },
+        {
+          "id": "acoustic",
+          "tag": "ACOUSTIC / SINGER-SONGWRITER",
+          "title": "UNPLUGGED STORIES",
+          "thai": "เรื่องเล่าใกล้ตัวกับเสียงกีตาร์ที่คุ้นเคย",
+          "artist": "PAPER MOON / HOMEBOUND",
+          "date": "27 ธันวาคม 2569",
+          "time": "17:00",
+          "venue": "Garden Stage · กรุงเทพฯ",
+          "start": "2026-12-27T10:00:00Z",
+          "sale": "2026-11-01T03:00:00Z",
+          "end": "2026-12-27T09:00:00Z",
+          "theme": "acoustic",
+          "from": 1800,
+          "state": "on_sale",
+          "round": "general",
+          "schedule": [
+            {
+              "kind": "general",
+              "start": 1793520000000,
+              "end": 1798362000000
+            }
+          ],
+          "saleRound": {
+            "kind": "general",
+            "start": 1793520000000,
+            "end": 1798362000000
+          },
+          "limit": 4,
+          "status": "available"
+        },
+        {
+          "id": "kpop",
+          "tag": "K-POP / DANCE",
+          "title": "STARDUST FAN FEST",
+          "thai": "รวมพลคนรักจังหวะและแสงดาว",
+          "artist": "NOVA GIRLS / STAR UNIT",
+          "date": "9 มกราคม 2570",
+          "time": "18:00",
+          "venue": "Galaxy Arena · กรุงเทพฯ",
+          "start": "2027-01-09T11:00:00Z",
+          "sale": "2026-11-15T03:00:00Z",
+          "end": "2027-01-09T10:00:00Z",
+          "theme": "kpop",
+          "from": 1800,
+          "state": "on_sale",
+          "round": "general",
+          "schedule": [
+            {
+              "kind": "general",
+              "start": 1794729600000,
+              "end": 1799488800000
+            }
+          ],
+          "saleRound": {
+            "kind": "general",
+            "start": 1794729600000,
+            "end": 1799488800000
+          },
+          "limit": 4,
+          "status": "upcoming"
+        },
+        {
+          "id": "hiphop",
+          "tag": "HIP HOP / R&B",
+          "title": "RHYTHM DISTRICT",
+          "thai": "จังหวะของเมืองที่ไม่มีวันหลับ",
+          "artist": "EASTSIDE / VIOLET R&B",
+          "date": "16 มกราคม 2570",
+          "time": "19:00",
+          "venue": "District Warehouse · กรุงเทพฯ",
+          "start": "2027-01-16T12:00:00Z",
+          "sale": "2026-11-20T03:00:00Z",
+          "end": "2027-01-16T11:00:00Z",
+          "theme": "hiphop",
+          "from": 1800,
+          "state": "on_sale",
+          "round": "general",
+          "schedule": [
+            {
+              "kind": "general",
+              "start": 1795161600000,
+              "end": 1800097200000
+            }
+          ],
+          "saleRound": {
+            "kind": "general",
+            "start": 1795161600000,
+            "end": 1800097200000
+          },
+          "limit": 4,
+          "status": "upcoming"
+        },
+        {
+          "id": "folk",
+          "tag": "FOLK / INDIE",
+          "title": "FOREST ECHOES",
+          "thai": "พักใจใต้ร่มไม้แล้วฟังเพลงด้วยกัน",
+          "artist": "WOODLAND / LITTLE RIVER",
+          "date": "23 มกราคม 2570",
+          "time": "16:00",
+          "venue": "Greenfield Park · กรุงเทพฯ",
+          "start": "2027-01-23T09:00:00Z",
+          "sale": "2026-12-01T03:00:00Z",
+          "end": "2027-01-23T08:00:00Z",
+          "theme": "folk",
+          "from": 1800,
+          "state": "on_sale",
+          "round": "general",
+          "schedule": [
+            {
+              "kind": "general",
+              "start": 1796112000000,
+              "end": 1800691200000
+            }
+          ],
+          "saleRound": {
+            "kind": "general",
+            "start": 1796112000000,
+            "end": 1800691200000
+          },
+          "limit": 4,
+          "status": "upcoming"
+        },
+        {
+          "id": "midnight",
+          "tag": "ELECTRONIC / TECHNO",
+          "title": "MIDNIGHT SIGNAL",
+          "thai": "คลื่นเสียงสุดท้ายก่อนรุ่งสาง",
+          "artist": "PHASE ZERO / SIGNAL 88",
+          "date": "31 ธันวาคม 2569",
+          "time": "20:00",
+          "venue": "Pulse Hall · กรุงเทพฯ",
+          "start": "2026-12-31T13:00:00Z",
+          "sale": "2026-10-15T03:00:00Z",
+          "end": "2026-12-31T12:00:00Z",
+          "theme": "midnight",
+          "from": 1800,
+          "state": "on_sale",
+          "round": "general",
+          "schedule": [
+            {
+              "kind": "general",
+              "start": 1792051200000,
+              "end": 1798718400000
+            }
+          ],
+          "saleRound": {
+            "kind": "general",
+            "start": 1792051200000,
+            "end": 1798718400000
+          },
+          "limit": 4,
+          "status": "soldout"
+        }
+      ],
+      "now": 1793952000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.730Z",
+    "method": "POST",
+    "path": "queue",
+    "status": 200,
+    "response": {
+      "queue": {
+        "status": "active",
+        "number": "Q000004",
+        "position": 0,
+        "ahead": 0,
+        "estimated_wait_seconds": 0,
+        "expires": 1793952900000,
+        "round": "general",
+        "starts": 1793952000000,
+        "limit": 4
+      },
+      "now": 1793952000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:42.736Z",
+    "method": "POST",
+    "path": "holds",
+    "status": 201,
+    "response": {
+      "hold": {
+        "id": "21b305bc-996a-4a52-a48a-4768d768cc9e",
+        "user": "general",
+        "event": "neon",
+        "seats": [
+          "C01",
+          "C02",
+          "C03"
+        ],
+        "expires": 1793952600000,
+        "status": "held",
+        "price": {
+          "subtotal": 5400,
+          "discount": 0,
+          "fee": 90,
+          "vat": 6,
+          "total": 5496,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            },
+            {
+              "seat": "C02",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            },
+            {
+              "seat": "C03",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "general",
+        "checkout": null,
+        "payment": null
+      },
+      "now": 1793952000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.058Z",
+    "method": "POST",
+    "path": "test/reset",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.059Z",
+    "method": "POST",
+    "path": "test/clock",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793933099999
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.083Z",
+    "method": "POST",
+    "path": "login",
+    "status": 200,
+    "response": {
+      "user": {
+        "id": "fan",
+        "email": "fan@demo.test",
+        "username": "fan",
+        "name": "มายด์ ทดลอง",
+        "role": "buyer",
+        "presale": true
+      },
+      "now": 1793933099999
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.084Z",
+    "method": "POST",
+    "path": "queue",
+    "status": 409,
+    "response": {
+      "error": "SALE_UNAVAILABLE",
+      "message": "ยังเข้าคิวรอบนี้ไม่ได้",
+      "now": 1793933099999
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.085Z",
+    "method": "POST",
+    "path": "test/clock",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793933100000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.085Z",
+    "method": "POST",
+    "path": "queue",
+    "status": 200,
+    "response": {
+      "queue": {
+        "status": "waiting",
+        "number": "Q000005",
+        "position": 1,
+        "ahead": 0,
+        "estimated_wait_seconds": 900,
+        "expires": 1793952000000,
+        "round": "member",
+        "starts": 1793934000000,
+        "limit": 2
+      },
+      "now": 1793933100000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.085Z",
+    "method": "POST",
+    "path": "test/clock",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793933999999
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.086Z",
+    "method": "GET",
+    "path": "queue?event=neon&round=member",
+    "status": 200,
+    "response": {
+      "queue": {
+        "status": "waiting",
+        "number": "Q000005",
+        "position": 1,
+        "ahead": 0,
+        "estimated_wait_seconds": 1,
+        "expires": 1793952000000,
+        "round": "member",
+        "starts": 1793934000000,
+        "limit": 2
+      },
+      "now": 1793933999999
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.086Z",
+    "method": "POST",
+    "path": "test/clock",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.087Z",
+    "method": "GET",
+    "path": "queue?event=neon&round=member",
+    "status": 200,
+    "response": {
+      "queue": {
+        "status": "active",
+        "number": "Q000005",
+        "position": 0,
+        "ahead": 0,
+        "estimated_wait_seconds": 0,
+        "expires": 1793934900000,
+        "round": "member",
+        "starts": 1793934000000,
+        "limit": 2
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.271Z",
+    "method": "POST",
+    "path": "test/reset",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.296Z",
+    "method": "POST",
+    "path": "login",
+    "status": 200,
+    "response": {
+      "user": {
+        "id": "fan",
+        "email": "fan@demo.test",
+        "username": "fan",
+        "name": "มายด์ ทดลอง",
+        "role": "buyer",
+        "presale": true
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.296Z",
+    "method": "POST",
+    "path": "queue",
+    "status": 200,
+    "response": {
+      "queue": {
+        "status": "active",
+        "number": "Q000006",
+        "position": 0,
+        "ahead": 0,
+        "estimated_wait_seconds": 0,
+        "expires": 1793934900000,
+        "round": "member",
+        "starts": 1793934000000,
+        "limit": 2
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.297Z",
+    "method": "POST",
+    "path": "membership/verify",
+    "status": 200,
+    "response": {
+      "verified": true,
+      "round": "member",
+      "expires": 1793934900000,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.298Z",
+    "method": "POST",
+    "path": "holds",
+    "status": 201,
+    "response": {
+      "hold": {
+        "id": "2c8c4883-f00c-4a57-9c4b-60d4d9fff705",
+        "user": "fan",
+        "event": "neon",
+        "seats": [
+          "C01",
+          "C02"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 3600,
+          "discount": 0,
+          "fee": 60,
+          "vat": 4,
+          "total": 3664,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            },
+            {
+              "seat": "C02",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "member",
+        "checkout": null,
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.298Z",
+    "method": "POST",
+    "path": "checkout",
+    "status": 200,
+    "response": {
+      "hold": {
+        "id": "2c8c4883-f00c-4a57-9c4b-60d4d9fff705",
+        "user": "fan",
+        "event": "neon",
+        "seats": [
+          "C01",
+          "C02"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 3600,
+          "discount": 0,
+          "fee": 60,
+          "vat": 4,
+          "total": 3664,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            },
+            {
+              "seat": "C02",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "member",
+        "checkout": {
+          "buyer": {
+            "name": "C7 Buyer",
+            "email": "c7@example.test",
+            "phone": "0812345678"
+          },
+          "holders": [
+            {
+              "seat": "C01",
+              "name": "C7 Buyer",
+              "email": "c7@example.test",
+              "phone": "0812345678"
+            },
+            {
+              "seat": "C02",
+              "name": "C7 Buyer",
+              "email": "c7@example.test",
+              "phone": "0812345678"
+            }
+          ]
+        },
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.299Z",
+    "method": "POST",
+    "path": "pay",
+    "status": 200,
+    "response": {
+      "status": "succeeded",
+      "order": "EN-65CF3EB6-DFB",
+      "replayed": false,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.300Z",
+    "method": "GET",
+    "path": "orders",
+    "status": 200,
+    "response": {
+      "orders": [
+        {
+          "id": "EN-65CF3EB6-DFB",
+          "user": "fan",
+          "hold": {
+            "id": "2c8c4883-f00c-4a57-9c4b-60d4d9fff705",
+            "user": "fan",
+            "event": "neon",
+            "seats": [
+              "C01",
+              "C02"
+            ],
+            "expires": 1793934600000,
+            "status": "paid",
+            "price": {
+              "subtotal": 3600,
+              "discount": 0,
+              "fee": 60,
+              "vat": 4,
+              "total": 3664,
+              "lines": [
+                {
+                  "seat": "C01",
+                  "net": 1800,
+                  "discount": 0,
+                  "fee": 30,
+                  "vat": 2
+                },
+                {
+                  "seat": "C02",
+                  "net": 1800,
+                  "discount": 0,
+                  "fee": 30,
+                  "vat": 2
+                }
+              ]
+            },
+            "round": "member",
+            "checkout": {
+              "buyer": {
+                "name": "C7 Buyer",
+                "email": "c7@example.test",
+                "phone": "0812345678"
+              },
+              "holders": [
+                {
+                  "seat": "C01",
+                  "name": "C7 Buyer",
+                  "email": "c7@example.test",
+                  "phone": "0812345678"
+                },
+                {
+                  "seat": "C02",
+                  "name": "C7 Buyer",
+                  "email": "c7@example.test",
+                  "phone": "0812345678"
+                }
+              ]
+            },
+            "payment": {
+              "id": "8e18148b-01c7-437a-a503-c8fff1c77e71",
+              "status": "succeeded",
+              "amount": 3664,
+              "refund_amount": 0,
+              "method": "qr"
+            }
+          },
+          "created": 1793934000000,
+          "tickets": [
+            {
+              "id": "87c004b7-c0e4-40c1-b06a-6d803efd93cf",
+              "order_id": "EN-65CF3EB6-DFB",
+              "event": "neon",
+              "seat": "C01",
+              "code": "a24fe7055a3b1aa893a3d9eeb529827bd435939d03aacef979310d3e9ad28615",
+              "status": "valid",
+              "net": 1800,
+              "fee": 30,
+              "vat": 2,
+              "holder": "{\"seat\":\"C01\",\"name\":\"C7 Buyer\",\"email\":\"c7@example.test\",\"phone\":\"0812345678\"}",
+              "refund_id": null,
+              "refund_amount": null,
+              "refund_status": null
+            },
+            {
+              "id": "726bd89b-ce53-41fe-9a78-d759790bb130",
+              "order_id": "EN-65CF3EB6-DFB",
+              "event": "neon",
+              "seat": "C02",
+              "code": "8c973833a0ab1cbb4327d040f98ca78e25f0fd869912309b26a1589a4af06a97",
+              "status": "valid",
+              "net": 1800,
+              "fee": 30,
+              "vat": 2,
+              "holder": "{\"seat\":\"C02\",\"name\":\"C7 Buyer\",\"email\":\"c7@example.test\",\"phone\":\"0812345678\"}",
+              "refund_id": null,
+              "refund_amount": null,
+              "refund_status": null
+            }
+          ]
+        }
+      ],
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.300Z",
+    "method": "POST",
+    "path": "test/clock",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1796814000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.323Z",
+    "method": "POST",
+    "path": "login",
+    "status": 200,
+    "response": {
+      "user": {
+        "id": "fan",
+        "email": "fan@demo.test",
+        "username": "fan",
+        "name": "มายด์ ทดลอง",
+        "role": "buyer",
+        "presale": true
+      },
+      "now": 1796814000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.324Z",
+    "method": "POST",
+    "path": "refunds",
+    "status": 201,
+    "response": {
+      "refund": "bb8e6a88-4932-48bb-ad0b-00fd687b313f",
+      "amount": 1800,
+      "now": 1796814000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.325Z",
+    "method": "POST",
+    "path": "test/clock",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1796814000001
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.325Z",
+    "method": "POST",
+    "path": "refunds",
+    "status": 409,
+    "response": {
+      "error": "REFUND_CUTOFF",
+      "message": "ต้องขอคืนก่อนเริ่มงานอย่างน้อย 72 ชั่วโมง",
+      "now": 1796814000001
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.511Z",
+    "method": "POST",
+    "path": "test/reset",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.535Z",
+    "method": "POST",
+    "path": "login",
+    "status": 200,
+    "response": {
+      "user": {
+        "id": "fan",
+        "email": "fan@demo.test",
+        "username": "fan",
+        "name": "มายด์ ทดลอง",
+        "role": "buyer",
+        "presale": true
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.536Z",
+    "method": "POST",
+    "path": "queue",
+    "status": 200,
+    "response": {
+      "queue": {
+        "status": "active",
+        "number": "Q000007",
+        "position": 0,
+        "ahead": 0,
+        "estimated_wait_seconds": 0,
+        "expires": 1793934900000,
+        "round": "member",
+        "starts": 1793934000000,
+        "limit": 2
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.536Z",
+    "method": "POST",
+    "path": "membership/verify",
+    "status": 200,
+    "response": {
+      "verified": true,
+      "round": "member",
+      "expires": 1793934900000,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.537Z",
+    "method": "POST",
+    "path": "holds",
+    "status": 201,
+    "response": {
+      "hold": {
+        "id": "8dbb2f91-12ce-4e80-ba0a-066c392dd986",
+        "user": "fan",
+        "event": "neon",
+        "seats": [
+          "C01"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 1800,
+          "discount": 0,
+          "fee": 30,
+          "vat": 2,
+          "total": 1832,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "member",
+        "checkout": null,
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.538Z",
+    "method": "POST",
+    "path": "checkout",
+    "status": 200,
+    "response": {
+      "hold": {
+        "id": "8dbb2f91-12ce-4e80-ba0a-066c392dd986",
+        "user": "fan",
+        "event": "neon",
+        "seats": [
+          "C01"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 1800,
+          "discount": 0,
+          "fee": 30,
+          "vat": 2,
+          "total": 1832,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "member",
+        "checkout": {
+          "buyer": {
+            "name": "C7 Buyer",
+            "email": "c7@example.test",
+            "phone": "0812345678"
+          },
+          "holders": [
+            {
+              "seat": "C01",
+              "name": "C7 Buyer",
+              "email": "c7@example.test",
+              "phone": "0812345678"
+            }
+          ]
+        },
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.538Z",
+    "method": "POST",
+    "path": "pay",
+    "status": 200,
+    "response": {
+      "status": "pending",
+      "payment": "4a81e971-2d57-4c2e-bf68-158b8ee5d36a",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.538Z",
+    "method": "POST",
+    "path": "test/clock",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934719999
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.539Z",
+    "method": "POST",
+    "path": "test/callback",
+    "status": 200,
+    "response": {
+      "status": "succeeded",
+      "order": "EN-B8E2D3F2-FA8",
+      "replayed": false,
+      "now": 1793934719999
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.721Z",
+    "method": "POST",
+    "path": "test/reset",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.745Z",
+    "method": "POST",
+    "path": "login",
+    "status": 200,
+    "response": {
+      "user": {
+        "id": "fan",
+        "email": "fan@demo.test",
+        "username": "fan",
+        "name": "มายด์ ทดลอง",
+        "role": "buyer",
+        "presale": true
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.746Z",
+    "method": "POST",
+    "path": "queue",
+    "status": 200,
+    "response": {
+      "queue": {
+        "status": "active",
+        "number": "Q000008",
+        "position": 0,
+        "ahead": 0,
+        "estimated_wait_seconds": 0,
+        "expires": 1793934900000,
+        "round": "member",
+        "starts": 1793934000000,
+        "limit": 2
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.747Z",
+    "method": "POST",
+    "path": "membership/verify",
+    "status": 200,
+    "response": {
+      "verified": true,
+      "round": "member",
+      "expires": 1793934900000,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.747Z",
+    "method": "POST",
+    "path": "holds",
+    "status": 201,
+    "response": {
+      "hold": {
+        "id": "d9017bec-b570-4f18-a044-5d045f7ce5aa",
+        "user": "fan",
+        "event": "neon",
+        "seats": [
+          "C01"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 1800,
+          "discount": 0,
+          "fee": 30,
+          "vat": 2,
+          "total": 1832,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "member",
+        "checkout": null,
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.748Z",
+    "method": "POST",
+    "path": "checkout",
+    "status": 200,
+    "response": {
+      "hold": {
+        "id": "d9017bec-b570-4f18-a044-5d045f7ce5aa",
+        "user": "fan",
+        "event": "neon",
+        "seats": [
+          "C01"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 1800,
+          "discount": 0,
+          "fee": 30,
+          "vat": 2,
+          "total": 1832,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "member",
+        "checkout": {
+          "buyer": {
+            "name": "C7 Buyer",
+            "email": "c7@example.test",
+            "phone": "0812345678"
+          },
+          "holders": [
+            {
+              "seat": "C01",
+              "name": "C7 Buyer",
+              "email": "c7@example.test",
+              "phone": "0812345678"
+            }
+          ]
+        },
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.748Z",
+    "method": "POST",
+    "path": "pay",
+    "status": 200,
+    "response": {
+      "status": "pending",
+      "payment": "138e5c67-e433-4427-a458-ebe8d239ad06",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.749Z",
+    "method": "POST",
+    "path": "test/clock",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934720000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.749Z",
+    "method": "POST",
+    "path": "test/callback",
+    "status": 200,
+    "response": {
+      "status": "auto_refunded",
+      "refund": 1832,
+      "now": 1793934720000
+    }
+  },
+  {
+    "at": "2026-11-06T11:19:44.937Z",
+    "method": "POST",
+    "path": "test/reset",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934000000
+    }
+  }
+]

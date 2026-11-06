@@ -1,0 +1,12 @@
+# Disposable training world only. Use -p encore-lab and the separate port below.
+services:
+  web:
+    ports: !override
+      - "127.0.0.1:${ENCORE_LAB_PORT:-4370}:4310"
+    environment:
+      TEST_MODE: "1"
+      TEST_TOKEN: encore-lab
+      BUG_MODE: "${BUG_MODE:-0}"
+      DB_PATH: /tmp/encore-lab.sqlite
+    tmpfs:
+      - /tmp

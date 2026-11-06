@@ -1,0 +1,28 @@
+sequenceDiagram
+ actor Buyer as ผู้ซื้อ
+ participant UI as Browser
+ participant API as Node API
+ participant DB as SQLite
+ Buyer->>UI: ยืนยันที่นั่งและข้อมูลผู้ถือ
+ UI->>API: POST holds / checkout
+ API->>DB: ตรวจคิว grant quota และที่นั่งใน transaction
+ API-->>UI: hold + ราคาจาก server + expires
+ Buyer->>UI: เลือกช่องทางและชำระทดลอง
+ UI->>API: POST pay pending
+ API->>DB: payment attempt + frozen checkout
+ API-->>UI: reference / deadline
+ Buyer->>UI: จำลองผลชำระ
+ UI->>API: POST payments/resolve
+ API->>DB: BEGIN IMMEDIATE และ ตรวจ owner / เวลา / ที่นั่ง
+ alt เคยสำเร็จแล้ว
+ DB-->>API: order เดิม
+ else ผ่านเงื่อนไข
+ API->>DB: INSERT order UNIQUE hold
+ API->>DB: INSERT tickets + mail_outbox UNIQUE order
+ API->>DB: UPDATE payment + seats และ COMMIT
+ else เงินมาช้า หรือสิทธิ์ไม่ครบ
+ API->>DB: auto refund และ ไม่ออกบัตร
+ end
+ API-->>UI: status และ order
+ UI->>API: GET orders / mailbox / ticket-qr
+ API-->>UI: เฉพาะเจ้าของรายการ

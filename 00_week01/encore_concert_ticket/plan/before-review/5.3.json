@@ -1,0 +1,1831 @@
+{
+  "metadata": {
+    "authorTask": "/root/writer_53",
+    "startedAtUTC": "2026-11-06T11:21:06Z",
+    "endedAtUTC": "2026-11-06T11:34:41.926087+00:00",
+    "subsection": "5.3",
+    "count": 41,
+    "stage": "plan-only / not executed",
+    "blindness": "อ่านเฉพาะเอกสารที่ได้รับอนุญาตและtestfilesเพื่อmapaction; ไม่อ่านruntime/web/BUGS.md/bugseeds; ไม่มีwebsitecalls",
+    "oracleRule": "expectedจากREQUIREMENTS/TEST-DATAเท่านั้น; explorationเป็นobservedcontextไม่ใช่oracle; AP01–05เป็นA-policyไม่ใช่trueownerresponse"
+  },
+  "sharedSetup": {
+    "M": "fan login→POSTqueue eventneon→membership/verify ENCORE-0001→holds→checkout",
+    "C": "buyer Buyer Test/buyer@example.test/0812345678; holders Holder 1/Holder 2, holder1/2@example.test,0898765432; mappingseatครบ",
+    "P": "approveผ่านsimulatorของownerหรือcallbacktesttokenในโลกตน; ห้ามส่งเงินจริง/เมลภายนอก",
+    "timing": "controlledclockเฉพาะโลกตน; expiry=min(now+600s,roundend); loginใหม่หลังข้ามsession24h",
+    "money": "Regular1800; fee30/ใบ VATround7%fee; STAGE10 floor10% cap500; 1R1832/1Rcode1652/2Rcode3304/2VIPcode5964",
+    "status": "ชื่อสถานะเป็นlabelช่วยปฏิบัติ; passยึดผลเชิงสิทธิ์ เงิน จำนวน และstateตามเอกสาร ไม่บังคับข้อความHTTPที่Dไม่ระบุ"
+  },
+  "localChecklist": [
+    "[x] ครบ41IDsของassignments5.3และไม่มีIDกลุ่มอื่น",
+    "[x] ทุกcardมีID/title,feature,trace requirements,priority,techniques,source,preconditions,data,steps,expected,checkTiming,cleanup และwrongAlternative",
+    "[x] money/timeจากDและA-policyระบุที่มา ไม่มีexpectedยืมผลOหรือassertionเดิม",
+    "[x] ไม่เรียกเว็บ ไม่เปิดruntime/BUGS/bugseed ไม่แก้sharedTEST-PLANหรือscriptทดสอบ",
+    "[ ] ผู้ทดสอบบันทึกbaseURL/DB/clock/testtokenส่วนตัวก่อนexecute; never4310",
+    "[ ] รันจริงในLAB11–13แยกจากแผนนี้และเก็บactual/evidence ไม่เติมpassล่วงหน้า"
+  ],
+  "faultDetectorPredictions": [
+    {
+      "fault": "callbackใช้paidAt<=expiryหรือarrival<=expiry+120s",
+      "detectors": [
+        "V3-A29",
+        "V3-A30"
+      ],
+      "prediction": "ขอบ600.000/720.000sจะออกticket/mailผิด; แผนคาด0และrefund1832จึงตรวจจับได้"
+    },
+    {
+      "fault": "cancelคืนเฉพาะnetหรือไม่upgradependingrefund",
+      "detectors": [
+        "V3-A39",
+        "V3-A49"
+      ],
+      "prediction": "คืน1620แทน1652ทำnet32แทน0 หรือมี2refundIDs ซึ่งขัดAP03"
+    },
+    {
+      "fault": "scannerคืนข้อความsuccessในครั้งที่2แต่มีคำว่าใช้แล้ว",
+      "detectors": [
+        "V3-L03",
+        "V3-U07"
+      ],
+      "prediction": "semanticassertionและจำนวนadmission1จะไม่ผ่าน แม้ค้นsubstringใช้แล้วพบ"
+    },
+    {
+      "fault": "paymentreplayสร้างmailซ้ำหรือholdermappingสลับ",
+      "detectors": [
+        "V3-A27",
+        "V3-A34"
+      ],
+      "prediction": "mailcountเกิน1หรือชื่อC01/C02ไม่ตรง จึงจับได้จากID/count/mapping ไม่พึ่งภาพsuccess"
+    },
+    {
+      "fault": "mailHTMLใส่ชื่อโดยไม่escape",
+      "detectors": [
+        "V3-A55",
+        "V3-U23"
+      ],
+      "prediction": "พบelementonerror/dialogแทนข้อความliteral จึงตรวจจับในrenderจริง"
+    }
+  ],
+  "cards": [
+    {
+      "id": "V3-A22",
+      "title": "QR: pending → บัตรมีชื่อ → อีเมลทดลอง",
+      "feature": "Payment/API",
+      "priority": "P1",
+      "techniques": [
+        "State transition",
+        "Equivalence partition"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR11",
+        "FR12",
+        "FR13",
+        "FR14",
+        "BR12",
+        "BR13",
+        "BR14",
+        "BR18"
+      ],
+      "preconditions": "โลกทดสอบใหม่ เวลา2026-11-06T03:00:00Z; fan/FanDemo!26 เข้า NEON Member queue active และ verify ENCORE-0001; hold C01 และบันทึก checkout ครบก่อนจ่าย",
+      "data": "Buyer Test / buyer@example.test / 0812345678; C01=Holder 1 / holder1@example.test / 0898765432; Regular1800 ไม่มีโค้ด; method=qr",
+      "steps": [
+        "POST /api/pay ด้วย hold ID, result=pending, method=qr; จด payment ID",
+        "GET /api/payment?id=ID; ถอดQRชำระและตรวจ prefix ENCORE-DEMO-PAY ไม่มีบัญชีรับเงินจริง",
+        "ตรวจ orders/mailbox ขณะ pending",
+        "เจ้าของเรียก POST /api/payments/resolve result=approved แล้วอ่าน orders/mailbox และเปิด mail"
+      ],
+      "expected": "ยอด=1800+30+round(30×.07)=1832; deadline=min(เริ่มhold+600s,จบรอบ)=03:10Z; pending=0บัตร/0เมล; หลังสำเร็จ1order/1ticketชื่อ Holder 1 ที่ C01/1เมลถึง buyer@example.test สถานะ delivered_sandbox พร้อม QR",
+      "checkTiming": "ตรวจ pending ก่อน resolve และหลัง resolve จนคำตอบ terminal; ต้องอยู่ก่อน expiry",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามนับ pending เป็น success หรือถือว่าการมีเลขอ้างอิงคือออกบัตรแล้ว",
+      "assignmentTitle": "payment channel qr pending instructions then named ticket and email"
+    },
+    {
+      "id": "V3-A23",
+      "title": "7-Eleven: pending → บัตรมีชื่อ → อีเมลทดลอง",
+      "feature": "Payment/API",
+      "priority": "P1",
+      "techniques": [
+        "State transition",
+        "Equivalence partition"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR11",
+        "FR12",
+        "FR13",
+        "FR14",
+        "BR12",
+        "BR13",
+        "BR14",
+        "BR18"
+      ],
+      "preconditions": "โลกทดสอบใหม่ เวลา2026-11-06T03:00:00Z; fan/FanDemo!26 เข้า NEON Member queue active และ verify ENCORE-0001; hold C01 และบันทึก checkout ครบก่อนจ่าย",
+      "data": "Buyer Test / buyer@example.test / 0812345678; C01=Holder 1 / holder1@example.test / 0898765432; Regular1800 ไม่มีโค้ด; method=seven_eleven",
+      "steps": [
+        "POST /api/pay ด้วย hold ID, result=pending, method=seven_eleven; จด payment ID",
+        "GET /api/payment?id=ID; อ่านเลขอ้างอิงทดลองและคำเตือน deadline10นาที ไม่ใช่2ชั่วโมง",
+        "ตรวจ orders/mailbox ขณะ pending",
+        "เจ้าของเรียก POST /api/payments/resolve result=approved แล้วอ่าน orders/mailbox และเปิด mail"
+      ],
+      "expected": "ยอด=1800+30+round(30×.07)=1832; deadline=min(เริ่มhold+600s,จบรอบ)=03:10Z; pending=0บัตร/0เมล; หลังสำเร็จ1order/1ticketชื่อ Holder 1 ที่ C01/1เมลถึง buyer@example.test สถานะ delivered_sandbox พร้อม QR",
+      "checkTiming": "ตรวจ pending ก่อน resolve และหลัง resolve จนคำตอบ terminal; ต้องอยู่ก่อน expiry",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามนับ pending เป็น success หรือถือว่าการมีเลขอ้างอิงคือออกบัตรแล้ว",
+      "assignmentTitle": "payment channel seven_eleven pending instructions then named ticket and email"
+    },
+    {
+      "id": "V3-A24",
+      "title": "Credit Card: pending → บัตรมีชื่อ → อีเมลทดลอง",
+      "feature": "Payment/API",
+      "priority": "P1",
+      "techniques": [
+        "State transition",
+        "Equivalence partition"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR11",
+        "FR12",
+        "FR13",
+        "FR14",
+        "BR12",
+        "BR13",
+        "BR14",
+        "BR18"
+      ],
+      "preconditions": "โลกทดสอบใหม่ เวลา2026-11-06T03:00:00Z; fan/FanDemo!26 เข้า NEON Member queue active และ verify ENCORE-0001; hold C01 และบันทึก checkout ครบก่อนจ่าย",
+      "data": "Buyer Test / buyer@example.test / 0812345678; C01=Holder 1 / holder1@example.test / 0898765432; Regular1800 ไม่มีโค้ด; method=credit_card",
+      "steps": [
+        "POST /api/pay ด้วย hold ID, result=pending, method=credit_card; จด payment ID",
+        "GET /api/payment?id=ID; ตรวจว่าใช้ simulator โดยไม่ต้องกรอก PAN/CVV จริง",
+        "ตรวจ orders/mailbox ขณะ pending",
+        "เจ้าของเรียก POST /api/payments/resolve result=approved แล้วอ่าน orders/mailbox และเปิด mail"
+      ],
+      "expected": "ยอด=1800+30+round(30×.07)=1832; deadline=min(เริ่มhold+600s,จบรอบ)=03:10Z; pending=0บัตร/0เมล; หลังสำเร็จ1order/1ticketชื่อ Holder 1 ที่ C01/1เมลถึง buyer@example.test สถานะ delivered_sandbox พร้อม QR",
+      "checkTiming": "ตรวจ pending ก่อน resolve และหลัง resolve จนคำตอบ terminal; ต้องอยู่ก่อน expiry",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามนับ pending เป็น success หรือถือว่าการมีเลขอ้างอิงคือออกบัตรแล้ว",
+      "assignmentTitle": "payment channel credit_card pending instructions then named ticket and email"
+    },
+    {
+      "id": "V3-A25",
+      "title": "Alipay: pending → บัตรมีชื่อ → อีเมลทดลอง",
+      "feature": "Payment/API",
+      "priority": "P1",
+      "techniques": [
+        "State transition",
+        "Equivalence partition"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR11",
+        "FR12",
+        "FR13",
+        "FR14",
+        "BR12",
+        "BR13",
+        "BR14",
+        "BR18"
+      ],
+      "preconditions": "โลกทดสอบใหม่ เวลา2026-11-06T03:00:00Z; fan/FanDemo!26 เข้า NEON Member queue active และ verify ENCORE-0001; hold C01 และบันทึก checkout ครบก่อนจ่าย",
+      "data": "Buyer Test / buyer@example.test / 0812345678; C01=Holder 1 / holder1@example.test / 0898765432; Regular1800 ไม่มีโค้ด; method=alipay",
+      "steps": [
+        "POST /api/pay ด้วย hold ID, result=pending, method=alipay; จด payment ID",
+        "GET /api/payment?id=ID; ตรวจคำแนะนำ Alipay/เลขอ้างอิงจำลอง",
+        "ตรวจ orders/mailbox ขณะ pending",
+        "เจ้าของเรียก POST /api/payments/resolve result=approved แล้วอ่าน orders/mailbox และเปิด mail"
+      ],
+      "expected": "ยอด=1800+30+round(30×.07)=1832; deadline=min(เริ่มhold+600s,จบรอบ)=03:10Z; pending=0บัตร/0เมล; หลังสำเร็จ1order/1ticketชื่อ Holder 1 ที่ C01/1เมลถึง buyer@example.test สถานะ delivered_sandbox พร้อม QR",
+      "checkTiming": "ตรวจ pending ก่อน resolve และหลัง resolve จนคำตอบ terminal; ต้องอยู่ก่อน expiry",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามนับ pending เป็น success หรือถือว่าการมีเลขอ้างอิงคือออกบัตรแล้ว",
+      "assignmentTitle": "payment channel alipay pending instructions then named ticket and email"
+    },
+    {
+      "id": "V3-A26",
+      "title": "method นอก enum และยอด client ไม่เปลี่ยนยอดจริง",
+      "feature": "Payment validation",
+      "priority": "P1",
+      "techniques": [
+        "Invalid partition",
+        "Tampering"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR11",
+        "BR12",
+        "BR13"
+      ],
+      "preconditions": "โลกทดสอบใหม่ เวลา2026-11-06T03:00:00Z; fan/FanDemo!26 เข้า NEON Member queue active และ verify ENCORE-0001; hold C01 และบันทึก checkout ครบก่อนจ่าย",
+      "data": "Buyer Test / buyer@example.test / 0812345678; C01=Holder 1 / holder1@example.test / 0898765432; Regular1800 ไม่มีโค้ด; method=cash; total=1",
+      "steps": [
+        "ส่งpay method=cash",
+        "ตรวจยังไม่มีorder/mail",
+        "ส่งpay method=qr,result=pending,total=1",
+        "อ่านpaymentยอดและsummary"
+      ],
+      "expected": "cash ถูกปฏิเสธ controlled4xx ไม่มีattemptสำเร็จ; qrยอดยืนยัน1832 ไม่ใช่1; pendingยัง0บัตร/0เมล",
+      "checkTiming": "หลังแต่ละคำขอก่อนapprove",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามเอายอดclientหรือข้อความหน้าจอมาใช้แทนยอดserver",
+      "assignmentTitle": "invalid method and client amount rejected/ignored respectively"
+    },
+    {
+      "id": "V3-A27",
+      "title": "failed เป็นปลายทาง retry/replay ไม่ออกซ้ำ",
+      "feature": "Payment lifecycle",
+      "priority": "P1",
+      "techniques": [
+        "State transition",
+        "Concurrency",
+        "Idempotency"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR12",
+        "FR15",
+        "BR15",
+        "NFR03"
+      ],
+      "preconditions": "โลกทดสอบใหม่ เวลา2026-11-06T03:00:00Z; fan/FanDemo!26 เข้า NEON Member queue active และ verify ENCORE-0001; hold C01 และบันทึก checkout ครบก่อนจ่าย",
+      "data": "Buyer Test / buyer@example.test / 0812345678; C01=Holder 1 / holder1@example.test / 0898765432; Regular1800 ไม่มีโค้ด",
+      "steps": [
+        "จ่ายresult=declined และจดpaymentIDเก่า",
+        "ลองapprove IDเก่า",
+        "retryด้วยholdเดิมจดIDใหม่; ส่งapproveใหม่สองคำขอพร้อมกัน",
+        "อ่านorders/mailbox/ticketsและยอด"
+      ],
+      "expected": "declined=failedไม่มีorder/mail; IDเก่ายังคงfailed; retryต้องIDใหม่; successซ้ำได้orderเดียว รวม1ticket/1mailยอด1832 ไม่ใช่3664",
+      "checkTiming": "เก็บIDก่อนretry ตรวจหลังทั้งคำขอจบแล้วอ่านซ้ำ",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามแค่ตรวจว่ามีorderอย่างน้อย1; ต้องนับและเทียบID",
+      "assignmentTitle": "declined retry new attempt; duplicate success creates one order/mail"
+    },
+    {
+      "id": "V3-A28",
+      "title": "pending ล็อกรายการ แต่จ่ายทันยังรับผลใน grace",
+      "feature": "Payment timing",
+      "priority": "P1",
+      "techniques": [
+        "Boundary value",
+        "State transition"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR12",
+        "BR09",
+        "BR16"
+      ],
+      "preconditions": "โลกทดสอบใหม่ เวลา2026-11-06T03:00:00Z; fan/FanDemo!26 เข้า NEON Member queue active และ verify ENCORE-0001; hold C01 และบันทึก checkout ครบก่อนจ่าย",
+      "data": "Buyer Test / buyer@example.test / 0812345678; C01=Holder 1 / holder1@example.test / 0898765432; Regular1800 ไม่มีโค้ด",
+      "steps": [
+        "สร้างpendingเวลา03:00Z",
+        "ขอreleaseและhold C02 ระหว่างpending",
+        "ตั้งarrival=03:11:59.999Z แล้วcallback paidAt=03:09:59.999Z amount1832",
+        "อ่านorder/mail/seat"
+      ],
+      "expected": "release/reselectถูกปฏิเสธ holdเดิมไม่เปลี่ยน; paidAt=expiry−1ms และarrival=expiry+120s−1ms จึงsuccess1order/1ticket/1mail1832",
+      "checkTiming": "ตรวจทันทีหลังคำขอที่ถูกปฏิเสธ และที่arrival719.999s",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามใช้เวลาcallbackแทนpaidAt หรือปฏิเสธทุกcallbackหลัง600s",
+      "assignmentTitle": "pending cannot release/reselect; timely callback in grace succeeds"
+    },
+    {
+      "id": "V3-A29",
+      "title": "paidAt ตรง expiry ต้องคืนทดลอง",
+      "feature": "Late payment",
+      "priority": "P1",
+      "techniques": [
+        "Boundary value"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR12",
+        "BR16"
+      ],
+      "preconditions": "โลกทดสอบใหม่ เวลา2026-11-06T03:00:00Z; fan/FanDemo!26 เข้า NEON Member queue active และ verify ENCORE-0001; hold C01 และบันทึก checkout ครบก่อนจ่าย",
+      "data": "Buyer Test / buyer@example.test / 0812345678; C01=Holder 1 / holder1@example.test / 0898765432; Regular1800 ไม่มีโค้ด",
+      "steps": [
+        "สร้างpendingเวลา03:00Z",
+        "ตั้งclock03:10:00Zและส่งcallback paidAt03:10:00Z amount1832",
+        "ส่งcallbackเดิมซ้ำและอ่านpayment/orders/mailbox"
+      ],
+      "expected": "paidAt=expiryไม่ผ่านเงื่อนไข< จึงauto-refund1832ครั้งเดียว; 0order/0ticket/0mail; ไม่มีที่นั่งsoldจากรายการนี้",
+      "checkTiming": "ตรง600.000s และหลังreplay",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามใช้<=ที่paidAt หรือออกบัตรแล้วค่อยคืน",
+      "assignmentTitle": "late paidAt at expiry refunds with no email/ticket"
+    },
+    {
+      "id": "V3-A30",
+      "title": "ขอบ grace ไม่แย่ง seat ที่ขายใหม่",
+      "feature": "Late callback/resale",
+      "priority": "P1",
+      "techniques": [
+        "Boundary value",
+        "State transition"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR12",
+        "BR16",
+        "NFR03"
+      ],
+      "preconditions": "โลกทดสอบใหม่ เวลา2026-11-06T03:00:00Z; fan/FanDemo!26 เข้า NEON Member queue active และ verify ENCORE-0001; hold C01 และบันทึก checkout ครบก่อนจ่าย",
+      "data": "Buyer Test / buyer@example.test / 0812345678; C01=Holder 1 / holder1@example.test / 0898765432; Regular1800 ไม่มีโค้ด; fan2/FanTwo!26 ENCORE-0002",
+      "steps": [
+        "สร้างpendingของfanเวลา03:00Z",
+        "ตั้งclock03:12:00Z; fan2เข้าคิว/verifyและhold C01ใหม่",
+        "callbackfan paidAt03:09Z amount1832",
+        "fan2checkoutและจ่ายสำเร็จ; อ่านสถานะทั้งสองบัญชี"
+      ],
+      "expected": "arrival=expiry+120s ต้องauto-refundfan1832 ไม่มีticket/mail; seatยังเป็นของfan2; fan2ได้1ticket/1mail1832 ไม่มีoversell",
+      "checkTiming": "ตรวจหลังholdใหม่และหลังcallbackเก่าทันที",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามตรวจเพียงauto_refunded โดยไม่ตรวจว่าholdใหม่ยังชำระสำเร็จ",
+      "assignmentTitle": "grace exact end releases seat; callback cannot steal resale"
+    },
+    {
+      "id": "V3-A31",
+      "title": "callback ยอดผิดหรือเวลาจ่ายอนาคตไม่finalize",
+      "feature": "Payment callback input",
+      "priority": "P1",
+      "techniques": [
+        "Invalid partition",
+        "Boundary value"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR12",
+        "BR13",
+        "BR16"
+      ],
+      "preconditions": "โลกทดสอบใหม่ เวลา2026-11-06T03:00:00Z; fan/FanDemo!26 เข้า NEON Member queue active และ verify ENCORE-0001; hold C01 และบันทึก checkout ครบก่อนจ่าย",
+      "data": "Buyer Test / buyer@example.test / 0812345678; C01=Holder 1 / holder1@example.test / 0898765432; Regular1800 ไม่มีโค้ด",
+      "steps": [
+        "สร้างpendingและจดID",
+        "callback amount1 paidAt03:00Z",
+        "callback amount1832 paidAt04:00Zขณะclock03:00Z",
+        "อ่านpayment/hold/orders/mailboxหลังแต่ละครั้ง"
+      ],
+      "expected": "คำขอผิดถูกปฏิเสธ controlled4xx; pendingไม่เป็นsuccess; 0ticket/0mail และยอดอ้างอิงยัง1832",
+      "checkTiming": "clockคง03:00Zตลอด; ตรวจหลังแต่ละinput",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามยอมรับfuture paidAtเพราะรูปแบบISOถูกต้อง",
+      "assignmentTitle": "wrong amount/future callback does not finalize"
+    },
+    {
+      "id": "V3-A32",
+      "title": "ถอด QR ภาพจริงด้วย decoder อิสระ",
+      "feature": "Ticket QR",
+      "priority": "P1",
+      "techniques": [
+        "Independent oracle",
+        "Data validation"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR13",
+        "BR17",
+        "NFR04"
+      ],
+      "preconditions": "โลกทดสอบใหม่; fan ซื้อ NEON สำเร็จด้วยข้อมูลผู้ซื้อ/ผู้ถือมาตรฐาน; บันทึก order/ticket/code/payment IDs; encore/EncoreDemo!26 เป็นเจ้าของ NEON, sky/SkyDemo!26 ต่างเจ้าของ",
+      "data": "Buyer Test / buyer@example.test / 0812345678; C01=Holder 1 / holder1@example.test / 0898765432; Regular1800 ไม่มีโค้ด",
+      "steps": [
+        "ดาวน์โหลด /api/ticket-qr?id=TICKET&format=png ในฐานะเจ้าของ",
+        "ถอดPNGด้วยdecoderอิสระ เช่น jsQR ไม่ใช้ค่าalt/ข้อความDOM",
+        "เปรียบเทียบpayloadกับopaque ticket codeและตรวจPII"
+      ],
+      "expected": "ภาพถอดได้จริงตรงcodeบัตร; opaque random256bit (ถ้าhexยาว64ตัว); ไม่มีBuyer/Holder/email/phoneในpayload; ชื่อ Holder 1 ปรากฏบนบัตรภายนอกQR; 1QRต่อ1ticket",
+      "checkTiming": "หลังชำระสำเร็จและก่อนนำไปscan",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามตรวจแค่รูปโหลดได้หรือเทียบcodeจากAPIกับตัวมันเอง",
+      "assignmentTitle": "actual ticket QR independently decodes to opaque code without PII"
+    },
+    {
+      "id": "V3-A33",
+      "title": "QR payment mail EML แยกเจ้าของและแนบQRจริง",
+      "feature": "Privacy/EML",
+      "priority": "P1",
+      "techniques": [
+        "Authorization matrix",
+        "MIME inspection"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR13",
+        "FR14",
+        "FR15",
+        "BR17",
+        "BR18",
+        "NFR02"
+      ],
+      "preconditions": "โลกทดสอบใหม่; fan ซื้อ NEON สำเร็จด้วยข้อมูลผู้ซื้อ/ผู้ถือมาตรฐาน; บันทึก order/ticket/code/payment IDs; encore/EncoreDemo!26 เป็นเจ้าของ NEON, sky/SkyDemo!26 ต่างเจ้าของ",
+      "data": "Buyer Test / buyer@example.test / 0812345678; C01=Holder 1 / holder1@example.test / 0898765432; Regular1800 ไม่มีโค้ด; fan2ต่างบัญชี",
+      "steps": [
+        "เจ้าของเปิดticketQR/payment/mail/mail.emlและจดIDs",
+        "fan2ใช้IDsเดียวกันขอทั้ง4ทรัพยากร",
+        "ดาวน์โหลดEMLเจ้าของ แยกMIMEHTML/PNG แล้วถอดQRแนบ"
+      ],
+      "expected": "ต่างบัญชีไม่มีข้อมูลส่วนตัวและถูกปฏิเสธทุกทรัพยากร; เจ้าของได้EMLถึงbuyer@example.test มีsandbox-only/ไม่อ้างส่งจริง; 1HTMLพร้อม1QRPNGของC01 ถอดตรงcode และชื่อ Holder 1",
+      "checkTiming": "ตรวจทั้งownerสำเร็จและnonownerปฏิเสธในรอบเดียวก่อนcleanup",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามถือว่าเมนูซ่อนเท่ากับป้องกันAPI หรือแค่มองContent-Typeโดยไม่เปิดattachment",
+      "assignmentTitle": "QR/payment/mail owner isolation and eml embedded QR attachment"
+    },
+    {
+      "id": "V3-A34",
+      "title": "สองผู้ถือส่งรวมไปผู้ซื้อคนเดียว",
+      "feature": "Ticket/recipient mapping",
+      "priority": "P1",
+      "techniques": [
+        "Data mapping",
+        "Equivalence partition"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR09",
+        "FR13",
+        "FR14",
+        "BR11",
+        "BR18"
+      ],
+      "preconditions": "โลกทดสอบใหม่ เวลา2026-11-06T03:00:00Z; fan/FanDemo!26 เข้า NEON Member queue active และ verify ENCORE-0001; hold C01,C02 และบันทึก checkout ครบก่อนจ่าย",
+      "data": "Buyer Test / buyer@example.test / 0812345678; C01=Holder 1 / holder1@example.test / 0898765432; Regular1800 ไม่มีโค้ด; C02=Holder 2/holder2@example.test/0898765432",
+      "steps": [
+        "checkoutระบุholderคนละชื่อผูกseat C01/C02",
+        "จ่ายสำเร็จ",
+        "อ่านticketsและmailHTML/EMLของผู้ซื้อ"
+      ],
+      "expected": "2Regularไม่มีโค้ด=3600+60+4=3664; 2ticketชื่อ/seatไม่สลับและcodeไม่ซ้ำ; 1เมลถึงbuyer@example.testรวม2ticket/2QR ไม่ส่งแทนไปholder1/holder2",
+      "checkTiming": "หลังticketcompleteแล้วตรวจoutbox",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามตรวจเพียงจำนวน2โดยไม่ตรวจmappingชื่อ-ที่นั่ง-QR",
+      "assignmentTitle": "two holders distinct names and buyer email receives both tickets"
+    },
+    {
+      "id": "V3-A35",
+      "title": "คืนบางใบจึงคืน seat/โควตาหลังอนุมัติ",
+      "feature": "Refund quota",
+      "priority": "P1",
+      "techniques": [
+        "State transition",
+        "Money reconciliation"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "[A-policy AP01] นโยบายโจทย์ที่กำหนดก่อนทดสอบ ไม่ใช่คำตอบจากเจ้าของงานจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR17",
+        "BR08"
+      ],
+      "preconditions": "โลกทดสอบใหม่; fan ซื้อ NEON C01,C02+STAGE10 สำเร็จด้วยข้อมูลผู้ซื้อ/ผู้ถือมาตรฐาน; บันทึก order/ticket/code/payment IDs; encore/EncoreDemo!26 เป็นเจ้าของ NEON, sky/SkyDemo!26 ต่างเจ้าของ",
+      "data": "3304=3600−360+60+4; netใบละ1620",
+      "steps": [
+        "fanขอคืนC01",
+        "ก่อนอนุมัติลองhold C03และตรวจQRสถานะสองใบ",
+        "encoreอนุมัติC01สองครั้ง",
+        "อ่านdashboardและลองholdC01อีกครั้ง"
+      ],
+      "expected": "pendingยังนับ2ใบจึงเพิ่มไม่ได้; C02ยังvalid; หลังอนุมัติC01ว่าง/สิทธิ์คืน1, holdC01ได้; คืน1620ครั้งเดียวไม่รวมfee/VAT; gross3304−refund1620=net1684; เมลซื้อเดิม1ฉบับ",
+      "checkTiming": "ตรวจก่อนและหลังapproveแยกกัน ไม่ข้ามpending",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามคืนquotaตอนrequestหรือคืน1652แทน1620",
+      "assignmentTitle": "partial refund restores seat and Member quota only after approval"
+    },
+    {
+      "id": "V3-A36",
+      "title": "scan แข่งกันใช้ code ได้คนเดียวและคืนชื่อ",
+      "feature": "Gate authorization",
+      "priority": "P1",
+      "techniques": [
+        "Concurrency",
+        "Authorization matrix"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "[A-policy AP05] หน้าต่างNEONตามโจทย์ ไม่ใช่คำตอบเจ้าของงานจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR16",
+        "BR17",
+        "NFR03"
+      ],
+      "preconditions": "โลกทดสอบใหม่; fan ซื้อ NEON สำเร็จด้วยข้อมูลผู้ซื้อ/ผู้ถือมาตรฐาน; บันทึก order/ticket/code/payment IDs; encore/EncoreDemo!26 เป็นเจ้าของ NEON, sky/SkyDemo!26 ต่างเจ้าของ",
+      "data": "ticket C01 Holder 1; clock2026-12-12T09:00Z; gate/GateDemo!26",
+      "steps": [
+        "ถอดticketQRจริงเก็บcode",
+        "gateส่งscan event=neon/codeพร้อมกัน2คำขอ",
+        "buyerลองscan; gateลองevent=aurora"
+      ],
+      "expected": "ได้success1ครั้งและปฏิเสธused1ครั้ง; successคืนHolder 1; buyer/ผิดeventถูกปฏิเสธ; ticketusedเพียง1ครั้งไม่ใช่2",
+      "checkTiming": "เวลา16:00ไทยภายในหน้าต่างประตู; ตรวจหลังทั้งสองคำขอจบ",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามแปลข้อความมีคำว่าใช้แล้วเป็นsuccess",
+      "assignmentTitle": "scanner uses QR code once, returns holder name; wrong role denied"
+    },
+    {
+      "id": "V3-A37",
+      "title": "refund cutoff รวม72h และpendingเข้าไม่ได้",
+      "feature": "Refund boundary/gate",
+      "priority": "P1",
+      "techniques": [
+        "Boundary value",
+        "State transition"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "[A-policy AP01] นโยบายโจทย์ที่กำหนดก่อนทดสอบ ไม่ใช่คำตอบจากเจ้าของงานจริง; [A-policy AP05] เวลาประตูโจทย์",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR16",
+        "FR17",
+        "BR08"
+      ],
+      "preconditions": "โลกทดสอบใหม่; fan ซื้อ NEON C01,C02 สำเร็จด้วยข้อมูลผู้ซื้อ/ผู้ถือมาตรฐาน; บันทึก order/ticket/code/payment IDs; encore/EncoreDemo!26 เป็นเจ้าของ NEON, sky/SkyDemo!26 ต่างเจ้าของ",
+      "data": "NEONstart2026-12-12T11:00Z; cutoff2026-12-09T11:00Z",
+      "steps": [
+        "ตั้งclockcutoff; loginใหม่และขอคืนC01",
+        "เลื่อน1msและขอคืนC02",
+        "ตั้งgateopen2026-12-12T09:00Z; gateสแกนcodeC01"
+      ],
+      "expected": "ตรงstart−72hขอคืนได้; +1msขอคืนไม่ได้; C01refund_pendingเข้าไม่ได้แม้QRเดิมถอดได้; C02ยังvalidไม่เปลี่ยน",
+      "checkTiming": "72hตรงขอบ/หลัง1msและประตูเปิด; loginใหม่หลังข้าม24h",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามอ้างผลสำรวจC5/C7แทนนโยบายAP01",
+      "assignmentTitle": "refund pending blocks scanning, refund cutoff exact boundary"
+    },
+    {
+      "id": "V3-A38",
+      "title": "owner scope พักขายและบังคับรอบไม่ได้",
+      "feature": "Organizer controls",
+      "priority": "P1",
+      "techniques": [
+        "Authorization matrix",
+        "State transition"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "[A-policy AP04] พักขายยังชำระholdเดิมได้ ไม่ใช่คำตอบเจ้าของงานจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR17",
+        "BR20"
+      ],
+      "preconditions": "โลกทดสอบใหม่ เวลา2026-11-06T03:00:00Z; fan/FanDemo!26 เข้า NEON Member queue active และ verify ENCORE-0001; hold C01 และบันทึก checkout ครบก่อนจ่าย",
+      "data": "Buyer Test / buyer@example.test / 0812345678; C01=Holder 1 / holder1@example.test / 0898765432; Regular1800 ไม่มีโค้ด; encoreเจ้าของNEON skyต่างเจ้าของ",
+      "steps": [
+        "skyอ่านdashboard/แก้NEON",
+        "encoreพยายามบังคับGeneralก่อน15:00",
+        "encoreblockC01ที่holdและblockC02ที่ว่าง",
+        "พักขายแล้วลองholdC03; จ่ายholdC01เดิมก่อนexpiry"
+      ],
+      "expected": "ต่างownerถูกปฏิเสธ; รอบยังMemberจน15:00; C01ถืออยู่blockไม่ได้/C02blockedถือไม่ได้; pausedห้ามใหม่แต่holdเดิมจ่าย1832ได้และออก1ticket/1mail",
+      "checkTiming": "เวลา03:00Zและก่อนhold600s; ตรวจstateหลังคำขอผิดทุกครั้ง",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามตีความpauseเหมือนcancelหรือเปิดGeneralด้วยปุ่มadmin",
+      "assignmentTitle": "organizer scope, pause/block and automatic round cannot be bypassed"
+    },
+    {
+      "id": "V3-A39",
+      "title": "cancel คืนเต็มและทำซ้ำไม่เพิ่มรายการ",
+      "feature": "Cancel/refund",
+      "priority": "P1",
+      "techniques": [
+        "Idempotency",
+        "Money reconciliation"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "[A-policy AP03] ยกเลิกคืนเต็มตามโจทย์ ไม่ใช่คำตอบเจ้าของงานจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR17",
+        "NFR03"
+      ],
+      "preconditions": "โลกทดสอบใหม่; fan ซื้อ NEON C01+STAGE10 สำเร็จด้วยข้อมูลผู้ซื้อ/ผู้ถือมาตรฐาน; บันทึก order/ticket/code/payment IDs; encore/EncoreDemo!26 เป็นเจ้าของ NEON, sky/SkyDemo!26 ต่างเจ้าของ",
+      "data": "paid1652=1620+30+2",
+      "steps": [
+        "encoreยกเลิกNEON",
+        "อ่านrefundและอนุมัติ",
+        "ยกเลิกซ้ำและapproveซ้ำ",
+        "อ่านยอดrefund/order/ticket/mail"
+      ],
+      "expected": "คืนเต็ม1652รวมfee/VATครั้งเดียว; refund1รายการ net0; ไม่มีticket/mailซื้อเพิ่มจาก1ชุดเดิม; บัตรยกเลิกเข้าไม่ได้",
+      "checkTiming": "หลังcancel หลังapproveและหลังreplayทั้งหมด",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามคืนเฉพาะ1620เหมือนbuyerrefund",
+      "assignmentTitle": "cancel full refund idempotent, no extra tickets or mail"
+    },
+    {
+      "id": "V3-A40",
+      "title": "Origin body IDs และtest tools ไม่เปิดช่อง",
+      "feature": "Request protection",
+      "priority": "P1",
+      "techniques": [
+        "Invalid partition",
+        "Security boundary"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR18",
+        "NFR02",
+        "NFR07"
+      ],
+      "preconditions": "โลกทดสอบแยกและsessionfan; มีtesttokenเฉพาะผู้ควบคุม ห้ามใช้4310",
+      "data": "foreign Origin=https://foreign.test; hold=[]; body17000ตัว; test/reset,test/callbackไม่มีtoken",
+      "steps": [
+        "ส่งPOSTqueueด้วยforeignOrigin",
+        "ส่งcheckout holdเป็นarray",
+        "ส่งbodyขนาด17000ตัว",
+        "เรียกtest/resetและtest/callbackโดยไม่ส่งtoken; อ่านhealth/eventsหลังชุดผิด"
+      ],
+      "expected": "foreignOrigin/testtoolsไม่มีtokenถูกปฏิเสธ; invalidIDเป็นcontrolled4xx; oversizedเป็น413หรือเกณฑ์bodylimitที่ประกาศ ไม่500; ไม่เกิดhold/order/mailและserverยังตอบได้; ข้อมูลก่อนทดสอบไม่ถูกreset",
+      "checkTiming": "หลังแต่ละrequestและhealthหลังจบ; จดbaselineก่อนทดสอบ",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามใส่testtokenโดยอัตโนมัติทุกrequestจนไม่เคยทดสอบการป้องกัน",
+      "assignmentTitle": "Origin, body, malformed IDs and test tools protected"
+    },
+    {
+      "id": "V3-A41",
+      "title": "restart รักษาorder เก่าและข้อมูลV3",
+      "feature": "Persistence/restart",
+      "priority": "P1",
+      "techniques": [
+        "Persistence",
+        "Regression"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR17",
+        "FR18",
+        "NFR05"
+      ],
+      "preconditions": "tempDBส่วนตัวใน4314/พอร์ตแยกที่ว่าง; มีfixturelegacy holderว่าง และ V3 C01 Holder 1 ที่ซื้อสำเร็จ; จดID/count/code/contact/mailก่อนstop",
+      "data": "legacyorderไม่มีcontact; V3order1832/1ticket/1mail",
+      "steps": [
+        "บันทึกbaselineorders/code/ยอด/เมล",
+        "หยุดเฉพาะserverตนแล้วบูตDBเดิม",
+        "loginใหม่อ่านlegacyและV3order/mail/events",
+        "เปิดUIบัตรlegacyและV3"
+      ],
+      "expected": "legacyID/code/ยอดเดิมอยู่ holderยังว่างและแสดงรายการรุ่นก่อน ไม่แต่งชื่อ; V3snapshot/1mail/QRเดิมยังอยู่; งานตัวอย่าง12งานยังอยู่ ไม่มีorder/mailซ้ำหลังrestart",
+      "checkTiming": "ก่อนstopและหลังhealthready; ไม่resetระหว่างstop/start",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310; หยุดprocessทดสอบของตนและลบเฉพาะtempDB/temporarydirectoryที่สร้างสำหรับกรณีนี้หลังเก็บหลักฐาน ห้ามลบDBผู้ใช้",
+      "wrongAlternative": "ห้ามเรียกฐานข้อมูลใหม่แล้วอ้างว่ารักษาข้อมูลสำเร็จ",
+      "assignmentTitle": "additive migration and restart preserve legacy order, then V3 order/email"
+    },
+    {
+      "id": "V3-A42",
+      "title": "upgrade schemaV2จริงแบบadditive",
+      "feature": "Schema migration",
+      "priority": "P1",
+      "techniques": [
+        "Migration",
+        "Data preservation"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR17",
+        "FR18",
+        "NFR05"
+      ],
+      "preconditions": "DBtempใหม่สร้างด้วยfixtureV2ที่ตรวจรับอิสระก่อนบูตV3 ไม่อ่านruntime/ไม่สร้างV3แล้วลบholderแทน; ใช้พอร์ต4314เมื่อว่าง",
+      "data": "legacy@example.test/LegacyDemo!26; LEGACY-ORDER/C01/code=b64ตัว; 1800+30+2=1832; ไม่มีusername/holderในschemaV2",
+      "steps": [
+        "ผู้ควบคุมเตรียมV2fixture; ตรวจschemaไม่มีคอลัมน์V3และจดlegacyrows",
+        "บูตV3ด้วยDBเดิม loginด้วยemailเก่า",
+        "อ่านlegacyorder/QR/UI/mail; restartอีกครั้งเปรียบเทียบ"
+      ],
+      "expected": "เพิ่มschemaได้โดยไม่ทำID/code/ราคา1832หาย; holderยังnull/UIรายการรุ่นก่อน ไม่มีcontactปลอม; ไม่มีเมลย้อนหลังที่แต่งขึ้น; V2eventเดิมยังอยู่ร่วม12fixtureถ้าชุดseedเพิ่มไว้; restartไม่duplicate",
+      "checkTiming": "baselineก่อนบูตแรก หลังmigration และหลังบูตที่2",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310; หยุดprocessทดสอบของตนและลบเฉพาะtempDB/temporarydirectoryที่สร้างสำหรับกรณีนี้หลังเก็บหลักฐาน ห้ามลบDBผู้ใช้",
+      "wrongAlternative": "ห้ามใช้fixtureที่สร้างschemaV3แล้วเรียกว่าพิสูจน์V2migration",
+      "assignmentTitle": "real V2 schema upgraded additively without losing legacy tickets"
+    },
+    {
+      "id": "V3-A48",
+      "title": "reject แล้วขอคืนใหม่ใช้requestเดิม",
+      "feature": "Refund transition",
+      "priority": "P1",
+      "techniques": [
+        "State transition",
+        "Idempotency"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "[A-policy AP01 AP02] นโยบายโจทย์ ไม่ใช่คำตอบจากเจ้าของงานจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR17",
+        "BR08",
+        "NFR03"
+      ],
+      "preconditions": "โลกทดสอบใหม่; fan ซื้อ NEON สำเร็จด้วยข้อมูลผู้ซื้อ/ผู้ถือมาตรฐาน; บันทึก order/ticket/code/payment IDs; encore/EncoreDemo!26 เป็นเจ้าของ NEON, sky/SkyDemo!26 ต่างเจ้าของ",
+      "data": "Buyer Test / buyer@example.test / 0812345678; C01=Holder 1 / holder1@example.test / 0898765432; Regular1800 ไม่มีโค้ด",
+      "steps": [
+        "ขอคืนC01และจดrefundID; ขอซ้ำขณะpending",
+        "encoreส่งdecisionผิดแล้วreject",
+        "ตรวจticket/QR/ยอด; buyerขอใหม่",
+        "approveสองครั้งอ่านdashboard"
+      ],
+      "expected": "pendingซ้ำ/decisionผิดไม่เพิ่มrefund; rejectทำticketvalidและrefunded0; ขอใหม่ใช้IDเดิมกลับrequested; approveซ้ำคืน1800เพียงครั้งเดียว net1832−1800=32; refundรวม1รายการ",
+      "checkTiming": "หลังrejectก่อนretry และหลังapproveซ้ำ",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามสร้างrefundIDใหม่ทุกretryหรือคืนเงินตอนreject",
+      "assignmentTitle": "refund reject restores ticket and retry reuses request without duplicate money"
+    },
+    {
+      "id": "V3-A49",
+      "title": "cancel ยกระดับpendingrefundและห้ามเปิดใหม่",
+      "feature": "Cancel/pending refund",
+      "priority": "P1",
+      "techniques": [
+        "State transition",
+        "Money reconciliation"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "[A-policy AP03] นโยบายยกเลิกโจทย์ ไม่ใช่คำตอบเจ้าของงานจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR12",
+        "FR17",
+        "BR20"
+      ],
+      "preconditions": "โลกทดสอบใหม่; fan ซื้อ NEON C01+STAGE10 สำเร็จด้วยข้อมูลผู้ซื้อ/ผู้ถือมาตรฐาน; บันทึก order/ticket/code/payment IDs; encore/EncoreDemo!26 เป็นเจ้าของ NEON, sky/SkyDemo!26 ต่างเจ้าของ",
+      "data": "paid1652; buyerrefund1620",
+      "steps": [
+        "buyerขอคืนC01จดID/1620",
+        "encorecancelNEONแล้วอ่านrefund",
+        "ลองเปิดon_saleและjoinใหม่",
+        "approveและอ่านnet"
+      ],
+      "expected": "refundเดิม1IDยกระดับเต็ม1652 ไม่สร้างสองรายการ; cancelเปิดกลับ/รับซื้อใหม่ไม่ได้; approveแล้วnet0; บัตรไม่valid",
+      "checkTiming": "ก่อนcancel หลังcancel และหลังapprove",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามคืน1620และเพิ่ม32เป็นrefundใหม่จนเสี่ยงซ้ำ",
+      "assignmentTitle": "cancel upgrades pending refund to full amount and permanently closes sale"
+    },
+    {
+      "id": "V3-A50",
+      "title": "cancel pending แล้วเงินมาช้าคืนครั้งเดียว",
+      "feature": "Cancel/payment",
+      "priority": "P1",
+      "techniques": [
+        "State transition",
+        "Idempotency"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "[A-policy AP03] รับเงินของholdยกเลิกต้องคืนทดลอง ไม่ใช่คำตอบเจ้าของงานจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR12",
+        "FR15",
+        "FR17",
+        "BR16",
+        "NFR03"
+      ],
+      "preconditions": "โลกทดสอบใหม่ เวลา2026-11-06T03:00:00Z; fan/FanDemo!26 เข้า NEON Member queue active และ verify ENCORE-0001; hold C01 และบันทึก checkout ครบก่อนจ่าย",
+      "data": "Buyer Test / buyer@example.test / 0812345678; C01=Holder 1 / holder1@example.test / 0898765432; Regular1800 ไม่มีโค้ด",
+      "steps": [
+        "สร้างpending1832และจดpaymentID",
+        "encorecancelNEONก่อนapprove",
+        "ตรวจactivehold/seat แล้วส่งcallbackapprovedเดิม2ครั้ง",
+        "อ่านpayment/orders/mail/notifications"
+      ],
+      "expected": "holdถูกปล่อยและงานปิด; lateapprovalauto-refund1832ครั้งเดียว; 0ticket/0order/0mail; notificationเรื่องคืนเงินไม่ซ้ำจากreplay",
+      "checkTiming": "ตรวจทันทีcancelและหลังcallbackแต่ละครั้ง",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามจบที่holdหายโดยไม่ส่งเงินมาช้าพิสูจน์",
+      "assignmentTitle": "cancel pending payment releases seat; later approval auto-refunds exactly once"
+    },
+    {
+      "id": "V3-A51",
+      "title": "ขอบประตูระดับ1ms",
+      "feature": "Gate time",
+      "priority": "P1",
+      "techniques": [
+        "Boundary value"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "[A-policy AP05] 16:00<=now<22:00 NEON เป็นนโยบายโจทย์ ไม่ใช่คำตอบเจ้าของงานจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR16",
+        "BR17",
+        "BR20"
+      ],
+      "preconditions": "โลกทดสอบใหม่; fan ซื้อ NEON C01,C02 สำเร็จด้วยข้อมูลผู้ซื้อ/ผู้ถือมาตรฐาน; บันทึก order/ticket/code/payment IDs; encore/EncoreDemo!26 เป็นเจ้าของ NEON, sky/SkyDemo!26 ต่างเจ้าของ",
+      "data": "open2026-12-12T09:00Z close15:00Z (16:00–22:00ไทย)",
+      "steps": [
+        "เวลา08:59:59.999Z login gate scanC01",
+        "เวลา09:00Z scanC01",
+        "ใช้โลกใหม่/บัตรที่ยังไม่usedตรวจC02ที่14:59:59.999Z",
+        "โลกใหม่/บัตรใหม่ตรวจตรง15:00Z"
+      ],
+      "expected": "ก่อนเปิดปฏิเสธและไม่consume; ตรงเปิดsuccess; ก่อนปิด1msยังsuccess; ตรงปิดปฏิเสธและไม่consume; แต่ละcaseใช้codeยังvalidเพื่อไม่ให้usedบดบังเวลา",
+      "checkTiming": "ต้องloginใหม่เมื่อเลื่อนข้าม24h; เก็บcontrolledclockทุกจุด",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามใช้บัตรusedหรือcodeไม่รู้จักเป็นหลักฐานว่าประตูเปิด",
+      "assignmentTitle": "gate millisecond boundaries: before open denied, open accepted, close denied"
+    },
+    {
+      "id": "V3-A53",
+      "title": "malformed request คืนข้อผิดพลาดควบคุมได้",
+      "feature": "Protocol resilience",
+      "priority": "P1",
+      "techniques": [
+        "Invalid partition",
+        "Error handling"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR18",
+        "NFR02"
+      ],
+      "preconditions": "โลกแยกสะอาด; ส่งHTTPดิบได้ ไม่ใช้helperที่บังคับJSONถูกต้อง",
+      "data": "POSTlogin: {, null, [], text/plain hello; unknownroute/event/round; DELETEorders; POST/; /package.json",
+      "steps": [
+        "ส่งแต่ละbody/contenttypeแยกคำขอ",
+        "เรียกroute/event/roundผิดและmethodผิด",
+        "ขอไฟล์นอกpublic/package.json",
+        "อ่านhealthและloginถูกต้องหลังทุกชุด"
+      ],
+      "expected": "malformed JSON/shapeได้controlled4xx (syntax400, unsupportedtype415); route/methodไม่รองรับ4xx ไม่เผยsource/stack/secret; ไม่มีmutation; serverยังloginได้; ไม่500/ค้าง",
+      "checkTiming": "บันทึกstatus+errorbodyของทุกpartition; ตรวจhealthต่อจากทุกชุด",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามทดสอบเฉพาะJSONsyntaxผิดหนึ่งค่าแล้วอ้างครอบคลุมtype/method",
+      "assignmentTitle": "malformed JSON content types routes and methods return controlled errors"
+    },
+    {
+      "id": "V3-A55",
+      "title": "markup เป็นข้อความและnotificationแยกบัญชี",
+      "feature": "Escaping/privacy",
+      "priority": "P1",
+      "techniques": [
+        "Injection",
+        "Authorization matrix"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR09",
+        "FR13",
+        "FR14",
+        "FR15",
+        "NFR02"
+      ],
+      "preconditions": "โลกทดสอบใหม่ เวลา2026-11-06T03:00:00Z; fan/FanDemo!26 เข้า NEON Member queue active และ verify ENCORE-0001; hold C01 และบันทึก checkout ครบก่อนจ่าย",
+      "data": "buyer/holder name=<img src=x onerror=alert(1)> Test; email/phoneถูกต้อง",
+      "steps": [
+        "บันทึกcheckoutชื่อmarkupและจ่ายสำเร็จ",
+        "เปิดticket/mailHTML/EML ตรวจDOMและdialog/pageerror",
+        "fan2เปิดnotifications/orders/mailbox",
+        "fanอ่านnotificationซื้อของตน"
+      ],
+      "expected": "markupแสดงliteralไม่execute/ไม่เป็นelementonerror; mailHTMLescapeเป็น&lt;img; 1ticket/1mail1832; fan2ไม่มีorder/mail/notificationของfan; fanเห็นnotificationที่เกี่ยวข้องของตน",
+      "checkTiming": "ตรวจตอนrenderครั้งแรกและหลังreload ไม่ใช่เฉพาะJSON",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามถือว่าชื่ออยู่ในJSONปลอดภัยเท่ากับHTMLescape",
+      "assignmentTitle": "hostile holder markup is escaped in mail and per-account notifications stay private"
+    },
+    {
+      "id": "V3-A58",
+      "title": "ผู้ซื้ออื่น/ผู้จัดอื่นสั่งpay/refundไม่ได้",
+      "feature": "Mutation ownership",
+      "priority": "P1",
+      "techniques": [
+        "Authorization matrix",
+        "State preservation"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR12",
+        "FR15",
+        "FR17",
+        "BR17",
+        "NFR02"
+      ],
+      "preconditions": "โลกทดสอบใหม่ เวลา2026-11-06T03:00:00Z; fan/FanDemo!26 เข้า NEON Member queue active และ verify ENCORE-0001; hold C01 และบันทึก checkout ครบก่อนจ่าย",
+      "data": "Buyer Test / buyer@example.test / 0812345678; C01=Holder 1 / holder1@example.test / 0898765432; Regular1800 ไม่มีโค้ด; fan2ต่างbuyer skyต่างowner",
+      "steps": [
+        "สร้างpendingจดpaymentID",
+        "fan2resolve/paymentQRโดยIDนั้น",
+        "fanresolveสำเร็จ; fan2ขอrefundticketนั้น",
+        "fanขอrefund; skyและbuyerลองapprove",
+        "อ่านticket/payment/refundหลังทุกการปฏิเสธ"
+      ],
+      "expected": "ต่างbuyerอ่านQR/resolve/refundไม่ได้และไม่เปลี่ยนstate; เจ้าของpayได้1order/1ticket/1mail; ต่างowner/buyerapproveไม่ได้; requestเจ้าของยังpendingไม่คืนเงินโดยผู้ไม่มีสิทธิ์",
+      "checkTiming": "ตรวจbaseline/afterทุกคำขอผิดก่อนให้เจ้าของทำรายการจริง",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามทดสอบแค่GETisolationแต่ไม่ทดสอบmutation",
+      "assignmentTitle": "refund and payment resolution cannot be executed by another buyer or organizer"
+    },
+    {
+      "id": "V3-A61",
+      "title": "refunded/cancelled QRจริงเข้าประตูไม่ได้",
+      "feature": "Revoked tickets",
+      "priority": "P1",
+      "techniques": [
+        "State transition",
+        "Negative testing"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "[A-policy AP01 AP03 AP05] นโยบายโจทย์ ไม่ใช่คำตอบเจ้าของงานจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR16",
+        "FR17",
+        "BR17",
+        "BR20"
+      ],
+      "preconditions": "โลกทดสอบใหม่; fan ซื้อ NEON C01,C02 สำเร็จด้วยข้อมูลผู้ซื้อ/ผู้ถือมาตรฐาน; บันทึก order/ticket/code/payment IDs; encore/EncoreDemo!26 เป็นเจ้าของ NEON, sky/SkyDemo!26 ต่างเจ้าของ",
+      "data": "C01อนุมัติrefund; C02ยังvalidก่อนcancel",
+      "steps": [
+        "เก็บcodeจากQRทั้งสองก่อนเพิกถอน",
+        "buyerขอคืนC01และencoreapprove",
+        "ที่gateopenloginใหม่scanC01",
+        "encorecancelNEONแล้วgate scanC02"
+      ],
+      "expected": "C01refundedปฏิเสธแม้QRตรงcode; C02หลังcancelปฏิเสธงานยกเลิก; 0successfulscanทั้งคู่และไม่มีusedแทรก",
+      "checkTiming": "scanภายในAP05เพื่อไม่ให้closedgateบดบังสถานะ",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามใช้QRปลอมหรือหมดเวลาประตูแทนเพิกถอนจริง",
+      "assignmentTitle": "refunded and cancelled tickets never pass gate even with a valid QR code"
+    },
+    {
+      "id": "V3-L03",
+      "title": "ครั้งที่2ต้องเป็นผลปฏิเสธ ไม่ใช้คำค้นกำกวม",
+      "feature": "Gate UI regression",
+      "priority": "P1",
+      "techniques": [
+        "Negative testing",
+        "Semantic assertion"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "[A-policy AP05] ประตูตามเวลาโจทย์ ไม่ใช่คำตอบเจ้าของงานจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR16",
+        "BR17",
+        "NFR01"
+      ],
+      "preconditions": "โลกทดสอบใหม่; fan ซื้อ NEON สำเร็จด้วยข้อมูลผู้ซื้อ/ผู้ถือมาตรฐาน; บันทึก order/ticket/code/payment IDs; encore/EncoreDemo!26 เป็นเจ้าของ NEON, sky/SkyDemo!26 ต่างเจ้าของ",
+      "data": "gateopen2026-12-12T09:00Z; codeถอดจากQRจริง",
+      "steps": [
+        "login gate เปิดตรวจบัตร กรอกcodeและยืนยัน",
+        "เก็บผลแรกพร้อมภาพ",
+        "ยืนยันcodeเดิมครั้งที่2และอ่านresultแบบเต็ม/สถานะตอบ"
+      ],
+      "expected": "ครั้งแรกsuccessมีHolder 1; ครั้งที่2เป็นปฏิเสธใช้แล้ว ไม่มีข้อความsuccessหรือสไตล์success และไม่ได้เพิ่มadmission; successcountรวม1",
+      "checkTiming": "ตรวจทันทีแต่ละครั้ง ไม่รวมข้อความครั้งแรกที่ค้างในDOM",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามassertเพียงมีคำว่าใช้บัตรแล้วเพราะข้อความsuccessก็อาจมีคำนั้น",
+      "assignmentTitle": "gate second scan is rejection not success message containing used words"
+    },
+    {
+      "id": "V3-U01",
+      "title": "Member เลขผิด→ถูก ซื้อ2ชื่อ retry และรับเมล",
+      "feature": "Full Member journey",
+      "priority": "P1",
+      "techniques": [
+        "End-to-end",
+        "State transition"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR05",
+        "FR06",
+        "FR09",
+        "FR11",
+        "FR12",
+        "FR13",
+        "FR14",
+        "FR15",
+        "BR11",
+        "BR15",
+        "NFR01"
+      ],
+      "preconditions": "browsercontextใหม่ขนาด375×812; โลกทดสอบส่วนตัวเวลา03:00Z; ใช้บัญชีทดลองตามTEST-DATA; บันทึกภาพ/การคลิกและrequestIDs",
+      "data": "Buyer Test / buyer@example.test / 0812345678; C01=Holder 1 / holder1@example.test / 0898765432; Regular1800 ไม่มีโค้ด; C02 Holder 2; 2Regularไม่มีโค้ด3664",
+      "steps": [
+        "login fan เลือกNEON/Member เข้าqueue",
+        "ส่งเลขWRONGตรวจerror/ยังไม่เห็นผัง แล้วENCORE-0001ต้องเข้าผังทันที",
+        "เลือกC01/C02 กรอกbuyer/holdersคนละชื่อ ตรวจsummary",
+        "จ่ายQRแล้วจำลองfailed ตรวจยังไม่มีticket/mail; retryด้วยpaymentIDใหม่และapprove",
+        "เปิดบัตรและอีเมลทดลองดาวน์โหลดEML"
+      ],
+      "expected": "เลขผิดไม่อ่านผัง; เลขถูกไม่มีsuccessinterstitial; ยอด3600+60+4=3664; failed0ticket/0mail; retry1order/2namedticket/1เมลถึงbuyerรวม2QR; 375pxไม่ล้น",
+      "checkTiming": "ตรวจsummaryหลังยืนยันhold/checkout ก่อนpay และนับหลังterminal",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามหยุดตรวจแค่หน้าsuccessโดยไม่เปิดบัตร/เมล",
+      "assignmentTitle": "Member invalid/valid number, two named tickets, payment retry and email E-Ticket"
+    },
+    {
+      "id": "V3-U05",
+      "title": "reload กู้ pending และsnapshotโดยไม่จ่ายซ้ำ",
+      "feature": "Recovery UI",
+      "priority": "P1",
+      "techniques": [
+        "Recovery",
+        "State transition"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR10",
+        "FR12",
+        "FR15",
+        "BR19",
+        "NFR01"
+      ],
+      "preconditions": "browsercontextใหม่ขนาด375×812; โลกทดสอบส่วนตัวเวลา03:00Z; ใช้บัญชีทดลองตามTEST-DATA; บันทึกภาพ/การคลิกและrequestIDs",
+      "data": "Buyer Test / buyer@example.test / 0812345678; C01=Holder 1 / holder1@example.test / 0898765432; Regular1800 ไม่มีโค้ด; method=alipay",
+      "steps": [
+        "fanเข้าคิวverify ถือC01 กรอกcontactครบ",
+        "เริ่มAlipaypending จดpaymentID/deadline",
+        "reload กดจองต่อ/ชำระเงิน ตรวจsummaryและpending",
+        "ลองแก้contactแล้วapprove เปิดบัตร/เมล"
+      ],
+      "expected": "ยังpaymentID/holder/amount1832/deadlineเดิม ไม่ยืด600s; pending0ticket/0mailและcontactแก้ไม่ได้; approve1ticketHolder 1/1mail snapshotเดิม",
+      "checkTiming": "ก่อนreload หลังresume และหลังsuccess",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามสร้างpaymentใหม่เพื่อให้หน้าดูเหมือนกู้สำเร็จ",
+      "assignmentTitle": "pending and contact snapshots recover after reload"
+    },
+    {
+      "id": "V3-U06",
+      "title": "คืนบางใบยังมีบัตรอีกใบและauditเงินถูก",
+      "feature": "Refund UI/audit",
+      "priority": "P1",
+      "techniques": [
+        "State transition",
+        "Money reconciliation"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "[A-policy AP01] นโยบายโจทย์ที่กำหนดก่อนทดสอบ ไม่ใช่คำตอบจากเจ้าของงานจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR13",
+        "FR17",
+        "BR08",
+        "NFR01"
+      ],
+      "preconditions": "browsercontextใหม่ขนาด375×812; โลกทดสอบส่วนตัวเวลา03:00Z; ใช้บัญชีทดลองตามTEST-DATA; บันทึกภาพ/การคลิกและrequestIDs; fanซื้อC01,C02+STAGE10เสร็จ",
+      "data": "ยอด3304; คืนC01net1620; C02Holder 2",
+      "steps": [
+        "fanเปิดบัตรของฉันเลือกคืนเฉพาะC01 ยืนยัน",
+        "ตรวจC01รอคืนไม่มีQRเข้าได้ แต่C02ยังมีQR/ชื่อ",
+        "ออกระบบเข้าencore เปิดจัดการNEON อนุมัติrefund",
+        "ตรวจdashboard/auditและกลับfanดูสองใบ"
+      ],
+      "expected": "pendingยังนับquota; approveแล้วC01refunded/C02valid; auditระบุaction/seat/amountที่ถูก; gross3304 refund1620 net1684; ไม่คืน3664/ไม่ทำC02หาย",
+      "checkTiming": "ภาพก่อนapprove/หลังapproveพร้อมเงินและseat",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามใช้กรณี1ใบพิสูจน์partialrefundสองใบ",
+      "assignmentTitle": "named ticket partial refund and organizer audit"
+    },
+    {
+      "id": "V3-U07",
+      "title": "ประตูรับ payload จากQRและคืนชื่อเพียงครั้งเดียว",
+      "feature": "Gate journey",
+      "priority": "P1",
+      "techniques": [
+        "End-to-end",
+        "Independent decoder"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "[A-policy AP05] เวลาประตูโจทย์ ไม่ใช่คำตอบเจ้าของงานจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR13",
+        "FR16",
+        "BR17",
+        "NFR04"
+      ],
+      "preconditions": "browsercontextใหม่ขนาด375×812; โลกทดสอบส่วนตัวเวลา03:00Z; ใช้บัญชีทดลองตามTEST-DATA; บันทึกภาพ/การคลิกและrequestIDs; ซื้อC01และดาวน์โหลดQRเจ้าของแล้วตั้งเวลาgateopen",
+      "data": "Holder 1; decoderอ่านPNGจริง",
+      "steps": [
+        "ถอดภาพticketQRอิสระเก็บpayload",
+        "login gate เปิดตรวจบัตรกรอกpayload",
+        "ยืนยันครั้งแรกแล้วซ้ำครั้งที่2",
+        "เก็บภาพเต็มผลทั้งสอง"
+      ],
+      "expected": "ครั้งแรกยืนยันเข้าได้/Holder 1; ครั้งที่2ปฏิเสธused; รวม1admission; ห้ามใช้ticketIDหรือemailแทนpayload",
+      "checkTiming": "ที่2026-12-12T09:00Z loginใหม่หลังเลื่อนclock",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามคัดcodeจากAPIอย่างเดียวแล้วอ้างว่าทดสอบQRจริง",
+      "assignmentTitle": "gate scans ticket QR payload once and shows holder name"
+    },
+    {
+      "id": "V3-U11",
+      "title": "ซื้อด้วยQRจนถึงอีเมลทดลอง",
+      "feature": "Payment UI QR",
+      "priority": "P1",
+      "techniques": [
+        "End-to-end",
+        "State transition"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR09",
+        "FR10",
+        "FR11",
+        "FR12",
+        "FR13",
+        "FR14",
+        "FR15",
+        "BR12",
+        "BR13",
+        "BR14",
+        "BR18",
+        "NFR01"
+      ],
+      "preconditions": "browsercontextใหม่ขนาด375×812; โลกทดสอบส่วนตัวเวลา03:00Z; ใช้บัญชีทดลองตามTEST-DATA; บันทึกภาพ/การคลิกและrequestIDs",
+      "data": "Buyer Test / buyer@example.test / 0812345678; C01=Holder 1 / holder1@example.test / 0898765432; Regular1800 ไม่มีโค้ด; qr",
+      "steps": [
+        "fanlogin/queue/verifyและเลือกC01",
+        "กรอกcontact ตรวจsummary เลือกQRและเริ่มpending; ถอดQRชำระตรวจENCORE-DEMO-PAY",
+        "เปิดบัตร/กล่องเมลก่อนapproveแล้วกลับชำระต่อ",
+        "จำลองapprove เปิดบัตรและอีเมลทดลอง/EML"
+      ],
+      "expected": "summary1832=1800+30+2; pending0ticket/0mail; deadlineตรงhold600s; success1ticket C01 Holder 1 พร้อมQR และ1mailถึงbuyer@example.test; UIระบุจำลอง/375pxไม่ล้น",
+      "checkTiming": "ตรวจจำนวนก่อนapproveและหลังticketcomplete; จับภาพinstruction/bัตร/mail",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามใช้ผลmethodอื่นแทนเส้นทางนี้ หรือถือว่ามีรูปQRเท่ากับชำระแล้ว",
+      "assignmentTitle": "payment qr completes sandbox email"
+    },
+    {
+      "id": "V3-U12",
+      "title": "ซื้อด้วย7-Elevenจนถึงอีเมลทดลอง",
+      "feature": "Payment UI 7-Eleven",
+      "priority": "P1",
+      "techniques": [
+        "End-to-end",
+        "State transition"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR09",
+        "FR10",
+        "FR11",
+        "FR12",
+        "FR13",
+        "FR14",
+        "FR15",
+        "BR12",
+        "BR13",
+        "BR14",
+        "BR18",
+        "NFR01"
+      ],
+      "preconditions": "browsercontextใหม่ขนาด375×812; โลกทดสอบส่วนตัวเวลา03:00Z; ใช้บัญชีทดลองตามTEST-DATA; บันทึกภาพ/การคลิกและrequestIDs",
+      "data": "Buyer Test / buyer@example.test / 0812345678; C01=Holder 1 / holder1@example.test / 0898765432; Regular1800 ไม่มีโค้ด; seven_eleven",
+      "steps": [
+        "fanlogin/queue/verifyและเลือกC01",
+        "กรอกcontact ตรวจsummary เลือก7-Elevenและเริ่มpending; ตรวจreferenceทดลองและdeadline10นาทีไม่ใช่2ชม.",
+        "เปิดบัตร/กล่องเมลก่อนapproveแล้วกลับชำระต่อ",
+        "จำลองapprove เปิดบัตรและอีเมลทดลอง/EML"
+      ],
+      "expected": "summary1832=1800+30+2; pending0ticket/0mail; deadlineตรงhold600s; success1ticket C01 Holder 1 พร้อมQR และ1mailถึงbuyer@example.test; UIระบุจำลอง/375pxไม่ล้น",
+      "checkTiming": "ตรวจจำนวนก่อนapproveและหลังticketcomplete; จับภาพinstruction/bัตร/mail",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามใช้ผลmethodอื่นแทนเส้นทางนี้ หรือถือว่ามีรูปQRเท่ากับชำระแล้ว",
+      "assignmentTitle": "payment seven_eleven completes sandbox email"
+    },
+    {
+      "id": "V3-U13",
+      "title": "ซื้อด้วยCredit Cardจนถึงอีเมลทดลอง",
+      "feature": "Payment UI Credit Card",
+      "priority": "P1",
+      "techniques": [
+        "End-to-end",
+        "State transition"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR09",
+        "FR10",
+        "FR11",
+        "FR12",
+        "FR13",
+        "FR14",
+        "FR15",
+        "BR12",
+        "BR13",
+        "BR14",
+        "BR18",
+        "NFR01"
+      ],
+      "preconditions": "browsercontextใหม่ขนาด375×812; โลกทดสอบส่วนตัวเวลา03:00Z; ใช้บัญชีทดลองตามTEST-DATA; บันทึกภาพ/การคลิกและrequestIDs",
+      "data": "Buyer Test / buyer@example.test / 0812345678; C01=Holder 1 / holder1@example.test / 0898765432; Regular1800 ไม่มีโค้ด; credit_card",
+      "steps": [
+        "fanlogin/queue/verifyและเลือกC01",
+        "กรอกcontact ตรวจsummary เลือกCredit Cardและเริ่มpending; ตรวจไม่ต้องกรอกข้อมูลบัตรจริง",
+        "เปิดบัตร/กล่องเมลก่อนapproveแล้วกลับชำระต่อ",
+        "จำลองapprove เปิดบัตรและอีเมลทดลอง/EML"
+      ],
+      "expected": "summary1832=1800+30+2; pending0ticket/0mail; deadlineตรงhold600s; success1ticket C01 Holder 1 พร้อมQR และ1mailถึงbuyer@example.test; UIระบุจำลอง/375pxไม่ล้น",
+      "checkTiming": "ตรวจจำนวนก่อนapproveและหลังticketcomplete; จับภาพinstruction/bัตร/mail",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามใช้ผลmethodอื่นแทนเส้นทางนี้ หรือถือว่ามีรูปQRเท่ากับชำระแล้ว",
+      "assignmentTitle": "payment credit_card completes sandbox email"
+    },
+    {
+      "id": "V3-U14",
+      "title": "ซื้อด้วยAlipayจนถึงอีเมลทดลอง",
+      "feature": "Payment UI Alipay",
+      "priority": "P1",
+      "techniques": [
+        "End-to-end",
+        "State transition"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR09",
+        "FR10",
+        "FR11",
+        "FR12",
+        "FR13",
+        "FR14",
+        "FR15",
+        "BR12",
+        "BR13",
+        "BR14",
+        "BR18",
+        "NFR01"
+      ],
+      "preconditions": "browsercontextใหม่ขนาด375×812; โลกทดสอบส่วนตัวเวลา03:00Z; ใช้บัญชีทดลองตามTEST-DATA; บันทึกภาพ/การคลิกและrequestIDs",
+      "data": "Buyer Test / buyer@example.test / 0812345678; C01=Holder 1 / holder1@example.test / 0898765432; Regular1800 ไม่มีโค้ด; alipay",
+      "steps": [
+        "fanlogin/queue/verifyและเลือกC01",
+        "กรอกcontact ตรวจsummary เลือกAlipayและเริ่มpending; อ่านinstructionAlipayและreferenceจำลอง",
+        "เปิดบัตร/กล่องเมลก่อนapproveแล้วกลับชำระต่อ",
+        "จำลองapprove เปิดบัตรและอีเมลทดลอง/EML"
+      ],
+      "expected": "summary1832=1800+30+2; pending0ticket/0mail; deadlineตรงhold600s; success1ticket C01 Holder 1 พร้อมQR และ1mailถึงbuyer@example.test; UIระบุจำลอง/375pxไม่ล้น",
+      "checkTiming": "ตรวจจำนวนก่อนapproveและหลังticketcomplete; จับภาพinstruction/bัตร/mail",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามใช้ผลmethodอื่นแทนเส้นทางนี้ หรือถือว่ามีรูปQRเท่ากับชำระแล้ว",
+      "assignmentTitle": "payment alipay completes sandbox email"
+    },
+    {
+      "id": "V3-U21",
+      "title": "ปฏิเสธrefund แล้วผู้ซื้อเห็นบัตรvalid/QRกลับมา",
+      "feature": "Rejected refund UI",
+      "priority": "P1",
+      "techniques": [
+        "State transition"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "[A-policy AP02] rejectคืนvalidตามโจทย์ ไม่ใช่คำตอบเจ้าของงานจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR13",
+        "FR17",
+        "BR08",
+        "NFR01"
+      ],
+      "preconditions": "browsercontextใหม่ขนาด375×812; โลกทดสอบส่วนตัวเวลา03:00Z; ใช้บัญชีทดลองตามTEST-DATA; บันทึกภาพ/การคลิกและrequestIDs; fanซื้อC01สำเร็จ",
+      "data": "Buyer Test / buyer@example.test / 0812345678; C01=Holder 1 / holder1@example.test / 0898765432; Regular1800 ไม่มีโค้ด",
+      "steps": [
+        "fanขอคืนC01และดูรอคืน",
+        "encoreเปิดจัดการNEONเลือกไม่อนุมัติ",
+        "fanloginใหม่เปิดบัตร/อ่านสถานะและQR",
+        "โหลดซ้ำตรวจไม่ย้อนกลับpending"
+      ],
+      "expected": "rejectทำvalid/QRกลับมา/ข้อความอ่านเข้าใจ; refunded0, net1832; ไม่มีrefundเงินหรือticket/mailซื้อเพิ่ม; โหลดใหม่คงvalid",
+      "checkTiming": "ตรวจหลังrejectด้วยsessionผู้ซื้อใหม่และreload",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามใช้แค่ข้อความผู้จัดว่าrejectสำเร็จโดยไม่กลับไปตรวจผู้ซื้อ",
+      "assignmentTitle": "organizer rejects refund and buyer regains ticket QR with readable status"
+    },
+    {
+      "id": "V3-U23",
+      "title": "markup ผู้ถือเป็นข้อความบนบัตรและเมล",
+      "feature": "Escaping UI",
+      "priority": "P1",
+      "techniques": [
+        "Injection",
+        "Rendering"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR09",
+        "FR13",
+        "FR14",
+        "FR15",
+        "NFR02"
+      ],
+      "preconditions": "browsercontextใหม่ขนาด375×812; โลกทดสอบส่วนตัวเวลา03:00Z; ใช้บัญชีทดลองตามTEST-DATA; บันทึกภาพ/การคลิกและrequestIDs",
+      "data": "holder=<img src=x onerror=alert(1)> Test; buyer Buyer Test; C01",
+      "steps": [
+        "fanเลือกC01และกรอกholdermarkupพร้อมemail/phoneถูก",
+        "จ่ายสำเร็จ",
+        "เปิดบัตรและsandboxmailพร้อมจับdialog/eventerror",
+        "reloadและอ่านชื่อ/DOMซ้ำ"
+      ],
+      "expected": "1ticket/1mail1832; แสดงชื่อliteralครบ ไม่มีscript/dialogหรือimgonerrorจากชื่อ; mailescapeไม่ทำlayoutเสีย; QRpayloadไม่มีmarkup/PII",
+      "checkTiming": "ตรวจขณะเปิดครั้งแรกและreloadทั้งticket/mail",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามทดสอบผ่านAPIJSONเท่านั้นแล้วสรุปว่าrenderปลอดภัย",
+      "assignmentTitle": "holder markup stays literal on tickets and email without executing script"
+    },
+    {
+      "id": "V3-U24",
+      "title": "General ซื้อจนรับบัตร/เมลโดยไม่กรอกสมาชิก",
+      "feature": "Full General journey",
+      "priority": "P1",
+      "techniques": [
+        "End-to-end",
+        "Role partition"
+      ],
+      "source": {
+        "oracle": [
+          "REQUIREMENTS.md",
+          "TEST-DATA.md",
+          "USER-STORIES.md"
+        ],
+        "policy": "ข้อกำหนด ENCORE; คงป้าย U/A ตามเอกสาร ไม่อ้างนโยบายผู้ให้บริการจริง",
+        "contextOnly": [
+          "EXPLORATION.md",
+          "exploration/lab8/c1.md–c7.md"
+        ],
+        "actionMappingOnly": "e2e/api.test.mjs, e2e/ui.spec.js, e2e/lab.spec.js; ไม่ใช้ assertion เป็น oracle"
+      },
+      "requirements": [
+        "FR02",
+        "FR03",
+        "FR06",
+        "FR09",
+        "FR11",
+        "FR13",
+        "FR14",
+        "FR15",
+        "BR11",
+        "NFR01"
+      ],
+      "preconditions": "browsercontextใหม่ขนาด375×812; โลกทดสอบส่วนตัวเวลา03:00Z; ใช้บัญชีทดลองตามTEST-DATA; บันทึกภาพ/การคลิกและrequestIDs",
+      "data": "general/GeneralDemo!26; AURORA General เปิดตอน03:00Z; C01 Holder 1; buyer@example.test",
+      "steps": [
+        "เลือกGeneralทดลองlogin ดูAURORA/General",
+        "เข้าqueueจนactiveตรวจไม่มีmembershipinput",
+        "เลือกC01กรอกbuyerและholder ตรวจsummary1832",
+        "จ่ายQRapprove เปิดnamedticketและmail/EML"
+      ],
+      "expected": "ไม่ต้องเลขmembership; 1order/1ticket C01 Holder 1/1mailถึงbuyer; QRถอดได้; summary1800+30+2=1832; ทุกขั้น375pxไม่ล้น",
+      "checkTiming": "ตรวจไม่มีmembershipก่อนผัง และบัตร/เมลหลังชำระ",
+      "cleanup": "เก็บ request/response ที่ตัด cookie/token และภาพขั้นสำคัญ; ปิด context; reset/คืน clock เฉพาะฐานทดสอบที่ตนเป็นเจ้าของหลังจบ ห้ามแตะ4310",
+      "wrongAlternative": "ห้ามใช้fanซื้อGeneralแทนบัญชีGeneralจริง",
+      "assignmentTitle": "General buyer completes purchase without membership and receives named ticket email"
+    }
+  ]
+}

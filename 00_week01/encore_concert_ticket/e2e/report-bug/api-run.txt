@@ -1,0 +1,190 @@
+✔ V3-A01 username registration, case duplicates, validation and role injection (814.939875ms)
+✔ V3-A02 username and legacy email login, cookie rotation and logout (347.715125ms)
+✔ V3-A03 session 24h and five-login lockout exact boundaries (1245.447208ms)
+✖ V3-A04 catalog twelve maps and explicit Member/General schedules (276.1385ms)
+✔ V3-A05 anonymous cannot queue or read Member map (278.922708ms)
+✔ V3-A06 General rejected by Member queue/map/hold with exact Thai message (312.467959ms)
+✔ V3-A07 expired membership exactly at valid_until denied (311.011042ms)
+✔ V3-A08 before queue: Member map and forged hold both blocked (311.5515ms)
+✔ V3-A09 correct membership unlocks map, wrong and other owner number do not (319.399625ms)
+✔ V3-A10 grant scoped to account and simultaneous Member events, expiry revokes access (828.278875ms)
+✔ V3-A11 prequeue fifteen minutes, fixed number, no admission before sale (315.205625ms)
+✔ V3-A12 FIFO two slots shows ahead and ETA; leaves promote in order (420.715625ms)
+✔ V3-A13 Member closes and General opens exactly 15:00 without admin toggle (357.040875ms)
+✖ V3-A14 Member two seats per user cumulative, multidevice cannot bypass (312.519542ms)
+✖ V3-A15 Member 0/3 duplicates sold invalid and all-or-nothing (315.826ms)
+✔ V3-A16 race same seat only one hold, same ID across events isolated (381.663125ms)
+✖ V3-A17 canonical price, allocation, coupon cap and tampered total (315.529042ms)
+✔ V3-A18 hold exact600s, reload recovery and closing releases (350.256958ms)
+✔ V3-A19 checkout mandatory and data ownership enforced (346.56175ms)
+✔ V3-A20 validate buyer and each holder name email phone and exact seat count (316.485166ms)
+✔ V3-A21 checkout freezes after pending; contact snapshot retained cross-device (346.303375ms)
+✔ V3-A22 payment channel qr pending instructions then named ticket and email (324.017ms)
+✔ V3-A23 payment channel seven_eleven pending instructions then named ticket and email (317.606ms)
+✔ V3-A24 payment channel credit_card pending instructions then named ticket and email (314.435ms)
+✔ V3-A25 payment channel alipay pending instructions then named ticket and email (313.805584ms)
+✔ V3-A26 invalid method and client amount rejected/ignored respectively (312.123666ms)
+✔ V3-A27 declined retry new attempt; duplicate success creates one order/mail (313.014542ms)
+✔ V3-A28 pending cannot release/reselect; timely callback in grace succeeds (315.008959ms)
+✔ V3-A29 late paidAt at expiry refunds with no email/ticket (313.945125ms)
+✔ V3-A30 grace exact end releases seat; callback cannot steal resale (979.695625ms)
+✔ V3-A31 wrong amount/future callback does not finalize (313.242167ms)
+✔ V3-A32 actual ticket QR independently decodes to opaque code without PII (339.539708ms)
+✔ V3-A33 QR/payment/mail owner isolation and eml embedded QR attachment (362.76975ms)
+✔ V3-A34 two holders distinct names and buyer email receives both tickets (321.961625ms)
+✖ V3-A35 partial refund restores seat and Member quota only after approval (314.449542ms)
+✖ V3-A36 scanner uses QR code once, returns holder name; fresh-code wrong role denied (385.072666ms)
+✔ V3-A37 refund pending blocks scanning, refund cutoff exact boundary (383.919667ms)
+✔ V3-A38 organizer scope, pause/block and automatic round cannot be bypassed (417.497375ms)
+✔ V3-A39 cancel full refund idempotent, no extra tickets or mail (346.433458ms)
+✔ V3-A40 Origin, body, malformed IDs and test tools protected (342.175083ms)
+✔ V3-A41 additive migration and restart preserve legacy order, then V3 order/email (950.162333ms)
+✔ V3-A42 real V2 schema upgraded additively without losing legacy tickets (782.210708ms)
+✔ V3-A43 Member quota two counts toward General total four across sale rounds (316.805709ms)
+✔ V3-A44 account catalog scopes round schedules, status and availability by audience (349.742667ms)
+✔ V3-A45 anonymous and nonbuyer role matrix blocks private data and privileged actions (498.015167ms)
+✔ V3-A46 failed reselection rolls back; replacement and repeated release free only owned seats (352.238084ms)
+✔ V3-A47 General four-seat limit and cross-event pending hold cannot be bypassed (317.202708ms)
+✔ V3-A48 refund reject restores ticket and retry reuses request without duplicate money (353.250792ms)
+✔ V3-A49 cancel upgrades pending refund to full amount and permanently closes sale (349.256458ms)
+✔ V3-A50 cancel pending payment releases seat; later approval auto-refunds exactly once (349.354416ms)
+✔ V3-A51 gate millisecond boundaries: before open denied, open accepted, close denied (458.668416ms)
+✔ V3-A52 organizer block/unblock and invalid combined update rolls back sale state (349.007708ms)
+✔ V3-A53 malformed JSON content types routes and methods return controlled errors (312.173083ms)
+✔ V3-A54 contacts exact lengths and phone/email boundaries validate without changing saved data (315.254875ms)
+✔ V3-A55 hostile holder markup is escaped in mail and per-account notifications stay private (351.16325ms)
+✔ V3-A56 General prequeue and end boundaries enforce waiting then close and release (349.754458ms)
+✔ V3-A57 paused cancelled sold-out upcoming events block already-admitted buyer without side effects (350.037875ms)
+✔ V3-A58 refund and payment resolution cannot be executed by another buyer or organizer (384.661875ms)
+✔ V3-A59 queue leave promotes waiting buyer before rejoin and expiry frees slot in FIFO order (767.934583ms)
+✔ V3-A60 registration field boundaries normalize identity and reject duplicate email (345.747958ms)
+✔ V3-A61 refunded and cancelled tickets never pass gate even with a valid QR code (417.381625ms)
+ℹ tests 61
+ℹ suites 0
+ℹ pass 55
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 25021.736208
+
+✖ failing tests:
+
+test at e2e/api.test.mjs:25:34
+✖ V3-A04 catalog twelve maps and explicit Member/General schedules (276.1385ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  3 !== 2
+  
+      at file:///Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/api.test.mjs:32:259
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/api.test.mjs:25:84)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 3,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at e2e/api.test.mjs:25:34
+✖ V3-A14 Member two seats per user cumulative, multidevice cannot bypass (312.519542ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  201 !== 409
+  
+      at file:///Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/api.test.mjs:47:159
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/api.test.mjs:25:84)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 201,
+    expected: 409,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at e2e/api.test.mjs:25:34
+✖ V3-A15 Member 0/3 duplicates sold invalid and all-or-nothing (315.826ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  201 !== 400
+  
+      at file:///Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/api.test.mjs:48:199
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/api.test.mjs:25:84)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 201,
+    expected: 400,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at e2e/api.test.mjs:25:34
+✖ V3-A17 canonical price, allocation, coupon cap and tampered total (315.529042ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  5824 !== 5964
+  
+      at file:///Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/api.test.mjs:50:344
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/api.test.mjs:25:84)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 5824,
+    expected: 5964,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at e2e/api.test.mjs:25:34
+✖ V3-A35 partial refund restores seat and Member quota only after approval (314.449542ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  201 !== 409
+  
+      at file:///Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/api.test.mjs:65:273
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/api.test.mjs:25:84)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 201,
+    expected: 409,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at e2e/api.test.mjs:25:34
+✖ V3-A36 scanner uses QR code once, returns holder name; fresh-code wrong role denied (385.072666ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      200,
+  +   200
+  -   409
+    ]
+  
+      at file:///Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/api.test.mjs:66:512
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/api.test.mjs:25:84)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 200, 200 ],
+    expected: [ 200, 409 ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

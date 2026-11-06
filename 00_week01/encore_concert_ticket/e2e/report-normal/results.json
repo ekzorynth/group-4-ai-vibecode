@@ -1,0 +1,1356 @@
+{
+  "config": {
+    "configFile": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/playwright.config.js",
+    "rootDir": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 3
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "ui.spec.js",
+          "lab.spec.js"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "html",
+        {
+          "open": "never",
+          "outputFolder": "e2e/report-normal/playwright"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "e2e/report-normal/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "runAgents": "none",
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.58.2",
+    "workers": 3,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "lab.spec.js",
+      "file": "lab.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "V3-L01 two VIP coupon cap has server checkout total 5964 after hold",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1501,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:26:59.504Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/lab-V3-L01-two-VIP-coupon--3c732-ckout-total-5964-after-hold/attachments/final-screen-1186ab140511a5d693bf8f044233990be31fc9c7.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/lab-V3-L01-two-VIP-coupon--3c732-ckout-total-5964-after-hold/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a7beecb291e3553ef15a-fdabde20bbd2904db616",
+          "file": "lab.spec.js",
+          "line": 6,
+          "column": 1
+        },
+        {
+          "title": "V3-L02 Member third seat is rejected while first two stay selected",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1410,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:26:59.489Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/lab-V3-L02-Member-third-se-ef215-ile-first-two-stay-selected/attachments/final-screen-40f7654b50042ae0ab31cdcb64c303b2140216d1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/lab-V3-L02-Member-third-se-ef215-ile-first-two-stay-selected/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a7beecb291e3553ef15a-6b1249891af57ab04ed6",
+          "file": "lab.spec.js",
+          "line": 9,
+          "column": 1
+        },
+        {
+          "title": "V3-L03 gate second scan is rejection not success message containing used words",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 1386,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:26:59.487Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/lab-V3-L03-gate-second-sca-8ddf0-ssage-containing-used-words/attachments/final-screen-e0b58c25624c8f7c47938a97e433065eae93374a.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/lab-V3-L03-gate-second-sca-8ddf0-ssage-containing-used-words/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a7beecb291e3553ef15a-c2bfb1113eaaf49a4964",
+          "file": "lab.spec.js",
+          "line": 12,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "ui.spec.js",
+      "file": "ui.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "V3-U01 Member invalid/valid number, two named tickets, payment retry and email E-Ticket",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 2930,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:01.853Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U01-Member-invalid-v-ef7e5-nt-retry-and-email-E-Ticket/attachments/final-screen-ef9a820a992c825bd3e9185035df6c3468fbddfc.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U01-Member-invalid-v-ef7e5-nt-retry-and-email-E-Ticket/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-bff5caa977ff6a7ff33a",
+          "file": "ui.spec.js",
+          "line": 11,
+          "column": 1
+        },
+        {
+          "title": "V3-U02 General signs up, denied Member, joins General at15 with no membership input",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1466,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:01.877Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U02-General-signs-up-b0d6a-15-with-no-membership-input/attachments/final-screen-68fa41f9f06ce47ab7f206088ff64cb46ca119ef.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U02-General-signs-up-b0d6a-15-with-no-membership-input/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-b9a56b84d7960f0c50a5",
+          "file": "ui.spec.js",
+          "line": 15,
+          "column": 1
+        },
+        {
+          "title": "V3-U03 mobile Member cap2 contact validation copy and QR demo",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1870,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:01.968Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U03-mobile-Member-ca-dec7c-validation-copy-and-QR-demo/attachments/final-screen-c48ad68d8e0def5a4b755ffc459040e3e4d9e3f3.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U03-mobile-Member-ca-dec7c-validation-copy-and-QR-demo/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-2cd5f9273306006df82e",
+          "file": "ui.spec.js",
+          "line": 18,
+          "column": 1
+        },
+        {
+          "title": "V3-U04 Member queue has stable number, ahead, ETA and auto-enters verification",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3249,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:03.353Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U04-Member-queue-has-3d98d-nd-auto-enters-verification/attachments/final-screen-68e54c139abf827da65cd1d2bcc2323b2514219b.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U04-Member-queue-has-3d98d-nd-auto-enters-verification/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-b2d56a7135e70640b46a",
+          "file": "ui.spec.js",
+          "line": 21,
+          "column": 1
+        },
+        {
+          "title": "V3-U05 pending and contact snapshots recover after reload",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3351,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:03.845Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U05-pending-and-contact-snapshots-recover-after-reload/attachments/final-screen-324173b750c5b5d324165cd262ba7ae22792fc8c.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U05-pending-and-contact-snapshots-recover-after-reload/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-508cac13e8ac27631add",
+          "file": "ui.spec.js",
+          "line": 24,
+          "column": 1
+        },
+        {
+          "title": "V3-U06 named ticket partial refund and organizer audit",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 1394,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:04.790Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U06-named-ticket-partial-refund-and-organizer-audit/attachments/final-screen-76bebebcbd22902e7ab9d5d17a60e10abf747ef9.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U06-named-ticket-partial-refund-and-organizer-audit/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-13322b462cb51a3de023",
+          "file": "ui.spec.js",
+          "line": 25,
+          "column": 1
+        },
+        {
+          "title": "V3-U07 gate scans ticket QR payload once and shows holder name",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 1376,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:06.192Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U07-gate-scans-ticke-7684c--once-and-shows-holder-name/attachments/final-screen-70cd66bce7132a0800b2ac63218e0cd92bbf3213.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U07-gate-scans-ticke-7684c--once-and-shows-holder-name/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-ec45746551ae44c8712d",
+          "file": "ui.spec.js",
+          "line": 26,
+          "column": 1
+        },
+        {
+          "title": "V3-U08 pagination all-event search and General new-event booking",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2539,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:06.611Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U08-pagination-all-e-ecf0f-d-General-new-event-booking/attachments/final-screen-bb0734f34a04092424a903acb0d95fb3cc944d22.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U08-pagination-all-e-ecf0f-d-General-new-event-booking/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-79136e5150bc0a0bca1e",
+          "file": "ui.spec.js",
+          "line": 27,
+          "column": 1
+        },
+        {
+          "title": "V3-U09 keyboard selection and close during reserve release late hold",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1478,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:07.203Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U09-keyboard-selecti-6757e-g-reserve-release-late-hold/attachments/final-screen-b695c8470d1d1059aadd86dfd763254849a269a6.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U09-keyboard-selecti-6757e-g-reserve-release-late-hold/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-f23608ad9484d86ca71b",
+          "file": "ui.spec.js",
+          "line": 28,
+          "column": 1
+        },
+        {
+          "title": "V3-U10 automatic Member cutoff blocks pay, General opens at15",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 3243,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:07.575Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U10-automatic-Member-94a6b-ocks-pay-General-opens-at15/attachments/final-screen-7a8e5f41aa6eaa956f21c0556971872829a2b9c1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U10-automatic-Member-94a6b-ocks-pay-General-opens-at15/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-a1dd722678bed23eecae",
+          "file": "ui.spec.js",
+          "line": 29,
+          "column": 1
+        },
+        {
+          "title": "V3-U11 payment qr completes sandbox email",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1988,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:08.689Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U11-payment-qr-completes-sandbox-email/attachments/final-screen-a4ff746e1043afc707b49c66395335a0273a726f.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U11-payment-qr-completes-sandbox-email/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-5faaa8893de9ee5c3b8b",
+          "file": "ui.spec.js",
+          "line": 30,
+          "column": 84
+        },
+        {
+          "title": "V3-U12 payment seven_eleven completes sandbox email",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1964,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:09.158Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U12-payment-seven-eleven-completes-sandbox-email/attachments/final-screen-a88ec7d8dc5dd9093439e6a810890d3cdbde934f.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U12-payment-seven-eleven-completes-sandbox-email/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-127971fc5b50111f3dd0",
+          "file": "ui.spec.js",
+          "line": 30,
+          "column": 84
+        },
+        {
+          "title": "V3-U13 payment credit_card completes sandbox email",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1852,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:10.685Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U13-payment-credit-card-completes-sandbox-email/attachments/final-screen-f63060c09f5afac868b00ad493f46e1ee8c7f6f3.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U13-payment-credit-card-completes-sandbox-email/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-6adeca098bb6292b71fe",
+          "file": "ui.spec.js",
+          "line": 30,
+          "column": 84
+        },
+        {
+          "title": "V3-U14 payment alipay completes sandbox email",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 1853,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:10.825Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U14-payment-alipay-completes-sandbox-email/attachments/final-screen-c2ca6d12aa573738aeff3e51e8234ecbc0fa1629.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U14-payment-alipay-completes-sandbox-email/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-c9fd3baae9ab13ec4754",
+          "file": "ui.spec.js",
+          "line": 30,
+          "column": 84
+        },
+        {
+          "title": "V3-U15 demo accounts separate Member and General sale views in calm theme",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1562,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:11.128Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U15-demo-accounts-se-74400-al-sale-views-in-calm-theme/attachments/final-screen-523172262c6bf59ad5530e143a29b34c54a36221.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U15-demo-accounts-se-74400-al-sale-views-in-calm-theme/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-217be8be73d519c902a9",
+          "file": "ui.spec.js",
+          "line": 32,
+          "column": 1
+        },
+        {
+          "title": "V3-U16 invalid login recovers and switching account isolates tickets mail and notifications",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1941,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:12.544Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U16-invalid-login-re-e8d9c-kets-mail-and-notifications/attachments/final-screen-d3f1b53633ae5418bf69a42dacad6ffd4bed80ce.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U16-invalid-login-re-e8d9c-kets-mail-and-notifications/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-7e6977116f9c01c42dfa",
+          "file": "ui.spec.js",
+          "line": 35,
+          "column": 1
+        },
+        {
+          "title": "V3-U17 search filters empty state and pagination boundaries remain consistent",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 1254,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:12.685Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U17-search-filters-e-437e6-oundaries-remain-consistent/attachments/final-screen-0e65d79ee87ae3ae8f817a2742ec164518029400.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U17-search-filters-e-437e6-oundaries-remain-consistent/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-2a2a53c7da9077462eb9",
+          "file": "ui.spec.js",
+          "line": 39,
+          "column": 1
+        },
+        {
+          "title": "V3-U18 invalid coupon keeps selected seat then closing confirmed hold releases it",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1816,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:12.697Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U18-invalid-coupon-k-7ae78--confirmed-hold-releases-it/attachments/final-screen-c9f0945d0efe93a125651b2eed2cda2aafbf663f.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U18-invalid-coupon-k-7ae78--confirmed-hold-releases-it/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-22e4ec1053a951835459",
+          "file": "ui.spec.js",
+          "line": 43,
+          "column": 1
+        },
+        {
+          "title": "V3-U19 membership request in flight disables repeat submission and close never reopens map",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 1189,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:13.945Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U19-membership-reque-69bb6-and-close-never-reopens-map/attachments/final-screen-7e0e262041b2b03fb11c4402f84e24cfd4fe48c1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U19-membership-reque-69bb6-and-close-never-reopens-map/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-8d29cb99d7287651673e",
+          "file": "ui.spec.js",
+          "line": 47,
+          "column": 1
+        },
+        {
+          "title": "V3-U20 contact edits survive reload and back to seat selection releases prior hold",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3283,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:14.492Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U20-contact-edits-su-33c11-lection-releases-prior-hold/attachments/final-screen-1169b28ab703c4d2b3570200a5fbdb12aca6a15c.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U20-contact-edits-su-33c11-lection-releases-prior-hold/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-52ef58a7e0b0401a6aef",
+          "file": "ui.spec.js",
+          "line": 51,
+          "column": 1
+        },
+        {
+          "title": "V3-U21 organizer rejects refund and buyer regains ticket QR with readable status",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1758,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:14.521Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U21-organizer-reject-47ecc-ket-QR-with-readable-status/attachments/final-screen-d0f62028980ce9f1011de8d6f38031e87ea3931e.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U21-organizer-reject-47ecc-ket-QR-with-readable-status/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-a28fd52bfe669ebc30f4",
+          "file": "ui.spec.js",
+          "line": 55,
+          "column": 1
+        },
+        {
+          "title": "V3-U22 mobile organizer blocks reopens seat and pauses sale within own scope",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 1726,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:15.143Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U22-mobile-organizer-11774-auses-sale-within-own-scope/attachments/final-screen-83eca100ff00722cca7adea07f65659872e91d64.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U22-mobile-organizer-11774-auses-sale-within-own-scope/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-2f66098b4f33b8304afd",
+          "file": "ui.spec.js",
+          "line": 59,
+          "column": 1
+        },
+        {
+          "title": "V3-U23 holder markup stays literal on tickets and email without executing script",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2193,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:16.286Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U23-holder-markup-st-7c763-il-without-executing-script/attachments/final-screen-095395f6181efcab2fe4ee02b9b6689f6f8a8c61.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U23-holder-markup-st-7c763-il-without-executing-script/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-291e20d760c13980bad9",
+          "file": "ui.spec.js",
+          "line": 63,
+          "column": 1
+        },
+        {
+          "title": "V3-U24 General buyer completes purchase without membership and receives named ticket email",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 1875,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:16.877Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U24-General-buyer-co-8268a-receives-named-ticket-email/attachments/final-screen-db3fd57ccb5e4df0227156230cba84c9e0e5bfab.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U24-General-buyer-co-8268a-receives-named-ticket-email/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-0550ffd49ec7d7187efb",
+          "file": "ui.spec.js",
+          "line": 67,
+          "column": 1
+        },
+        {
+          "title": "V3-U25 catalog network failure gives recovery instruction and reload restores events",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 854,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-06T13:27:17.784Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-screen",
+                      "contentType": "image/png",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U25-catalog-network--6a6c7--and-reload-restores-events/attachments/final-screen-01ad19b8c4f5e0a02f91897acd5bd640ad70de0a.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/aek/Work/training_vibe_code/group-4-ai-vibecode/00_week01/encore_concert_ticket/e2e/report-normal/artifacts/ui-V3-U25-catalog-network--6a6c7--and-reload-restores-events/video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6cacfa4b79c1be8f210f-eac4a112deb920f33e83",
+          "file": "ui.spec.js",
+          "line": 71,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-06T13:26:58.757Z",
+    "duration": 20055.019999999997,
+    "expected": 28,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

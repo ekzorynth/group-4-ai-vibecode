@@ -1,0 +1,49 @@
+{
+  "recordedAt": "2026-11-06T11:43:00.684Z",
+  "files": [
+    {
+      "file": "exploration/lab8/c2.md",
+      "sha256": "2ea8e12daf0f93314f42e2773cee317ebd47d651d53e5e3891f3e8e0809c09dc"
+    },
+    {
+      "file": "exploration/lab8/c2/attempt-1.json",
+      "sha256": "55307efed478a1c70401865078e08d61b29ed69ab40b284253d4dfd86acccbcf"
+    },
+    {
+      "file": "exploration/lab8/c2/fifo-auto-admitted.png",
+      "sha256": "b8e0570c68b9cf861deb9f5bcd28ca0361d530ea421efe0241b0a87a63ca763b"
+    },
+    {
+      "file": "exploration/lab8/c2/fifo-waiting.png",
+      "sha256": "c7d73390086132c0e17f1fe9e2aa1e06b8b03e6c8474047c17c55b8bc053bb42"
+    },
+    {
+      "file": "exploration/lab8/c2/observations.json",
+      "sha256": "a99bef071b0fe20ef700605319d20af7d5a808edf2677ce59ef531cfab845300"
+    },
+    {
+      "file": "exploration/lab8/c2/run.mjs",
+      "sha256": "728ce72ef8f92779710e229a8f28c20247a2027012897dafc226006e0b773248"
+    },
+    {
+      "file": "exploration/lab8/c5.md",
+      "sha256": "362e38a8279ee03e0436e60fc4fbd37220dacbb1f65514feba6d606a3b680bb5"
+    },
+    {
+      "file": "exploration/lab8/c5/observations.json",
+      "sha256": "04fe87efc6a9c8b49cb75de5cf3a2116e52ecdfae2edfc531f8eeb2a7110da8b"
+    },
+    {
+      "file": "exploration/lab8/c5/partial-refund-admin.png",
+      "sha256": "77140686f934501261b7b1363a7bf62550863f9eb637f8cc282c8ab66571099b"
+    },
+    {
+      "file": "exploration/lab8/c5/partial-refund-pending.png",
+      "sha256": "eed787c27608549de1b71978603ba3cc8de12731b7c6fdacc9b3fe37fdea201c"
+    },
+    {
+      "file": "exploration/lab8/c5/run.mjs",
+      "sha256": "0192b749f425e0b1722709b4daa934cca26f32d705ce421f78b3cef12d1c3b7a"
+    }
+  ]
+}

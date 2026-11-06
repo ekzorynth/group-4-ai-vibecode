@@ -1,0 +1,150 @@
+erDiagram
+ USERS ||--o{ SESSIONS : authenticates
+ USERS ||--o| MEMBERSHIPS : owns
+ USERS ||--o{ EVENTS : organizes
+ EVENTS ||--|{ SALE_ROUNDS : schedules
+ EVENTS ||--|{ SEATS : contains
+ USERS ||--o{ QUEUES : joins
+ EVENTS ||--o{ QUEUES : serves
+ USERS ||--o{ MEMBER_GRANTS : receives
+ EVENTS ||--o{ MEMBER_GRANTS : authorizes
+ USERS ||--o{ HOLDS : reserves
+ EVENTS ||--o{ HOLDS : books
+ HOLDS ||--o{ PAYMENTS : attempts
+ HOLDS ||--o| ORDERS : confirms
+ USERS ||--o{ ORDERS : purchases
+ ORDERS ||--|{ TICKETS : issues
+ TICKETS ||--o| REFUNDS : requests
+ ORDERS ||--o| MAIL_OUTBOX : delivers
+ USERS ||--o{ NOTIFICATIONS : receives
+ EVENTS ||--o{ AUDIT : records
+ USERS {
+
+ string id PK
+ string email UK
+ string username UK
+ string password
+ string role
+ }
+ SESSIONS {
+
+ string token PK
+ string user FK
+ int expires
+ }
+ MEMBERSHIPS {
+
+ string number PK
+ string user FK,UK
+ string status
+ int valid_until
+ }
+ EVENTS {
+
+ string id PK
+ string owner FK
+ string state
+ string data
+ }
+ SALE_ROUNDS {
+
+ string event PK,FK
+ string kind PK
+ int start
+ int end
+ }
+ SEATS {
+
+ string event PK,FK
+ string id PK
+ string hold FK
+ int price
+ int sold
+ int blocked
+ }
+ QUEUES {
+
+ int seq PK
+ string user FK
+ string event FK
+ string round
+ string status
+ int expires
+ }
+ MEMBER_GRANTS {
+
+ string user PK,FK
+ string event PK,FK
+ int expires
+ }
+ HOLDS {
+
+ string id PK
+ string user FK
+ string event FK
+ string round
+ string status
+ string seats
+ string checkout
+ int expires
+ }
+ PAYMENTS {
+
+ string id PK
+ string hold FK
+ string method
+ string status
+ int amount
+ int paid_at
+ int refund_amount
+ }
+ ORDERS {
+
+ string id PK
+ string user FK
+ string hold FK,UK
+ int created
+ }
+ TICKETS {
+
+ string id PK
+ string order_id FK
+ string event FK
+ string seat
+ string code UK
+ string holder
+ string status
+ int net
+ int fee
+ int vat
+ }
+ REFUNDS {
+
+ string id PK
+ string ticket FK,UK
+ int amount
+ string status
+ string reason
+ }
+ MAIL_OUTBOX {
+
+ string id PK
+ string user FK
+ string order_id FK,UK
+ string recipient
+ string status
+ }
+ NOTIFICATIONS {
+
+ string id PK
+ string user FK
+ string message
+ }
+ AUDIT {
+
+ string id PK
+ string actor
+ string event FK
+ string action
+ string target
+ }

@@ -1,0 +1,279 @@
+{
+  "reviewer": "/root/review_53",
+  "writer": "/root/writer_53",
+  "started": "not captured at first read; already reviewing by2026-11-06T11:39:46Z",
+  "ended": "2026-11-06T11:41:32.699096+00:00",
+  "issues": [
+    {
+      "id": "R53-01",
+      "severity": "P1",
+      "problem": "V3-A30 masks the exact grace-boundary detector. Before sending arrival=expiry+120s, fan2 already owns C01. An implementation using arrivedAt<=expiry+120s still auto-refunds because the independent seat-ownership condition fails. Therefore the prediction that A30 detects the inclusive-arrival bug is not supported by its flow.",
+      "fix": "Keep takeover/no-oversell replay, but add a separate reset scenario at arrival720.000s with paidAt599.999s and C01 still attributable to the original hold; compare with the valid719.999s scenario. Require exactly one1832 auto-refund, zero order/ticket/mail, and no sold seat. Update the fault-detector prediction to identify this isolated scenario."
+    },
+    {
+      "id": "R53-02",
+      "severity": "P2",
+      "problem": "V3-A36 tests buyer scan and wrong-event scan only after concurrent gate requests have consumed the code. A missing role/event guard can still return used and satisfy a generic denial. This does not independently establish the required role/event restrictions.",
+      "fix": "Before the successful concurrent scans, use a fresh valid unconsumed NEON code at09:00Z for buyer and for gate with event=aurora. Require each denial to leave the ticket valid/admissions0; then scan the same original code as gate/neon and require one success and one used denial. Alternatively isolate each guard with a fresh fixture."
+    },
+    {
+      "id": "R53-03",
+      "severity": "P2",
+      "problem": "V3-A38 expects blocked C02 cannot be held, but its only later hold attempt is C03 after pause. That denial is explained by pause and cannot detect an ignored seat block. AP04 also requires new queue entry to be denied during pause, which this card does not attempt.",
+      "fix": "Before pausing, have an eligible active verified buyer attempt C02 and check denial plus no new hold/quota mutation; verify another unblocked seat is eligible to prevent a separate guard masking block. After pause, explicitly attempt both new queue entry and a new hold, then pay pre-existing C01 before expiry and require1ticket/1mail1832."
+    },
+    {
+      "id": "R53-04",
+      "severity": "P2",
+      "problem": "V3-A31/A40/A53 add protocol-specific or validation assertions not defined in REQUIREMENTS/TEST-DATA: future-paidAt must return controlled4xx and remain pending;17000-character body must be rejected absent a documented limit; malformed syntax400/unsupported type415. D specifies financial timing and input/body protection, but not these exact response contracts or the numeric body threshold. A31 also fails to state the exact payment/hold state after each invalid callback despite promising to read it.",
+      "fix": "Keep money/authorization/no-ticket/no-mail assertions rooted in D. Record an explicit additional test-contract assumption for future timestamps and body/type handling, or relax exact HTTP status claims to controlled rejection without inventing400/415. Choose an oversized input from an independently documented configured limit and record units. For A31 specify the permitted payment status/hold ownership/amount and refund0 after each rejected input; distinguish malformed callback validation from a genuine late-paid callback governed by BR16."
+    }
+  ],
+  "checks": {
+    "scope": "Read only plan/5.3.md and .json, REQUIREMENTS.md, TEST-DATA.md, EXPLORATION.md and permitted exploration charter markdown. No runtime, web/BUGS, seeds, e2e source, website calls, or plan edits.",
+    "timestampCaveat": "First-read UTC was not captured. A tool clock establishes review already in progress by2026-11-06T11:39:46Z; ended is actual report-write UTC.",
+    "structure": "41unique JSON cards;41matching markdown card IDs. All16 common card fields present. Preconditions/data/expected/checkTiming/cleanup/wrongAlternative text agrees between formats. Every card inspected for requirements, priority, source, inputs/actions, before/after state and wrong alternatives.",
+    "priorityTrace": "All41 P1; REQUIREMENTS acceptance gate explicitly requires all P1 to pass. Every card has nonempty FR/BR/NFR trace and source. No missing trace/priority issue identified.",
+    "money": {
+      "oneRegularNoCode": "1800+30+round(30×0.07)=1832",
+      "buyerRefund": "1800−floor1800×10%=1620 (AP01; excludes30fee+2VAT)",
+      "cancellation": "1620+30+2=1652 (AP03)",
+      "partialRefund": "3600−360+60+4=3304;3304−1620=1684",
+      "twoVIP": "6400−min640,500+60+4=5964",
+      "twoRegularNoCode": "3600+60+4=3664",
+      "rejectThenApproveNoCode": "1832−1800=32"
+    },
+    "flowReplays": [
+      "A27: declined failed terminal → old-ID approval stays failed → retry new ID → concurrent approval gives1order/1ticket/1mail1832.",
+      "A28/A29:599.999/719.999 qualifies; paidAt600.000 fails strict inequality and refunds1832 once. A30 exact-arrival proof needs R53-01.",
+      "A35/U06: buy3304 → requestC01 still consumes quota2/C02valid → approve twice refunds1620 once → remaining net1684, one quota restored.",
+      "A48/U21: request → reject restores valid/refunded0 → request same ID → approve repeated returns1800 once/net32.",
+      "A39/A49: paid1652 → cancellation full refund1652 → net0; pending request upgraded using same ID; cancellation cannot reopen.",
+      "A50: pending1832 → cancellation releases hold → late approval replay refunds1832 once, noorder/ticket/mail.",
+      "A37/A51/A61/L03/U07: refund cutoff inclusive; pending/refunded/cancelled denial must be checked during AP05; gate open09:00Z inclusive, close15:00Z exclusive; actual QR payload used once. A36 role/event isolation needs R53-02.",
+      "U01/U05/U11–U14/U24: checkout and method-specific pending before terminal, expected counts/amounts and names/mail snapshots explicit; wrong alternative prevents counting pending as ticket success."
+    ],
+    "DvsAP": "AP01–05 are explicitly adopted assumptions in REQUIREMENTS, not real-owner confirmation.14cards explicitly label one or more AP policies. No policy remains blocked pending business-owner input for this classroom plan. Existing exploration passes were treated only as context.",
+    "executionReadiness": "A41/A42 require externally supplied independent legacy/V2 fixtures and an owned persistent DB, as their preconditions state; not claimed executed or supplied by this review.",
+    "perCard": [
+      {
+        "id": "V3-A22",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-A23",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-A24",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-A25",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-A26",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-A27",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-A28",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-A29",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-A30",
+        "reviewed": true,
+        "result": "revision required"
+      },
+      {
+        "id": "V3-A31",
+        "reviewed": true,
+        "result": "revision required"
+      },
+      {
+        "id": "V3-A32",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-A33",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-A34",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-A35",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-A36",
+        "reviewed": true,
+        "result": "revision required"
+      },
+      {
+        "id": "V3-A37",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-A38",
+        "reviewed": true,
+        "result": "revision required"
+      },
+      {
+        "id": "V3-A39",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-A40",
+        "reviewed": true,
+        "result": "revision required"
+      },
+      {
+        "id": "V3-A41",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-A42",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-A48",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-A49",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-A50",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-A51",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-A53",
+        "reviewed": true,
+        "result": "revision required"
+      },
+      {
+        "id": "V3-A55",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-A58",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-A61",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-L03",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-U01",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-U05",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-U06",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-U07",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-U11",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-U12",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-U13",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-U14",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-U21",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-U23",
+        "reviewed": true,
+        "result": "no issue identified"
+      },
+      {
+        "id": "V3-U24",
+        "reviewed": true,
+        "result": "no issue identified"
+      }
+    ]
+  },
+  "counts": {
+    "cardsReviewed": 41,
+    "uniqueCards": 41,
+    "cardsWithIssues": 6,
+    "cardsWithoutIdentifiedIssues": 35,
+    "issues": 4,
+    "P1": 1,
+    "P2": 3,
+    "blockedPolicies": 0,
+    "explicitAPPolicyCards": 14,
+    "runtimeExecutions": 0,
+    "websiteCalls": 0
+  }
+}

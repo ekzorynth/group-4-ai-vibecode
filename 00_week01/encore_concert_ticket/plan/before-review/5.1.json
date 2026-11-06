@@ -1,0 +1,1026 @@
+{
+  "metadata": {
+    "authorTask": "/root/writer_51",
+    "startUTC": "2026-11-06T11:21:11Z",
+    "endUTC": "2026-11-06 11:38:01 UTC",
+    "status": "planned-not-executed",
+    "oracle": [
+      "REQUIREMENTS.md",
+      "TEST-DATA.md"
+    ],
+    "contextRead": [
+      "USER-STORIES.md",
+      "EXPLORATION.md",
+      "exploration/lab8/c1.md",
+      "exploration/lab8/c2.md",
+      "exploration/lab8/c3.md",
+      "exploration/lab8/c4.md",
+      "exploration/lab8/c5.md",
+      "exploration/lab8/c6.md",
+      "exploration/lab8/c7.md"
+    ],
+    "scope": "24 IDs group5.1; no runtime sources, no web/BUGS.md, no website calls; assignments is mapping only",
+    "sourceLegend": {
+      "D": "กฎในREQUIREMENTS/TEST-DATA รวมสมมติฐานAของโจทย์ ไม่ใช่นโยบายผู้จัดภายนอก",
+      "A-policy": "AP01–05ในREQUIREMENTS; กลุ่มนี้ไม่ใช้refundpolicyเป็นoracle",
+      "A-test": "guardหรือassumptionของการทดสอบที่ประกาศชัด ยังไม่ใช่คำตอบผู้ใช้",
+      "R": "external reference; ไม่ใช้แทนกฎENCORE"
+    }
+  },
+  "checklist": [
+    "ครบ24IDจากassignments5.1ไม่ซ้ำ",
+    "ทุกcardมี12หัวข้อในMarkdownและJSONมีwrongAlternative",
+    "negativeมีvalidcontrolและขอบตัวเลขliteral",
+    "expectedจากD/A-policyเท่านั้น ส่วนguardนอกDแยกA-test",
+    "cookie rotation/duplicate email/closed-dialogไม่ถูกแอบนับเป็นD",
+    "context/DB/clockแยก ห้ามreset4310หรือinstanceคนอื่น",
+    "ตรวจstateหลังdenialไม่ดูข้อความอย่างเดียว",
+    "ยังไม่execute ไม่ใช้ผลC1–C7เป็นผลรอบใหม่"
+  ],
+  "faultPredictions": [
+    {
+      "fault": "Memberตรวจเพียงซ่อนปุ่มหรือเฉพาะjoin",
+      "detector": "A06 Generalตรงmap/holdต้อง403ข้อความตรงและไม่มีhold; Membercontrolผ่าน",
+      "falsifier": "ทุกendpointปฏิเสธและstateไม่เปลี่ยน"
+    },
+    {
+      "fault": "ขอบเวลาใช้>แทน>=",
+      "detector": "A03/A10/A13/A56 ตรวจ−1msและตรง24h/900s/15:00/17:00",
+      "falsifier": "ทุกขอบเปลี่ยนตามDและvalidก่อนขอบผ่าน"
+    },
+    {
+      "fault": "grantglobalไม่ผูกuser/event/round",
+      "detector": "A10 fanverifyแล้วfan2/งานอื่น/รอบอื่นใช้เดิมไม่ได้",
+      "falsifier": "controlfanผ่านแต่ทุกcross-scopeไม่ออกgrantหรือPII"
+    },
+    {
+      "fault": "FIFOrejoinแซงหรือaheadไม่นับactive",
+      "detector": "A12/A59 สองactiveหนึ่งwaitingahead2ETA120;fan3ได้slotก่อนrejoin",
+      "falsifier": "ลำดับFIFOไม่เกินสองactiveทุกtransition"
+    },
+    {
+      "fault": "clientcachePIIค้างเมื่อswitch",
+      "detector": "U16/A45 Generalต้องไม่เห็นticket/mailfanทั้งUIและdeeplink",
+      "falsifier": "หลังswitchไม่มีPIIและserverปฏิเสธข้ามowner"
+    }
+  ],
+  "cards": [
+    {
+      "id": "V3-A01",
+      "title": "สมัครด้วยขอบความยาวและป้องกัน role injection",
+      "feature": "สมัครด้วยขอบความยาวและป้องกัน role injection",
+      "priority": "P1",
+      "techniques": [
+        "boundary value analysis",
+        "state transition"
+      ],
+      "source": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: รูปแบบการจัดการทดสอบและ guard ที่ประกาศชัด; R: ไม่ใช้ external reference เป็น oracle แทน D",
+      "requirements": [
+        "V3-FR01",
+        "V3-BR01",
+        "NFR02"
+      ],
+      "preconditions": "DB และ controlled clock เฉพาะผู้รัน; แต่ละแขนงเริ่ม fixture ใหม่; context แยกบัญชี ห้าม reset/clock 4310 หรือ instance คนอื่น",
+      "data": {
+        "usernameValid": [
+          "abc",
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "Ab_C-9."
+        ],
+        "usernameInvalid": [
+          "ab",
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "ab!",
+          "ชื่อ"
+        ],
+        "passwordValid": [
+          "abcdefghij",
+          "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        ],
+        "passwordInvalid": [
+          "xxxxxxxxx",
+          "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        ],
+        "control": "new_fan51 / NewFan!2026",
+        "inject": {
+          "role": "admin",
+          "member": true
+        }
+      },
+      "steps": [
+        "สมัคร valid แต่ละคู่โดยใช้ชื่อไม่ซ้ำ; login ด้วย lowercase",
+        "ส่ง invalid ทีละช่องโดยคงช่องอื่น valid",
+        "สมัคร Ab_C-9. แล้วสมัคร ab_c-9. ซ้ำ",
+        "สมัครพร้อม role/member แล้วลองสิทธิ์ Member/admin"
+      ],
+      "expected": "username3/32และpassword10/128รับได้; username2/33และpassword9/129หรืออักขระนอกอังกฤษตัวเลข._-ไม่สร้างบัญชี; normalize lowercase และไม่รับชื่อซ้ำต่างcase; clientกำหนดrole/memberไม่ได้ บัญชีใหม่General (rejectpayloadหรือตัดfieldสิทธิ์ได้)",
+      "checkTiming": "ตรวจบัญชี/สิทธิ์หลังสมัครและloginใหม่ ไม่ดูเพียงข้อความสำเร็จ",
+      "cleanup": "เก็บหลักฐาน UTC/เวลาจำลอง ไม่เก็บ session token; logout ปิด context; ยกเลิก interception; คืน fixture/clock เฉพาะ instance ของผู้รัน",
+      "wrongAlternative": "สร้างidentityแยกตามcaseหรือให้member=trueเปลี่ยนสิทธิ์"
+    },
+    {
+      "id": "V3-A02",
+      "title": "username และ email เดิมเข้า identity เดียวกัน; logout ยกเลิกสิทธิ์",
+      "feature": "username และ email เดิมเข้า identity เดียวกัน; logout ยกเลิกสิทธิ์",
+      "priority": "P1",
+      "techniques": [
+        "boundary value analysis",
+        "state transition"
+      ],
+      "source": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: รูปแบบการจัดการทดสอบและ guard ที่ประกาศชัด; R: ไม่ใช้ external reference เป็น oracle แทน D",
+      "requirements": [
+        "V3-FR01",
+        "V3-FR17",
+        "NFR02"
+      ],
+      "preconditions": "DB และ controlled clock เฉพาะผู้รัน; แต่ละแขนงเริ่ม fixture ใหม่; context แยกบัญชี ห้าม reset/clock 4310 หรือ instance คนอื่น",
+      "data": {
+        "username": "fan",
+        "password": "FanDemo!26",
+        "invalidPassword": "WrongPass!26",
+        "legacyEmail": "ใช้ email บัญชีเก่าที่ fixture อนุญาต ไม่เดาค่า",
+        "control": "fan / FanDemo!26"
+      },
+      "steps": [
+        "loginผิดแล้วขอข้อมูลส่วนตัว",
+        "loginusernameถูกอ่านordersตน",
+        "logoutแล้วใช้sessionเดิมขอข้อมูลส่วนตัว",
+        "contextใหม่loginด้วยlegacyemailแล้วเทียบidentity",
+        "บันทึกcookieก่อน/หลังloginโดยไม่เก็บtoken"
+      ],
+      "expected": "D: รหัสผิดเข้าไม่ได้; usernameและemailเดิมเข้าidentityเดียวกัน; session protection/owner isolationต้องยังทำงาน. A-test security guard: logoutแล้วsessionเดิมไม่ควรอ่านข้อมูลส่วนตัว; rotatecookieเป็นข้อเสนอป้องกันsession fixation ไม่ใช่รูปแบบtokenที่Dกำหนด จึงไม่ประกาศdefectเพราะstringcookieไม่เปลี่ยนลำพัง. ไม่มีfixturelegacyemailให้blockedเฉพาะแขนงนั้น",
+      "checkTiming": "อ่านข้อมูลทันทีหลังlogin/logoutพร้อมcontextใหม่",
+      "cleanup": "เก็บหลักฐาน UTC/เวลาจำลอง ไม่เก็บ session token; logout ปิด context; ยกเลิก interception; คืน fixture/clock เฉพาะ instance ของผู้รัน",
+      "wrongAlternative": "สรุปว่าปลอดภัยเพียงcookieเปลี่ยนหรือเดาlegacyemail"
+    },
+    {
+      "id": "V3-A03",
+      "title": "ขอบ session24h และล็อกloginผิดห้าครั้ง15min",
+      "feature": "ขอบ session24h และล็อกloginผิดห้าครั้ง15min",
+      "priority": "P1",
+      "techniques": [
+        "boundary value analysis",
+        "state transition"
+      ],
+      "source": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: รูปแบบการจัดการทดสอบและ guard ที่ประกาศชัด; R: ไม่ใช้ external reference เป็น oracle แทน D",
+      "requirements": [
+        "V3-FR17",
+        "V3-BR20"
+      ],
+      "preconditions": "DB และ controlled clock เฉพาะผู้รัน; แต่ละแขนงเริ่ม fixture ใหม่; context แยกบัญชี ห้าม reset/clock 4310 หรือ instance คนอื่น",
+      "data": {
+        "T0": "2026-11-06T03:00:00.000Z",
+        "sessionTimes": [
+          "2026-11-07T02:59:59.999Z",
+          "2026-11-07T03:00:00.000Z"
+        ],
+        "wrongAttempts": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "unlockElapsed": [
+          "00:14:59.999",
+          "00:15:00.000"
+        ],
+        "control": "fan/FanDemo!26"
+      },
+      "steps": [
+        "loginถูกที่T0 อ่านข้อมูลก่อน24h−1msและตรง24h",
+        "fixtureใหม่ส่งรหัสผิด5ครั้งที่เวลาLคงที่",
+        "ส่งรหัสถูกทันที,L+14m59.999s,L+15m โดยไม่ส่งผิดเพิ่ม",
+        "อีกบัญชีloginถูกเป็นcontrol"
+      ],
+      "expected": "sessionก่อน24hใช้ได้ ตรง24hหมด; ผิดครั้งที่5ล็อก15min รหัสถูกก่อนครบยังไม่ได้ ตรง15minเข้าได้; ไม่กำหนดชื่อerrorcodeจากผลสำรวจ; A-test ตรวจlockไม่ลามบัญชีอื่น",
+      "checkTiming": "ตรึงเวลาทั้ง5ครั้งเพื่อทราบL; ทุกขอบ−1ms/ตรงขอบใช้serverclock",
+      "cleanup": "เก็บหลักฐาน UTC/เวลาจำลอง ไม่เก็บ session token; logout ปิด context; ยกเลิก interception; คืน fixture/clock เฉพาะ instance ของผู้รัน",
+      "wrongAlternative": "ใช้>แทน>=จึงsessionค้างหรือปลดล็อกก่อนครบ"
+    },
+    {
+      "id": "V3-A04",
+      "title": "12งาน ตารางรอบ และผัง48ที่",
+      "feature": "12งาน ตารางรอบ และผัง48ที่",
+      "priority": "P1",
+      "techniques": [
+        "boundary value analysis",
+        "state transition"
+      ],
+      "source": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: รูปแบบการจัดการทดสอบและ guard ที่ประกาศชัด; R: ไม่ใช้ external reference เป็น oracle แทน D",
+      "requirements": [
+        "V3-FR02",
+        "V3-FR07",
+        "V3-BR02",
+        "V3-BR03"
+      ],
+      "preconditions": "DB และ controlled clock เฉพาะผู้รัน; แต่ละแขนงเริ่ม fixture ใหม่; context แยกบัญชี ห้าม reset/clock 4310 หรือ instance คนอื่น",
+      "data": {
+        "events": [
+          "neon",
+          "sunset",
+          "orbit",
+          "aurora",
+          "jazz",
+          "rock",
+          "citypop",
+          "acoustic",
+          "kpop",
+          "hiphop",
+          "folk",
+          "midnight"
+        ],
+        "pageSize": 6,
+        "seats": 48,
+        "VIP": "A-B/3200",
+        "Regular": "C-D/1800",
+        "neonSold": [
+          "A03",
+          "A04",
+          "B09",
+          "C06",
+          "D10"
+        ],
+        "control": "งานเปิดและมีที่ว่างอ่านผังหลังสิทธิ์ครบ"
+      },
+      "steps": [
+        "anonymousอ่านสองหน้าเก็บID/schedule",
+        "loginfan/generalเทียบงานเดียวกัน",
+        "จัดclockและคิว/grantถูกก่อนอ่านผังแต่ละงานผ่านfixtureที่อนุญาต ไม่ข้ามสิทธิ์งานหมด/ปิด",
+        "ตรวจลำดับเวลารอบUTCและการแสดงไทย"
+      ],
+      "expected": "ครบ12IDไม่ซ้ำ6ต่อหน้า ทุกงาน48ที่ VIP/Regularไม่มีบัตรยืน; NEONขาย5ที่ตามข้อมูล orbit/midnightหมด; member_start<member_end<=general_start<general_end; เก็บUTCแสดงAsia/Bangkok; anonymousสองschedule fanเฉพาะMember generalเฉพาะGeneral",
+      "checkTiming": "อ่านcatalogหลังlogin; ผังตรวจหลังผ่านสิทธิ์งานนั้น ไม่บังคับงานปิดต้องเผยผัง",
+      "cleanup": "เก็บหลักฐาน UTC/เวลาจำลอง ไม่เก็บ session token; logout ปิด context; ยกเลิก interception; คืน fixture/clock เฉพาะ instance ของผู้รัน",
+      "wrongAlternative": "นับสองหน้ารวม12แต่มีIDซ้ำหรืออ่านscheduleไม่ตรงบัญชี"
+    },
+    {
+      "id": "V3-A05",
+      "title": "anonymousเข้าคิวและอ่านผังMemberไม่ได้",
+      "feature": "anonymousเข้าคิวและอ่านผังMemberไม่ได้",
+      "priority": "P1",
+      "techniques": [
+        "decision table",
+        "security abuse"
+      ],
+      "source": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: รูปแบบการจัดการทดสอบและ guard ที่ประกาศชัด; R: ไม่ใช้ external reference เป็น oracle แทน D",
+      "requirements": [
+        "V3-FR03",
+        "V3-FR05",
+        "V3-BR05"
+      ],
+      "preconditions": "DB และ controlled clock เฉพาะผู้รัน; แต่ละแขนงเริ่ม fixture ใหม่; context แยกบัญชี ห้าม reset/clock 4310 หรือ instance คนอื่น",
+      "data": {
+        "anonymous": "contextไม่มีcookie",
+        "event": "neon",
+        "round": "member",
+        "seat": "C01",
+        "control": "fan+ENCORE-0001 ผ่านactive"
+      },
+      "steps": [
+        "anonymousjoinMember",
+        "anonymousขอmap/holdตรง",
+        "fanloginactiveverifyแล้วขอmap/holdเป็นcontrol"
+      ],
+      "expected": "anonymousไม่เข้าคิว/อ่านผังMember/สร้างhold; fanผ่านขั้นถูกอ่านผังและholdที่ว่างได้. ไม่บังคับข้อความGeneralกับanonymous",
+      "checkTiming": "ตรวจไม่มีhold/stateเปลี่ยนหลังdenialทุกคำขอ",
+      "cleanup": "เก็บหลักฐาน UTC/เวลาจำลอง ไม่เก็บ session token; logout ปิด context; ยกเลิก interception; คืน fixture/clock เฉพาะ instance ของผู้รัน",
+      "wrongAlternative": "ซ่อนปุ่มแต่APIanonymousอ่านผังได้"
+    },
+    {
+      "id": "V3-A06",
+      "title": "GeneralถูกปฏิเสธMemberทั้งjoin/map/hold",
+      "feature": "GeneralถูกปฏิเสธMemberทั้งjoin/map/hold",
+      "priority": "P1",
+      "techniques": [
+        "decision table",
+        "negative security"
+      ],
+      "source": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: รูปแบบการจัดการทดสอบและ guard ที่ประกาศชัด; R: ไม่ใช้ external reference เป็น oracle แทน D",
+      "requirements": [
+        "V3-FR03",
+        "V3-FR06",
+        "V3-BR05"
+      ],
+      "preconditions": "DB และ controlled clock เฉพาะผู้รัน; แต่ละแขนงเริ่ม fixture ใหม่; context แยกบัญชี ห้าม reset/clock 4310 หรือ instance คนอื่น",
+      "data": {
+        "account": "general/GeneralDemo!26",
+        "forgedMembership": "ENCORE-0001",
+        "seat": "C01",
+        "control": "fan/FanDemo!26+ENCORE-0001"
+      },
+      "steps": [
+        "Generalส่งjoinMemberตรง",
+        "ขอmap/holdMemberทั้งไม่ส่งและส่งเลขfan",
+        "ตรวจไม่มีqueue/grant/hold",
+        "fanผ่านคิวverifyแล้วholdเป็นcontrol"
+      ],
+      "expected": "Generalทั้งjoin/map/holdได้403และข้อความตรง“ไม่ใช่สมาชิกMember”; ส่งเลขfanไม่เพิ่มสิทธิ์; validMembercontrolผ่าน",
+      "checkTiming": "ตรวจstatus/message/stateหลังแต่ละendpoint ไม่ดูUIอย่างเดียว",
+      "cleanup": "เก็บหลักฐาน UTC/เวลาจำลอง ไม่เก็บ session token; logout ปิด context; ยกเลิก interception; คืน fixture/clock เฉพาะ instance ของผู้รัน",
+      "wrongAlternative": "ตรวจสิทธิ์เฉพาะjoinหรือข้อความผิด"
+    },
+    {
+      "id": "V3-A07",
+      "title": "สมาชิกหมดอายุตรงvalid_untilเข้าไม่ได้",
+      "feature": "สมาชิกหมดอายุตรงvalid_untilเข้าไม่ได้",
+      "priority": "P1",
+      "techniques": [
+        "boundary value analysis",
+        "state transition"
+      ],
+      "source": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: รูปแบบการจัดการทดสอบและ guard ที่ประกาศชัด; R: ไม่ใช้ external reference เป็น oracle แทน D",
+      "requirements": [
+        "V3-FR06",
+        "V3-BR07"
+      ],
+      "preconditions": "DB และ controlled clock เฉพาะผู้รัน; แต่ละแขนงเริ่ม fixture ใหม่; context แยกบัญชี ห้าม reset/clock 4310 หรือ instance คนอื่น",
+      "data": {
+        "expired": "expired/Expired!26+ENCORE-EXPIRED",
+        "validUntil": "2026-11-06T03:00:00.000Z",
+        "checks": [
+          "2026-11-06T02:59:59.999Z",
+          "2026-11-06T03:00:00.000Z",
+          "2026-11-06T03:00:00.001Z"
+        ],
+        "control": "fan+ENCORE-0001ที่T0"
+      },
+      "steps": [
+        "ก่อนT0−1msอ่านสถานะสมาชิกแยกจากรอบNEONที่ยังไม่เปิด",
+        "ตรงT0ลองjoin/verify/map/holdด้วยexpired",
+        "ทำซ้ำT0+1msในfixtureใหม่",
+        "fanactiveverifyที่T0เป็นvalidcontrol"
+      ],
+      "expected": "ตรงvalid_untilและหลังขอบใช้Memberไม่ได้ ไม่มีgrant/map/hold; ก่อนขอบยังไม่expiredแต่NEONยังไม่เปิดจึงไม่บังคับซื้อได้; fanที่T0ผ่านได้. ถ้าจะพิสูจน์purchaseก่อนexpiryต้องจัดfixtureexpiryภายในรอบเปิดผ่านinterfaceที่อนุญาตก่อน",
+      "checkTiming": "ใช้serverclock−1ms/ตรง/+1msและบันทึกเหตุปฏิเสธแยกsale/member",
+      "cleanup": "เก็บหลักฐาน UTC/เวลาจำลอง ไม่เก็บ session token; logout ปิด context; ยกเลิก interception; คืน fixture/clock เฉพาะ instance ของผู้รัน",
+      "wrongAlternative": "รวมจุดvalid_untilว่ายังactiveหรือสับสนsaleยังไม่เปิดกับmemberหมด"
+    },
+    {
+      "id": "V3-A08",
+      "title": "ก่อนคิวactiveหรือก่อนgrantห้ามmap/hold",
+      "feature": "ก่อนคิวactiveหรือก่อนgrantห้ามmap/hold",
+      "priority": "P1",
+      "techniques": [
+        "boundary value analysis",
+        "state transition"
+      ],
+      "source": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: รูปแบบการจัดการทดสอบและ guard ที่ประกาศชัด; R: ไม่ใช้ external reference เป็น oracle แทน D",
+      "requirements": [
+        "V3-FR05",
+        "V3-BR07"
+      ],
+      "preconditions": "DB และ controlled clock เฉพาะผู้รัน; แต่ละแขนงเริ่ม fixture ใหม่; context แยกบัญชี ห้าม reset/clock 4310 หรือ instance คนอื่น",
+      "data": {
+        "states": [
+          "ไม่มีคิว",
+          "waiting",
+          "activeยังไม่verify",
+          "active+verify"
+        ],
+        "account": "fan/FanDemo!26",
+        "membership": "ENCORE-0001",
+        "seat": "C01",
+        "control": "active+verify"
+      },
+      "steps": [
+        "fanไม่joinขอverify/map/hold",
+        "ให้fan/fan2active fan3waitingแล้วfan3ขอmap/hold",
+        "activefanยังไม่verifyขอmap/hold",
+        "verifyถูกแล้วขอmap/holdC01"
+      ],
+      "expected": "ไม่มีคิว/waiting/activeไม่verifyไม่อ่านผังหรือholdMember; activeและgrantเลขเจ้าของถูกจึงผ่าน; แนบเลขในholdไม่ทดแทนgrant",
+      "checkTiming": "ตรวจทุกสถานะก่อนเลื่อนขั้นและC01ยังว่างหลังdenial",
+      "cleanup": "เก็บหลักฐาน UTC/เวลาจำลอง ไม่เก็บ session token; logout ปิด context; ยกเลิก interception; คืน fixture/clock เฉพาะ instance ของผู้รัน",
+      "wrongAlternative": "ตรวจแค่loginหรือเลขรูปแบบถูก"
+    },
+    {
+      "id": "V3-A09",
+      "title": "เลขผิด คนอื่น และเลขถูกของตน",
+      "feature": "เลขผิด คนอื่น และเลขถูกของตน",
+      "priority": "P1",
+      "techniques": [
+        "boundary value analysis",
+        "state transition"
+      ],
+      "source": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: รูปแบบการจัดการทดสอบและ guard ที่ประกาศชัด; R: ไม่ใช้ external reference เป็น oracle แทน D",
+      "requirements": [
+        "V3-FR05",
+        "V3-FR06",
+        "V3-BR07"
+      ],
+      "preconditions": "DB และ controlled clock เฉพาะผู้รัน; แต่ละแขนงเริ่ม fixture ใหม่; context แยกบัญชี ห้าม reset/clock 4310 หรือ instance คนอื่น",
+      "data": {
+        "wrong": "WRONG",
+        "otherOwner": "ENCORE-0002",
+        "own": "ENCORE-0001",
+        "account": "fan/FanDemo!26",
+        "control": "เลขownหลังnegative"
+      },
+      "steps": [
+        "fanactiveส่งWRONGแล้วmap/hold",
+        "ส่งเลขfan2แล้วmap/hold",
+        "ส่งเลขfanเองแล้วmap/hold",
+        "บนUIตรวจเปลี่ยนจากฟอร์มไปผังไม่กดซ้ำ"
+      ],
+      "expected": "ผิด/คนอื่นมีerrorไม่ออกgrant/map/hold; ownเลขถูกเปิดผังทันทีไม่มีsuccessinterstitialหรือปุ่มเข้าผังซ้ำ",
+      "checkTiming": "ตรวจgrantไม่มีหลังแต่ละnegativeและภาพผังหลังvalidทันที",
+      "cleanup": "เก็บหลักฐาน UTC/เวลาจำลอง ไม่เก็บ session token; logout ปิด context; ยกเลิก interception; คืน fixture/clock เฉพาะ instance ของผู้รัน",
+      "wrongAlternative": "เช็คเพียงรูปแบบENCOREหรือมีsuccessขั้นซ้ำ"
+    },
+    {
+      "id": "V3-A10",
+      "title": "grantผูกบัญชี/event/roundและexpiryคิว",
+      "feature": "grantผูกบัญชี/event/roundและexpiryคิว",
+      "priority": "P1",
+      "techniques": [
+        "boundary value analysis",
+        "state transition"
+      ],
+      "source": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: รูปแบบการจัดการทดสอบและ guard ที่ประกาศชัด; R: ไม่ใช้ external reference เป็น oracle แทน D",
+      "requirements": [
+        "V3-FR05",
+        "V3-FR06",
+        "V3-BR06",
+        "V3-BR07"
+      ],
+      "preconditions": "DB และ controlled clock เฉพาะผู้รัน; แต่ละแขนงเริ่ม fixture ใหม่; context แยกบัญชี ห้าม reset/clock 4310 หรือ instance คนอื่น",
+      "data": {
+        "T0": "2026-11-06T03:00:00.000Z",
+        "checks": [
+          "2026-11-06T03:14:59.999Z",
+          "2026-11-06T03:15:00.000Z"
+        ],
+        "otherEvent": "sunset",
+        "otherRound": "general",
+        "control": "fan/neon/memberก่อนTTL"
+      },
+      "steps": [
+        "fanactiveverifyNEONแล้วอ่านผัง",
+        "fan2ไม่verifyใช้grantfanขอผังเดียวกัน",
+        "fanใช้grantไปsunsetหรือGeneral",
+        "ที่899.999sอ่านNEONแล้วตรง900sอ่าน/holdอีก"
+      ],
+      "expected": "grantไม่ให้อำนาจบัญชี/event/roundอื่น; ก่อน900sและรอบเปิดอ่านเดิมได้ ตรง900sคิวหมดgrantเดิมอ่าน/holdไม่ได้; cross-eventที่saleยังไม่เปิดตรวจไม่มีgrantหลุด แต่ห้ามสรุปscopeจากstatusเพียงอย่างเดียว",
+      "checkTiming": "วัดจากTactiveจริง ตรวจ−1ms/ตรงขอบ",
+      "cleanup": "เก็บหลักฐาน UTC/เวลาจำลอง ไม่เก็บ session token; logout ปิด context; ยกเลิก interception; คืน fixture/clock เฉพาะ instance ของผู้รัน",
+      "wrongAlternative": "grantglobalผูกแค่userหรือหมดเมื่อ>900เท่านั้น"
+    },
+    {
+      "id": "V3-A11",
+      "title": "ห้องรอ15นาทีก่อนขายและเลขคงที่",
+      "feature": "ห้องรอ15นาทีก่อนขายและเลขคงที่",
+      "priority": "P1",
+      "techniques": [
+        "boundary value analysis",
+        "state transition"
+      ],
+      "source": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: รูปแบบการจัดการทดสอบและ guard ที่ประกาศชัด; R: ไม่ใช้ external reference เป็น oracle แทน D",
+      "requirements": [
+        "V3-FR04",
+        "V3-BR04",
+        "V3-BR06"
+      ],
+      "preconditions": "DB และ controlled clock เฉพาะผู้รัน; แต่ละแขนงเริ่ม fixture ใหม่; context แยกบัญชี ห้าม reset/clock 4310 หรือ instance คนอื่น",
+      "data": {
+        "timesUTC": [
+          "2026-11-06T02:44:59.999Z",
+          "2026-11-06T02:45:00.000Z",
+          "2026-11-06T02:59:59.999Z",
+          "2026-11-06T03:00:00.000Z"
+        ],
+        "thai": [
+          "09:44:59.999",
+          "09:45",
+          "09:59:59.999",
+          "10:00"
+        ],
+        "control": "ตรง10:00active"
+      },
+      "steps": [
+        "ก่อน09:45join",
+        "ตรง09:45joinจดq0/ahead/ETA",
+        "reloadและjoinซ้ำก่อน10:00เทียบq0และขอverify/map",
+        "ตรง10:00pollแล้วverifyถูก"
+      ],
+      "expected": "ก่อน09:45ไม่ได้; ตรง09:45waitingคนแรกahead0 ETA900sรวมรอก่อนเปิด; ก่อน10:00ไม่active/verify/map; reloadไม่เปลี่ยนเลข/แซง; ตรง10:00activeตามslotและตรวจสมาชิกได้",
+      "checkTiming": "ตรึงclockแต่ละค่า; อ่านเลขหลังreloadและเปิดรอบ",
+      "cleanup": "เก็บหลักฐาน UTC/เวลาจำลอง ไม่เก็บ session token; logout ปิด context; ยกเลิก interception; คืน fixture/clock เฉพาะ instance ของผู้รัน",
+      "wrongAlternative": "waitingroomเปิดแล้วactiveทันทีหรือreloadแซง"
+    },
+    {
+      "id": "V3-A12",
+      "title": "FIFOสองactiveและสูตรahead/ETA",
+      "feature": "FIFOสองactiveและสูตรahead/ETA",
+      "priority": "P1",
+      "techniques": [
+        "boundary value analysis",
+        "state transition"
+      ],
+      "source": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: รูปแบบการจัดการทดสอบและ guard ที่ประกาศชัด; R: ไม่ใช้ external reference เป็น oracle แทน D",
+      "requirements": [
+        "V3-FR04",
+        "V3-BR06"
+      ],
+      "preconditions": "DB และ controlled clock เฉพาะผู้รัน; แต่ละแขนงเริ่ม fixture ใหม่; context แยกบัญชี ห้าม reset/clock 4310 หรือ instance คนอื่น",
+      "data": {
+        "buyers": [
+          "fan/FanDemo!26",
+          "fan2/FanTwo!26",
+          "fan3/FanThree!26"
+        ],
+        "activeLimit": 2,
+        "thirdAhead": 2,
+        "thirdETA": 120,
+        "formula": "ceil(ahead/2)*120 + รอก่อนเปิด",
+        "control": "สองบัญชีแรกactive"
+      },
+      "steps": [
+        "joinfan/fan2/fan3ตามลำดับด้วยcontextแยก",
+        "อ่านสามสถานะและreloadfan3",
+        "fanleaveแล้วpollfan3ไม่joinใหม่",
+        "fixtureGeneralแยกเพิ่มคนถ้าจะตรวจahead3->ETA240"
+      ],
+      "expected": "activeสูงสุด2 คนที่สามwaiting ahead2 ETAประมาณ120s; reloadเลขเดิม; slotว่างเลื่อนwaitingFIFOและUIไปMembershipอัตโนมัติ; ETAต้องสื่อประมาณ ไม่รับประกัน; ahead3สูตรให้240s",
+      "checkTiming": "boundedpolltimeoutเป็นharnesslimitไม่ใช่SLA; เก็บลำดับและสถานะ",
+      "cleanup": "เก็บหลักฐาน UTC/เวลาจำลอง ไม่เก็บ session token; logout ปิด context; ยกเลิก interception; คืน fixture/clock เฉพาะ instance ของผู้รัน",
+      "wrongAlternative": "นับเฉพาะwaitingไม่รวมactiveหรือfloorทำETA0"
+    },
+    {
+      "id": "V3-A13",
+      "title": "Memberปิด Generalเปิดตรง15:00อัตโนมัติ",
+      "feature": "Memberปิด Generalเปิดตรง15:00อัตโนมัติ",
+      "priority": "P1",
+      "techniques": [
+        "boundary value analysis",
+        "state transition"
+      ],
+      "source": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: guard/การออกแบบทดสอบที่ประกาศชัด; R: external references ไม่ใช้แทน D",
+      "requirements": [
+        "V3-FR02",
+        "V3-FR03",
+        "V3-BR03",
+        "V3-BR09",
+        "V3-BR20"
+      ],
+      "preconditions": "DB และ controlled clock เฉพาะผู้รัน; แต่ละแขนงเริ่ม fixture ใหม่; context แยกบัญชี ห้าม reset/clock 4310 หรือ instance คนอื่น",
+      "data": {
+        "before": "2026-11-06T07:59:59.999Z",
+        "at": "2026-11-06T08:00:00.000Z",
+        "member": "fan/FanDemo!26+ENCORE-0001",
+        "general": "general/GeneralDemo!26",
+        "seat": "C01",
+        "control": "Generaljoin/holdที่15:00"
+      },
+      "steps": [
+        "ก่อนขอบfanactiveverifyholdC01จดexpires",
+        "ตั้งตรง15:00โดยไม่adminอ่านcatalogทั้งสองบัญชี",
+        "fanลองjoin/holdใหม่และเริ่มpayจากholdเดิม",
+        "generaljoinGeneralอ่านผัง/holdโดยไม่Membership"
+      ],
+      "expected": "ก่อนขอบMemberholdได้expiresclamp15:00; ตรง15:00Memberclosed,join/hold/payใหม่จากholdหมดถูกปฏิเสธ; Generalavailableเข้าได้ตามคิวไม่ใช้Membership; การเปิดอัตโนมัติตามserverclock",
+      "checkTiming": "อ่านexpiryก่อนขอบและstateหลังpoll/sweepตรงขอบ ไม่ใช้wallclockรอ",
+      "cleanup": "เก็บหลักฐาน UTC/เวลาจำลอง ไม่เก็บ session token; logout/ปิด context; ยกเลิก interception; คืน fixture/clock เฉพาะ instance ของผู้รัน",
+      "wrongAlternative": "Memberรวมจุด15:00หรือรอadminเปิดGeneral"
+    },
+    {
+      "id": "V3-A44",
+      "title": "catalogแยกรอบ/เวลา/สถานะ/ปุ่มตามบัญชี",
+      "feature": "catalogแยกรอบ/เวลา/สถานะ/ปุ่มตามบัญชี",
+      "priority": "P1",
+      "techniques": [
+        "decision table",
+        "pairwise comparison"
+      ],
+      "source": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: guard/การออกแบบทดสอบที่ประกาศชัด; R: external references ไม่ใช้แทน D",
+      "requirements": [
+        "V3-FR02",
+        "V3-FR03",
+        "V3-BR03",
+        "V3-BR05"
+      ],
+      "preconditions": "DB และ controlled clock เฉพาะผู้รัน; แต่ละแขนงเริ่ม fixture ใหม่; context แยกบัญชี ห้าม reset/clock 4310 หรือ instance คนอื่น",
+      "data": {
+        "at10": {
+          "fanNeon": "Member/available",
+          "generalNeon": "General/upcoming",
+          "fanAurora": "Member/closed",
+          "generalAurora": "General/available"
+        },
+        "at15": {
+          "fanNeon": "Member/closed",
+          "generalNeon": "General/available"
+        },
+        "anonymous": "สองschedule",
+        "control": "GeneralAuroraที่10:00เปิด"
+      },
+      "steps": [
+        "10:00อ่านGETeventsanonymous/fan/generalเทียบNEONและAURORA",
+        "ตรวจpayloadschedule/status/availabilityพร้อมUIปุ่ม",
+        "ตั้ง15:00อ่านใหม่ทุกcontext",
+        "GeneralบังคับjoinMember"
+      ],
+      "expected": "anonymousสองschedule; fanเฉพาะMember generalเฉพาะGeneralรวมวันเวลา/สถานะ/ปุ่ม; ตารางค่าตรงTEST-DATA; GETeventsคำนวณตามaccount ไม่ใช่ส่งสองรอบแล้วซ่อนปุ่ม; forcedGeneral->Member403ข้อความตรง“ไม่ใช่สมาชิกMember”",
+      "checkTiming": "หลังloginและclockเปลี่ยนreloadแยกstale cache",
+      "cleanup": "เก็บหลักฐาน UTC/เวลาจำลอง ไม่เก็บ session token; logout/ปิด context; ยกเลิก interception; คืน fixture/clock เฉพาะ instance ของผู้รัน",
+      "wrongAlternative": "ส่งMemberavailableให้General10:00หรือซ่อนแค่ปุ่ม"
+    },
+    {
+      "id": "V3-A45",
+      "title": "role matrix ป้องกันข้อมูลส่วนตัวและสิทธิ์พิเศษ",
+      "feature": "role matrix ป้องกันข้อมูลส่วนตัวและสิทธิ์พิเศษ",
+      "priority": "P1",
+      "techniques": [
+        "decision table",
+        "authorization abuse"
+      ],
+      "source": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: guard/การออกแบบทดสอบที่ประกาศชัด; R: external references ไม่ใช้แทน D",
+      "requirements": [
+        "V3-FR01",
+        "V3-FR15",
+        "V3-FR16",
+        "V3-FR17",
+        "NFR02"
+      ],
+      "preconditions": "DB และ controlled clock เฉพาะผู้รัน; แต่ละแขนงเริ่ม fixture ใหม่; context แยกบัญชี ห้าม reset/clock 4310 หรือ instance คนอื่น",
+      "data": {
+        "actors": [
+          "anonymous",
+          "fan2",
+          "general",
+          "encore",
+          "sky",
+          "gate"
+        ],
+        "owner": "fan",
+        "objects": [
+          "order",
+          "ticketQR",
+          "mail",
+          "eml"
+        ],
+        "actions": [
+          "NEON pause/block/refund",
+          "scanNEON"
+        ],
+        "control": "fanอ่านของตน; ownerงานจัดการงานตน; gateสแกนNEONในwindow"
+      },
+      "steps": [
+        "สร้างticket/mailของfanตามjourneyปกติและให้fanอ่านเป็นcontrol",
+        "ทุกactorอ่านobjectIDเดียวกันและรายการส่วนตัว",
+        "buyer/anonymous/scannerลองorganizeraction; buyer/organizerลองscan",
+        "ownerถูกงานและgateถูกงาน/windowทำcontrol; scanใช้บัตรคนละใบหรือทำท้ายสุด"
+      ],
+      "expected": "owner-onlyข้อมูลของfanไม่เผยข้ามactor; anonymousต้องlogin; clientกำหนดrole/memberไม่ได้; organizerต้องถูกownerและscannerต้องถูกrole/event/window; denialไม่เปลี่ยนงาน/บัตร. ไม่มีoracleบังคับ404เทียบ403จึงตรวจdenial+noPIIเป็นหลัก",
+      "checkTiming": "เก็บstateก่อน/หลังทุกaction ป้องกันusedticketปนผลrole",
+      "cleanup": "เก็บหลักฐาน UTC/เวลาจำลอง ไม่เก็บ session token; logout/ปิด context; ยกเลิก interception; คืน fixture/clock เฉพาะ instance ของผู้รัน",
+      "wrongAlternative": "รู้IDแล้วorganizerอ่านmailผู้ซื้อได้หรือscannerpauseงานได้"
+    },
+    {
+      "id": "V3-A56",
+      "title": "Generalห้องรอและขอบปิดปล่อยสิทธิ์",
+      "feature": "Generalห้องรอและขอบปิดปล่อยสิทธิ์",
+      "priority": "P1",
+      "techniques": [
+        "boundary value analysis",
+        "state transition"
+      ],
+      "source": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: guard/การออกแบบทดสอบที่ประกาศชัด; R: external references ไม่ใช้แทน D",
+      "requirements": [
+        "V3-FR02",
+        "V3-FR03",
+        "V3-FR04",
+        "V3-BR03",
+        "V3-BR04",
+        "V3-BR09"
+      ],
+      "preconditions": "DB และ controlled clock เฉพาะผู้รัน; แต่ละแขนงเริ่ม fixture ใหม่; context แยกบัญชี ห้าม reset/clock 4310 หรือ instance คนอื่น",
+      "data": {
+        "general": "general/GeneralDemo!26",
+        "startChecks": [
+          "2026-11-06T07:44:59.999Z",
+          "2026-11-06T07:45:00.000Z",
+          "2026-11-06T08:00:00.000Z"
+        ],
+        "endChecks": [
+          "2026-12-12T09:59:59.999Z",
+          "2026-12-12T10:00:00.000Z"
+        ],
+        "seat": "C01",
+        "control": "15:00activeGeneralไม่ใช้Membership"
+      },
+      "steps": [
+        "14:44:59.999join;14:45joinจดเลข;ก่อน15ตรวจwaiting",
+        "15:00pollactiveและmapไม่มีMembership",
+        "fixtureใหม่loginก่อน17:00วันที่12ธ.ค. join/holdที่16:59:59.999",
+        "ตรง17:00ตรวจjoin/map/hold/payเดิมและการคืนที่นั่ง"
+      ],
+      "expected": "ก่อน14:45ไม่ได้;14:45waitingคนแรกETA900;15:00activeตามslotเลขเดิมไม่ใช้Membership;ก่อน17:00holdได้expiresclamp17:00;ตรง17:00closedห้ามjoin/holdและสิทธิ์เก่าexpireไม่เริ่มpayจากholdหมด ที่นั่งไม่ค้างownedbyhold",
+      "checkTiming": "ทุกขอบ−1ms/ตรงขอบใช้serverclock; loginใหม่เมื่อกระโดดหลายวันไม่ให้session24hปนผล",
+      "cleanup": "เก็บหลักฐาน UTC/เวลาจำลอง ไม่เก็บ session token; logout/ปิด context; ยกเลิก interception; คืน fixture/clock เฉพาะ instance ของผู้รัน",
+      "wrongAlternative": "TTL900หรือhold600ทำให้ข้ามroundend"
+    },
+    {
+      "id": "V3-A59",
+      "title": "leave/rejoinไม่แซงและexpiryเลื่อนFIFO",
+      "feature": "leave/rejoinไม่แซงและexpiryเลื่อนFIFO",
+      "priority": "P1",
+      "techniques": [
+        "boundary value analysis",
+        "state transition"
+      ],
+      "source": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: guard/การออกแบบทดสอบที่ประกาศชัด; R: external references ไม่ใช้แทน D",
+      "requirements": [
+        "V3-FR04",
+        "V3-FR05",
+        "V3-BR06",
+        "V3-BR07"
+      ],
+      "preconditions": "DB และ controlled clock เฉพาะผู้รัน; แต่ละแขนงเริ่ม fixture ใหม่; context แยกบัญชี ห้าม reset/clock 4310 หรือ instance คนอื่น",
+      "data": {
+        "joinOrder": [
+          "fan",
+          "fan2",
+          "fan3"
+        ],
+        "leave": "fan",
+        "checks": [
+          "Tactive+899.999s",
+          "Tactive+900.000s"
+        ],
+        "control": "fan3ได้slotก่อนfanrejoin"
+      },
+      "steps": [
+        "ให้fan/fan2active fan3waitingเก็บหมายเลข",
+        "fanleaveแล้วrejoinทันที pollfan3/fan",
+        "fixtureใหม่activeสองคนเวลาเดียวกัน;899.999sอ่านสถานะ",
+        "ตรง900sอ่านpromotionและลองใช้grantเก่า"
+      ],
+      "expected": "fan3รอเดิมได้สิทธิ์ก่อนผู้rejoin activeไม่เกิน2 fan3เลขเดิมไม่กดแข่งใหม่; activeหมดTTLปล่อยslotและgrantใช้ไม่ได้. Dไม่ระบุว่าเลขของleaveแล้วrejoinใช้เดิมหรือใหม่ จึงไม่ตัดสินจากรูปแบบเลขนั้น",
+      "checkTiming": "บันทึกลำดับrequest/สถานะก่อนหลังleave/rejoin; TTLวัดจากactiveจริง",
+      "cleanup": "เก็บหลักฐาน UTC/เวลาจำลอง ไม่เก็บ session token; logout/ปิด context; ยกเลิก interception; คืน fixture/clock เฉพาะ instance ของผู้รัน",
+      "wrongAlternative": "คนrejoinแย่งช่องก่อนwaitingหรือgrantยังอ่านได้หลังexpiry"
+    },
+    {
+      "id": "V3-A60",
+      "title": "fieldสมัครตรงขอบและidentityซ้ำ",
+      "feature": "fieldสมัครตรงขอบและidentityซ้ำ",
+      "priority": "P1",
+      "techniques": [
+        "boundary value analysis",
+        "state transition"
+      ],
+      "source": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: guard/การออกแบบทดสอบที่ประกาศชัด; R: external references ไม่ใช้แทน D",
+      "requirements": [
+        "V3-FR01",
+        "V3-BR01",
+        "NFR02"
+      ],
+      "preconditions": "DB และ controlled clock เฉพาะผู้รัน; แต่ละแขนงเริ่ม fixture ใหม่; context แยกบัญชี ห้าม reset/clock 4310 หรือ instance คนอื่น",
+      "data": {
+        "usernames": [
+          "ab",
+          "abc",
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "MiX_9.-"
+        ],
+        "passwords": [
+          "xxxxxxxxx",
+          "xxxxxxxxxx",
+          "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        ],
+        "email": "same51@example.test",
+        "control": "reg51 / ValidPass!26"
+      },
+      "steps": [
+        "ส่งขอบแต่ละfieldด้วยfieldอื่นvalidชื่อไม่ซ้ำ",
+        "สมัครMiX_9.-แล้วloginmix_9.-และสมัครlowercaseซ้ำ",
+        "ถ้ารองรับemailสมัครสองusernameต่างกันด้วยemailเดียวบันทึกผล",
+        "ตรวจlegacyemailไม่ทำให้ข้ามidentityโดยไม่password"
+      ],
+      "expected": "D: username2/33,password9/129ปฏิเสธ;3/32,10/128รับ; lowercaseidentityเดียวusernameซ้ำไม่สร้างใหม่; role/memberclientไม่มีผล. Dไม่ได้กำหนดemailfieldหรือemailuniqueในการสมัคร. A-test guardเสนอปฏิเสธduplicateemailเมื่อเป็นloginidentifierเพื่อกันambiguousidentity แต่ต้องยืนยันนโยบายก่อนตัดสินแขนงนั้น ไม่ใช้ผลAPI/การสำรวจเป็นD",
+      "checkTiming": "ตรวจlogin/identity/บัญชีหลังทุกคำขอ; emailgapบันทึกnot-determinedไม่คิดเป็นpassเงียบๆ",
+      "cleanup": "เก็บหลักฐาน UTC/เวลาจำลอง ไม่เก็บ session token; logout/ปิด context; ยกเลิก interception; คืน fixture/clock เฉพาะ instance ของผู้รัน",
+      "wrongAlternative": "ยกระดับผลrejectduplicateemailเป็นข้อกำหนดหรือถือemailบังคับทั้งที่Dไม่กำหนด"
+    },
+    {
+      "id": "V3-U02",
+      "title": "Generalสมัครใหม่ ถูกกันMember และเข้ารอบตนไม่ใช้เลข",
+      "feature": "Generalสมัครใหม่ ถูกกันMember และเข้ารอบตนไม่ใช้เลข",
+      "priority": "P1",
+      "techniques": [
+        "user journey",
+        "state transition"
+      ],
+      "source": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: guard/การออกแบบทดสอบที่ประกาศชัด; R: external references ไม่ใช้แทน D",
+      "requirements": [
+        "V3-FR01",
+        "V3-FR02",
+        "V3-FR03",
+        "V3-FR06",
+        "V3-BR03",
+        "V3-BR05",
+        "NFR01"
+      ],
+      "preconditions": "DB และ controlled clock เฉพาะผู้รัน; แต่ละแขนงเริ่ม fixture ใหม่; context แยกบัญชี ห้าม reset/clock 4310 หรือ instance คนอื่น",
+      "data": {
+        "signup": "u51_general / GeneralDemo!26",
+        "before": "2026-11-06T03:00:00Z",
+        "open": "2026-11-06T08:00:00Z",
+        "event": "neon",
+        "seat": "C01",
+        "control": "General15:00",
+        "viewport": "375x812"
+      },
+      "steps": [
+        "สมัครและlogin10:00ตรวจGeneralupcoming",
+        "บังคับjoinMemberผ่านAPI",
+        "15:00reloadกดซื้อGeneralผ่านคิว",
+        "ตรวจไม่มีMembershipแล้วholdC01"
+      ],
+      "expected": "บัญชีใหม่Generalไม่มีmembership; รอบแสดงเฉพาะGeneral; forcedMember403ข้อความตรง“ไม่ใช่สมาชิกMember”;15:00Generalเปิดและผ่านคิวเข้าผังไม่มีMembership;375pxไม่ล้น",
+      "checkTiming": "ภาพก่อน/หลัง15:00หลังactiveและAPIstateไม่มีMembergrant",
+      "cleanup": "เก็บหลักฐาน UTC/เวลาจำลอง ไม่เก็บ session token; logout/ปิด context; ยกเลิก interception; คืน fixture/clock เฉพาะ instance ของผู้รัน",
+      "wrongAlternative": "สมัครใหม่เป็นMemberหรือGeneralต้องกรอกเลข"
+    },
+    {
+      "id": "V3-U04",
+      "title": "UIคิวเลขคงที่และautoเข้าMembership",
+      "feature": "UIคิวเลขคงที่และautoเข้าMembership",
+      "priority": "P1",
+      "techniques": [
+        "user journey",
+        "state transition"
+      ],
+      "source": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: guard/การออกแบบทดสอบที่ประกาศชัด; R: external references ไม่ใช้แทน D",
+      "requirements": [
+        "V3-FR04",
+        "V3-FR05",
+        "V3-BR06",
+        "NFR06"
+      ],
+      "preconditions": "DB และ controlled clock เฉพาะผู้รัน; แต่ละแขนงเริ่ม fixture ใหม่; context แยกบัญชี ห้าม reset/clock 4310 หรือ instance คนอื่น",
+      "data": {
+        "fan3": "fan3/FanThree!26",
+        "number": "เก็บq3จากคิวใหม่ ไม่hardcodeผลสำรวจ",
+        "ahead": 2,
+        "etaSeconds": 120,
+        "control": "fanleaveแล้วfan3active"
+      },
+      "steps": [
+        "fan/fan2active fan3joinรออ่านเลข/ahead/ETA",
+        "reloadfan3ตรวจเลขเดิม",
+        "fanleaveและboundedpollfan3โดยไม่joinซ้ำ",
+        "ตรวจMembershipปรากฏอัตโนมัติและยังไม่เห็นผังก่อนverify"
+      ],
+      "expected": "fan3waitingahead2ETAประมาณ120sเลขเดิมหลังreload ไม่รับประกันเวลา; slotว่างpollไปMembershipอัตโนมัติไม่ต้องกดแข่งใหม่; ไม่เปิดผังจนverify",
+      "checkTiming": "ภาพwaiting/reload/active; harnesspolltimeoutบันทึกไม่อ้างSLA",
+      "cleanup": "เก็บหลักฐาน UTC/เวลาจำลอง ไม่เก็บ session token; logout/ปิด context; ยกเลิก interception; คืน fixture/clock เฉพาะ instance ของผู้รัน",
+      "wrongAlternative": "มีข้อความคิวแต่ไม่เปลี่ยนขั้นหรือactiveแล้วข้ามverify"
+    },
+    {
+      "id": "V3-U10",
+      "title": "UIMemberหมดรอบไม่เริ่มpayและGeneralเปิด",
+      "feature": "UIMemberหมดรอบไม่เริ่มpayและGeneralเปิด",
+      "priority": "P1",
+      "techniques": [
+        "boundary value analysis",
+        "state transition"
+      ],
+      "source": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: guard/การออกแบบทดสอบที่ประกาศชัด; R: external references ไม่ใช้แทน D",
+      "requirements": [
+        "V3-FR02",
+        "V3-FR10",
+        "V3-BR03",
+        "V3-BR09",
+        "V3-BR20"
+      ],
+      "preconditions": "DB และ controlled clock เฉพาะผู้รัน; แต่ละแขนงเริ่ม fixture ใหม่; context แยกบัญชี ห้าม reset/clock 4310 หรือ instance คนอื่น",
+      "data": {
+        "holdAt": "2026-11-06T07:59:59.999Z",
+        "cutoff": "2026-11-06T08:00:00.000Z",
+        "seat": "C01",
+        "contact": "Buyer Test/buyer@example.test/0812345678; Holder 1/holder1@example.test/0898765432",
+        "control": "General15:00เข้าคิวได้"
+      },
+      "steps": [
+        "fanactiveverifyholdก่อนขอบตรวจdeadlineและกรอกcontactvalid",
+        "ตั้ง15:00ก่อนกดเริ่มpayจากหน้าเดิม",
+        "ตรวจserverdenialและreloadMembercatalog",
+        "Generalcontextเข้าคิวและผังไม่ใช้เลข"
+      ],
+      "expected": "holdไม่เกิน15:00; หน้าค้างไม่เริ่มpaymentหลังexpiryไม่ออกticket/email; Memberclosed Generalavailableจากserverclockไม่admin; ต้องตรวจAPIไม่ดูdisabledbuttonอย่างเดียว",
+      "checkTiming": "เวลาคำขอpay>=cutoff; ไม่มีintentสำเร็จหรือticketจากคำขอ; refreshcatalog",
+      "cleanup": "เก็บหลักฐาน UTC/เวลาจำลอง ไม่เก็บ session token; logout/ปิด context; ยกเลิก interception; คืน fixture/clock เฉพาะ instance ของผู้รัน",
+      "wrongAlternative": "clientเริ่มนับ600ใหม่หรือปุ่มเดิมข้ามservergate"
+    },
+    {
+      "id": "V3-U15",
+      "title": "demoMember/Generalแยกชัดและธีมสว่าง",
+      "feature": "demoMember/Generalแยกชัดและธีมสว่าง",
+      "priority": "P1",
+      "techniques": [
+        "visual inspection",
+        "decision table"
+      ],
+      "source": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: guard/การออกแบบทดสอบที่ประกาศชัด; R: external references ไม่ใช้แทน D",
+      "requirements": [
+        "V3-FR01",
+        "V3-FR02",
+        "NFR01"
+      ],
+      "preconditions": "DB และ controlled clock เฉพาะผู้รัน; แต่ละแขนงเริ่ม fixture ใหม่; context แยกบัญชี ห้าม reset/clock 4310 หรือ instance คนอื่น",
+      "data": {
+        "member": "fan/FanDemo!26",
+        "general": "general/GeneralDemo!26",
+        "clock": "2026-11-06T03:00:00Z",
+        "viewports": [
+          "desktop",
+          "375x812"
+        ],
+        "control": "loginแล้วidentity/รอบตรงบัญชี"
+      },
+      "steps": [
+        "หน้าloginตรวจตัวเลือกMember/Generalและlabel/keyboard",
+        "เลือกMemberloginตรวจNEON/AURORA",
+        "logoutเลือกGeneralแล้วเทียบงานเดิม",
+        "ตรวจ375pxไม่ล้นและพื้น/โปสเตอร์/สถานะอ่านได้"
+      ],
+      "expected": "ตัวเลือกทดลองแยกMember/Generalตรงfixture; fanเฉพาะMember generalเฉพาะGeneralรวมเวลา/ปุ่ม;10:00NEONfanavailable/generalupcoming,AURORAfAnclosed/generalavailable;พื้นขาว/เทาอ่อนเน้นฟ้านุ่มโปสเตอร์พาสเทลสถานะเขียวเหลืองแดงอ่านได้ ไม่กำหนดhex/pixelที่Dไม่มี",
+      "checkTiming": "หลังloginจริงและswitch ไม่ใช้แค่ป้ายdemoว่าidentityเปลี่ยน",
+      "cleanup": "เก็บหลักฐาน UTC/เวลาจำลอง ไม่เก็บ session token; logout/ปิด context; ยกเลิก interception; คืน fixture/clock เฉพาะ instance ของผู้รัน",
+      "wrongAlternative": "ป้ายเปลี่ยนแต่session/รอบเดิมหรือยึดภาพเป็นpixeloracle"
+    },
+    {
+      "id": "V3-U16",
+      "title": "loginผิดแก้ได้และสลับบัญชีไม่เห็นข้อมูลกัน",
+      "feature": "loginผิดแก้ได้และสลับบัญชีไม่เห็นข้อมูลกัน",
+      "priority": "P1",
+      "techniques": [
+        "state transition",
+        "user journey",
+        "authorization"
+      ],
+      "source": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: guard/การออกแบบทดสอบที่ประกาศชัด; R: external references ไม่ใช้แทน D",
+      "requirements": [
+        "V3-FR01",
+        "V3-FR15",
+        "V3-FR17",
+        "NFR02"
+      ],
+      "preconditions": "DB และ controlled clock เฉพาะผู้รัน; แต่ละแขนงเริ่ม fixture ใหม่; context แยกบัญชี ห้าม reset/clock 4310 หรือ instance คนอื่น",
+      "data": {
+        "wrong": "fan/WrongPass!26",
+        "correct": "fan/FanDemo!26",
+        "switch": "general/GeneralDemo!26",
+        "wrongAttempts": 1,
+        "control": "fanมีticket/mailจากpurchaseปกติ;Generalไม่มี"
+      },
+      "steps": [
+        "loginfanผิด1ครั้งตรวจerror/ไม่มีข้อมูลส่วนตัว",
+        "แก้รหัสถูกอ่านtickets/mail/notificationsfan",
+        "logoutloginGeneralเปิดเมนูเดิมและdeeplinkIDfan",
+        "กลับloginfanตรวจรายการเดิมยังอยู่"
+      ],
+      "expected": "ผิด1ครั้งแก้รหัสถูกเข้าได้ไม่ติดlock5ครั้ง;fanเห็นของตน;Generalไม่เห็นticket/mail/ข้อมูลส่วนตัวfanรวมdeeplink;กลับfanรายการยังอยู่; privacyของnotificationใช้NFR02ไม่มีoracleบังคับข้อความ/รูปแบบnotification",
+      "checkTiming": "ทันทีหลังswitchรวมหน้าเก่าค้างและreload ตรวจserveridentityควบคู่ภาพ",
+      "cleanup": "เก็บหลักฐาน UTC/เวลาจำลอง ไม่เก็บ session token; logout/ปิด context; ยกเลิก interception; คืน fixture/clock เฉพาะ instance ของผู้รัน",
+      "wrongAlternative": "headerเปลี่ยนแต่cachePIIของfanยังให้Generalอ่าน"
+    },
+    {
+      "id": "V3-U19",
+      "title": "คำขอMembershipค้างและปิดก่อนผลกลับ",
+      "feature": "คำขอMembershipค้างและปิดก่อนผลกลับ",
+      "priority": "P1",
+      "techniques": [
+        "asynchronous state transition",
+        "error guessing"
+      ],
+      "source": "D: REQUIREMENTS.md / TEST-DATA.md; A-test: guard/การออกแบบทดสอบที่ประกาศชัด; R: external references ไม่ใช้แทน D",
+      "requirements": [
+        "V3-FR05",
+        "NFR01",
+        "NFR02"
+      ],
+      "preconditions": "DB และ controlled clock เฉพาะผู้รัน; แต่ละแขนงเริ่ม fixture ใหม่; context แยกบัญชี ห้าม reset/clock 4310 หรือ instance คนอื่น",
+      "data": {
+        "membership": "ENCORE-0001",
+        "control": "เลขถูกไม่ปิดต้องเข้าผังทันที",
+        "negative": "หน่วงresponse กดsubmitซ้ำ1ครั้งแล้วEscapeปิดก่อนปล่อย",
+        "submitAttempts": 2
+      },
+      "steps": [
+        "validcontrolไม่หน่วงเข้าผังทันทีแล้วfixtureใหม่",
+        "หน่วงresponseเฉพาะbrowsercontextส่งเลขถูกพยายามsubmitซ้ำ",
+        "เก็บrequestcount/buttonstateแล้วEscapeปิด",
+        "ปล่อยresponseตรวจdialog/mapและเปิดซื้อใหม่อย่างตั้งใจ"
+      ],
+      "expected": "D: validcontrolเข้าผังทันทีไม่มีsuccessinterstitial;ไม่มีmapก่อนgrant. A-test UXguardจากFR05/NFR01: ขณะรอควรdisableซ้ำและปิดแล้วไม่เปิดผังกลับเอง; สิทธิ์ต้องยังผูกuser/event/round. Dไม่ได้กำหนดclosed-dialog/duplicate-submitตรงๆ จึงรายงานส่วนguardเป็นassumption-not-confirmedไม่ใช้ผลC6/SPECยกระดับเป็นDหรือdefectลำพัง",
+      "checkTiming": "จับrequestcountระหว่างค้างและsnapshotหลังปิด/ปล่อย; boundedwaitรับlateevent;ยกเลิกinterceptionทุกครั้ง",
+      "cleanup": "เก็บหลักฐาน UTC/เวลาจำลอง ไม่เก็บ session token; logout/ปิด context; ยกเลิก interception; คืน fixture/clock เฉพาะ instance ของผู้รัน",
+      "wrongAlternative": "ปล่อยresponseก่อนปิดจึงไม่ใช่raceหรือใช้ผลC6เป็นoracle"
+    }
+  ]
+}

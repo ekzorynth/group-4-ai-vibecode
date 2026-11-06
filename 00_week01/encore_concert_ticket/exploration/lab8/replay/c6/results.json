@@ -1,0 +1,163 @@
+{
+  "charter": "C6",
+  "started": "2026-11-06T11:43:01.948Z",
+  "ended": "2026-11-06T11:43:05.453Z",
+  "baseURL": "http://127.0.0.1:4346",
+  "bugMode": 0,
+  "sourceReading": false,
+  "management": [
+    {
+      "at": "2026-11-06T11:43:02.748Z",
+      "action": "reset",
+      "reason": "fresh C6 navigation/mobile fixture",
+      "baseURL": "http://127.0.0.1:4346"
+    }
+  ],
+  "results": [
+    {
+      "id": "C6-01",
+      "title": "375px catalog and pagination with stable page boundaries",
+      "status": "passed",
+      "at": "2026-11-06T11:43:03.692Z",
+      "evidence": {
+        "stage": "catalog-page2",
+        "width": 375,
+        "page": 375,
+        "dialogs": []
+      }
+    },
+    {
+      "id": "C6-02",
+      "title": "search across all pages and empty results recover",
+      "status": "passed",
+      "at": "2026-11-06T11:43:03.933Z",
+      "evidence": {
+        "searchHits": "AURORA BLOOM",
+        "emptyCount": 0,
+        "recoveredCount": 6
+      }
+    },
+    {
+      "id": "C6-03",
+      "title": "catalog load network failure gives instruction and reload recovers",
+      "status": "passed",
+      "at": "2026-11-06T11:43:04.225Z",
+      "evidence": {
+        "failure": "โหลดข้อมูลไม่สำเร็จ กรุณารีเฟรชหน้าเว็บ",
+        "recoveredCount": 6
+      }
+    },
+    {
+      "id": "C6-04",
+      "title": "account chooser and keyboard seat selection with Escape close",
+      "status": "passed",
+      "at": "2026-11-06T11:43:04.498Z",
+      "evidence": {
+        "authFits": {
+          "stage": "account-picker",
+          "width": 375,
+          "page": 375,
+          "dialogs": [
+            {
+              "client": 337,
+              "scroll": 337
+            }
+          ]
+        },
+        "mapFits": {
+          "stage": "member-map",
+          "width": 375,
+          "page": 375,
+          "dialogs": [
+            {
+              "client": 337,
+              "scroll": 337
+            }
+          ]
+        },
+        "spaceToggles": true,
+        "escapeCloses": true
+      }
+    },
+    {
+      "id": "C6-05",
+      "title": "late membership response cannot reopen an intentionally closed dialog",
+      "status": "passed",
+      "at": "2026-11-06T11:43:04.812Z",
+      "evidence": {
+        "calls": 1,
+        "dialogRemainsClosed": true
+      }
+    },
+    {
+      "id": "C6-06",
+      "title": "General account has own sale view and complete mobile purchase without membership",
+      "status": "passed",
+      "at": "2026-11-06T11:43:05.315Z",
+      "evidence": {
+        "noMembershipInput": true,
+        "contactFits": {
+          "stage": "General-contact",
+          "width": 375,
+          "page": 375,
+          "dialogs": [
+            {
+              "client": 337,
+              "scroll": 337
+            }
+          ]
+        },
+        "payFits": {
+          "stage": "General-payment",
+          "width": 375,
+          "page": 375,
+          "dialogs": [
+            {
+              "client": 337,
+              "scroll": 337
+            }
+          ]
+        },
+        "pendingFits": {
+          "stage": "General-pending",
+          "width": 375,
+          "page": 375,
+          "dialogs": [
+            {
+              "client": 337,
+              "scroll": 337
+            }
+          ]
+        },
+        "ticketFits": {
+          "stage": "General-ticket",
+          "width": 375,
+          "page": 375,
+          "dialogs": [
+            {
+              "client": 337,
+              "scroll": 337
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "C6-07",
+      "title": "mobile email sandbox is reachable with readable ticket and no horizontal overflow",
+      "status": "passed",
+      "at": "2026-11-06T11:43:05.433Z",
+      "evidence": {
+        "stage": "mailbox-with-ticket",
+        "width": 375,
+        "page": 375,
+        "dialogs": [
+          {
+            "client": 337,
+            "scroll": 337
+          }
+        ]
+      }
+    }
+  ]
+}

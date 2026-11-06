@@ -1,0 +1,6 @@
+{"worker":2,"port":4602,"pid":4429,"started":"2026-11-06T13:26:59.495Z","mode":"normal"}
+{"worker":1,"port":4601,"pid":4430,"started":"2026-11-06T13:26:59.497Z","mode":"normal"}
+{"worker":0,"port":4600,"pid":4431,"started":"2026-11-06T13:26:59.511Z","mode":"normal"}
+{"worker":1,"port":4601,"ended":"2026-11-06T13:27:18.508Z"}
+{"worker":0,"port":4600,"ended":"2026-11-06T13:27:18.666Z"}
+{"worker":2,"port":4602,"ended":"2026-11-06T13:27:18.780Z"}

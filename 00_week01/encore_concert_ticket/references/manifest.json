@@ -1,0 +1,163 @@
+[
+  {
+    "file": "images/livenation-presale.webp",
+    "reference": "REF02",
+    "source_page": "https://www.livenationtero.co.th/en/livenationteropresale",
+    "source_image": "https://networksites.livenationinternational.com/networksites/yijnlsik/buyps-lnt-en.jpg?format=webp&width=1600&quality=75",
+    "accessed_date": "2026-11-06",
+    "sha256": "ff7e455043e25f9017a23273ff84465c6209e7922369726b8c1e0cafd93b09b0",
+    "bytes": 29800,
+    "usage": "Reference only; copyright belongs to source owner; not ENCORE UI"
+  },
+  {
+    "file": "images/eventpop-eticket.png",
+    "reference": "REF05",
+    "source_page": "https://support.eventpop.me/en/how-to-download-and-use-e-ticket",
+    "source_image": "https://d33v4339jhl8k0.cloudfront.net/docs/assets/5b877b082c7d3a03f89e447c/images/643fc0037133de139103ede1/file-pd10nJUbkU.png",
+    "accessed_date": "2026-11-06",
+    "sha256": "a859128aad4b50e9010eb71fa1ac2ef0214ccffc0af983303175310671c8171d",
+    "bytes": 479858,
+    "usage": "Reference only; copyright belongs to source owner; not ENCORE UI"
+  },
+  {
+    "file": "images/eventpop-catalog-page.jpg",
+    "reference": "REF07",
+    "source_page": "https://www.eventpop.me/",
+    "kind": "browser_screenshot",
+    "accessed_date": "2026-11-06",
+    "sha256": "abb01fc43fc63d4cacaa6847d84934387102b7270227c5f507a1d4b3ab99f2c2",
+    "bytes": 173471,
+    "usage": "Reference only; copyright belongs to source owner; not ENCORE UI"
+  },
+  {
+    "file": "images/eventpop-eticket-guide-page.jpg",
+    "reference": "REF05",
+    "source_page": "https://support.eventpop.me/en/how-to-download-and-use-e-ticket",
+    "kind": "browser_screenshot",
+    "accessed_date": "2026-11-06",
+    "sha256": "dddf8acc87483960a280217311929f81b0ab0a79759c366e11587df83c6d4216",
+    "bytes": 344055,
+    "usage": "Reference only; copyright belongs to source owner; not ENCORE UI"
+  },
+  {
+    "file": "images/eventpop-login-page.jpg",
+    "reference": "REF08",
+    "source_page": "https://www.eventpop.me/",
+    "kind": "browser_screenshot",
+    "accessed_date": "2026-11-06",
+    "sha256": "2c1e14b9fc777324fe41624dc864b0574bf3cd288b4a8d0ea239676caedd31d0",
+    "bytes": 89436,
+    "usage": "Reference only; copyright belongs to source owner; not ENCORE UI"
+  },
+  {
+    "file": "images/livenation-presale-guide-page.jpg",
+    "reference": "REF02",
+    "source_page": "https://www.livenationtero.co.th/en/livenationteropresale",
+    "kind": "browser_screenshot",
+    "accessed_date": "2026-11-06",
+    "sha256": "7527dd4ace411bbe50541020efca761dcf16bb09a5f87ec7d867c0efa7bd3ad7",
+    "bytes": 213974,
+    "usage": "Reference only; copyright belongs to source owner; not ENCORE UI"
+  },
+  {
+    "file": "images/ticketmelon-counter-guide-page.jpg",
+    "reference": "REF04",
+    "source_page": "https://organizer.ticketmelon.com/help-center/how-to-pay-with-atm-ibanking-counter-service",
+    "kind": "browser_screenshot",
+    "accessed_date": "2026-11-06",
+    "sha256": "10961838d1bf67cfd3bca4bf72f62c18af9b9af50821642ce486d171237ca087",
+    "bytes": 328076,
+    "usage": "Reference only; copyright belongs to source owner; not ENCORE UI"
+  },
+  {
+    "file": "images/ticketmelon-counter-options.avif",
+    "reference": "REF04",
+    "source_page": "https://organizer.ticketmelon.com/help-center/how-to-pay-with-atm-ibanking-counter-service",
+    "source_image": "https://cdn.prod.website-files.com/67d9257ba938f0bb2ba6adba/68736126c5e36c7eb8f416de_661d2f729c2a0a60aecfe539_m3-s7-img01.avif",
+    "kind": "official_guide_asset",
+    "accessed_date": "2026-11-06",
+    "sha256": "9edf404640d96a8f6e71703e6f6f6f65d3eb6b778b89467271fa452786fb04f4",
+    "bytes": 20046,
+    "usage": "Reference only; copyright belongs to source owner; not ENCORE UI"
+  },
+  {
+    "file": "images/ticketmelon-payment-step-2.avif",
+    "reference": "REF04",
+    "source_page": "https://organizer.ticketmelon.com/help-center/how-to-pay-with-atm-ibanking-counter-service",
+    "source_image": "https://cdn.prod.website-files.com/67d9257ba938f0bb2ba6adba/68736126c5e36c7eb8f416e2_661d2f72f8a02b6679887273_m3-s7-img02.avif",
+    "kind": "official_guide_asset",
+    "accessed_date": "2026-11-06",
+    "sha256": "f7eaf5b09b023f9edf2615ce446cd979e72ce1f4eb85876959bd70c40aa342d0",
+    "bytes": 32403,
+    "usage": "Reference only; copyright belongs to source owner; not ENCORE UI"
+  },
+  {
+    "file": "images/ticketmelon-payment-step-2.png",
+    "reference": "REF04",
+    "source_page": "https://organizer.ticketmelon.com/help-center/how-to-pay-with-atm-ibanking-counter-service",
+    "source_image": "https://cdn.prod.website-files.com/67d9257ba938f0bb2ba6adba/68736126c5e36c7eb8f416e2_661d2f72f8a02b6679887273_m3-s7-img02.avif",
+    "kind": "format_conversion",
+    "accessed_date": "2026-11-06",
+    "sha256": "71ce6faa739acec34cce1a37eb5ed1dd836570d1012eac86725db97a866baf1f",
+    "bytes": 193624,
+    "usage": "Reference only; copyright belongs to source owner; not ENCORE UI",
+    "derived_from": "images/ticketmelon-payment-step-2.avif",
+    "transformation": "AVIF to PNG only; content unchanged"
+  },
+  {
+    "file": "images/ticketmelon-payment-step-3.avif",
+    "reference": "REF04",
+    "source_page": "https://organizer.ticketmelon.com/help-center/how-to-pay-with-atm-ibanking-counter-service",
+    "source_image": "https://cdn.prod.website-files.com/67d9257ba938f0bb2ba6adba/68736126c5e36c7eb8f416e5_661d2f5c3c6ccd08ad515c58_m3-s7-img03.avif",
+    "kind": "official_guide_asset",
+    "accessed_date": "2026-11-06",
+    "sha256": "7fcb258cfc6e049dbfacdada7deb24b17c32b0de4b46f676ee4fe56187676e43",
+    "bytes": 40836,
+    "usage": "Reference only; copyright belongs to source owner; not ENCORE UI"
+  },
+  {
+    "file": "images/ticketmelon-payment-step-3.png",
+    "reference": "REF04",
+    "source_page": "https://organizer.ticketmelon.com/help-center/how-to-pay-with-atm-ibanking-counter-service",
+    "source_image": "https://cdn.prod.website-files.com/67d9257ba938f0bb2ba6adba/68736126c5e36c7eb8f416e5_661d2f5c3c6ccd08ad515c58_m3-s7-img03.avif",
+    "kind": "format_conversion",
+    "accessed_date": "2026-11-06",
+    "sha256": "e6a9b7859f8b1c18e535cea098c485a49a0549a5262ab947e3f9d7e86fd5a102",
+    "bytes": 340297,
+    "usage": "Reference only; copyright belongs to source owner; not ENCORE UI",
+    "derived_from": "images/ticketmelon-payment-step-3.avif",
+    "transformation": "AVIF to PNG only; content unchanged"
+  },
+  {
+    "file": "images/ticketmelon-queue-page.jpg",
+    "reference": "REF01",
+    "source_page": "https://organizer.ticketmelon.com/help-center/how-does-the-queueing-system-work",
+    "kind": "browser_screenshot",
+    "accessed_date": "2026-11-06",
+    "sha256": "5462dcebb66dd04f9dcfde1699d0aeb3a961a2a48dcb0142e3bc634c185b5801",
+    "bytes": 136590,
+    "usage": "Reference only; copyright belongs to source owner; not ENCORE UI"
+  },
+  {
+    "file": "images/eventpop-queue-guide.png",
+    "reference": "REF10",
+    "source_page": "https://support.eventpop.me/en/queuing",
+    "source_image": "https://d33v4339jhl8k0.cloudfront.net/docs/assets/5b877b082c7d3a03f89e447c/images/61e12d8b79a38f5473fd3e3e/file-Yoyl3zqpHl.png",
+    "kind": "official_guide_asset",
+    "accessed_date": "2026-11-06",
+    "sha256": "d39335d771b93099a6b400e399ab968227517c38d8ae1caa0561f0200a05c669",
+    "bytes": 1479621,
+    "usage": "Reference only; copyright belongs to source owner; not ENCORE UI"
+  },
+  {
+    "file": "images/eventpop-seating-guide.png",
+    "reference": "REF09",
+    "source_page": "https://support.eventpop.me/en/how-to-buy-seating-ticket",
+    "source_image": "https://support.eventpop.me/hs-fs/hubfs/CS%20FAQ/Seating%20-%20EN%20%28Mob-site%29.png?height=880&name=Seating+-+EN+%28Mob-site%29.png&width=858",
+    "kind": "official_guide_asset",
+    "accessed_date": "2026-11-06",
+    "sha256": "cc2b44ad9a4edf52c70bb6930947eb1a428b2c97ed00473458d6620343b2e274",
+    "bytes": 146801,
+    "usage": "Reference only; copyright belongs to source owner; not ENCORE UI"
+  }
+]

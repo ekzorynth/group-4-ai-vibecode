@@ -1,0 +1,2803 @@
+[
+  {
+    "at": "2026-11-06T11:14:38.002Z",
+    "method": "POST",
+    "path": "test/reset",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.026Z",
+    "method": "POST",
+    "path": "login",
+    "status": 200,
+    "response": {
+      "user": {
+        "id": "general",
+        "email": "general@demo.test",
+        "username": "general",
+        "name": "เจน ทั่วไป",
+        "role": "buyer",
+        "presale": false
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.027Z",
+    "method": "POST",
+    "path": "queue",
+    "status": 200,
+    "response": {
+      "queue": {
+        "status": "active",
+        "number": "Q000001",
+        "position": 0,
+        "ahead": 0,
+        "estimated_wait_seconds": 0,
+        "expires": 1793934900000,
+        "round": "general",
+        "starts": 1793520000000,
+        "limit": 4
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.028Z",
+    "method": "POST",
+    "path": "holds",
+    "status": 201,
+    "response": {
+      "hold": {
+        "id": "08ce345c-0383-439d-9118-afaa5b518d18",
+        "user": "general",
+        "event": "aurora",
+        "seats": [
+          "C01"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 1800,
+          "discount": 0,
+          "fee": 30,
+          "vat": 2,
+          "total": 1832,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "general",
+        "checkout": null,
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.029Z",
+    "method": "POST",
+    "path": "checkout",
+    "status": 200,
+    "response": {
+      "hold": {
+        "id": "08ce345c-0383-439d-9118-afaa5b518d18",
+        "user": "general",
+        "event": "aurora",
+        "seats": [
+          "C01"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 1800,
+          "discount": 0,
+          "fee": 30,
+          "vat": 2,
+          "total": 1832,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "general",
+        "checkout": {
+          "buyer": {
+            "name": "C4 Buyer",
+            "email": "c4-buyer@example.test",
+            "phone": "0812345678"
+          },
+          "holders": [
+            {
+              "seat": "C01",
+              "name": "C4 Holder",
+              "email": "c4-holder@example.test",
+              "phone": "0898765432"
+            }
+          ]
+        },
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.030Z",
+    "method": "POST",
+    "path": "pay",
+    "status": 200,
+    "response": {
+      "status": "pending",
+      "payment": "9278cdac-5f68-4b56-91b8-cb00ec93be99",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.031Z",
+    "method": "GET",
+    "path": "payment?id=9278cdac-5f68-4b56-91b8-cb00ec93be99",
+    "status": 200,
+    "response": {
+      "payment": {
+        "id": "9278cdac-5f68-4b56-91b8-cb00ec93be99",
+        "hold": "08ce345c-0383-439d-9118-afaa5b518d18",
+        "status": "pending",
+        "amount": 1832,
+        "paid_at": null,
+        "refund_amount": 0,
+        "method": "qr",
+        "expires": 1793934600000,
+        "reference": "DEMO-9278CDAC-5F6",
+        "qr_payload": "ENCORE-DEMO-PAY:9278cdac-5f68-4b56-91b8-cb00ec93be99"
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.032Z",
+    "method": "GET",
+    "path": "orders",
+    "status": 200,
+    "response": {
+      "orders": [],
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.032Z",
+    "method": "GET",
+    "path": "mailbox",
+    "status": 200,
+    "response": {
+      "messages": [],
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.033Z",
+    "method": "POST",
+    "path": "pay",
+    "status": 200,
+    "response": {
+      "status": "pending",
+      "payment": "9278cdac-5f68-4b56-91b8-cb00ec93be99",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.034Z",
+    "method": "POST",
+    "path": "payments/resolve",
+    "status": 200,
+    "response": {
+      "status": "succeeded",
+      "order": "EN-0243420C-F89",
+      "replayed": false,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.034Z",
+    "method": "POST",
+    "path": "payments/resolve",
+    "status": 200,
+    "response": {
+      "status": "succeeded",
+      "order": "EN-0243420C-F89",
+      "replayed": true,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.035Z",
+    "method": "GET",
+    "path": "orders",
+    "status": 200,
+    "response": {
+      "orders": [
+        {
+          "id": "EN-0243420C-F89",
+          "user": "general",
+          "hold": {
+            "id": "08ce345c-0383-439d-9118-afaa5b518d18",
+            "user": "general",
+            "event": "aurora",
+            "seats": [
+              "C01"
+            ],
+            "expires": 1793934600000,
+            "status": "paid",
+            "price": {
+              "subtotal": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2,
+              "total": 1832,
+              "lines": [
+                {
+                  "seat": "C01",
+                  "net": 1800,
+                  "discount": 0,
+                  "fee": 30,
+                  "vat": 2
+                }
+              ]
+            },
+            "round": "general",
+            "checkout": {
+              "buyer": {
+                "name": "C4 Buyer",
+                "email": "c4-buyer@example.test",
+                "phone": "0812345678"
+              },
+              "holders": [
+                {
+                  "seat": "C01",
+                  "name": "C4 Holder",
+                  "email": "c4-holder@example.test",
+                  "phone": "0898765432"
+                }
+              ]
+            },
+            "payment": {
+              "id": "9278cdac-5f68-4b56-91b8-cb00ec93be99",
+              "status": "succeeded",
+              "amount": 1832,
+              "refund_amount": 0,
+              "method": "qr"
+            }
+          },
+          "created": 1793934000000,
+          "tickets": [
+            {
+              "id": "b5d9d6a4-6999-4b2e-bca7-79af94c0723a",
+              "order_id": "EN-0243420C-F89",
+              "event": "aurora",
+              "seat": "C01",
+              "code": "4ae71e72314f78fbd1b0c4d6987e787ddf9ef68cb6159d9d0614b178664b2997",
+              "status": "valid",
+              "net": 1800,
+              "fee": 30,
+              "vat": 2,
+              "holder": "{\"seat\":\"C01\",\"name\":\"C4 Holder\",\"email\":\"c4-holder@example.test\",\"phone\":\"0898765432\"}",
+              "refund_id": null,
+              "refund_amount": null,
+              "refund_status": null
+            }
+          ]
+        }
+      ],
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.035Z",
+    "method": "GET",
+    "path": "mailbox",
+    "status": 200,
+    "response": {
+      "messages": [
+        {
+          "id": "4af5df5c-8c43-4afd-9572-50f72083626f",
+          "order_id": "EN-0243420C-F89",
+          "recipient": "c4-buyer@example.test",
+          "status": "delivered_sandbox",
+          "created": 1793934000000
+        }
+      ],
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.207Z",
+    "method": "POST",
+    "path": "test/reset",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.229Z",
+    "method": "POST",
+    "path": "login",
+    "status": 200,
+    "response": {
+      "user": {
+        "id": "general",
+        "email": "general@demo.test",
+        "username": "general",
+        "name": "เจน ทั่วไป",
+        "role": "buyer",
+        "presale": false
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.230Z",
+    "method": "POST",
+    "path": "queue",
+    "status": 200,
+    "response": {
+      "queue": {
+        "status": "active",
+        "number": "Q000002",
+        "position": 0,
+        "ahead": 0,
+        "estimated_wait_seconds": 0,
+        "expires": 1793934900000,
+        "round": "general",
+        "starts": 1793520000000,
+        "limit": 4
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.231Z",
+    "method": "POST",
+    "path": "holds",
+    "status": 201,
+    "response": {
+      "hold": {
+        "id": "7be978a6-3c48-4f54-88c1-8c52cf185cb6",
+        "user": "general",
+        "event": "aurora",
+        "seats": [
+          "C01"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 1800,
+          "discount": 0,
+          "fee": 30,
+          "vat": 2,
+          "total": 1832,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "general",
+        "checkout": null,
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.233Z",
+    "method": "POST",
+    "path": "checkout",
+    "status": 200,
+    "response": {
+      "hold": {
+        "id": "7be978a6-3c48-4f54-88c1-8c52cf185cb6",
+        "user": "general",
+        "event": "aurora",
+        "seats": [
+          "C01"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 1800,
+          "discount": 0,
+          "fee": 30,
+          "vat": 2,
+          "total": 1832,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "general",
+        "checkout": {
+          "buyer": {
+            "name": "C4 Buyer",
+            "email": "c4-buyer@example.test",
+            "phone": "0812345678"
+          },
+          "holders": [
+            {
+              "seat": "C01",
+              "name": "C4 Holder",
+              "email": "c4-holder@example.test",
+              "phone": "0898765432"
+            }
+          ]
+        },
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.233Z",
+    "method": "POST",
+    "path": "pay",
+    "status": 200,
+    "response": {
+      "status": "pending",
+      "payment": "f75d9924-1519-48f9-96f5-92b8a4c4b247",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.234Z",
+    "method": "GET",
+    "path": "payment?id=f75d9924-1519-48f9-96f5-92b8a4c4b247",
+    "status": 200,
+    "response": {
+      "payment": {
+        "id": "f75d9924-1519-48f9-96f5-92b8a4c4b247",
+        "hold": "7be978a6-3c48-4f54-88c1-8c52cf185cb6",
+        "status": "pending",
+        "amount": 1832,
+        "paid_at": null,
+        "refund_amount": 0,
+        "method": "seven_eleven",
+        "expires": 1793934600000,
+        "reference": "DEMO-F75D9924-151",
+        "qr_payload": "ENCORE-DEMO-PAY:f75d9924-1519-48f9-96f5-92b8a4c4b247"
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.234Z",
+    "method": "GET",
+    "path": "orders",
+    "status": 200,
+    "response": {
+      "orders": [],
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.235Z",
+    "method": "GET",
+    "path": "mailbox",
+    "status": 200,
+    "response": {
+      "messages": [],
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.235Z",
+    "method": "POST",
+    "path": "pay",
+    "status": 200,
+    "response": {
+      "status": "pending",
+      "payment": "f75d9924-1519-48f9-96f5-92b8a4c4b247",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.236Z",
+    "method": "POST",
+    "path": "payments/resolve",
+    "status": 200,
+    "response": {
+      "status": "succeeded",
+      "order": "EN-E574B37F-A01",
+      "replayed": false,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.236Z",
+    "method": "POST",
+    "path": "payments/resolve",
+    "status": 200,
+    "response": {
+      "status": "succeeded",
+      "order": "EN-E574B37F-A01",
+      "replayed": true,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.237Z",
+    "method": "GET",
+    "path": "orders",
+    "status": 200,
+    "response": {
+      "orders": [
+        {
+          "id": "EN-E574B37F-A01",
+          "user": "general",
+          "hold": {
+            "id": "7be978a6-3c48-4f54-88c1-8c52cf185cb6",
+            "user": "general",
+            "event": "aurora",
+            "seats": [
+              "C01"
+            ],
+            "expires": 1793934600000,
+            "status": "paid",
+            "price": {
+              "subtotal": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2,
+              "total": 1832,
+              "lines": [
+                {
+                  "seat": "C01",
+                  "net": 1800,
+                  "discount": 0,
+                  "fee": 30,
+                  "vat": 2
+                }
+              ]
+            },
+            "round": "general",
+            "checkout": {
+              "buyer": {
+                "name": "C4 Buyer",
+                "email": "c4-buyer@example.test",
+                "phone": "0812345678"
+              },
+              "holders": [
+                {
+                  "seat": "C01",
+                  "name": "C4 Holder",
+                  "email": "c4-holder@example.test",
+                  "phone": "0898765432"
+                }
+              ]
+            },
+            "payment": {
+              "id": "f75d9924-1519-48f9-96f5-92b8a4c4b247",
+              "status": "succeeded",
+              "amount": 1832,
+              "refund_amount": 0,
+              "method": "seven_eleven"
+            }
+          },
+          "created": 1793934000000,
+          "tickets": [
+            {
+              "id": "d78b36fd-7e41-4df1-8b69-90c0ae3cdbeb",
+              "order_id": "EN-E574B37F-A01",
+              "event": "aurora",
+              "seat": "C01",
+              "code": "ac436067d7f3eca0338d7aa36689f67856f0fdcc6a5296d1c17a5c9f393c3cb8",
+              "status": "valid",
+              "net": 1800,
+              "fee": 30,
+              "vat": 2,
+              "holder": "{\"seat\":\"C01\",\"name\":\"C4 Holder\",\"email\":\"c4-holder@example.test\",\"phone\":\"0898765432\"}",
+              "refund_id": null,
+              "refund_amount": null,
+              "refund_status": null
+            }
+          ]
+        }
+      ],
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.237Z",
+    "method": "GET",
+    "path": "mailbox",
+    "status": 200,
+    "response": {
+      "messages": [
+        {
+          "id": "b7a532b6-e3be-470c-aa07-8e66910cf45b",
+          "order_id": "EN-E574B37F-A01",
+          "recipient": "c4-buyer@example.test",
+          "status": "delivered_sandbox",
+          "created": 1793934000000
+        }
+      ],
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.409Z",
+    "method": "POST",
+    "path": "test/reset",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.431Z",
+    "method": "POST",
+    "path": "login",
+    "status": 200,
+    "response": {
+      "user": {
+        "id": "general",
+        "email": "general@demo.test",
+        "username": "general",
+        "name": "เจน ทั่วไป",
+        "role": "buyer",
+        "presale": false
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.432Z",
+    "method": "POST",
+    "path": "queue",
+    "status": 200,
+    "response": {
+      "queue": {
+        "status": "active",
+        "number": "Q000003",
+        "position": 0,
+        "ahead": 0,
+        "estimated_wait_seconds": 0,
+        "expires": 1793934900000,
+        "round": "general",
+        "starts": 1793520000000,
+        "limit": 4
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.432Z",
+    "method": "POST",
+    "path": "holds",
+    "status": 201,
+    "response": {
+      "hold": {
+        "id": "6d77baac-e52f-4ac0-ae3d-d7749387eb9b",
+        "user": "general",
+        "event": "aurora",
+        "seats": [
+          "C01"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 1800,
+          "discount": 0,
+          "fee": 30,
+          "vat": 2,
+          "total": 1832,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "general",
+        "checkout": null,
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.433Z",
+    "method": "POST",
+    "path": "checkout",
+    "status": 200,
+    "response": {
+      "hold": {
+        "id": "6d77baac-e52f-4ac0-ae3d-d7749387eb9b",
+        "user": "general",
+        "event": "aurora",
+        "seats": [
+          "C01"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 1800,
+          "discount": 0,
+          "fee": 30,
+          "vat": 2,
+          "total": 1832,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "general",
+        "checkout": {
+          "buyer": {
+            "name": "C4 Buyer",
+            "email": "c4-buyer@example.test",
+            "phone": "0812345678"
+          },
+          "holders": [
+            {
+              "seat": "C01",
+              "name": "C4 Holder",
+              "email": "c4-holder@example.test",
+              "phone": "0898765432"
+            }
+          ]
+        },
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.435Z",
+    "method": "POST",
+    "path": "pay",
+    "status": 200,
+    "response": {
+      "status": "pending",
+      "payment": "300c246c-06aa-4417-b5c2-882d0f8bd917",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.436Z",
+    "method": "GET",
+    "path": "payment?id=300c246c-06aa-4417-b5c2-882d0f8bd917",
+    "status": 200,
+    "response": {
+      "payment": {
+        "id": "300c246c-06aa-4417-b5c2-882d0f8bd917",
+        "hold": "6d77baac-e52f-4ac0-ae3d-d7749387eb9b",
+        "status": "pending",
+        "amount": 1832,
+        "paid_at": null,
+        "refund_amount": 0,
+        "method": "credit_card",
+        "expires": 1793934600000,
+        "reference": "DEMO-300C246C-06A",
+        "qr_payload": "ENCORE-DEMO-PAY:300c246c-06aa-4417-b5c2-882d0f8bd917"
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.436Z",
+    "method": "GET",
+    "path": "orders",
+    "status": 200,
+    "response": {
+      "orders": [],
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.436Z",
+    "method": "GET",
+    "path": "mailbox",
+    "status": 200,
+    "response": {
+      "messages": [],
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.437Z",
+    "method": "POST",
+    "path": "pay",
+    "status": 200,
+    "response": {
+      "status": "pending",
+      "payment": "300c246c-06aa-4417-b5c2-882d0f8bd917",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.437Z",
+    "method": "POST",
+    "path": "payments/resolve",
+    "status": 200,
+    "response": {
+      "status": "succeeded",
+      "order": "EN-3625DC7E-CA3",
+      "replayed": false,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.438Z",
+    "method": "POST",
+    "path": "payments/resolve",
+    "status": 200,
+    "response": {
+      "status": "succeeded",
+      "order": "EN-3625DC7E-CA3",
+      "replayed": true,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.438Z",
+    "method": "GET",
+    "path": "orders",
+    "status": 200,
+    "response": {
+      "orders": [
+        {
+          "id": "EN-3625DC7E-CA3",
+          "user": "general",
+          "hold": {
+            "id": "6d77baac-e52f-4ac0-ae3d-d7749387eb9b",
+            "user": "general",
+            "event": "aurora",
+            "seats": [
+              "C01"
+            ],
+            "expires": 1793934600000,
+            "status": "paid",
+            "price": {
+              "subtotal": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2,
+              "total": 1832,
+              "lines": [
+                {
+                  "seat": "C01",
+                  "net": 1800,
+                  "discount": 0,
+                  "fee": 30,
+                  "vat": 2
+                }
+              ]
+            },
+            "round": "general",
+            "checkout": {
+              "buyer": {
+                "name": "C4 Buyer",
+                "email": "c4-buyer@example.test",
+                "phone": "0812345678"
+              },
+              "holders": [
+                {
+                  "seat": "C01",
+                  "name": "C4 Holder",
+                  "email": "c4-holder@example.test",
+                  "phone": "0898765432"
+                }
+              ]
+            },
+            "payment": {
+              "id": "300c246c-06aa-4417-b5c2-882d0f8bd917",
+              "status": "succeeded",
+              "amount": 1832,
+              "refund_amount": 0,
+              "method": "credit_card"
+            }
+          },
+          "created": 1793934000000,
+          "tickets": [
+            {
+              "id": "6302064e-f140-4ebf-ae95-940844499d62",
+              "order_id": "EN-3625DC7E-CA3",
+              "event": "aurora",
+              "seat": "C01",
+              "code": "545f7ca6dcae0e1944775fa4c3753d9cf5d5e1b6fa6a4a459598e15b1b1f31e4",
+              "status": "valid",
+              "net": 1800,
+              "fee": 30,
+              "vat": 2,
+              "holder": "{\"seat\":\"C01\",\"name\":\"C4 Holder\",\"email\":\"c4-holder@example.test\",\"phone\":\"0898765432\"}",
+              "refund_id": null,
+              "refund_amount": null,
+              "refund_status": null
+            }
+          ]
+        }
+      ],
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.439Z",
+    "method": "GET",
+    "path": "mailbox",
+    "status": 200,
+    "response": {
+      "messages": [
+        {
+          "id": "3808114f-6791-4823-9ed6-e6560e788de1",
+          "order_id": "EN-3625DC7E-CA3",
+          "recipient": "c4-buyer@example.test",
+          "status": "delivered_sandbox",
+          "created": 1793934000000
+        }
+      ],
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.613Z",
+    "method": "POST",
+    "path": "test/reset",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.635Z",
+    "method": "POST",
+    "path": "login",
+    "status": 200,
+    "response": {
+      "user": {
+        "id": "general",
+        "email": "general@demo.test",
+        "username": "general",
+        "name": "เจน ทั่วไป",
+        "role": "buyer",
+        "presale": false
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.636Z",
+    "method": "POST",
+    "path": "queue",
+    "status": 200,
+    "response": {
+      "queue": {
+        "status": "active",
+        "number": "Q000004",
+        "position": 0,
+        "ahead": 0,
+        "estimated_wait_seconds": 0,
+        "expires": 1793934900000,
+        "round": "general",
+        "starts": 1793520000000,
+        "limit": 4
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.636Z",
+    "method": "POST",
+    "path": "holds",
+    "status": 201,
+    "response": {
+      "hold": {
+        "id": "77266ab6-3b87-49af-b2e7-db23cde3a646",
+        "user": "general",
+        "event": "aurora",
+        "seats": [
+          "C01"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 1800,
+          "discount": 0,
+          "fee": 30,
+          "vat": 2,
+          "total": 1832,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "general",
+        "checkout": null,
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.637Z",
+    "method": "POST",
+    "path": "checkout",
+    "status": 200,
+    "response": {
+      "hold": {
+        "id": "77266ab6-3b87-49af-b2e7-db23cde3a646",
+        "user": "general",
+        "event": "aurora",
+        "seats": [
+          "C01"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 1800,
+          "discount": 0,
+          "fee": 30,
+          "vat": 2,
+          "total": 1832,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "general",
+        "checkout": {
+          "buyer": {
+            "name": "C4 Buyer",
+            "email": "c4-buyer@example.test",
+            "phone": "0812345678"
+          },
+          "holders": [
+            {
+              "seat": "C01",
+              "name": "C4 Holder",
+              "email": "c4-holder@example.test",
+              "phone": "0898765432"
+            }
+          ]
+        },
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.637Z",
+    "method": "POST",
+    "path": "pay",
+    "status": 200,
+    "response": {
+      "status": "pending",
+      "payment": "7f1580b0-dd31-4c2e-8418-a8227721da37",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.638Z",
+    "method": "GET",
+    "path": "payment?id=7f1580b0-dd31-4c2e-8418-a8227721da37",
+    "status": 200,
+    "response": {
+      "payment": {
+        "id": "7f1580b0-dd31-4c2e-8418-a8227721da37",
+        "hold": "77266ab6-3b87-49af-b2e7-db23cde3a646",
+        "status": "pending",
+        "amount": 1832,
+        "paid_at": null,
+        "refund_amount": 0,
+        "method": "alipay",
+        "expires": 1793934600000,
+        "reference": "DEMO-7F1580B0-DD3",
+        "qr_payload": "ENCORE-DEMO-PAY:7f1580b0-dd31-4c2e-8418-a8227721da37"
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.638Z",
+    "method": "GET",
+    "path": "orders",
+    "status": 200,
+    "response": {
+      "orders": [],
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.639Z",
+    "method": "GET",
+    "path": "mailbox",
+    "status": 200,
+    "response": {
+      "messages": [],
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.639Z",
+    "method": "POST",
+    "path": "pay",
+    "status": 200,
+    "response": {
+      "status": "pending",
+      "payment": "7f1580b0-dd31-4c2e-8418-a8227721da37",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.640Z",
+    "method": "POST",
+    "path": "payments/resolve",
+    "status": 200,
+    "response": {
+      "status": "succeeded",
+      "order": "EN-137E6FF5-75B",
+      "replayed": false,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.640Z",
+    "method": "POST",
+    "path": "payments/resolve",
+    "status": 200,
+    "response": {
+      "status": "succeeded",
+      "order": "EN-137E6FF5-75B",
+      "replayed": true,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.640Z",
+    "method": "GET",
+    "path": "orders",
+    "status": 200,
+    "response": {
+      "orders": [
+        {
+          "id": "EN-137E6FF5-75B",
+          "user": "general",
+          "hold": {
+            "id": "77266ab6-3b87-49af-b2e7-db23cde3a646",
+            "user": "general",
+            "event": "aurora",
+            "seats": [
+              "C01"
+            ],
+            "expires": 1793934600000,
+            "status": "paid",
+            "price": {
+              "subtotal": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2,
+              "total": 1832,
+              "lines": [
+                {
+                  "seat": "C01",
+                  "net": 1800,
+                  "discount": 0,
+                  "fee": 30,
+                  "vat": 2
+                }
+              ]
+            },
+            "round": "general",
+            "checkout": {
+              "buyer": {
+                "name": "C4 Buyer",
+                "email": "c4-buyer@example.test",
+                "phone": "0812345678"
+              },
+              "holders": [
+                {
+                  "seat": "C01",
+                  "name": "C4 Holder",
+                  "email": "c4-holder@example.test",
+                  "phone": "0898765432"
+                }
+              ]
+            },
+            "payment": {
+              "id": "7f1580b0-dd31-4c2e-8418-a8227721da37",
+              "status": "succeeded",
+              "amount": 1832,
+              "refund_amount": 0,
+              "method": "alipay"
+            }
+          },
+          "created": 1793934000000,
+          "tickets": [
+            {
+              "id": "10e8cd0b-8849-451b-8d2c-95847293f71d",
+              "order_id": "EN-137E6FF5-75B",
+              "event": "aurora",
+              "seat": "C01",
+              "code": "b5063d83fe43b624627f04a81abad1cbbc838017da3a3f3643aa16f73db15897",
+              "status": "valid",
+              "net": 1800,
+              "fee": 30,
+              "vat": 2,
+              "holder": "{\"seat\":\"C01\",\"name\":\"C4 Holder\",\"email\":\"c4-holder@example.test\",\"phone\":\"0898765432\"}",
+              "refund_id": null,
+              "refund_amount": null,
+              "refund_status": null
+            }
+          ]
+        }
+      ],
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.641Z",
+    "method": "GET",
+    "path": "mailbox",
+    "status": 200,
+    "response": {
+      "messages": [
+        {
+          "id": "47e31886-ea9a-4d83-a256-43bb0c88cb1f",
+          "order_id": "EN-137E6FF5-75B",
+          "recipient": "c4-buyer@example.test",
+          "status": "delivered_sandbox",
+          "created": 1793934000000
+        }
+      ],
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.814Z",
+    "method": "POST",
+    "path": "test/reset",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.836Z",
+    "method": "POST",
+    "path": "login",
+    "status": 200,
+    "response": {
+      "user": {
+        "id": "general",
+        "email": "general@demo.test",
+        "username": "general",
+        "name": "เจน ทั่วไป",
+        "role": "buyer",
+        "presale": false
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.837Z",
+    "method": "POST",
+    "path": "queue",
+    "status": 200,
+    "response": {
+      "queue": {
+        "status": "active",
+        "number": "Q000005",
+        "position": 0,
+        "ahead": 0,
+        "estimated_wait_seconds": 0,
+        "expires": 1793934900000,
+        "round": "general",
+        "starts": 1793520000000,
+        "limit": 4
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.838Z",
+    "method": "POST",
+    "path": "holds",
+    "status": 201,
+    "response": {
+      "hold": {
+        "id": "edc2633f-89a7-4fd8-b4f6-c0befe28159b",
+        "user": "general",
+        "event": "aurora",
+        "seats": [
+          "C01"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 1800,
+          "discount": 0,
+          "fee": 30,
+          "vat": 2,
+          "total": 1832,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "general",
+        "checkout": null,
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.838Z",
+    "method": "POST",
+    "path": "checkout",
+    "status": 200,
+    "response": {
+      "hold": {
+        "id": "edc2633f-89a7-4fd8-b4f6-c0befe28159b",
+        "user": "general",
+        "event": "aurora",
+        "seats": [
+          "C01"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 1800,
+          "discount": 0,
+          "fee": 30,
+          "vat": 2,
+          "total": 1832,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "general",
+        "checkout": {
+          "buyer": {
+            "name": "C4 Buyer",
+            "email": "c4-buyer@example.test",
+            "phone": "0812345678"
+          },
+          "holders": [
+            {
+              "seat": "C01",
+              "name": "C4 Holder",
+              "email": "c4-holder@example.test",
+              "phone": "0898765432"
+            }
+          ]
+        },
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.839Z",
+    "method": "POST",
+    "path": "pay",
+    "status": 200,
+    "response": {
+      "status": "pending",
+      "payment": "3186f37d-be77-4f8b-a56b-d728055bc59a",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.839Z",
+    "method": "POST",
+    "path": "payments/resolve",
+    "status": 200,
+    "response": {
+      "status": "failed",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.840Z",
+    "method": "GET",
+    "path": "orders",
+    "status": 200,
+    "response": {
+      "orders": [],
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.840Z",
+    "method": "GET",
+    "path": "mailbox",
+    "status": 200,
+    "response": {
+      "messages": [],
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.841Z",
+    "method": "POST",
+    "path": "payments/resolve",
+    "status": 200,
+    "response": {
+      "status": "failed",
+      "replayed": true,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.841Z",
+    "method": "POST",
+    "path": "pay",
+    "status": 200,
+    "response": {
+      "status": "pending",
+      "payment": "46cc040b-699e-4d73-9fed-c8f47c772816",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.842Z",
+    "method": "POST",
+    "path": "payments/resolve",
+    "status": 200,
+    "response": {
+      "status": "succeeded",
+      "order": "EN-525BE71E-427",
+      "replayed": false,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:38.842Z",
+    "method": "GET",
+    "path": "orders",
+    "status": 200,
+    "response": {
+      "orders": [
+        {
+          "id": "EN-525BE71E-427",
+          "user": "general",
+          "hold": {
+            "id": "edc2633f-89a7-4fd8-b4f6-c0befe28159b",
+            "user": "general",
+            "event": "aurora",
+            "seats": [
+              "C01"
+            ],
+            "expires": 1793934600000,
+            "status": "paid",
+            "price": {
+              "subtotal": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2,
+              "total": 1832,
+              "lines": [
+                {
+                  "seat": "C01",
+                  "net": 1800,
+                  "discount": 0,
+                  "fee": 30,
+                  "vat": 2
+                }
+              ]
+            },
+            "round": "general",
+            "checkout": {
+              "buyer": {
+                "name": "C4 Buyer",
+                "email": "c4-buyer@example.test",
+                "phone": "0812345678"
+              },
+              "holders": [
+                {
+                  "seat": "C01",
+                  "name": "C4 Holder",
+                  "email": "c4-holder@example.test",
+                  "phone": "0898765432"
+                }
+              ]
+            },
+            "payment": {
+              "id": "46cc040b-699e-4d73-9fed-c8f47c772816",
+              "status": "succeeded",
+              "amount": 1832,
+              "refund_amount": 0,
+              "method": "alipay"
+            }
+          },
+          "created": 1793934000000,
+          "tickets": [
+            {
+              "id": "cd9d96da-134f-416d-80da-2440d9956132",
+              "order_id": "EN-525BE71E-427",
+              "event": "aurora",
+              "seat": "C01",
+              "code": "988d2835cd8dde77b88cea27f666dc4c3b6871b45093348a13625c644c680535",
+              "status": "valid",
+              "net": 1800,
+              "fee": 30,
+              "vat": 2,
+              "holder": "{\"seat\":\"C01\",\"name\":\"C4 Holder\",\"email\":\"c4-holder@example.test\",\"phone\":\"0898765432\"}",
+              "refund_id": null,
+              "refund_amount": null,
+              "refund_status": null
+            }
+          ]
+        }
+      ],
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.013Z",
+    "method": "POST",
+    "path": "test/reset",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.035Z",
+    "method": "POST",
+    "path": "login",
+    "status": 200,
+    "response": {
+      "user": {
+        "id": "general",
+        "email": "general@demo.test",
+        "username": "general",
+        "name": "เจน ทั่วไป",
+        "role": "buyer",
+        "presale": false
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.036Z",
+    "method": "POST",
+    "path": "queue",
+    "status": 200,
+    "response": {
+      "queue": {
+        "status": "active",
+        "number": "Q000006",
+        "position": 0,
+        "ahead": 0,
+        "estimated_wait_seconds": 0,
+        "expires": 1793934900000,
+        "round": "general",
+        "starts": 1793520000000,
+        "limit": 4
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.036Z",
+    "method": "POST",
+    "path": "holds",
+    "status": 201,
+    "response": {
+      "hold": {
+        "id": "1d26e184-4729-48cb-89a6-ffdfa31438f5",
+        "user": "general",
+        "event": "aurora",
+        "seats": [
+          "C01"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 1800,
+          "discount": 0,
+          "fee": 30,
+          "vat": 2,
+          "total": 1832,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "general",
+        "checkout": null,
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.037Z",
+    "method": "POST",
+    "path": "checkout",
+    "status": 200,
+    "response": {
+      "hold": {
+        "id": "1d26e184-4729-48cb-89a6-ffdfa31438f5",
+        "user": "general",
+        "event": "aurora",
+        "seats": [
+          "C01"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 1800,
+          "discount": 0,
+          "fee": 30,
+          "vat": 2,
+          "total": 1832,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "general",
+        "checkout": {
+          "buyer": {
+            "name": "C4 Buyer",
+            "email": "c4-buyer@example.test",
+            "phone": "0812345678"
+          },
+          "holders": [
+            {
+              "seat": "C01",
+              "name": "C4 Holder",
+              "email": "c4-holder@example.test",
+              "phone": "0898765432"
+            }
+          ]
+        },
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.037Z",
+    "method": "POST",
+    "path": "pay",
+    "status": 400,
+    "response": {
+      "error": "PAYMENT_METHOD",
+      "message": "เลือกช่องทางชำระเงิน",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.038Z",
+    "method": "POST",
+    "path": "pay",
+    "status": 200,
+    "response": {
+      "status": "pending",
+      "payment": "f4e98081-3873-4d5f-a554-09369ddb5455",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.038Z",
+    "method": "GET",
+    "path": "payment?id=f4e98081-3873-4d5f-a554-09369ddb5455",
+    "status": 200,
+    "response": {
+      "payment": {
+        "id": "f4e98081-3873-4d5f-a554-09369ddb5455",
+        "hold": "1d26e184-4729-48cb-89a6-ffdfa31438f5",
+        "status": "pending",
+        "amount": 1832,
+        "paid_at": null,
+        "refund_amount": 0,
+        "method": "qr",
+        "expires": 1793934600000,
+        "reference": "DEMO-F4E98081-387",
+        "qr_payload": "ENCORE-DEMO-PAY:f4e98081-3873-4d5f-a554-09369ddb5455"
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.038Z",
+    "method": "POST",
+    "path": "release",
+    "status": 409,
+    "response": {
+      "error": "PAYMENT_PENDING",
+      "message": "กำลังรอผลการชำระเงิน จึงยังเปลี่ยนที่นั่งไม่ได้",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.039Z",
+    "method": "POST",
+    "path": "holds",
+    "status": 409,
+    "response": {
+      "error": "PAYMENT_PENDING",
+      "message": "กรุณารอผลการชำระเงินรายการเดิมก่อนจองใหม่",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.039Z",
+    "method": "POST",
+    "path": "checkout",
+    "status": 409,
+    "response": {
+      "error": "HOLD_EXPIRED",
+      "message": "รายการนี้แก้ข้อมูลไม่ได้หรือหมดเวลาแล้ว",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.213Z",
+    "method": "POST",
+    "path": "test/reset",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.235Z",
+    "method": "POST",
+    "path": "login",
+    "status": 200,
+    "response": {
+      "user": {
+        "id": "general",
+        "email": "general@demo.test",
+        "username": "general",
+        "name": "เจน ทั่วไป",
+        "role": "buyer",
+        "presale": false
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.236Z",
+    "method": "POST",
+    "path": "queue",
+    "status": 200,
+    "response": {
+      "queue": {
+        "status": "active",
+        "number": "Q000007",
+        "position": 0,
+        "ahead": 0,
+        "estimated_wait_seconds": 0,
+        "expires": 1793934900000,
+        "round": "general",
+        "starts": 1793520000000,
+        "limit": 4
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.236Z",
+    "method": "POST",
+    "path": "holds",
+    "status": 201,
+    "response": {
+      "hold": {
+        "id": "f33f97b1-af40-492f-8f84-6e2a2b4aa14b",
+        "user": "general",
+        "event": "aurora",
+        "seats": [
+          "C01"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 1800,
+          "discount": 0,
+          "fee": 30,
+          "vat": 2,
+          "total": 1832,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "general",
+        "checkout": null,
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.237Z",
+    "method": "POST",
+    "path": "checkout",
+    "status": 200,
+    "response": {
+      "hold": {
+        "id": "f33f97b1-af40-492f-8f84-6e2a2b4aa14b",
+        "user": "general",
+        "event": "aurora",
+        "seats": [
+          "C01"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 1800,
+          "discount": 0,
+          "fee": 30,
+          "vat": 2,
+          "total": 1832,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "general",
+        "checkout": {
+          "buyer": {
+            "name": "C4 Buyer",
+            "email": "c4-buyer@example.test",
+            "phone": "0812345678"
+          },
+          "holders": [
+            {
+              "seat": "C01",
+              "name": "C4 Holder",
+              "email": "c4-holder@example.test",
+              "phone": "0898765432"
+            }
+          ]
+        },
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.237Z",
+    "method": "POST",
+    "path": "pay",
+    "status": 200,
+    "response": {
+      "status": "pending",
+      "payment": "8bf6f54a-7272-4e96-be79-de21c42fe941",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.238Z",
+    "method": "POST",
+    "path": "test/clock",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934600000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.238Z",
+    "method": "POST",
+    "path": "test/callback",
+    "status": 200,
+    "response": {
+      "status": "auto_refunded",
+      "refund": 1832,
+      "now": 1793934600000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.239Z",
+    "method": "POST",
+    "path": "test/callback",
+    "status": 200,
+    "response": {
+      "status": "auto_refunded",
+      "replayed": true,
+      "now": 1793934600000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.239Z",
+    "method": "GET",
+    "path": "orders",
+    "status": 200,
+    "response": {
+      "orders": [],
+      "now": 1793934600000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.240Z",
+    "method": "GET",
+    "path": "mailbox",
+    "status": 200,
+    "response": {
+      "messages": [],
+      "now": 1793934600000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.240Z",
+    "method": "GET",
+    "path": "payment?id=8bf6f54a-7272-4e96-be79-de21c42fe941",
+    "status": 200,
+    "response": {
+      "payment": {
+        "id": "8bf6f54a-7272-4e96-be79-de21c42fe941",
+        "hold": "f33f97b1-af40-492f-8f84-6e2a2b4aa14b",
+        "status": "auto_refunded",
+        "amount": 1832,
+        "paid_at": null,
+        "refund_amount": 1832,
+        "method": "qr",
+        "expires": 1793934600000,
+        "reference": "DEMO-8BF6F54A-727",
+        "qr_payload": "ENCORE-DEMO-PAY:8bf6f54a-7272-4e96-be79-de21c42fe941"
+      },
+      "now": 1793934600000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.413Z",
+    "method": "POST",
+    "path": "test/reset",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.436Z",
+    "method": "POST",
+    "path": "login",
+    "status": 200,
+    "response": {
+      "user": {
+        "id": "general",
+        "email": "general@demo.test",
+        "username": "general",
+        "name": "เจน ทั่วไป",
+        "role": "buyer",
+        "presale": false
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.437Z",
+    "method": "POST",
+    "path": "queue",
+    "status": 200,
+    "response": {
+      "queue": {
+        "status": "active",
+        "number": "Q000008",
+        "position": 0,
+        "ahead": 0,
+        "estimated_wait_seconds": 0,
+        "expires": 1793934900000,
+        "round": "general",
+        "starts": 1793520000000,
+        "limit": 4
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.437Z",
+    "method": "POST",
+    "path": "holds",
+    "status": 201,
+    "response": {
+      "hold": {
+        "id": "59a34c5f-7794-4abe-9ac9-e12155568d12",
+        "user": "general",
+        "event": "aurora",
+        "seats": [
+          "C01"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 1800,
+          "discount": 0,
+          "fee": 30,
+          "vat": 2,
+          "total": 1832,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "general",
+        "checkout": null,
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.438Z",
+    "method": "POST",
+    "path": "checkout",
+    "status": 200,
+    "response": {
+      "hold": {
+        "id": "59a34c5f-7794-4abe-9ac9-e12155568d12",
+        "user": "general",
+        "event": "aurora",
+        "seats": [
+          "C01"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 1800,
+          "discount": 0,
+          "fee": 30,
+          "vat": 2,
+          "total": 1832,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "general",
+        "checkout": {
+          "buyer": {
+            "name": "C4 Buyer",
+            "email": "c4-buyer@example.test",
+            "phone": "0812345678"
+          },
+          "holders": [
+            {
+              "seat": "C01",
+              "name": "C4 Holder",
+              "email": "c4-holder@example.test",
+              "phone": "0898765432"
+            }
+          ]
+        },
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.438Z",
+    "method": "POST",
+    "path": "pay",
+    "status": 200,
+    "response": {
+      "status": "pending",
+      "payment": "0d521934-40f0-4b11-8b13-a233cc3659ed",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.438Z",
+    "method": "POST",
+    "path": "test/clock",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934719999
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.439Z",
+    "method": "POST",
+    "path": "test/callback",
+    "status": 200,
+    "response": {
+      "status": "succeeded",
+      "order": "EN-29B9E1CF-2B5",
+      "replayed": false,
+      "now": 1793934719999
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.439Z",
+    "method": "GET",
+    "path": "orders",
+    "status": 200,
+    "response": {
+      "orders": [
+        {
+          "id": "EN-29B9E1CF-2B5",
+          "user": "general",
+          "hold": {
+            "id": "59a34c5f-7794-4abe-9ac9-e12155568d12",
+            "user": "general",
+            "event": "aurora",
+            "seats": [
+              "C01"
+            ],
+            "expires": 1793934600000,
+            "status": "paid",
+            "price": {
+              "subtotal": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2,
+              "total": 1832,
+              "lines": [
+                {
+                  "seat": "C01",
+                  "net": 1800,
+                  "discount": 0,
+                  "fee": 30,
+                  "vat": 2
+                }
+              ]
+            },
+            "round": "general",
+            "checkout": {
+              "buyer": {
+                "name": "C4 Buyer",
+                "email": "c4-buyer@example.test",
+                "phone": "0812345678"
+              },
+              "holders": [
+                {
+                  "seat": "C01",
+                  "name": "C4 Holder",
+                  "email": "c4-holder@example.test",
+                  "phone": "0898765432"
+                }
+              ]
+            },
+            "payment": {
+              "id": "0d521934-40f0-4b11-8b13-a233cc3659ed",
+              "status": "succeeded",
+              "amount": 1832,
+              "refund_amount": 0,
+              "method": "qr"
+            }
+          },
+          "created": 1793934719999,
+          "tickets": [
+            {
+              "id": "8f6ddbc7-819d-419a-bd07-fa9da31bf2de",
+              "order_id": "EN-29B9E1CF-2B5",
+              "event": "aurora",
+              "seat": "C01",
+              "code": "e53d01f854ded462b66c975cfe45b36f80e43ae357bd6659ed9400b7181c59b7",
+              "status": "valid",
+              "net": 1800,
+              "fee": 30,
+              "vat": 2,
+              "holder": "{\"seat\":\"C01\",\"name\":\"C4 Holder\",\"email\":\"c4-holder@example.test\",\"phone\":\"0898765432\"}",
+              "refund_id": null,
+              "refund_amount": null,
+              "refund_status": null
+            }
+          ]
+        }
+      ],
+      "now": 1793934719999
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.610Z",
+    "method": "POST",
+    "path": "test/reset",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.632Z",
+    "method": "POST",
+    "path": "login",
+    "status": 200,
+    "response": {
+      "user": {
+        "id": "general",
+        "email": "general@demo.test",
+        "username": "general",
+        "name": "เจน ทั่วไป",
+        "role": "buyer",
+        "presale": false
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.633Z",
+    "method": "POST",
+    "path": "queue",
+    "status": 200,
+    "response": {
+      "queue": {
+        "status": "active",
+        "number": "Q000009",
+        "position": 0,
+        "ahead": 0,
+        "estimated_wait_seconds": 0,
+        "expires": 1793934900000,
+        "round": "general",
+        "starts": 1793520000000,
+        "limit": 4
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.633Z",
+    "method": "POST",
+    "path": "holds",
+    "status": 201,
+    "response": {
+      "hold": {
+        "id": "734dc8c1-1763-4977-8757-07d43d1b8cdf",
+        "user": "general",
+        "event": "aurora",
+        "seats": [
+          "C01"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 1800,
+          "discount": 0,
+          "fee": 30,
+          "vat": 2,
+          "total": 1832,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "general",
+        "checkout": null,
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.634Z",
+    "method": "POST",
+    "path": "checkout",
+    "status": 200,
+    "response": {
+      "hold": {
+        "id": "734dc8c1-1763-4977-8757-07d43d1b8cdf",
+        "user": "general",
+        "event": "aurora",
+        "seats": [
+          "C01"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 1800,
+          "discount": 0,
+          "fee": 30,
+          "vat": 2,
+          "total": 1832,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "general",
+        "checkout": {
+          "buyer": {
+            "name": "C4 Buyer",
+            "email": "c4-buyer@example.test",
+            "phone": "0812345678"
+          },
+          "holders": [
+            {
+              "seat": "C01",
+              "name": "C4 Holder",
+              "email": "c4-holder@example.test",
+              "phone": "0898765432"
+            }
+          ]
+        },
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.634Z",
+    "method": "POST",
+    "path": "pay",
+    "status": 200,
+    "response": {
+      "status": "pending",
+      "payment": "fa124ca5-7cb9-4132-be7f-43293be47c69",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.635Z",
+    "method": "POST",
+    "path": "test/clock",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934720000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.635Z",
+    "method": "POST",
+    "path": "test/callback",
+    "status": 200,
+    "response": {
+      "status": "auto_refunded",
+      "refund": 1832,
+      "now": 1793934720000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.635Z",
+    "method": "GET",
+    "path": "orders",
+    "status": 200,
+    "response": {
+      "orders": [],
+      "now": 1793934720000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.636Z",
+    "method": "GET",
+    "path": "mailbox",
+    "status": 200,
+    "response": {
+      "messages": [],
+      "now": 1793934720000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.808Z",
+    "method": "POST",
+    "path": "test/reset",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.830Z",
+    "method": "POST",
+    "path": "login",
+    "status": 200,
+    "response": {
+      "user": {
+        "id": "general",
+        "email": "general@demo.test",
+        "username": "general",
+        "name": "เจน ทั่วไป",
+        "role": "buyer",
+        "presale": false
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.831Z",
+    "method": "POST",
+    "path": "queue",
+    "status": 200,
+    "response": {
+      "queue": {
+        "status": "active",
+        "number": "Q000010",
+        "position": 0,
+        "ahead": 0,
+        "estimated_wait_seconds": 0,
+        "expires": 1793934900000,
+        "round": "general",
+        "starts": 1793520000000,
+        "limit": 4
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.832Z",
+    "method": "POST",
+    "path": "holds",
+    "status": 201,
+    "response": {
+      "hold": {
+        "id": "f48c5860-3f1c-468b-b262-91a2c0a52b80",
+        "user": "general",
+        "event": "aurora",
+        "seats": [
+          "C01"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 1800,
+          "discount": 0,
+          "fee": 30,
+          "vat": 2,
+          "total": 1832,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "general",
+        "checkout": null,
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.832Z",
+    "method": "POST",
+    "path": "checkout",
+    "status": 200,
+    "response": {
+      "hold": {
+        "id": "f48c5860-3f1c-468b-b262-91a2c0a52b80",
+        "user": "general",
+        "event": "aurora",
+        "seats": [
+          "C01"
+        ],
+        "expires": 1793934600000,
+        "status": "held",
+        "price": {
+          "subtotal": 1800,
+          "discount": 0,
+          "fee": 30,
+          "vat": 2,
+          "total": 1832,
+          "lines": [
+            {
+              "seat": "C01",
+              "net": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2
+            }
+          ]
+        },
+        "round": "general",
+        "checkout": {
+          "buyer": {
+            "name": "C4 Buyer",
+            "email": "c4-buyer@example.test",
+            "phone": "0812345678"
+          },
+          "holders": [
+            {
+              "seat": "C01",
+              "name": "C4 Holder",
+              "email": "c4-holder@example.test",
+              "phone": "0898765432"
+            }
+          ]
+        },
+        "payment": null
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.833Z",
+    "method": "POST",
+    "path": "pay",
+    "status": 200,
+    "response": {
+      "status": "succeeded",
+      "order": "EN-BDF76562-88F",
+      "replayed": false,
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.833Z",
+    "method": "GET",
+    "path": "orders",
+    "status": 200,
+    "response": {
+      "orders": [
+        {
+          "id": "EN-BDF76562-88F",
+          "user": "general",
+          "hold": {
+            "id": "f48c5860-3f1c-468b-b262-91a2c0a52b80",
+            "user": "general",
+            "event": "aurora",
+            "seats": [
+              "C01"
+            ],
+            "expires": 1793934600000,
+            "status": "paid",
+            "price": {
+              "subtotal": 1800,
+              "discount": 0,
+              "fee": 30,
+              "vat": 2,
+              "total": 1832,
+              "lines": [
+                {
+                  "seat": "C01",
+                  "net": 1800,
+                  "discount": 0,
+                  "fee": 30,
+                  "vat": 2
+                }
+              ]
+            },
+            "round": "general",
+            "checkout": {
+              "buyer": {
+                "name": "C4 Buyer",
+                "email": "c4-buyer@example.test",
+                "phone": "0812345678"
+              },
+              "holders": [
+                {
+                  "seat": "C01",
+                  "name": "C4 Holder",
+                  "email": "c4-holder@example.test",
+                  "phone": "0898765432"
+                }
+              ]
+            },
+            "payment": {
+              "id": "709d89de-851a-4151-afd7-b0d9c26f8c3d",
+              "status": "succeeded",
+              "amount": 1832,
+              "refund_amount": 0,
+              "method": "credit_card"
+            }
+          },
+          "created": 1793934000000,
+          "tickets": [
+            {
+              "id": "47d88e47-5aaf-43b1-bbfc-0b0b3daa3c62",
+              "order_id": "EN-BDF76562-88F",
+              "event": "aurora",
+              "seat": "C01",
+              "code": "99cf514782f1fefc84081477007d872b44d9d4fe3eefb8bb086087783b152a82",
+              "status": "valid",
+              "net": 1800,
+              "fee": 30,
+              "vat": 2,
+              "holder": "{\"seat\":\"C01\",\"name\":\"C4 Holder\",\"email\":\"c4-holder@example.test\",\"phone\":\"0898765432\"}",
+              "refund_id": null,
+              "refund_amount": null,
+              "refund_status": null
+            }
+          ]
+        }
+      ],
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.834Z",
+    "method": "GET",
+    "path": "mailbox",
+    "status": 200,
+    "response": {
+      "messages": [
+        {
+          "id": "345d8d22-d7cd-4e2a-b15b-d8217f26768a",
+          "order_id": "EN-BDF76562-88F",
+          "recipient": "c4-buyer@example.test",
+          "status": "delivered_sandbox",
+          "created": 1793934000000
+        }
+      ],
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.844Z",
+    "method": "GET",
+    "path": "ticket-qr?id=47d88e47-5aaf-43b1-bbfc-0b0b3daa3c62&format=png",
+    "status": 200,
+    "contentType": "image/png",
+    "bytes": 2276
+  },
+  {
+    "at": "2026-11-06T11:14:39.863Z",
+    "method": "GET",
+    "path": "mail.eml?id=345d8d22-d7cd-4e2a-b15b-d8217f26768a",
+    "status": 200,
+    "contentType": "message/rfc822",
+    "bytes": 5213
+  },
+  {
+    "at": "2026-11-06T11:14:39.885Z",
+    "method": "POST",
+    "path": "login",
+    "status": 200,
+    "response": {
+      "user": {
+        "id": "fan",
+        "email": "fan@demo.test",
+        "username": "fan",
+        "name": "มายด์ ทดลอง",
+        "role": "buyer",
+        "presale": true
+      },
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.886Z",
+    "method": "GET",
+    "path": "payment?id=709d89de-851a-4151-afd7-b0d9c26f8c3d",
+    "status": 404,
+    "response": {
+      "error": "PAYMENT_NOT_FOUND",
+      "message": "ไม่พบรายการชำระ",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.886Z",
+    "method": "GET",
+    "path": "ticket-qr?id=47d88e47-5aaf-43b1-bbfc-0b0b3daa3c62",
+    "status": 404,
+    "response": {
+      "error": "TICKET_NOT_FOUND",
+      "message": "ไม่พบบัตร",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.887Z",
+    "method": "GET",
+    "path": "mail?id=345d8d22-d7cd-4e2a-b15b-d8217f26768a",
+    "status": 404,
+    "response": {
+      "error": "MAIL_NOT_FOUND",
+      "message": "ไม่พบอีเมลทดลอง",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:39.887Z",
+    "method": "GET",
+    "path": "mail.eml?id=345d8d22-d7cd-4e2a-b15b-d8217f26768a",
+    "status": 404,
+    "response": {
+      "error": "MAIL_NOT_FOUND",
+      "message": "ไม่พบอีเมลทดลอง",
+      "now": 1793934000000
+    }
+  },
+  {
+    "at": "2026-11-06T11:14:40.061Z",
+    "method": "POST",
+    "path": "test/reset",
+    "status": 200,
+    "response": {
+      "ok": true,
+      "now": 1793934000000
+    }
+  }
+]

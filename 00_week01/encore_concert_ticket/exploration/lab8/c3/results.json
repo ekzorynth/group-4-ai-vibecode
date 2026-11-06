@@ -1,0 +1,177 @@
+{
+  "charter": "C3",
+  "started": "2026-11-06T11:14:44.076Z",
+  "ended": "2026-11-06T11:14:47.771Z",
+  "baseURL": "http://127.0.0.1:4343",
+  "bugMode": 0,
+  "sourceReading": false,
+  "management": [
+    {
+      "at": "2026-11-06T11:14:44.643Z",
+      "action": "reset",
+      "reason": "fresh charter C3 before functional probes",
+      "baseURL": "http://127.0.0.1:4343"
+    },
+    {
+      "at": "2026-11-06T11:14:47.677Z",
+      "action": "reset",
+      "reason": "isolated fresh concurrency fixture after cumulative purchase probes",
+      "baseURL": "http://127.0.0.1:4343"
+    }
+  ],
+  "results": [
+    {
+      "id": "C3-01",
+      "title": "sold seat and price-zone filtering",
+      "started": "2026-11-06T11:14:45.228Z",
+      "ended": "2026-11-06T11:14:45.295Z",
+      "status": "passed",
+      "evidence": "04-zone-and-sold.png"
+    },
+    {
+      "id": "C3-02",
+      "title": "UI third selection blocked at Member maximum two",
+      "started": "2026-11-06T11:14:45.295Z",
+      "ended": "2026-11-06T11:14:45.418Z",
+      "status": "passed",
+      "evidence": {
+        "selected": 2,
+        "screenshot": "05-member-selection-cap.png"
+      }
+    },
+    {
+      "id": "C3-03",
+      "title": "API malformed duplicate and three seats rejected; atomic unavailable basket",
+      "started": "2026-11-06T11:14:45.418Z",
+      "ended": "2026-11-06T11:14:45.423Z",
+      "status": "passed",
+      "evidence": "No active hold created by any rejected basket"
+    },
+    {
+      "id": "C3-04",
+      "title": "independent canonical money oracles including cap and mixed zones",
+      "started": "2026-11-06T11:14:45.423Z",
+      "ended": "2026-11-06T11:14:45.428Z",
+      "status": "passed",
+      "evidence": [
+        {
+          "seats": [
+            "C01"
+          ],
+          "coupon": "",
+          "expected": 1832,
+          "observed": 1832
+        },
+        {
+          "seats": [
+            "C01"
+          ],
+          "coupon": "STAGE10",
+          "expected": 1652,
+          "observed": 1652
+        },
+        {
+          "seats": [
+            "A01",
+            "A02"
+          ],
+          "coupon": "STAGE10",
+          "expected": 5964,
+          "observed": 5964
+        },
+        {
+          "seats": [
+            "A01",
+            "C01"
+          ],
+          "coupon": "STAGE10",
+          "expected": 4564,
+          "observed": 4564
+        },
+        {
+          "seats": [
+            "C01",
+            "C02"
+          ],
+          "coupon": "STAGE10",
+          "expected": 3304,
+          "observed": 3304
+        }
+      ]
+    },
+    {
+      "id": "C3-05",
+      "title": "invalid replacement preserves previously reserved basket",
+      "started": "2026-11-06T11:14:45.428Z",
+      "ended": "2026-11-06T11:14:45.431Z",
+      "status": "passed",
+      "evidence": {
+        "preservedHold": "f6912f69-511d-48ab-b248-7e2d73c2448e",
+        "seats": [
+          "C01",
+          "C02"
+        ]
+      }
+    },
+    {
+      "id": "C3-06",
+      "title": "buyer and holder validation, exact seat mapping and UI feedback",
+      "started": "2026-11-06T11:14:45.431Z",
+      "ended": "2026-11-06T11:14:46.904Z",
+      "status": "passed",
+      "evidence": "screenshot06-contact-validation.png; five mapping/contact API negatives + valid save"
+    },
+    {
+      "id": "C3-07",
+      "title": "pending contact snapshot frozen and reload preserves saved names",
+      "started": "2026-11-06T11:14:46.904Z",
+      "ended": "2026-11-06T11:14:47.111Z",
+      "status": "passed",
+      "evidence": {
+        "buyer": {
+          "name": "C3 Buyer",
+          "email": "c3buyer@example.test",
+          "phone": "0812345678"
+        },
+        "screenshot": "07-pending-snapshot.png"
+      }
+    },
+    {
+      "id": "C3-08",
+      "title": "cumulative Member purchase maximum two across a new login",
+      "started": "2026-11-06T11:14:47.111Z",
+      "ended": "2026-11-06T11:14:47.502Z",
+      "status": "passed",
+      "evidence": {
+        "status": 409,
+        "message": "รอบสมาชิกซื้อได้สูงสุด 2 ใบต่อบัญชีต่อคอนเสิร์ต",
+        "screenshot": "08-cumulative-quota.png"
+      }
+    },
+    {
+      "id": "C3-09",
+      "title": "two different members racing for the same available seat cannot both hold it",
+      "started": "2026-11-06T11:14:47.502Z",
+      "ended": "2026-11-06T11:14:47.729Z",
+      "status": "passed",
+      "evidence": {
+        "statuses": [
+          201,
+          409
+        ]
+      }
+    },
+    {
+      "id": "C3-10",
+      "title": "General four-seat purchase and fifth cumulative ticket denied",
+      "started": "2026-11-06T11:14:47.729Z",
+      "ended": "2026-11-06T11:14:47.757Z",
+      "status": "passed",
+      "evidence": {
+        "fourSeatTotal": 7328,
+        "fifthStatus": 409,
+        "message": "ซื้อได้สูงสุด 4 ใบต่อบัญชีต่อคอนเสิร์ต"
+      }
+    }
+  ]
+}

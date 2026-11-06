@@ -1,0 +1,80 @@
+{
+  "checkedUTC": "2026-11-06T12:01:46.930Z",
+  "stopped": [
+    {
+      "charter": "recon",
+      "pid": 84852,
+      "baseURL": "http://127.0.0.1:4340"
+    },
+    {
+      "charter": "C1",
+      "pid": 84853,
+      "baseURL": "http://127.0.0.1:4341"
+    },
+    {
+      "charter": "C2",
+      "pid": 84854,
+      "baseURL": "http://127.0.0.1:4342"
+    },
+    {
+      "charter": "C3",
+      "pid": 84855,
+      "baseURL": "http://127.0.0.1:4343"
+    },
+    {
+      "charter": "C4",
+      "pid": 84856,
+      "baseURL": "http://127.0.0.1:4344"
+    },
+    {
+      "charter": "C5",
+      "pid": 84857,
+      "baseURL": "http://127.0.0.1:4345"
+    },
+    {
+      "charter": "C6",
+      "pid": 84858,
+      "baseURL": "http://127.0.0.1:4346"
+    },
+    {
+      "charter": "C7",
+      "pid": 84859,
+      "baseURL": "http://127.0.0.1:4347"
+    }
+  ],
+  "checks": [
+    {
+      "baseURL": "http://127.0.0.1:4340",
+      "stopped": true
+    },
+    {
+      "baseURL": "http://127.0.0.1:4341",
+      "stopped": true
+    },
+    {
+      "baseURL": "http://127.0.0.1:4342",
+      "stopped": true
+    },
+    {
+      "baseURL": "http://127.0.0.1:4343",
+      "stopped": true
+    },
+    {
+      "baseURL": "http://127.0.0.1:4344",
+      "stopped": true
+    },
+    {
+      "baseURL": "http://127.0.0.1:4345",
+      "stopped": true
+    },
+    {
+      "baseURL": "http://127.0.0.1:4346",
+      "stopped": true
+    },
+    {
+      "baseURL": "http://127.0.0.1:4347",
+      "stopped": true
+    }
+  ],
+  "user4310Untouched": true
+}

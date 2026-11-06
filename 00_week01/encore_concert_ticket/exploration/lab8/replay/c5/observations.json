@@ -1,0 +1,4062 @@
+{
+  "agent": "/root/explore_c2",
+  "charter": "C5",
+  "started": "2026-11-06T11:43:08.839Z",
+  "ended": "2026-11-06T11:43:13.731Z",
+  "environment": {
+    "baseURL": "http://127.0.0.1:4345",
+    "db": "isolated in-memory",
+    "bugMode": 0
+  },
+  "restrictions": {
+    "runtimeSourceRead": false,
+    "bugAnswersRead": false,
+    "otherServersUsed": false
+  },
+  "results": [
+    {
+      "id": "C5-01",
+      "name": "สิทธิ์ผู้ซื้อและผู้จัดต่างงานต้องไม่เข้าถึงหลังบ้าน NEON",
+      "trace": "FR17",
+      "authority": "D",
+      "started": "2026-11-06T11:43:08.855Z",
+      "ended": "2026-11-06T11:43:09.251Z",
+      "status": "passed",
+      "observed": {
+        "buyerAdmin": 403,
+        "wrongOwnerDashboard": 403,
+        "wrongOwnerControl": 403,
+        "wrongOwnerSeat": 403,
+        "ownerDashboard": 200
+      }
+    },
+    {
+      "id": "C5-02",
+      "name": "ระงับ/เปิดที่นั่งและป้องกันเปลี่ยนที่นั่งที่มีผู้ถืออยู่",
+      "trace": "FR07 FR17",
+      "authority": "D",
+      "started": "2026-11-06T11:43:09.251Z",
+      "ended": "2026-11-06T11:43:09.606Z",
+      "status": "passed",
+      "observed": {
+        "blockedSeatCannotHold": true,
+        "reopenedSeatCanHold": true,
+        "heldSeatCannotBlock": true
+      }
+    },
+    {
+      "id": "C5-03",
+      "name": "คืนบางใบตรงสูตรเงินและอนุมัติซ้ำไม่คืนซ้ำ พร้อมภาพผู้ซื้อ/ผู้จัด",
+      "trace": "FR17 BR12",
+      "authority": "D (money) / A-unconfirmed (repeat approval policy)",
+      "started": "2026-11-06T11:43:09.606Z",
+      "ended": "2026-11-06T11:43:11.528Z",
+      "status": "passed",
+      "observed": {
+        "gross": 3304,
+        "refunded": 1620,
+        "net": 1684,
+        "refundCount": 1,
+        "ticketStates": [
+          "refunded",
+          "valid"
+        ],
+        "evidence": [
+          "partial-refund-pending.png",
+          "partial-refund-admin.png"
+        ]
+      }
+    },
+    {
+      "id": "C5-04",
+      "name": "ขอบเวลาก่อนและหลัง 72 ชั่วโมง และสังเกตค่าที่ตรงขอบ",
+      "trace": "FR17 BR20",
+      "authority": "D before/after / exact-boundary needs clarification",
+      "started": "2026-11-06T11:43:11.528Z",
+      "ended": "2026-11-06T11:43:11.884Z",
+      "status": "passed",
+      "observed": {
+        "moreThan72h": 201,
+        "lessThan72h": 409,
+        "exact72h": 201,
+        "clarification": "TEST-DATA states refund72h but does not spell out inclusivity; observed exact boundary accepted"
+      }
+    },
+    {
+      "id": "C5-05",
+      "name": "ประตูเปิด 16:00 และปิดตรง 22:00 อย่างถูกต้อง",
+      "trace": "FR16 BR20",
+      "authority": "D",
+      "started": "2026-11-06T11:43:11.884Z",
+      "ended": "2026-11-06T11:43:12.241Z",
+      "status": "passed",
+      "observed": {
+        "beforeOpen": "GATE_CLOSED",
+        "exactOpen": 200,
+        "returnedHolder": "C5 Holder 1",
+        "exactClose": "GATE_CLOSED",
+        "lastMillisecondBeforeClose": 200
+      }
+    },
+    {
+      "id": "C5-06",
+      "name": "สแกนซ้ำได้ครั้งเดียว และป้องกันบทบาท/งาน/รหัสที่ไม่ถูกต้อง",
+      "trace": "FR16 BR17",
+      "authority": "D",
+      "started": "2026-11-06T11:43:12.241Z",
+      "ended": "2026-11-06T11:43:12.632Z",
+      "status": "passed",
+      "observed": {
+        "concurrentResults": [
+          200,
+          409
+        ],
+        "wrongRole": 403,
+        "wrongEvent": 403,
+        "unknownCode": 404
+      }
+    },
+    {
+      "id": "C5-07",
+      "name": "บัตรคืนแล้วและรอคืนต้องไม่ผ่านประตู",
+      "trace": "FR16 FR17 BR17",
+      "authority": "D",
+      "started": "2026-11-06T11:43:12.632Z",
+      "ended": "2026-11-06T11:43:13.021Z",
+      "status": "passed",
+      "observed": {
+        "refunded": "TICKET_STATE",
+        "pendingRefund": "TICKET_STATE"
+      }
+    },
+    {
+      "id": "C5-08",
+      "name": "สังเกตพักขายและเปิดต่อ รวมรายการที่จองก่อนพัก",
+      "trace": "FR17 BR20",
+      "authority": "D new sale / A-unconfirmed existing-hold behavior",
+      "started": "2026-11-06T11:43:13.021Z",
+      "ended": "2026-11-06T11:43:13.373Z",
+      "status": "passed",
+      "observed": {
+        "newHoldWhilePaused": 409,
+        "newQueueWhilePaused": 409,
+        "existingHoldPayment": "succeeded",
+        "policyClarification": "D says pause/block/cancel regression but does not explicitly state whether prior held orders can pay"
+      }
+    },
+    {
+      "id": "C5-09",
+      "name": "สังเกตไม่อนุมัติคืนเงินและยกเลิกงานหลังขาย",
+      "trace": "FR17",
+      "authority": "A-unconfirmed detailed lifecycle",
+      "started": "2026-11-06T11:43:13.373Z",
+      "ended": "2026-11-06T11:43:13.729Z",
+      "status": "observed-unconfirmed",
+      "observed": {
+        "rejected": "rejected",
+        "afterReject": "valid",
+        "retrySameRequest": true,
+        "fullCancelRefund": 1652,
+        "originalTotal": 1652,
+        "cancelReason": "event_cancelled",
+        "reopenStatus": 409,
+        "policyClarification": "Exact reject/retry/full-cancellation-refund rules are observations pending explicit D wording, not copied into expected after the run"
+      }
+    }
+  ],
+  "controls": [
+    {
+      "at": "2026-11-06T11:43:09.138Z",
+      "action": "reset",
+      "now": "2026-11-06T03:00:00Z",
+      "status": 200
+    },
+    {
+      "at": "2026-11-06T11:43:09.527Z",
+      "action": "reset",
+      "now": "2026-11-06T03:00:00Z",
+      "status": 200
+    },
+    {
+      "at": "2026-11-06T11:43:09.881Z",
+      "action": "reset",
+      "now": "2026-11-06T03:00:00Z",
+      "status": 200
+    },
+    {
+      "at": "2026-11-06T11:43:11.804Z",
+      "action": "reset",
+      "now": "2026-11-06T03:00:00Z",
+      "status": 200
+    },
+    {
+      "at": "2026-11-06T11:43:11.846Z",
+      "action": "clock",
+      "now": "2026-12-09T10:59:59.999Z",
+      "status": 200
+    },
+    {
+      "at": "2026-11-06T11:43:11.883Z",
+      "action": "clock",
+      "now": "2026-12-09T11:00:00.001Z",
+      "status": 200
+    },
+    {
+      "at": "2026-11-06T11:43:11.884Z",
+      "action": "clock",
+      "now": "2026-12-09T11:00:00Z",
+      "status": 200
+    },
+    {
+      "at": "2026-11-06T11:43:12.161Z",
+      "action": "reset",
+      "now": "2026-11-06T03:00:00Z",
+      "status": 200
+    },
+    {
+      "at": "2026-11-06T11:43:12.203Z",
+      "action": "clock",
+      "now": "2026-12-12T08:59:59.999Z",
+      "status": 200
+    },
+    {
+      "at": "2026-11-06T11:43:12.239Z",
+      "action": "clock",
+      "now": "2026-12-12T09:00:00Z",
+      "status": 200
+    },
+    {
+      "at": "2026-11-06T11:43:12.240Z",
+      "action": "clock",
+      "now": "2026-12-12T15:00:00Z",
+      "status": 200
+    },
+    {
+      "at": "2026-11-06T11:43:12.241Z",
+      "action": "clock",
+      "now": "2026-12-12T14:59:59.999Z",
+      "status": 200
+    },
+    {
+      "at": "2026-11-06T11:43:12.517Z",
+      "action": "reset",
+      "now": "2026-11-06T03:00:00Z",
+      "status": 200
+    },
+    {
+      "at": "2026-11-06T11:43:12.558Z",
+      "action": "clock",
+      "now": "2026-12-12T09:00:00Z",
+      "status": 200
+    },
+    {
+      "at": "2026-11-06T11:43:12.906Z",
+      "action": "reset",
+      "now": "2026-11-06T03:00:00Z",
+      "status": 200
+    },
+    {
+      "at": "2026-11-06T11:43:12.984Z",
+      "action": "clock",
+      "now": "2026-12-12T09:00:00Z",
+      "status": 200
+    },
+    {
+      "at": "2026-11-06T11:43:13.296Z",
+      "action": "reset",
+      "now": "2026-11-06T03:00:00Z",
+      "status": 200
+    },
+    {
+      "at": "2026-11-06T11:43:13.648Z",
+      "action": "reset",
+      "now": "2026-11-06T03:00:00Z",
+      "status": 200
+    }
+  ],
+  "requests": [
+    {
+      "at": "2026-11-06T11:43:09.174Z",
+      "path": "login",
+      "method": "POST",
+      "input": {
+        "username": "fan"
+      },
+      "status": 200,
+      "data": {
+        "user": {
+          "id": "fan",
+          "email": "fan@demo.test",
+          "username": "fan",
+          "name": "มายด์ ทดลอง",
+          "role": "buyer",
+          "presale": true
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:09.210Z",
+      "path": "login",
+      "method": "POST",
+      "input": {
+        "username": "sky"
+      },
+      "status": 200,
+      "data": {
+        "user": {
+          "id": "sky",
+          "email": "sky@demo.test",
+          "username": "sky",
+          "name": "ผู้จัด SKY",
+          "role": "organizer",
+          "presale": false
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:09.245Z",
+      "path": "login",
+      "method": "POST",
+      "input": {
+        "username": "encore"
+      },
+      "status": 200,
+      "data": {
+        "user": {
+          "id": "encore",
+          "email": "encore@demo.test",
+          "username": "encore",
+          "name": "ผู้จัด ENCORE",
+          "role": "organizer",
+          "presale": false
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:09.247Z",
+      "path": "admin/events",
+      "method": "GET",
+      "status": 403,
+      "data": {
+        "error": "FORBIDDEN",
+        "message": "คุณไม่มีสิทธิ์ใช้งานส่วนนี้",
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:09.248Z",
+      "path": "admin/dashboard?event=neon",
+      "method": "GET",
+      "status": 403,
+      "data": {
+        "error": "FORBIDDEN",
+        "message": "ไม่มีสิทธิ์จัดการงานนี้",
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:09.249Z",
+      "path": "admin/event",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "state": "paused"
+      },
+      "status": 403,
+      "data": {
+        "error": "FORBIDDEN",
+        "message": "ไม่มีสิทธิ์จัดการงานนี้",
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:09.250Z",
+      "path": "admin/seats",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "seat": "C01",
+        "blocked": true
+      },
+      "status": 403,
+      "data": {
+        "error": "FORBIDDEN",
+        "message": "ไม่มีสิทธิ์จัดการงานนี้",
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:09.251Z",
+      "path": "admin/dashboard?event=neon",
+      "method": "GET",
+      "status": 200,
+      "data": {
+        "event": {
+          "id": "neon",
+          "tag": "INDIE / SYNTH POP",
+          "title": "NEON AFTERGLOW",
+          "thai": "ค่ำคืนที่เราเปล่งประกายไปด้วยกัน",
+          "artist": "LUNA / THE MIDNIGHT CLUB / WAVE",
+          "date": "12 ธันวาคม 2569",
+          "time": "18:00",
+          "venue": "Encore Hall · กรุงเทพฯ",
+          "start": "2026-12-12T11:00:00Z",
+          "sale": "2026-11-01T03:00:00Z",
+          "end": "2026-12-12T10:00:00Z",
+          "theme": "neon",
+          "from": 1800,
+          "state": "on_sale",
+          "round": "member",
+          "owner": "encore",
+          "schedule": [
+            {
+              "kind": "member",
+              "start": 1793934000000,
+              "end": 1793952000000
+            },
+            {
+              "kind": "general",
+              "start": 1793952000000,
+              "end": 1797069600000
+            }
+          ],
+          "saleRound": {
+            "kind": "member",
+            "start": 1793934000000,
+            "end": 1793952000000
+          },
+          "limit": 2
+        },
+        "gross": 0,
+        "refunded": 0,
+        "net": 0,
+        "tickets": [],
+        "refunds": [],
+        "audit": [],
+        "orders": [],
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:09.563Z",
+      "path": "login",
+      "method": "POST",
+      "input": {
+        "username": "fan"
+      },
+      "status": 200,
+      "data": {
+        "user": {
+          "id": "fan",
+          "email": "fan@demo.test",
+          "username": "fan",
+          "name": "มายด์ ทดลอง",
+          "role": "buyer",
+          "presale": true
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:09.599Z",
+      "path": "login",
+      "method": "POST",
+      "input": {
+        "username": "encore"
+      },
+      "status": 200,
+      "data": {
+        "user": {
+          "id": "encore",
+          "email": "encore@demo.test",
+          "username": "encore",
+          "name": "ผู้จัด ENCORE",
+          "role": "organizer",
+          "presale": false
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:09.600Z",
+      "path": "queue",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "round": "member"
+      },
+      "status": 200,
+      "data": {
+        "queue": {
+          "status": "active",
+          "number": "Q000025",
+          "position": 0,
+          "ahead": 0,
+          "estimated_wait_seconds": 0,
+          "expires": 1793934900000,
+          "round": "member",
+          "starts": 1793934000000,
+          "limit": 2
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:09.601Z",
+      "path": "membership/verify",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "number": "ENCORE-0001"
+      },
+      "status": 200,
+      "data": {
+        "verified": true,
+        "round": "member",
+        "expires": 1793934900000,
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:09.602Z",
+      "path": "admin/seats",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "seat": "C01",
+        "blocked": true
+      },
+      "status": 200,
+      "data": {
+        "ok": true,
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:09.603Z",
+      "path": "seats?event=neon",
+      "method": "GET",
+      "status": 200,
+      "data": {
+        "event": {
+          "id": "neon",
+          "tag": "INDIE / SYNTH POP",
+          "title": "NEON AFTERGLOW",
+          "thai": "ค่ำคืนที่เราเปล่งประกายไปด้วยกัน",
+          "artist": "LUNA / THE MIDNIGHT CLUB / WAVE",
+          "date": "12 ธันวาคม 2569",
+          "time": "18:00",
+          "venue": "Encore Hall · กรุงเทพฯ",
+          "start": "2026-12-12T11:00:00Z",
+          "sale": "2026-11-01T03:00:00Z",
+          "end": "2026-12-12T10:00:00Z",
+          "theme": "neon",
+          "from": 1800,
+          "state": "on_sale",
+          "round": "member",
+          "schedule": [
+            {
+              "kind": "member",
+              "start": 1793934000000,
+              "end": 1793952000000
+            },
+            {
+              "kind": "general",
+              "start": 1793952000000,
+              "end": 1797069600000
+            }
+          ],
+          "saleRound": {
+            "kind": "member",
+            "start": 1793934000000,
+            "end": 1793952000000
+          },
+          "limit": 2,
+          "status": "available"
+        },
+        "seats": [
+          {
+            "id": "A01",
+            "zone": "VIP",
+            "price": 3200,
+            "status": "available"
+          },
+          {
+            "id": "A02",
+            "zone": "VIP",
+            "price": 3200,
+            "status": "available"
+          },
+          {
+            "id": "A03",
+            "zone": "VIP",
+            "price": 3200,
+            "status": "sold"
+          },
+          {
+            "id": "A04",
+            "zone": "VIP",
+            "price": 3200,
+            "status": "sold"
+          },
+          {
+            "id": "A05",
+            "zone": "VIP",
+            "price": 3200,
+            "status": "available"
+          },
+          {
+            "id": "A06",
+            "zone": "VIP",
+            "price": 3200,
+            "status": "available"
+          },
+          {
+            "id": "A07",
+            "zone": "VIP",
+            "price": 3200,
+            "status": "available"
+          },
+          {
+            "id": "A08",
+            "zone": "VIP",
+            "price": 3200,
+            "status": "available"
+          },
+          {
+            "id": "A09",
+            "zone": "VIP",
+            "price": 3200,
+            "status": "available"
+          },
+          {
+            "id": "A10",
+            "zone": "VIP",
+            "price": 3200,
+            "status": "available"
+          },
+          {
+            "id": "A11",
+            "zone": "VIP",
+            "price": 3200,
+            "status": "available"
+          },
+          {
+            "id": "A12",
+            "zone": "VIP",
+            "price": 3200,
+            "status": "available"
+          },
+          {
+            "id": "B01",
+            "zone": "VIP",
+            "price": 3200,
+            "status": "available"
+          },
+          {
+            "id": "B02",
+            "zone": "VIP",
+            "price": 3200,
+            "status": "available"
+          },
+          {
+            "id": "B03",
+            "zone": "VIP",
+            "price": 3200,
+            "status": "available"
+          },
+          {
+            "id": "B04",
+            "zone": "VIP",
+            "price": 3200,
+            "status": "available"
+          },
+          {
+            "id": "B05",
+            "zone": "VIP",
+            "price": 3200,
+            "status": "available"
+          },
+          {
+            "id": "B06",
+            "zone": "VIP",
+            "price": 3200,
+            "status": "available"
+          },
+          {
+            "id": "B07",
+            "zone": "VIP",
+            "price": 3200,
+            "status": "available"
+          },
+          {
+            "id": "B08",
+            "zone": "VIP",
+            "price": 3200,
+            "status": "available"
+          },
+          {
+            "id": "B09",
+            "zone": "VIP",
+            "price": 3200,
+            "status": "sold"
+          },
+          {
+            "id": "B10",
+            "zone": "VIP",
+            "price": 3200,
+            "status": "available"
+          },
+          {
+            "id": "B11",
+            "zone": "VIP",
+            "price": 3200,
+            "status": "available"
+          },
+          {
+            "id": "B12",
+            "zone": "VIP",
+            "price": 3200,
+            "status": "available"
+          },
+          {
+            "id": "C01",
+            "zone": "REGULAR",
+            "price": 1800,
+            "status": "blocked"
+          },
+          {
+            "id": "C02",
+            "zone": "REGULAR",
+            "price": 1800,
+            "status": "available"
+          },
+          {
+            "id": "C03",
+            "zone": "REGULAR",
+            "price": 1800,
+            "status": "available"
+          },
+          {
+            "id": "C04",
+            "zone": "REGULAR",
+            "price": 1800,
+            "status": "available"
+          },
+          {
+            "id": "C05",
+            "zone": "REGULAR",
+            "price": 1800,
+            "status": "available"
+          },
+          {
+            "id": "C06",
+            "zone": "REGULAR",
+            "price": 1800,
+            "status": "sold"
+          },
+          {
+            "id": "C07",
+            "zone": "REGULAR",
+            "price": 1800,
+            "status": "available"
+          },
+          {
+            "id": "C08",
+            "zone": "REGULAR",
+            "price": 1800,
+            "status": "available"
+          },
+          {
+            "id": "C09",
+            "zone": "REGULAR",
+            "price": 1800,
+            "status": "available"
+          },
+          {
+            "id": "C10",
+            "zone": "REGULAR",
+            "price": 1800,
+            "status": "available"
+          },
+          {
+            "id": "C11",
+            "zone": "REGULAR",
+            "price": 1800,
+            "status": "available"
+          },
+          {
+            "id": "C12",
+            "zone": "REGULAR",
+            "price": 1800,
+            "status": "available"
+          },
+          {
+            "id": "D01",
+            "zone": "REGULAR",
+            "price": 1800,
+            "status": "available"
+          },
+          {
+            "id": "D02",
+            "zone": "REGULAR",
+            "price": 1800,
+            "status": "available"
+          },
+          {
+            "id": "D03",
+            "zone": "REGULAR",
+            "price": 1800,
+            "status": "available"
+          },
+          {
+            "id": "D04",
+            "zone": "REGULAR",
+            "price": 1800,
+            "status": "available"
+          },
+          {
+            "id": "D05",
+            "zone": "REGULAR",
+            "price": 1800,
+            "status": "available"
+          },
+          {
+            "id": "D06",
+            "zone": "REGULAR",
+            "price": 1800,
+            "status": "available"
+          },
+          {
+            "id": "D07",
+            "zone": "REGULAR",
+            "price": 1800,
+            "status": "available"
+          },
+          {
+            "id": "D08",
+            "zone": "REGULAR",
+            "price": 1800,
+            "status": "available"
+          },
+          {
+            "id": "D09",
+            "zone": "REGULAR",
+            "price": 1800,
+            "status": "available"
+          },
+          {
+            "id": "D10",
+            "zone": "REGULAR",
+            "price": 1800,
+            "status": "sold"
+          },
+          {
+            "id": "D11",
+            "zone": "REGULAR",
+            "price": 1800,
+            "status": "available"
+          },
+          {
+            "id": "D12",
+            "zone": "REGULAR",
+            "price": 1800,
+            "status": "available"
+          }
+        ],
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:09.604Z",
+      "path": "holds",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "seats": [
+          "C01"
+        ]
+      },
+      "status": 409,
+      "data": {
+        "error": "SEAT_UNAVAILABLE",
+        "message": "ที่นั่งนี้ถูกจองแล้ว กรุณาเลือกใหม่",
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:09.605Z",
+      "path": "admin/seats",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "seat": "C01",
+        "blocked": false
+      },
+      "status": 200,
+      "data": {
+        "ok": true,
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:09.605Z",
+      "path": "holds",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "seats": [
+          "C01"
+        ]
+      },
+      "status": 201,
+      "data": {
+        "hold": {
+          "id": "370a9d23-310d-4f1e-885e-f18cd0badda0",
+          "user": "fan",
+          "event": "neon",
+          "seats": [
+            "C01"
+          ],
+          "expires": 1793934600000,
+          "status": "held",
+          "price": {
+            "subtotal": 1800,
+            "discount": 0,
+            "fee": 30,
+            "vat": 2,
+            "total": 1832,
+            "lines": [
+              {
+                "seat": "C01",
+                "net": 1800,
+                "discount": 0,
+                "fee": 30,
+                "vat": 2
+              }
+            ]
+          },
+          "round": "member",
+          "checkout": null,
+          "payment": null
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:09.606Z",
+      "path": "admin/seats",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "seat": "C01",
+        "blocked": true
+      },
+      "status": 409,
+      "data": {
+        "error": "SEAT_BUSY",
+        "message": "ระงับได้เฉพาะที่นั่งว่าง",
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:09.917Z",
+      "path": "login",
+      "method": "POST",
+      "input": {
+        "username": "fan"
+      },
+      "status": 200,
+      "data": {
+        "user": {
+          "id": "fan",
+          "email": "fan@demo.test",
+          "username": "fan",
+          "name": "มายด์ ทดลอง",
+          "role": "buyer",
+          "presale": true
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:09.918Z",
+      "path": "queue",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "round": "member"
+      },
+      "status": 200,
+      "data": {
+        "queue": {
+          "status": "active",
+          "number": "Q000026",
+          "position": 0,
+          "ahead": 0,
+          "estimated_wait_seconds": 0,
+          "expires": 1793934900000,
+          "round": "member",
+          "starts": 1793934000000,
+          "limit": 2
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:09.919Z",
+      "path": "membership/verify",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "number": "ENCORE-0001"
+      },
+      "status": 200,
+      "data": {
+        "verified": true,
+        "round": "member",
+        "expires": 1793934900000,
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:09.920Z",
+      "path": "holds",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "seats": [
+          "C01",
+          "C02"
+        ],
+        "coupon": "STAGE10"
+      },
+      "status": 201,
+      "data": {
+        "hold": {
+          "id": "5aec3066-9ddd-4a63-858a-c12337b9ae3c",
+          "user": "fan",
+          "event": "neon",
+          "seats": [
+            "C01",
+            "C02"
+          ],
+          "expires": 1793934600000,
+          "status": "held",
+          "price": {
+            "subtotal": 3600,
+            "discount": 360,
+            "fee": 60,
+            "vat": 4,
+            "total": 3304,
+            "lines": [
+              {
+                "seat": "C01",
+                "net": 1620,
+                "discount": 180,
+                "fee": 30,
+                "vat": 2
+              },
+              {
+                "seat": "C02",
+                "net": 1620,
+                "discount": 180,
+                "fee": 30,
+                "vat": 2
+              }
+            ]
+          },
+          "round": "member",
+          "checkout": null,
+          "payment": null
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:09.921Z",
+      "path": "checkout",
+      "method": "POST",
+      "input": {
+        "hold": "5aec3066-9ddd-4a63-858a-c12337b9ae3c",
+        "buyer": {
+          "name": "C5 Buyer",
+          "email": "c5@example.test",
+          "phone": "0812345678"
+        },
+        "holders": [
+          {
+            "seat": "C01",
+            "name": "C5 Holder 1",
+            "email": "c5@example.test",
+            "phone": "0812345678"
+          },
+          {
+            "seat": "C02",
+            "name": "C5 Holder 2",
+            "email": "c5@example.test",
+            "phone": "0812345678"
+          }
+        ]
+      },
+      "status": 200,
+      "data": {
+        "hold": {
+          "id": "5aec3066-9ddd-4a63-858a-c12337b9ae3c",
+          "user": "fan",
+          "event": "neon",
+          "seats": [
+            "C01",
+            "C02"
+          ],
+          "expires": 1793934600000,
+          "status": "held",
+          "price": {
+            "subtotal": 3600,
+            "discount": 360,
+            "fee": 60,
+            "vat": 4,
+            "total": 3304,
+            "lines": [
+              {
+                "seat": "C01",
+                "net": 1620,
+                "discount": 180,
+                "fee": 30,
+                "vat": 2
+              },
+              {
+                "seat": "C02",
+                "net": 1620,
+                "discount": 180,
+                "fee": 30,
+                "vat": 2
+              }
+            ]
+          },
+          "round": "member",
+          "checkout": {
+            "buyer": {
+              "name": "C5 Buyer",
+              "email": "c5@example.test",
+              "phone": "0812345678"
+            },
+            "holders": [
+              {
+                "seat": "C01",
+                "name": "C5 Holder 1",
+                "email": "c5@example.test",
+                "phone": "0812345678"
+              },
+              {
+                "seat": "C02",
+                "name": "C5 Holder 2",
+                "email": "c5@example.test",
+                "phone": "0812345678"
+              }
+            ]
+          },
+          "payment": null
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:09.922Z",
+      "path": "pay",
+      "method": "POST",
+      "input": {
+        "hold": "5aec3066-9ddd-4a63-858a-c12337b9ae3c",
+        "method": "qr",
+        "result": "approved"
+      },
+      "status": 200,
+      "data": {
+        "status": "succeeded",
+        "order": "EN-1356BB8F-381",
+        "replayed": false,
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:09.923Z",
+      "path": "orders",
+      "method": "GET",
+      "status": 200,
+      "data": {
+        "orders": [
+          {
+            "id": "EN-1356BB8F-381",
+            "user": "fan",
+            "hold": {
+              "id": "5aec3066-9ddd-4a63-858a-c12337b9ae3c",
+              "user": "fan",
+              "event": "neon",
+              "seats": [
+                "C01",
+                "C02"
+              ],
+              "expires": 1793934600000,
+              "status": "paid",
+              "price": {
+                "subtotal": 3600,
+                "discount": 360,
+                "fee": 60,
+                "vat": 4,
+                "total": 3304,
+                "lines": [
+                  {
+                    "seat": "C01",
+                    "net": 1620,
+                    "discount": 180,
+                    "fee": 30,
+                    "vat": 2
+                  },
+                  {
+                    "seat": "C02",
+                    "net": 1620,
+                    "discount": 180,
+                    "fee": 30,
+                    "vat": 2
+                  }
+                ]
+              },
+              "round": "member",
+              "checkout": {
+                "buyer": {
+                  "name": "C5 Buyer",
+                  "email": "c5@example.test",
+                  "phone": "0812345678"
+                },
+                "holders": [
+                  {
+                    "seat": "C01",
+                    "name": "C5 Holder 1",
+                    "email": "c5@example.test",
+                    "phone": "0812345678"
+                  },
+                  {
+                    "seat": "C02",
+                    "name": "C5 Holder 2",
+                    "email": "c5@example.test",
+                    "phone": "0812345678"
+                  }
+                ]
+              },
+              "payment": {
+                "id": "be69432b-428a-4947-bbac-40f7aa16ee0a",
+                "status": "succeeded",
+                "amount": 3304,
+                "refund_amount": 0,
+                "method": "qr"
+              }
+            },
+            "created": 1793934000000,
+            "tickets": [
+              {
+                "id": "45e5da58-341f-4a50-b23a-ac8cc75f7ddb",
+                "order_id": "EN-1356BB8F-381",
+                "event": "neon",
+                "seat": "C01",
+                "code": "0dedcd0cbbd4c0bb1678b0abf9671c9cbbb602ced327c705738632b137913a1b",
+                "status": "valid",
+                "net": 1620,
+                "fee": 30,
+                "vat": 2,
+                "holder": "{\"seat\":\"C01\",\"name\":\"C5 Holder 1\",\"email\":\"c5@example.test\",\"phone\":\"0812345678\"}",
+                "refund_id": null,
+                "refund_amount": null,
+                "refund_status": null
+              },
+              {
+                "id": "5d12717c-327e-4af5-ad54-27ebe94fc645",
+                "order_id": "EN-1356BB8F-381",
+                "event": "neon",
+                "seat": "C02",
+                "code": "af8ca8843de14d5eb9d03e20bab53164df672b4e20fd9536af0e5e6727871504",
+                "status": "valid",
+                "net": 1620,
+                "fee": 30,
+                "vat": 2,
+                "holder": "{\"seat\":\"C02\",\"name\":\"C5 Holder 2\",\"email\":\"c5@example.test\",\"phone\":\"0812345678\"}",
+                "refund_id": null,
+                "refund_amount": null,
+                "refund_status": null
+              }
+            ]
+          }
+        ],
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:09.923Z",
+      "path": "refunds",
+      "method": "POST",
+      "input": {
+        "ticket": "45e5da58-341f-4a50-b23a-ac8cc75f7ddb"
+      },
+      "status": 201,
+      "data": {
+        "refund": "1f1fc0d3-11a8-4a1e-a9e0-19f7ed85c5af",
+        "amount": 1620,
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:11.507Z",
+      "path": "login",
+      "method": "POST",
+      "input": {
+        "username": "encore"
+      },
+      "status": 200,
+      "data": {
+        "user": {
+          "id": "encore",
+          "email": "encore@demo.test",
+          "username": "encore",
+          "name": "ผู้จัด ENCORE",
+          "role": "organizer",
+          "presale": false
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:11.508Z",
+      "path": "admin/refunds",
+      "method": "POST",
+      "input": {
+        "refund": "1f1fc0d3-11a8-4a1e-a9e0-19f7ed85c5af",
+        "decision": "approve"
+      },
+      "status": 200,
+      "data": {
+        "status": "succeeded",
+        "replayed": true,
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:11.509Z",
+      "path": "admin/dashboard?event=neon",
+      "method": "GET",
+      "status": 200,
+      "data": {
+        "event": {
+          "id": "neon",
+          "tag": "INDIE / SYNTH POP",
+          "title": "NEON AFTERGLOW",
+          "thai": "ค่ำคืนที่เราเปล่งประกายไปด้วยกัน",
+          "artist": "LUNA / THE MIDNIGHT CLUB / WAVE",
+          "date": "12 ธันวาคม 2569",
+          "time": "18:00",
+          "venue": "Encore Hall · กรุงเทพฯ",
+          "start": "2026-12-12T11:00:00Z",
+          "sale": "2026-11-01T03:00:00Z",
+          "end": "2026-12-12T10:00:00Z",
+          "theme": "neon",
+          "from": 1800,
+          "state": "on_sale",
+          "round": "member",
+          "owner": "encore",
+          "schedule": [
+            {
+              "kind": "member",
+              "start": 1793934000000,
+              "end": 1793952000000
+            },
+            {
+              "kind": "general",
+              "start": 1793952000000,
+              "end": 1797069600000
+            }
+          ],
+          "saleRound": {
+            "kind": "member",
+            "start": 1793934000000,
+            "end": 1793952000000
+          },
+          "limit": 2
+        },
+        "gross": 3304,
+        "refunded": 1620,
+        "net": 1684,
+        "tickets": [
+          {
+            "status": "refunded",
+            "count": 1
+          },
+          {
+            "status": "valid",
+            "count": 1
+          }
+        ],
+        "refunds": [
+          {
+            "id": "1f1fc0d3-11a8-4a1e-a9e0-19f7ed85c5af",
+            "ticket": "45e5da58-341f-4a50-b23a-ac8cc75f7ddb",
+            "amount": 1620,
+            "status": "succeeded",
+            "reason": "voluntary",
+            "created": 1793934000000,
+            "seat": "C01"
+          }
+        ],
+        "audit": [
+          {
+            "id": "4cc063ff-f88a-4087-ba27-2cf2f2794195",
+            "actor": "encore",
+            "event": "neon",
+            "action": "refund.approved",
+            "target": "1f1fc0d3-11a8-4a1e-a9e0-19f7ed85c5af",
+            "created": 1793934000000
+          },
+          {
+            "id": "3cb35403-66d6-411b-9e65-463a725c6c4e",
+            "actor": "fan",
+            "event": "neon",
+            "action": "refund.requested",
+            "target": "45e5da58-341f-4a50-b23a-ac8cc75f7ddb",
+            "created": 1793934000000
+          },
+          {
+            "id": "70306ed9-fd2a-4204-969c-0122235701c1",
+            "actor": "fan",
+            "event": "neon",
+            "action": "payment.succeeded",
+            "target": "EN-1356BB8F-381",
+            "created": 1793934000000
+          }
+        ],
+        "orders": [
+          {
+            "id": "EN-1356BB8F-381",
+            "created": 1793934000000,
+            "price": {
+              "subtotal": 3600,
+              "discount": 360,
+              "fee": 60,
+              "vat": 4,
+              "total": 3304,
+              "lines": [
+                {
+                  "seat": "C01",
+                  "net": 1620,
+                  "discount": 180,
+                  "fee": 30,
+                  "vat": 2
+                },
+                {
+                  "seat": "C02",
+                  "net": 1620,
+                  "discount": 180,
+                  "fee": 30,
+                  "vat": 2
+                }
+              ]
+            }
+          }
+        ],
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:11.510Z",
+      "path": "orders",
+      "method": "GET",
+      "status": 200,
+      "data": {
+        "orders": [
+          {
+            "id": "EN-1356BB8F-381",
+            "user": "fan",
+            "hold": {
+              "id": "5aec3066-9ddd-4a63-858a-c12337b9ae3c",
+              "user": "fan",
+              "event": "neon",
+              "seats": [
+                "C01",
+                "C02"
+              ],
+              "expires": 1793934600000,
+              "status": "paid",
+              "price": {
+                "subtotal": 3600,
+                "discount": 360,
+                "fee": 60,
+                "vat": 4,
+                "total": 3304,
+                "lines": [
+                  {
+                    "seat": "C01",
+                    "net": 1620,
+                    "discount": 180,
+                    "fee": 30,
+                    "vat": 2
+                  },
+                  {
+                    "seat": "C02",
+                    "net": 1620,
+                    "discount": 180,
+                    "fee": 30,
+                    "vat": 2
+                  }
+                ]
+              },
+              "round": "member",
+              "checkout": {
+                "buyer": {
+                  "name": "C5 Buyer",
+                  "email": "c5@example.test",
+                  "phone": "0812345678"
+                },
+                "holders": [
+                  {
+                    "seat": "C01",
+                    "name": "C5 Holder 1",
+                    "email": "c5@example.test",
+                    "phone": "0812345678"
+                  },
+                  {
+                    "seat": "C02",
+                    "name": "C5 Holder 2",
+                    "email": "c5@example.test",
+                    "phone": "0812345678"
+                  }
+                ]
+              },
+              "payment": {
+                "id": "be69432b-428a-4947-bbac-40f7aa16ee0a",
+                "status": "succeeded",
+                "amount": 3304,
+                "refund_amount": 0,
+                "method": "qr"
+              }
+            },
+            "created": 1793934000000,
+            "tickets": [
+              {
+                "id": "45e5da58-341f-4a50-b23a-ac8cc75f7ddb",
+                "order_id": "EN-1356BB8F-381",
+                "event": "neon",
+                "seat": "C01",
+                "code": "0dedcd0cbbd4c0bb1678b0abf9671c9cbbb602ced327c705738632b137913a1b",
+                "status": "refunded",
+                "net": 1620,
+                "fee": 30,
+                "vat": 2,
+                "holder": "{\"seat\":\"C01\",\"name\":\"C5 Holder 1\",\"email\":\"c5@example.test\",\"phone\":\"0812345678\"}",
+                "refund_id": "1f1fc0d3-11a8-4a1e-a9e0-19f7ed85c5af",
+                "refund_amount": 1620,
+                "refund_status": "succeeded"
+              },
+              {
+                "id": "5d12717c-327e-4af5-ad54-27ebe94fc645",
+                "order_id": "EN-1356BB8F-381",
+                "event": "neon",
+                "seat": "C02",
+                "code": "af8ca8843de14d5eb9d03e20bab53164df672b4e20fd9536af0e5e6727871504",
+                "status": "valid",
+                "net": 1620,
+                "fee": 30,
+                "vat": 2,
+                "holder": "{\"seat\":\"C02\",\"name\":\"C5 Holder 2\",\"email\":\"c5@example.test\",\"phone\":\"0812345678\"}",
+                "refund_id": null,
+                "refund_amount": null,
+                "refund_status": null
+              }
+            ]
+          }
+        ],
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:11.840Z",
+      "path": "login",
+      "method": "POST",
+      "input": {
+        "username": "fan"
+      },
+      "status": 200,
+      "data": {
+        "user": {
+          "id": "fan",
+          "email": "fan@demo.test",
+          "username": "fan",
+          "name": "มายด์ ทดลอง",
+          "role": "buyer",
+          "presale": true
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:11.841Z",
+      "path": "queue",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "round": "member"
+      },
+      "status": 200,
+      "data": {
+        "queue": {
+          "status": "active",
+          "number": "Q000027",
+          "position": 0,
+          "ahead": 0,
+          "estimated_wait_seconds": 0,
+          "expires": 1793934900000,
+          "round": "member",
+          "starts": 1793934000000,
+          "limit": 2
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:11.842Z",
+      "path": "membership/verify",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "number": "ENCORE-0001"
+      },
+      "status": 200,
+      "data": {
+        "verified": true,
+        "round": "member",
+        "expires": 1793934900000,
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:11.843Z",
+      "path": "holds",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "seats": [
+          "C01",
+          "C02"
+        ],
+        "coupon": ""
+      },
+      "status": 201,
+      "data": {
+        "hold": {
+          "id": "ed80bea9-ca95-4180-b9c4-aa52ae11f747",
+          "user": "fan",
+          "event": "neon",
+          "seats": [
+            "C01",
+            "C02"
+          ],
+          "expires": 1793934600000,
+          "status": "held",
+          "price": {
+            "subtotal": 3600,
+            "discount": 0,
+            "fee": 60,
+            "vat": 4,
+            "total": 3664,
+            "lines": [
+              {
+                "seat": "C01",
+                "net": 1800,
+                "discount": 0,
+                "fee": 30,
+                "vat": 2
+              },
+              {
+                "seat": "C02",
+                "net": 1800,
+                "discount": 0,
+                "fee": 30,
+                "vat": 2
+              }
+            ]
+          },
+          "round": "member",
+          "checkout": null,
+          "payment": null
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:11.844Z",
+      "path": "checkout",
+      "method": "POST",
+      "input": {
+        "hold": "ed80bea9-ca95-4180-b9c4-aa52ae11f747",
+        "buyer": {
+          "name": "C5 Buyer",
+          "email": "c5@example.test",
+          "phone": "0812345678"
+        },
+        "holders": [
+          {
+            "seat": "C01",
+            "name": "C5 Holder 1",
+            "email": "c5@example.test",
+            "phone": "0812345678"
+          },
+          {
+            "seat": "C02",
+            "name": "C5 Holder 2",
+            "email": "c5@example.test",
+            "phone": "0812345678"
+          }
+        ]
+      },
+      "status": 200,
+      "data": {
+        "hold": {
+          "id": "ed80bea9-ca95-4180-b9c4-aa52ae11f747",
+          "user": "fan",
+          "event": "neon",
+          "seats": [
+            "C01",
+            "C02"
+          ],
+          "expires": 1793934600000,
+          "status": "held",
+          "price": {
+            "subtotal": 3600,
+            "discount": 0,
+            "fee": 60,
+            "vat": 4,
+            "total": 3664,
+            "lines": [
+              {
+                "seat": "C01",
+                "net": 1800,
+                "discount": 0,
+                "fee": 30,
+                "vat": 2
+              },
+              {
+                "seat": "C02",
+                "net": 1800,
+                "discount": 0,
+                "fee": 30,
+                "vat": 2
+              }
+            ]
+          },
+          "round": "member",
+          "checkout": {
+            "buyer": {
+              "name": "C5 Buyer",
+              "email": "c5@example.test",
+              "phone": "0812345678"
+            },
+            "holders": [
+              {
+                "seat": "C01",
+                "name": "C5 Holder 1",
+                "email": "c5@example.test",
+                "phone": "0812345678"
+              },
+              {
+                "seat": "C02",
+                "name": "C5 Holder 2",
+                "email": "c5@example.test",
+                "phone": "0812345678"
+              }
+            ]
+          },
+          "payment": null
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:11.845Z",
+      "path": "pay",
+      "method": "POST",
+      "input": {
+        "hold": "ed80bea9-ca95-4180-b9c4-aa52ae11f747",
+        "method": "qr",
+        "result": "approved"
+      },
+      "status": 200,
+      "data": {
+        "status": "succeeded",
+        "order": "EN-3CADE3ED-D90",
+        "replayed": false,
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:11.845Z",
+      "path": "orders",
+      "method": "GET",
+      "status": 200,
+      "data": {
+        "orders": [
+          {
+            "id": "EN-3CADE3ED-D90",
+            "user": "fan",
+            "hold": {
+              "id": "ed80bea9-ca95-4180-b9c4-aa52ae11f747",
+              "user": "fan",
+              "event": "neon",
+              "seats": [
+                "C01",
+                "C02"
+              ],
+              "expires": 1793934600000,
+              "status": "paid",
+              "price": {
+                "subtotal": 3600,
+                "discount": 0,
+                "fee": 60,
+                "vat": 4,
+                "total": 3664,
+                "lines": [
+                  {
+                    "seat": "C01",
+                    "net": 1800,
+                    "discount": 0,
+                    "fee": 30,
+                    "vat": 2
+                  },
+                  {
+                    "seat": "C02",
+                    "net": 1800,
+                    "discount": 0,
+                    "fee": 30,
+                    "vat": 2
+                  }
+                ]
+              },
+              "round": "member",
+              "checkout": {
+                "buyer": {
+                  "name": "C5 Buyer",
+                  "email": "c5@example.test",
+                  "phone": "0812345678"
+                },
+                "holders": [
+                  {
+                    "seat": "C01",
+                    "name": "C5 Holder 1",
+                    "email": "c5@example.test",
+                    "phone": "0812345678"
+                  },
+                  {
+                    "seat": "C02",
+                    "name": "C5 Holder 2",
+                    "email": "c5@example.test",
+                    "phone": "0812345678"
+                  }
+                ]
+              },
+              "payment": {
+                "id": "f2e5eac9-274c-4730-b96b-00893334a1f9",
+                "status": "succeeded",
+                "amount": 3664,
+                "refund_amount": 0,
+                "method": "qr"
+              }
+            },
+            "created": 1793934000000,
+            "tickets": [
+              {
+                "id": "a5b4018e-754f-4174-a8d2-e21333a6779f",
+                "order_id": "EN-3CADE3ED-D90",
+                "event": "neon",
+                "seat": "C01",
+                "code": "621bf66ca13cbf068e64679eec6977de2f8c4da837e44c9b92c30d459bbd4e52",
+                "status": "valid",
+                "net": 1800,
+                "fee": 30,
+                "vat": 2,
+                "holder": "{\"seat\":\"C01\",\"name\":\"C5 Holder 1\",\"email\":\"c5@example.test\",\"phone\":\"0812345678\"}",
+                "refund_id": null,
+                "refund_amount": null,
+                "refund_status": null
+              },
+              {
+                "id": "f0aaaeb4-3168-432c-846f-a0413d3826a4",
+                "order_id": "EN-3CADE3ED-D90",
+                "event": "neon",
+                "seat": "C02",
+                "code": "1ae8af8ebeed7e4bea1945d328b6686bf12af1b5b8e653cfb6b87414225f163d",
+                "status": "valid",
+                "net": 1800,
+                "fee": 30,
+                "vat": 2,
+                "holder": "{\"seat\":\"C02\",\"name\":\"C5 Holder 2\",\"email\":\"c5@example.test\",\"phone\":\"0812345678\"}",
+                "refund_id": null,
+                "refund_amount": null,
+                "refund_status": null
+              }
+            ]
+          }
+        ],
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:11.881Z",
+      "path": "login",
+      "method": "POST",
+      "input": {
+        "username": "fan"
+      },
+      "status": 200,
+      "data": {
+        "user": {
+          "id": "fan",
+          "email": "fan@demo.test",
+          "username": "fan",
+          "name": "มายด์ ทดลอง",
+          "role": "buyer",
+          "presale": true
+        },
+        "now": 1796813999999
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:11.882Z",
+      "path": "refunds",
+      "method": "POST",
+      "input": {
+        "ticket": "a5b4018e-754f-4174-a8d2-e21333a6779f"
+      },
+      "status": 201,
+      "data": {
+        "refund": "838a172e-0b9b-4d07-a169-071529ae0fcf",
+        "amount": 1800,
+        "now": 1796813999999
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:11.883Z",
+      "path": "refunds",
+      "method": "POST",
+      "input": {
+        "ticket": "f0aaaeb4-3168-432c-846f-a0413d3826a4"
+      },
+      "status": 409,
+      "data": {
+        "error": "REFUND_CUTOFF",
+        "message": "ต้องขอคืนก่อนเริ่มงานอย่างน้อย 72 ชั่วโมง",
+        "now": 1796814000001
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:11.884Z",
+      "path": "refunds",
+      "method": "POST",
+      "input": {
+        "ticket": "f0aaaeb4-3168-432c-846f-a0413d3826a4"
+      },
+      "status": 201,
+      "data": {
+        "refund": "d21e5231-ee51-4d4c-93c3-1616c4bbbe58",
+        "amount": 1800,
+        "now": 1796814000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.197Z",
+      "path": "login",
+      "method": "POST",
+      "input": {
+        "username": "fan"
+      },
+      "status": 200,
+      "data": {
+        "user": {
+          "id": "fan",
+          "email": "fan@demo.test",
+          "username": "fan",
+          "name": "มายด์ ทดลอง",
+          "role": "buyer",
+          "presale": true
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.198Z",
+      "path": "queue",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "round": "member"
+      },
+      "status": 200,
+      "data": {
+        "queue": {
+          "status": "active",
+          "number": "Q000028",
+          "position": 0,
+          "ahead": 0,
+          "estimated_wait_seconds": 0,
+          "expires": 1793934900000,
+          "round": "member",
+          "starts": 1793934000000,
+          "limit": 2
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.199Z",
+      "path": "membership/verify",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "number": "ENCORE-0001"
+      },
+      "status": 200,
+      "data": {
+        "verified": true,
+        "round": "member",
+        "expires": 1793934900000,
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.200Z",
+      "path": "holds",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "seats": [
+          "C01",
+          "C02"
+        ],
+        "coupon": ""
+      },
+      "status": 201,
+      "data": {
+        "hold": {
+          "id": "f0b98da4-d316-4dbc-aba0-f55c31872803",
+          "user": "fan",
+          "event": "neon",
+          "seats": [
+            "C01",
+            "C02"
+          ],
+          "expires": 1793934600000,
+          "status": "held",
+          "price": {
+            "subtotal": 3600,
+            "discount": 0,
+            "fee": 60,
+            "vat": 4,
+            "total": 3664,
+            "lines": [
+              {
+                "seat": "C01",
+                "net": 1800,
+                "discount": 0,
+                "fee": 30,
+                "vat": 2
+              },
+              {
+                "seat": "C02",
+                "net": 1800,
+                "discount": 0,
+                "fee": 30,
+                "vat": 2
+              }
+            ]
+          },
+          "round": "member",
+          "checkout": null,
+          "payment": null
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.201Z",
+      "path": "checkout",
+      "method": "POST",
+      "input": {
+        "hold": "f0b98da4-d316-4dbc-aba0-f55c31872803",
+        "buyer": {
+          "name": "C5 Buyer",
+          "email": "c5@example.test",
+          "phone": "0812345678"
+        },
+        "holders": [
+          {
+            "seat": "C01",
+            "name": "C5 Holder 1",
+            "email": "c5@example.test",
+            "phone": "0812345678"
+          },
+          {
+            "seat": "C02",
+            "name": "C5 Holder 2",
+            "email": "c5@example.test",
+            "phone": "0812345678"
+          }
+        ]
+      },
+      "status": 200,
+      "data": {
+        "hold": {
+          "id": "f0b98da4-d316-4dbc-aba0-f55c31872803",
+          "user": "fan",
+          "event": "neon",
+          "seats": [
+            "C01",
+            "C02"
+          ],
+          "expires": 1793934600000,
+          "status": "held",
+          "price": {
+            "subtotal": 3600,
+            "discount": 0,
+            "fee": 60,
+            "vat": 4,
+            "total": 3664,
+            "lines": [
+              {
+                "seat": "C01",
+                "net": 1800,
+                "discount": 0,
+                "fee": 30,
+                "vat": 2
+              },
+              {
+                "seat": "C02",
+                "net": 1800,
+                "discount": 0,
+                "fee": 30,
+                "vat": 2
+              }
+            ]
+          },
+          "round": "member",
+          "checkout": {
+            "buyer": {
+              "name": "C5 Buyer",
+              "email": "c5@example.test",
+              "phone": "0812345678"
+            },
+            "holders": [
+              {
+                "seat": "C01",
+                "name": "C5 Holder 1",
+                "email": "c5@example.test",
+                "phone": "0812345678"
+              },
+              {
+                "seat": "C02",
+                "name": "C5 Holder 2",
+                "email": "c5@example.test",
+                "phone": "0812345678"
+              }
+            ]
+          },
+          "payment": null
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.201Z",
+      "path": "pay",
+      "method": "POST",
+      "input": {
+        "hold": "f0b98da4-d316-4dbc-aba0-f55c31872803",
+        "method": "qr",
+        "result": "approved"
+      },
+      "status": 200,
+      "data": {
+        "status": "succeeded",
+        "order": "EN-404903F7-3D2",
+        "replayed": false,
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.202Z",
+      "path": "orders",
+      "method": "GET",
+      "status": 200,
+      "data": {
+        "orders": [
+          {
+            "id": "EN-404903F7-3D2",
+            "user": "fan",
+            "hold": {
+              "id": "f0b98da4-d316-4dbc-aba0-f55c31872803",
+              "user": "fan",
+              "event": "neon",
+              "seats": [
+                "C01",
+                "C02"
+              ],
+              "expires": 1793934600000,
+              "status": "paid",
+              "price": {
+                "subtotal": 3600,
+                "discount": 0,
+                "fee": 60,
+                "vat": 4,
+                "total": 3664,
+                "lines": [
+                  {
+                    "seat": "C01",
+                    "net": 1800,
+                    "discount": 0,
+                    "fee": 30,
+                    "vat": 2
+                  },
+                  {
+                    "seat": "C02",
+                    "net": 1800,
+                    "discount": 0,
+                    "fee": 30,
+                    "vat": 2
+                  }
+                ]
+              },
+              "round": "member",
+              "checkout": {
+                "buyer": {
+                  "name": "C5 Buyer",
+                  "email": "c5@example.test",
+                  "phone": "0812345678"
+                },
+                "holders": [
+                  {
+                    "seat": "C01",
+                    "name": "C5 Holder 1",
+                    "email": "c5@example.test",
+                    "phone": "0812345678"
+                  },
+                  {
+                    "seat": "C02",
+                    "name": "C5 Holder 2",
+                    "email": "c5@example.test",
+                    "phone": "0812345678"
+                  }
+                ]
+              },
+              "payment": {
+                "id": "28d03636-8730-48d4-96cf-85846ade0880",
+                "status": "succeeded",
+                "amount": 3664,
+                "refund_amount": 0,
+                "method": "qr"
+              }
+            },
+            "created": 1793934000000,
+            "tickets": [
+              {
+                "id": "7d908090-72ed-4f34-b434-8936c70b5cbd",
+                "order_id": "EN-404903F7-3D2",
+                "event": "neon",
+                "seat": "C01",
+                "code": "bc3f96d2f86c3d82d098908da959b039e8f0b6ae9b64271a6226b850f1b040a3",
+                "status": "valid",
+                "net": 1800,
+                "fee": 30,
+                "vat": 2,
+                "holder": "{\"seat\":\"C01\",\"name\":\"C5 Holder 1\",\"email\":\"c5@example.test\",\"phone\":\"0812345678\"}",
+                "refund_id": null,
+                "refund_amount": null,
+                "refund_status": null
+              },
+              {
+                "id": "af30cac0-7249-4edb-932a-5a837ae1bb00",
+                "order_id": "EN-404903F7-3D2",
+                "event": "neon",
+                "seat": "C02",
+                "code": "0b8c11bac8690eff0145d94753d39ba7758ff506ef170b96a78b7e0bed77dc17",
+                "status": "valid",
+                "net": 1800,
+                "fee": 30,
+                "vat": 2,
+                "holder": "{\"seat\":\"C02\",\"name\":\"C5 Holder 2\",\"email\":\"c5@example.test\",\"phone\":\"0812345678\"}",
+                "refund_id": null,
+                "refund_amount": null,
+                "refund_status": null
+              }
+            ]
+          }
+        ],
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.237Z",
+      "path": "login",
+      "method": "POST",
+      "input": {
+        "username": "gate"
+      },
+      "status": 200,
+      "data": {
+        "user": {
+          "id": "gate",
+          "email": "gate@demo.test",
+          "username": "gate",
+          "name": "เจ้าหน้าที่ประตู",
+          "role": "scanner",
+          "presale": false
+        },
+        "now": 1797065999999
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.238Z",
+      "path": "scan",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "code": "bc3f96d2f86c3d82d098908da959b039e8f0b6ae9b64271a6226b850f1b040a3"
+      },
+      "status": 409,
+      "data": {
+        "error": "GATE_CLOSED",
+        "message": "ยังไม่อยู่ในเวลาเข้างาน",
+        "now": 1797065999999
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.239Z",
+      "path": "scan",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "code": "bc3f96d2f86c3d82d098908da959b039e8f0b6ae9b64271a6226b850f1b040a3"
+      },
+      "status": 200,
+      "data": {
+        "ok": true,
+        "seat": "C01",
+        "status": "used",
+        "holder": "C5 Holder 1",
+        "now": 1797066000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.241Z",
+      "path": "scan",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "code": "0b8c11bac8690eff0145d94753d39ba7758ff506ef170b96a78b7e0bed77dc17"
+      },
+      "status": 409,
+      "data": {
+        "error": "GATE_CLOSED",
+        "message": "ยังไม่อยู่ในเวลาเข้างาน",
+        "now": 1797087600000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.241Z",
+      "path": "scan",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "code": "0b8c11bac8690eff0145d94753d39ba7758ff506ef170b96a78b7e0bed77dc17"
+      },
+      "status": 200,
+      "data": {
+        "ok": true,
+        "seat": "C02",
+        "status": "used",
+        "holder": "C5 Holder 2",
+        "now": 1797087599999
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.552Z",
+      "path": "login",
+      "method": "POST",
+      "input": {
+        "username": "fan"
+      },
+      "status": 200,
+      "data": {
+        "user": {
+          "id": "fan",
+          "email": "fan@demo.test",
+          "username": "fan",
+          "name": "มายด์ ทดลอง",
+          "role": "buyer",
+          "presale": true
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.553Z",
+      "path": "queue",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "round": "member"
+      },
+      "status": 200,
+      "data": {
+        "queue": {
+          "status": "active",
+          "number": "Q000029",
+          "position": 0,
+          "ahead": 0,
+          "estimated_wait_seconds": 0,
+          "expires": 1793934900000,
+          "round": "member",
+          "starts": 1793934000000,
+          "limit": 2
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.554Z",
+      "path": "membership/verify",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "number": "ENCORE-0001"
+      },
+      "status": 200,
+      "data": {
+        "verified": true,
+        "round": "member",
+        "expires": 1793934900000,
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.555Z",
+      "path": "holds",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "seats": [
+          "C01"
+        ],
+        "coupon": ""
+      },
+      "status": 201,
+      "data": {
+        "hold": {
+          "id": "5fffa86d-2977-426d-b70d-8c632621fee8",
+          "user": "fan",
+          "event": "neon",
+          "seats": [
+            "C01"
+          ],
+          "expires": 1793934600000,
+          "status": "held",
+          "price": {
+            "subtotal": 1800,
+            "discount": 0,
+            "fee": 30,
+            "vat": 2,
+            "total": 1832,
+            "lines": [
+              {
+                "seat": "C01",
+                "net": 1800,
+                "discount": 0,
+                "fee": 30,
+                "vat": 2
+              }
+            ]
+          },
+          "round": "member",
+          "checkout": null,
+          "payment": null
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.556Z",
+      "path": "checkout",
+      "method": "POST",
+      "input": {
+        "hold": "5fffa86d-2977-426d-b70d-8c632621fee8",
+        "buyer": {
+          "name": "C5 Buyer",
+          "email": "c5@example.test",
+          "phone": "0812345678"
+        },
+        "holders": [
+          {
+            "seat": "C01",
+            "name": "C5 Holder 1",
+            "email": "c5@example.test",
+            "phone": "0812345678"
+          }
+        ]
+      },
+      "status": 200,
+      "data": {
+        "hold": {
+          "id": "5fffa86d-2977-426d-b70d-8c632621fee8",
+          "user": "fan",
+          "event": "neon",
+          "seats": [
+            "C01"
+          ],
+          "expires": 1793934600000,
+          "status": "held",
+          "price": {
+            "subtotal": 1800,
+            "discount": 0,
+            "fee": 30,
+            "vat": 2,
+            "total": 1832,
+            "lines": [
+              {
+                "seat": "C01",
+                "net": 1800,
+                "discount": 0,
+                "fee": 30,
+                "vat": 2
+              }
+            ]
+          },
+          "round": "member",
+          "checkout": {
+            "buyer": {
+              "name": "C5 Buyer",
+              "email": "c5@example.test",
+              "phone": "0812345678"
+            },
+            "holders": [
+              {
+                "seat": "C01",
+                "name": "C5 Holder 1",
+                "email": "c5@example.test",
+                "phone": "0812345678"
+              }
+            ]
+          },
+          "payment": null
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.557Z",
+      "path": "pay",
+      "method": "POST",
+      "input": {
+        "hold": "5fffa86d-2977-426d-b70d-8c632621fee8",
+        "method": "qr",
+        "result": "approved"
+      },
+      "status": 200,
+      "data": {
+        "status": "succeeded",
+        "order": "EN-3AF7C92E-288",
+        "replayed": false,
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.558Z",
+      "path": "orders",
+      "method": "GET",
+      "status": 200,
+      "data": {
+        "orders": [
+          {
+            "id": "EN-3AF7C92E-288",
+            "user": "fan",
+            "hold": {
+              "id": "5fffa86d-2977-426d-b70d-8c632621fee8",
+              "user": "fan",
+              "event": "neon",
+              "seats": [
+                "C01"
+              ],
+              "expires": 1793934600000,
+              "status": "paid",
+              "price": {
+                "subtotal": 1800,
+                "discount": 0,
+                "fee": 30,
+                "vat": 2,
+                "total": 1832,
+                "lines": [
+                  {
+                    "seat": "C01",
+                    "net": 1800,
+                    "discount": 0,
+                    "fee": 30,
+                    "vat": 2
+                  }
+                ]
+              },
+              "round": "member",
+              "checkout": {
+                "buyer": {
+                  "name": "C5 Buyer",
+                  "email": "c5@example.test",
+                  "phone": "0812345678"
+                },
+                "holders": [
+                  {
+                    "seat": "C01",
+                    "name": "C5 Holder 1",
+                    "email": "c5@example.test",
+                    "phone": "0812345678"
+                  }
+                ]
+              },
+              "payment": {
+                "id": "e2472387-5e3c-4d54-8201-b20e298d3051",
+                "status": "succeeded",
+                "amount": 1832,
+                "refund_amount": 0,
+                "method": "qr"
+              }
+            },
+            "created": 1793934000000,
+            "tickets": [
+              {
+                "id": "76d3f312-dbc9-4fb2-aeb5-2d923f6d7d4d",
+                "order_id": "EN-3AF7C92E-288",
+                "event": "neon",
+                "seat": "C01",
+                "code": "ce3853ce5e73f686a3263bf7a6600bf9a55099b3e608f7e4038565bad50be5c2",
+                "status": "valid",
+                "net": 1800,
+                "fee": 30,
+                "vat": 2,
+                "holder": "{\"seat\":\"C01\",\"name\":\"C5 Holder 1\",\"email\":\"c5@example.test\",\"phone\":\"0812345678\"}",
+                "refund_id": null,
+                "refund_amount": null,
+                "refund_status": null
+              }
+            ]
+          }
+        ],
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.593Z",
+      "path": "login",
+      "method": "POST",
+      "input": {
+        "username": "gate"
+      },
+      "status": 200,
+      "data": {
+        "user": {
+          "id": "gate",
+          "email": "gate@demo.test",
+          "username": "gate",
+          "name": "เจ้าหน้าที่ประตู",
+          "role": "scanner",
+          "presale": false
+        },
+        "now": 1797066000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.628Z",
+      "path": "login",
+      "method": "POST",
+      "input": {
+        "username": "fan"
+      },
+      "status": 200,
+      "data": {
+        "user": {
+          "id": "fan",
+          "email": "fan@demo.test",
+          "username": "fan",
+          "name": "มายด์ ทดลอง",
+          "role": "buyer",
+          "presale": true
+        },
+        "now": 1797066000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.629Z",
+      "path": "scan",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "code": "ce3853ce5e73f686a3263bf7a6600bf9a55099b3e608f7e4038565bad50be5c2"
+      },
+      "status": 403,
+      "data": {
+        "error": "FORBIDDEN",
+        "message": "ไม่มีสิทธิ์ตรวจบัตรงานนี้",
+        "now": 1797066000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.630Z",
+      "path": "scan",
+      "method": "POST",
+      "input": {
+        "event": "aurora",
+        "code": "ce3853ce5e73f686a3263bf7a6600bf9a55099b3e608f7e4038565bad50be5c2"
+      },
+      "status": 403,
+      "data": {
+        "error": "FORBIDDEN",
+        "message": "ไม่มีสิทธิ์ตรวจบัตรงานนี้",
+        "now": 1797066000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.630Z",
+      "path": "scan",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "code": "UNKNOWN-C5"
+      },
+      "status": 404,
+      "data": {
+        "error": "TICKET_NOT_FOUND",
+        "message": "รหัสบัตรไม่ถูกต้อง",
+        "now": 1797066000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.631Z",
+      "path": "scan",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "code": "ce3853ce5e73f686a3263bf7a6600bf9a55099b3e608f7e4038565bad50be5c2"
+      },
+      "status": 200,
+      "data": {
+        "ok": true,
+        "seat": "C01",
+        "status": "used",
+        "holder": "C5 Holder 1",
+        "now": 1797066000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.632Z",
+      "path": "scan",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "code": "ce3853ce5e73f686a3263bf7a6600bf9a55099b3e608f7e4038565bad50be5c2"
+      },
+      "status": 409,
+      "data": {
+        "error": "TICKET_STATE",
+        "message": "บัตรนี้ใช้เข้างานแล้ว",
+        "now": 1797066000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.941Z",
+      "path": "login",
+      "method": "POST",
+      "input": {
+        "username": "fan"
+      },
+      "status": 200,
+      "data": {
+        "user": {
+          "id": "fan",
+          "email": "fan@demo.test",
+          "username": "fan",
+          "name": "มายด์ ทดลอง",
+          "role": "buyer",
+          "presale": true
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.942Z",
+      "path": "queue",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "round": "member"
+      },
+      "status": 200,
+      "data": {
+        "queue": {
+          "status": "active",
+          "number": "Q000030",
+          "position": 0,
+          "ahead": 0,
+          "estimated_wait_seconds": 0,
+          "expires": 1793934900000,
+          "round": "member",
+          "starts": 1793934000000,
+          "limit": 2
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.943Z",
+      "path": "membership/verify",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "number": "ENCORE-0001"
+      },
+      "status": 200,
+      "data": {
+        "verified": true,
+        "round": "member",
+        "expires": 1793934900000,
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.944Z",
+      "path": "holds",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "seats": [
+          "C01",
+          "C02"
+        ],
+        "coupon": ""
+      },
+      "status": 201,
+      "data": {
+        "hold": {
+          "id": "cef32195-ea2a-4e8c-9346-b13619bb28db",
+          "user": "fan",
+          "event": "neon",
+          "seats": [
+            "C01",
+            "C02"
+          ],
+          "expires": 1793934600000,
+          "status": "held",
+          "price": {
+            "subtotal": 3600,
+            "discount": 0,
+            "fee": 60,
+            "vat": 4,
+            "total": 3664,
+            "lines": [
+              {
+                "seat": "C01",
+                "net": 1800,
+                "discount": 0,
+                "fee": 30,
+                "vat": 2
+              },
+              {
+                "seat": "C02",
+                "net": 1800,
+                "discount": 0,
+                "fee": 30,
+                "vat": 2
+              }
+            ]
+          },
+          "round": "member",
+          "checkout": null,
+          "payment": null
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.945Z",
+      "path": "checkout",
+      "method": "POST",
+      "input": {
+        "hold": "cef32195-ea2a-4e8c-9346-b13619bb28db",
+        "buyer": {
+          "name": "C5 Buyer",
+          "email": "c5@example.test",
+          "phone": "0812345678"
+        },
+        "holders": [
+          {
+            "seat": "C01",
+            "name": "C5 Holder 1",
+            "email": "c5@example.test",
+            "phone": "0812345678"
+          },
+          {
+            "seat": "C02",
+            "name": "C5 Holder 2",
+            "email": "c5@example.test",
+            "phone": "0812345678"
+          }
+        ]
+      },
+      "status": 200,
+      "data": {
+        "hold": {
+          "id": "cef32195-ea2a-4e8c-9346-b13619bb28db",
+          "user": "fan",
+          "event": "neon",
+          "seats": [
+            "C01",
+            "C02"
+          ],
+          "expires": 1793934600000,
+          "status": "held",
+          "price": {
+            "subtotal": 3600,
+            "discount": 0,
+            "fee": 60,
+            "vat": 4,
+            "total": 3664,
+            "lines": [
+              {
+                "seat": "C01",
+                "net": 1800,
+                "discount": 0,
+                "fee": 30,
+                "vat": 2
+              },
+              {
+                "seat": "C02",
+                "net": 1800,
+                "discount": 0,
+                "fee": 30,
+                "vat": 2
+              }
+            ]
+          },
+          "round": "member",
+          "checkout": {
+            "buyer": {
+              "name": "C5 Buyer",
+              "email": "c5@example.test",
+              "phone": "0812345678"
+            },
+            "holders": [
+              {
+                "seat": "C01",
+                "name": "C5 Holder 1",
+                "email": "c5@example.test",
+                "phone": "0812345678"
+              },
+              {
+                "seat": "C02",
+                "name": "C5 Holder 2",
+                "email": "c5@example.test",
+                "phone": "0812345678"
+              }
+            ]
+          },
+          "payment": null
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.946Z",
+      "path": "pay",
+      "method": "POST",
+      "input": {
+        "hold": "cef32195-ea2a-4e8c-9346-b13619bb28db",
+        "method": "qr",
+        "result": "approved"
+      },
+      "status": 200,
+      "data": {
+        "status": "succeeded",
+        "order": "EN-643F993A-063",
+        "replayed": false,
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.947Z",
+      "path": "orders",
+      "method": "GET",
+      "status": 200,
+      "data": {
+        "orders": [
+          {
+            "id": "EN-643F993A-063",
+            "user": "fan",
+            "hold": {
+              "id": "cef32195-ea2a-4e8c-9346-b13619bb28db",
+              "user": "fan",
+              "event": "neon",
+              "seats": [
+                "C01",
+                "C02"
+              ],
+              "expires": 1793934600000,
+              "status": "paid",
+              "price": {
+                "subtotal": 3600,
+                "discount": 0,
+                "fee": 60,
+                "vat": 4,
+                "total": 3664,
+                "lines": [
+                  {
+                    "seat": "C01",
+                    "net": 1800,
+                    "discount": 0,
+                    "fee": 30,
+                    "vat": 2
+                  },
+                  {
+                    "seat": "C02",
+                    "net": 1800,
+                    "discount": 0,
+                    "fee": 30,
+                    "vat": 2
+                  }
+                ]
+              },
+              "round": "member",
+              "checkout": {
+                "buyer": {
+                  "name": "C5 Buyer",
+                  "email": "c5@example.test",
+                  "phone": "0812345678"
+                },
+                "holders": [
+                  {
+                    "seat": "C01",
+                    "name": "C5 Holder 1",
+                    "email": "c5@example.test",
+                    "phone": "0812345678"
+                  },
+                  {
+                    "seat": "C02",
+                    "name": "C5 Holder 2",
+                    "email": "c5@example.test",
+                    "phone": "0812345678"
+                  }
+                ]
+              },
+              "payment": {
+                "id": "29c34cbc-7381-4672-838b-c9fb9632de0b",
+                "status": "succeeded",
+                "amount": 3664,
+                "refund_amount": 0,
+                "method": "qr"
+              }
+            },
+            "created": 1793934000000,
+            "tickets": [
+              {
+                "id": "6dd010e1-e047-46e6-b0a5-e607f228926a",
+                "order_id": "EN-643F993A-063",
+                "event": "neon",
+                "seat": "C01",
+                "code": "3df36001c546ddf8fb846666d784ea6aba9b20dd0e0b83f044f3caba70690eb6",
+                "status": "valid",
+                "net": 1800,
+                "fee": 30,
+                "vat": 2,
+                "holder": "{\"seat\":\"C01\",\"name\":\"C5 Holder 1\",\"email\":\"c5@example.test\",\"phone\":\"0812345678\"}",
+                "refund_id": null,
+                "refund_amount": null,
+                "refund_status": null
+              },
+              {
+                "id": "547a8218-1151-4d04-b166-373190f75af2",
+                "order_id": "EN-643F993A-063",
+                "event": "neon",
+                "seat": "C02",
+                "code": "a0a228ff9e4117ad4ad53d1684fd7692f22587756eed8950b70e4dc3b7614694",
+                "status": "valid",
+                "net": 1800,
+                "fee": 30,
+                "vat": 2,
+                "holder": "{\"seat\":\"C02\",\"name\":\"C5 Holder 2\",\"email\":\"c5@example.test\",\"phone\":\"0812345678\"}",
+                "refund_id": null,
+                "refund_amount": null,
+                "refund_status": null
+              }
+            ]
+          }
+        ],
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.982Z",
+      "path": "login",
+      "method": "POST",
+      "input": {
+        "username": "encore"
+      },
+      "status": 200,
+      "data": {
+        "user": {
+          "id": "encore",
+          "email": "encore@demo.test",
+          "username": "encore",
+          "name": "ผู้จัด ENCORE",
+          "role": "organizer",
+          "presale": false
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.982Z",
+      "path": "refunds",
+      "method": "POST",
+      "input": {
+        "ticket": "6dd010e1-e047-46e6-b0a5-e607f228926a"
+      },
+      "status": 201,
+      "data": {
+        "refund": "c0b3283d-829f-4de3-b476-923eeeb4c0ff",
+        "amount": 1800,
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.983Z",
+      "path": "admin/refunds",
+      "method": "POST",
+      "input": {
+        "refund": "c0b3283d-829f-4de3-b476-923eeeb4c0ff",
+        "decision": "approve"
+      },
+      "status": 200,
+      "data": {
+        "status": "succeeded",
+        "amount": 1800,
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:12.984Z",
+      "path": "refunds",
+      "method": "POST",
+      "input": {
+        "ticket": "547a8218-1151-4d04-b166-373190f75af2"
+      },
+      "status": 201,
+      "data": {
+        "refund": "402cc21a-3355-4fac-823a-b9ad31b7cfd9",
+        "amount": 1800,
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:13.019Z",
+      "path": "login",
+      "method": "POST",
+      "input": {
+        "username": "gate"
+      },
+      "status": 200,
+      "data": {
+        "user": {
+          "id": "gate",
+          "email": "gate@demo.test",
+          "username": "gate",
+          "name": "เจ้าหน้าที่ประตู",
+          "role": "scanner",
+          "presale": false
+        },
+        "now": 1797066000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:13.020Z",
+      "path": "scan",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "code": "3df36001c546ddf8fb846666d784ea6aba9b20dd0e0b83f044f3caba70690eb6"
+      },
+      "status": 409,
+      "data": {
+        "error": "TICKET_STATE",
+        "message": "บัตรนี้ถูกระงับหรือคืนเงิน",
+        "now": 1797066000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:13.021Z",
+      "path": "scan",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "code": "a0a228ff9e4117ad4ad53d1684fd7692f22587756eed8950b70e4dc3b7614694"
+      },
+      "status": 409,
+      "data": {
+        "error": "TICKET_STATE",
+        "message": "บัตรนี้ถูกระงับหรือคืนเงิน",
+        "now": 1797066000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:13.331Z",
+      "path": "login",
+      "method": "POST",
+      "input": {
+        "username": "fan"
+      },
+      "status": 200,
+      "data": {
+        "user": {
+          "id": "fan",
+          "email": "fan@demo.test",
+          "username": "fan",
+          "name": "มายด์ ทดลอง",
+          "role": "buyer",
+          "presale": true
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:13.332Z",
+      "path": "queue",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "round": "member"
+      },
+      "status": 200,
+      "data": {
+        "queue": {
+          "status": "active",
+          "number": "Q000031",
+          "position": 0,
+          "ahead": 0,
+          "estimated_wait_seconds": 0,
+          "expires": 1793934900000,
+          "round": "member",
+          "starts": 1793934000000,
+          "limit": 2
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:13.333Z",
+      "path": "membership/verify",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "number": "ENCORE-0001"
+      },
+      "status": 200,
+      "data": {
+        "verified": true,
+        "round": "member",
+        "expires": 1793934900000,
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:13.334Z",
+      "path": "holds",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "seats": [
+          "C01"
+        ]
+      },
+      "status": 201,
+      "data": {
+        "hold": {
+          "id": "cae620fa-2987-4fd4-8ee5-c4d275ad7e80",
+          "user": "fan",
+          "event": "neon",
+          "seats": [
+            "C01"
+          ],
+          "expires": 1793934600000,
+          "status": "held",
+          "price": {
+            "subtotal": 1800,
+            "discount": 0,
+            "fee": 30,
+            "vat": 2,
+            "total": 1832,
+            "lines": [
+              {
+                "seat": "C01",
+                "net": 1800,
+                "discount": 0,
+                "fee": 30,
+                "vat": 2
+              }
+            ]
+          },
+          "round": "member",
+          "checkout": null,
+          "payment": null
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:13.335Z",
+      "path": "checkout",
+      "method": "POST",
+      "input": {
+        "hold": "cae620fa-2987-4fd4-8ee5-c4d275ad7e80",
+        "buyer": {
+          "name": "C5 Buyer",
+          "email": "c5@example.test",
+          "phone": "0812345678"
+        },
+        "holders": [
+          {
+            "seat": "C01",
+            "name": "C5 Buyer",
+            "email": "c5@example.test",
+            "phone": "0812345678"
+          }
+        ]
+      },
+      "status": 200,
+      "data": {
+        "hold": {
+          "id": "cae620fa-2987-4fd4-8ee5-c4d275ad7e80",
+          "user": "fan",
+          "event": "neon",
+          "seats": [
+            "C01"
+          ],
+          "expires": 1793934600000,
+          "status": "held",
+          "price": {
+            "subtotal": 1800,
+            "discount": 0,
+            "fee": 30,
+            "vat": 2,
+            "total": 1832,
+            "lines": [
+              {
+                "seat": "C01",
+                "net": 1800,
+                "discount": 0,
+                "fee": 30,
+                "vat": 2
+              }
+            ]
+          },
+          "round": "member",
+          "checkout": {
+            "buyer": {
+              "name": "C5 Buyer",
+              "email": "c5@example.test",
+              "phone": "0812345678"
+            },
+            "holders": [
+              {
+                "seat": "C01",
+                "name": "C5 Buyer",
+                "email": "c5@example.test",
+                "phone": "0812345678"
+              }
+            ]
+          },
+          "payment": null
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:13.369Z",
+      "path": "login",
+      "method": "POST",
+      "input": {
+        "username": "encore"
+      },
+      "status": 200,
+      "data": {
+        "user": {
+          "id": "encore",
+          "email": "encore@demo.test",
+          "username": "encore",
+          "name": "ผู้จัด ENCORE",
+          "role": "organizer",
+          "presale": false
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:13.370Z",
+      "path": "admin/event",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "state": "paused"
+      },
+      "status": 200,
+      "data": {
+        "ok": true,
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:13.371Z",
+      "path": "holds",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "seats": [
+          "C02"
+        ]
+      },
+      "status": 409,
+      "data": {
+        "error": "SALE_UNAVAILABLE",
+        "message": "คอนเสิร์ตนี้ไม่ได้เปิดขาย",
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:13.372Z",
+      "path": "queue",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "round": "member"
+      },
+      "status": 409,
+      "data": {
+        "error": "SALE_UNAVAILABLE",
+        "message": "ยังเข้าคิวรอบนี้ไม่ได้",
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:13.372Z",
+      "path": "pay",
+      "method": "POST",
+      "input": {
+        "hold": "cae620fa-2987-4fd4-8ee5-c4d275ad7e80",
+        "method": "qr",
+        "result": "approved"
+      },
+      "status": 200,
+      "data": {
+        "status": "succeeded",
+        "order": "EN-A0EE86FD-40F",
+        "replayed": false,
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:13.373Z",
+      "path": "admin/event",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "state": "on_sale"
+      },
+      "status": 200,
+      "data": {
+        "ok": true,
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:13.684Z",
+      "path": "login",
+      "method": "POST",
+      "input": {
+        "username": "fan"
+      },
+      "status": 200,
+      "data": {
+        "user": {
+          "id": "fan",
+          "email": "fan@demo.test",
+          "username": "fan",
+          "name": "มายด์ ทดลอง",
+          "role": "buyer",
+          "presale": true
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:13.685Z",
+      "path": "queue",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "round": "member"
+      },
+      "status": 200,
+      "data": {
+        "queue": {
+          "status": "active",
+          "number": "Q000032",
+          "position": 0,
+          "ahead": 0,
+          "estimated_wait_seconds": 0,
+          "expires": 1793934900000,
+          "round": "member",
+          "starts": 1793934000000,
+          "limit": 2
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:13.686Z",
+      "path": "membership/verify",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "number": "ENCORE-0001"
+      },
+      "status": 200,
+      "data": {
+        "verified": true,
+        "round": "member",
+        "expires": 1793934900000,
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:13.687Z",
+      "path": "holds",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "seats": [
+          "C01"
+        ],
+        "coupon": "STAGE10"
+      },
+      "status": 201,
+      "data": {
+        "hold": {
+          "id": "bc0adecd-357f-40b3-b245-45fb023bd494",
+          "user": "fan",
+          "event": "neon",
+          "seats": [
+            "C01"
+          ],
+          "expires": 1793934600000,
+          "status": "held",
+          "price": {
+            "subtotal": 1800,
+            "discount": 180,
+            "fee": 30,
+            "vat": 2,
+            "total": 1652,
+            "lines": [
+              {
+                "seat": "C01",
+                "net": 1620,
+                "discount": 180,
+                "fee": 30,
+                "vat": 2
+              }
+            ]
+          },
+          "round": "member",
+          "checkout": null,
+          "payment": null
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:13.687Z",
+      "path": "checkout",
+      "method": "POST",
+      "input": {
+        "hold": "bc0adecd-357f-40b3-b245-45fb023bd494",
+        "buyer": {
+          "name": "C5 Buyer",
+          "email": "c5@example.test",
+          "phone": "0812345678"
+        },
+        "holders": [
+          {
+            "seat": "C01",
+            "name": "C5 Holder 1",
+            "email": "c5@example.test",
+            "phone": "0812345678"
+          }
+        ]
+      },
+      "status": 200,
+      "data": {
+        "hold": {
+          "id": "bc0adecd-357f-40b3-b245-45fb023bd494",
+          "user": "fan",
+          "event": "neon",
+          "seats": [
+            "C01"
+          ],
+          "expires": 1793934600000,
+          "status": "held",
+          "price": {
+            "subtotal": 1800,
+            "discount": 180,
+            "fee": 30,
+            "vat": 2,
+            "total": 1652,
+            "lines": [
+              {
+                "seat": "C01",
+                "net": 1620,
+                "discount": 180,
+                "fee": 30,
+                "vat": 2
+              }
+            ]
+          },
+          "round": "member",
+          "checkout": {
+            "buyer": {
+              "name": "C5 Buyer",
+              "email": "c5@example.test",
+              "phone": "0812345678"
+            },
+            "holders": [
+              {
+                "seat": "C01",
+                "name": "C5 Holder 1",
+                "email": "c5@example.test",
+                "phone": "0812345678"
+              }
+            ]
+          },
+          "payment": null
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:13.688Z",
+      "path": "pay",
+      "method": "POST",
+      "input": {
+        "hold": "bc0adecd-357f-40b3-b245-45fb023bd494",
+        "method": "qr",
+        "result": "approved"
+      },
+      "status": 200,
+      "data": {
+        "status": "succeeded",
+        "order": "EN-5A52265A-029",
+        "replayed": false,
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:13.689Z",
+      "path": "orders",
+      "method": "GET",
+      "status": 200,
+      "data": {
+        "orders": [
+          {
+            "id": "EN-5A52265A-029",
+            "user": "fan",
+            "hold": {
+              "id": "bc0adecd-357f-40b3-b245-45fb023bd494",
+              "user": "fan",
+              "event": "neon",
+              "seats": [
+                "C01"
+              ],
+              "expires": 1793934600000,
+              "status": "paid",
+              "price": {
+                "subtotal": 1800,
+                "discount": 180,
+                "fee": 30,
+                "vat": 2,
+                "total": 1652,
+                "lines": [
+                  {
+                    "seat": "C01",
+                    "net": 1620,
+                    "discount": 180,
+                    "fee": 30,
+                    "vat": 2
+                  }
+                ]
+              },
+              "round": "member",
+              "checkout": {
+                "buyer": {
+                  "name": "C5 Buyer",
+                  "email": "c5@example.test",
+                  "phone": "0812345678"
+                },
+                "holders": [
+                  {
+                    "seat": "C01",
+                    "name": "C5 Holder 1",
+                    "email": "c5@example.test",
+                    "phone": "0812345678"
+                  }
+                ]
+              },
+              "payment": {
+                "id": "8e8a813b-370a-44b4-a1cd-dc5c6e811108",
+                "status": "succeeded",
+                "amount": 1652,
+                "refund_amount": 0,
+                "method": "qr"
+              }
+            },
+            "created": 1793934000000,
+            "tickets": [
+              {
+                "id": "57ef2685-e122-4265-903c-d2225b1e250b",
+                "order_id": "EN-5A52265A-029",
+                "event": "neon",
+                "seat": "C01",
+                "code": "c487541f478b4ddd62f25a9b314030b6710c3a67cfb515a42bab4f884bb134a6",
+                "status": "valid",
+                "net": 1620,
+                "fee": 30,
+                "vat": 2,
+                "holder": "{\"seat\":\"C01\",\"name\":\"C5 Holder 1\",\"email\":\"c5@example.test\",\"phone\":\"0812345678\"}",
+                "refund_id": null,
+                "refund_amount": null,
+                "refund_status": null
+              }
+            ]
+          }
+        ],
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:13.724Z",
+      "path": "login",
+      "method": "POST",
+      "input": {
+        "username": "encore"
+      },
+      "status": 200,
+      "data": {
+        "user": {
+          "id": "encore",
+          "email": "encore@demo.test",
+          "username": "encore",
+          "name": "ผู้จัด ENCORE",
+          "role": "organizer",
+          "presale": false
+        },
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:13.724Z",
+      "path": "refunds",
+      "method": "POST",
+      "input": {
+        "ticket": "57ef2685-e122-4265-903c-d2225b1e250b"
+      },
+      "status": 201,
+      "data": {
+        "refund": "31f83d64-7af6-418b-9c4b-f8d511318526",
+        "amount": 1620,
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:13.725Z",
+      "path": "admin/refunds",
+      "method": "POST",
+      "input": {
+        "refund": "31f83d64-7af6-418b-9c4b-f8d511318526",
+        "decision": "reject"
+      },
+      "status": 200,
+      "data": {
+        "status": "rejected",
+        "amount": 1620,
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:13.726Z",
+      "path": "orders",
+      "method": "GET",
+      "status": 200,
+      "data": {
+        "orders": [
+          {
+            "id": "EN-5A52265A-029",
+            "user": "fan",
+            "hold": {
+              "id": "bc0adecd-357f-40b3-b245-45fb023bd494",
+              "user": "fan",
+              "event": "neon",
+              "seats": [
+                "C01"
+              ],
+              "expires": 1793934600000,
+              "status": "paid",
+              "price": {
+                "subtotal": 1800,
+                "discount": 180,
+                "fee": 30,
+                "vat": 2,
+                "total": 1652,
+                "lines": [
+                  {
+                    "seat": "C01",
+                    "net": 1620,
+                    "discount": 180,
+                    "fee": 30,
+                    "vat": 2
+                  }
+                ]
+              },
+              "round": "member",
+              "checkout": {
+                "buyer": {
+                  "name": "C5 Buyer",
+                  "email": "c5@example.test",
+                  "phone": "0812345678"
+                },
+                "holders": [
+                  {
+                    "seat": "C01",
+                    "name": "C5 Holder 1",
+                    "email": "c5@example.test",
+                    "phone": "0812345678"
+                  }
+                ]
+              },
+              "payment": {
+                "id": "8e8a813b-370a-44b4-a1cd-dc5c6e811108",
+                "status": "succeeded",
+                "amount": 1652,
+                "refund_amount": 0,
+                "method": "qr"
+              }
+            },
+            "created": 1793934000000,
+            "tickets": [
+              {
+                "id": "57ef2685-e122-4265-903c-d2225b1e250b",
+                "order_id": "EN-5A52265A-029",
+                "event": "neon",
+                "seat": "C01",
+                "code": "c487541f478b4ddd62f25a9b314030b6710c3a67cfb515a42bab4f884bb134a6",
+                "status": "valid",
+                "net": 1620,
+                "fee": 30,
+                "vat": 2,
+                "holder": "{\"seat\":\"C01\",\"name\":\"C5 Holder 1\",\"email\":\"c5@example.test\",\"phone\":\"0812345678\"}",
+                "refund_id": "31f83d64-7af6-418b-9c4b-f8d511318526",
+                "refund_amount": 1620,
+                "refund_status": "rejected"
+              }
+            ]
+          }
+        ],
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:13.726Z",
+      "path": "refunds",
+      "method": "POST",
+      "input": {
+        "ticket": "57ef2685-e122-4265-903c-d2225b1e250b"
+      },
+      "status": 201,
+      "data": {
+        "refund": "31f83d64-7af6-418b-9c4b-f8d511318526",
+        "amount": 1620,
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:13.727Z",
+      "path": "admin/event",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "state": "cancelled"
+      },
+      "status": 200,
+      "data": {
+        "ok": true,
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:13.728Z",
+      "path": "admin/dashboard?event=neon",
+      "method": "GET",
+      "status": 200,
+      "data": {
+        "event": {
+          "id": "neon",
+          "tag": "INDIE / SYNTH POP",
+          "title": "NEON AFTERGLOW",
+          "thai": "ค่ำคืนที่เราเปล่งประกายไปด้วยกัน",
+          "artist": "LUNA / THE MIDNIGHT CLUB / WAVE",
+          "date": "12 ธันวาคม 2569",
+          "time": "18:00",
+          "venue": "Encore Hall · กรุงเทพฯ",
+          "start": "2026-12-12T11:00:00Z",
+          "sale": "2026-11-01T03:00:00Z",
+          "end": "2026-12-12T10:00:00Z",
+          "theme": "neon",
+          "from": 1800,
+          "state": "cancelled",
+          "round": "member",
+          "owner": "encore",
+          "schedule": [
+            {
+              "kind": "member",
+              "start": 1793934000000,
+              "end": 1793952000000
+            },
+            {
+              "kind": "general",
+              "start": 1793952000000,
+              "end": 1797069600000
+            }
+          ],
+          "saleRound": {
+            "kind": "member",
+            "start": 1793934000000,
+            "end": 1793952000000
+          },
+          "limit": 2
+        },
+        "gross": 1652,
+        "refunded": 0,
+        "net": 1652,
+        "tickets": [
+          {
+            "status": "refund_pending",
+            "count": 1
+          }
+        ],
+        "refunds": [
+          {
+            "id": "31f83d64-7af6-418b-9c4b-f8d511318526",
+            "ticket": "57ef2685-e122-4265-903c-d2225b1e250b",
+            "amount": 1652,
+            "status": "requested",
+            "reason": "event_cancelled",
+            "created": 1793934000000,
+            "seat": "C01"
+          }
+        ],
+        "audit": [
+          {
+            "id": "bcfb6974-cf4f-4a36-a543-1b0346c87e7c",
+            "actor": "encore",
+            "event": "neon",
+            "action": "event.updated",
+            "target": "neon",
+            "created": 1793934000000
+          },
+          {
+            "id": "1202ef30-4835-4fbd-965b-ec7d5be995a5",
+            "actor": "fan",
+            "event": "neon",
+            "action": "refund.requested",
+            "target": "57ef2685-e122-4265-903c-d2225b1e250b",
+            "created": 1793934000000
+          },
+          {
+            "id": "68ad0015-ee27-4016-bed6-0c43fd47dbeb",
+            "actor": "encore",
+            "event": "neon",
+            "action": "refund.rejected",
+            "target": "31f83d64-7af6-418b-9c4b-f8d511318526",
+            "created": 1793934000000
+          },
+          {
+            "id": "3eadb020-fd13-4079-a3e2-73bedacb934d",
+            "actor": "fan",
+            "event": "neon",
+            "action": "refund.requested",
+            "target": "57ef2685-e122-4265-903c-d2225b1e250b",
+            "created": 1793934000000
+          },
+          {
+            "id": "dbe1be68-23f4-4035-b5b9-c1ce73c8d916",
+            "actor": "fan",
+            "event": "neon",
+            "action": "payment.succeeded",
+            "target": "EN-5A52265A-029",
+            "created": 1793934000000
+          }
+        ],
+        "orders": [
+          {
+            "id": "EN-5A52265A-029",
+            "created": 1793934000000,
+            "price": {
+              "subtotal": 1800,
+              "discount": 180,
+              "fee": 30,
+              "vat": 2,
+              "total": 1652,
+              "lines": [
+                {
+                  "seat": "C01",
+                  "net": 1620,
+                  "discount": 180,
+                  "fee": 30,
+                  "vat": 2
+                }
+              ]
+            }
+          }
+        ],
+        "now": 1793934000000
+      }
+    },
+    {
+      "at": "2026-11-06T11:43:13.729Z",
+      "path": "admin/event",
+      "method": "POST",
+      "input": {
+        "event": "neon",
+        "state": "on_sale"
+      },
+      "status": 409,
+      "data": {
+        "error": "EVENT_TERMINAL",
+        "message": "งานยกเลิกแล้วเปิดใหม่ไม่ได้",
+        "now": 1793934000000
+      }
+    }
+  ]
+}

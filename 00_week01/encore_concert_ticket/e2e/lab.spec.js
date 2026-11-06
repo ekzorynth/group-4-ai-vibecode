@@ -1,0 +1,15 @@
+// Acceptance probes from requirements and fixed TEST-DATA, frozen before mutation run.
+import {test,expect} from './fixtures.mjs';
+const headers={'x-test-token':'encore-e2e'};
+test.beforeEach(async({request})=>{expect((await request.post('/api/test/reset',{headers,data:{}})).ok()).toBe(true);});
+async function map(page){await page.goto('/');await page.locator('#auth-open').click();await page.locator('[data-demo="fan"]').click();await expect(page.locator('#auth')).not.toBeVisible();await page.getByTestId('event-neon').locator('[data-sale-round="member"]').click();await page.locator('#member-number').fill('ENCORE-0001');await page.locator('#member-form button').click();await expect(page.locator('[data-seat="A01"]')).toBeVisible();}
+test('V3-L01 two VIP coupon cap has server checkout total 5964 after hold',async({page})=>{
+ await map(page);await page.locator('[data-seat="A01"]').click();await page.locator('[data-seat="A02"]').click();await page.locator('#coupon').fill('STAGE10');await expect(page.getByTestId('total')).toHaveText('฿5,964');await page.locator('#reserve').click();await expect(page.locator('#checkout-form')).toBeVisible();await expect(page.locator('#checkout-form').getByTestId('total')).toHaveText('฿5,964');
+});
+test('V3-L02 Member third seat is rejected while first two stay selected',async({page})=>{
+ await map(page);await page.locator('[data-seat="C01"]').click();await page.locator('[data-seat="C02"]').click();await expect(page.locator('.seat.selected')).toHaveCount(2);await page.locator('[data-seat="C03"]').click();await expect(page.locator('.seat.selected')).toHaveCount(2);await expect(page.locator('#toast')).toContainText('สูงสุด 2');
+});
+test('V3-L03 gate second scan is rejection not success message containing used words',async({page,request})=>{
+ await request.post('/api/login',{data:{username:'fan',password:'FanDemo!26'}});await request.post('/api/queue',{data:{event:'neon'}});await request.post('/api/membership/verify',{data:{event:'neon',number:'ENCORE-0001'}});const h=await(await request.post('/api/holds',{data:{event:'neon',seats:['C01']}})).json();const p={name:'Gate Holder',email:'gate@example.test',phone:'0812345678'};expect((await request.post('/api/checkout',{data:{hold:h.hold.id,buyer:p,holders:[{seat:'C01',...p}]}})).ok()).toBe(true);expect((await(await request.post('/api/pay',{data:{hold:h.hold.id,result:'approved',method:'qr'}})).json()).status).toBe('succeeded');const o=(await(await request.get('/api/orders')).json()).orders[0];await request.post('/api/test/clock',{headers,data:{now:'2026-12-12T09:00:00Z'}});
+ await page.goto('/');await page.locator('#auth-open').click();await page.locator('.demo-more summary').click();await page.locator('[data-demo="gate"]').click();await expect(page.locator('#auth')).not.toBeVisible();await page.locator('#scanner-open').click();await page.locator('#ticket-code').fill(o.tickets[0].code);await page.locator('#scan-form button').click();await expect(page.locator('#scan-result')).toContainText('ยืนยันเข้างานแล้ว');await page.locator('#scan-form button').click();await expect(page.locator('#scan-result')).toHaveText('บัตรนี้ใช้เข้างานแล้ว');
+});
