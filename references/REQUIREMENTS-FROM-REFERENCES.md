@@ -1,0 +1,13 @@
+# Requirements เพิ่มเติมจากแหล่งอ้างอิง
+
+เอกสารนี้เป็นการสรุปวิเคราะห์ ไม่ใช่ข้อความคัดลอกหรือข้อกำหนดของทุกเว็บไซต์ ที่มาครบพร้อมภาพ/URL/วันเข้าถึง/SHA256อยู่READMEและmanifestของโฟลเดอร์นี้
+
+| Reference-derived requirement | แรงบันดาลใจ | การนำมาใช้ ENCORE | สิ่งที่ไม่อนุมานตาม |
+|---|---|---|---|
+| RQ-R01 ต้องมีหน้าqueueที่รู้สถานะของตน | REF01 Ticketmelon | numberคงที่/ahead/ETA/pollautoadmit | ไม่อ้างว่าระบบคิวทุกเจ้ามีalgorithmเดียวกัน |
+| RQ-R02 แยกloginกับสิทธิ์ซื้อpresale | REF02 LiveNation | accountmemberregistry+เลขMemberหลังคิว+APIgrantก่อนผัง | ไม่อ้างสมาชิกLiveNationใช้เลขเดียวกับENCORE |
+| RQ-R03 ช่องทางชำระมีขั้นตอน/อ้างอิงของตน | REF03/04 Ticketmelon | 4methods+reference/deadline/instructionsในsandbox | ไม่คัดfeeหรือdeadlineผู้ให้บริการ; 7-Elevenเป็นUกำหนด |
+| RQ-R04 E-ticketผูกผู้ถือและรหัสเข้า | REF05 Eventpop | fullname/seat/วันงาน+QRopaqueจริงแยกต่อใบ | ไม่เก็บemail/phoneในQRหรือใช้QRจากภาพตัวอย่าง |
+| RQ-R05 บัตรเข้าถึงได้ทั้งในบัญชีและemail | REF05/06 Eventpop/Ticketmelon | ticketlist+emailSandbox+EMLแนบQRPNG | ไม่อ้างส่งSMTPจริงตามขอบเขตผู้ใช้ |
+
+เลขเวลา10:00/15:00, Member2ใบต่อuser, ข้อความ“ไม่ใช่สมาชิกMember”, ข้อมูลfullname/email/phoneและชื่อ4ช่องทางมาจาก[U] ให้ถือREQUIREMENTS.mdเป็นauthorityเหนือreference

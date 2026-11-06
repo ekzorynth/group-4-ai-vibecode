@@ -1,0 +1,97 @@
+{
+  "runAt": "2026-11-06T04:09:32.891Z",
+  "mode": "expiry",
+  "results": [
+    {
+      "id": "TC-01",
+      "name": "catalog has available, upcoming and sold-out events",
+      "status": "passed"
+    },
+    {
+      "id": "TC-02",
+      "name": "one Regular ticket costs 1832",
+      "status": "passed"
+    },
+    {
+      "id": "TC-03",
+      "name": "two VIP tickets coupon capped at 500 total 5964",
+      "status": "passed"
+    },
+    {
+      "id": "TC-04",
+      "name": "reject 0 and 5 seats; allow 4",
+      "status": "passed"
+    },
+    {
+      "id": "TC-05",
+      "name": "reject duplicates, missing and sold seats",
+      "status": "passed"
+    },
+    {
+      "id": "TC-06",
+      "name": "two simultaneous buyers: exactly one succeeds",
+      "status": "passed"
+    },
+    {
+      "id": "TC-07",
+      "name": "hold is valid at 9:59 and fails exactly 10:00",
+      "status": "failed",
+      "message": "Expected values to be strictly equal:\n\n200 !== 409\n"
+    },
+    {
+      "id": "TC-08",
+      "name": "payment replay returns one order",
+      "status": "passed"
+    },
+    {
+      "id": "TC-09",
+      "name": "decline keeps hold and allows retry",
+      "status": "passed"
+    },
+    {
+      "id": "TC-10",
+      "name": "session isolation blocks others payment/release/history",
+      "status": "passed"
+    },
+    {
+      "id": "TC-11",
+      "name": "release immediately makes the seat available",
+      "status": "passed"
+    },
+    {
+      "id": "TC-12",
+      "name": "sale opens exactly at boundary, closes exactly at end",
+      "status": "passed"
+    },
+    {
+      "id": "TC-13",
+      "name": "reject invalid coupon and ignore manipulated total",
+      "status": "passed"
+    },
+    {
+      "id": "TC-14",
+      "name": "invalid email does not create order",
+      "status": "passed"
+    },
+    {
+      "id": "TC-15",
+      "name": "paid seat is sold and cannot be reserved again",
+      "status": "passed"
+    },
+    {
+      "id": "TC-16",
+      "name": "reset guarded; reject foreign-origin writes",
+      "status": "passed"
+    },
+    {
+      "id": "TC-17",
+      "name": "mixed zones correct and atomic failure holds nothing",
+      "status": "passed"
+    },
+    {
+      "id": "TC-18",
+      "name": "new hold releases previous basket; paid seat survives time",
+      "status": "passed"
+    }
+  ]
+}

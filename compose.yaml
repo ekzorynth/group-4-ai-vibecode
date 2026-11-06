@@ -1,0 +1,21 @@
+name: encore
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "127.0.0.1:${ENCORE_PORT:-4310}:4310"
+    environment:
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: "4310"
+      DB_PATH: /app/web/data/encore-v2.sqlite
+      LIVE_CLOCK: "${LIVE_CLOCK:-0}"
+    volumes:
+      - encore-data:/app/web/data
+    restart: unless-stopped
+
+volumes:
+  encore-data:
